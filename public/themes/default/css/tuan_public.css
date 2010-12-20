@@ -1,0 +1,248 @@
+/*给力百货新版网页css 日期:2009.10.1 by:策*/
+/*全局css设定*/
+HTML { }
+BODY { margin: 0; color: #333333; font:9pt Tahoma,"宋体",Arial,Helvetica,Sans-Serif;line-height:14px; letter-spacing:0; background-color:#ece8dd; }
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{ padding: 0; margin: 0;}
+UL{ padding:0; margin:0; list-style:none;}
+IMG { border: none; padding: 0; margin: 0;}
+input,img,select {vertical-align:middle;}
+A:link { color:#666666; text-decoration: none;}
+A:visited { color:#666666; text-decoration: none;}
+A:hover { color:#c90809; text-decoration: underline;}
+.clear { clear: both; font-size:0; line-height:0; height:0;}
+#clear { clear: both; font-size:0; line-height:0; height:0;}
+.fl { float:left;}
+.fr { float:right;}
+
+a.blue { color:#1f71cb;}
+a.blue:link { color:#1f71cb;}
+a.blue:visited{ color:#1f71cb;}
+a.blue:hover { color:#1f71cb;}
+
+a.red {color:#c90809;}
+a.red:link { color:#c90809;}
+a.red:visited{color:#c90809;}
+a.red:hover { color:#c90809;}
+
+/*页面通用头部css*/
+/*#head { margin: 0px auto; width: 960px; height:76px; padding-top:10px;}*/
+#headbox { margin: 0px auto; width: 100%;height:118px; background-color:#fff; border-bottom:1px solid #d80109;}
+#head { margin: 0px auto; width: 950px; height:118px;}
+	#logo { float:left; width:282px; padding-top:43px; padding-right:20px;}
+	#city { float:left; margin-top:63px;position:relative; width:75px; z-index:200; cursor:pointer; }
+		#city_on { height:30px; line-height:31px;color:#cd2a23;background:url(/themes/default/imgs/tuan/city_bg.gif) repeat-x 0 2px; }
+			#city_on dt{ float:left; font-size:14px; font-weight:bold;  padding:0 10px;border:1px solid #e2e2e2;}
+			#city_on dd{float:left;border:1px solid #e2e2e2; border-left:none; padding:0 5px;}
+		.citylist { position:absolute; background-color:#fff; width:310px; border:1px solid #d3b27f; padding:10px;z-index:202; left:0; top:30px;display:none;}
+			.citylist dt { color:#c90809; text-align:right; margin-top:15px; padding-bottom:5px; margin-top:14px;*margin-top:48px !important;*margin-top:14px;}
+			.citylist dd { height:31px; width:61px; margin:0 1px 1px 0; float:left; line-height:31px;  font-size:14px; }
+			.citylist dd a { display:block;height:31px; width:61px;text-align:center;}
+			.cityoff { background-color:#e1e1e1; color:#848484;}
+			a.cityoff:link { color:#848484;}
+			a.cityoff:visited { color:#848484;}
+			a.cityoff:hover { color:#848484;}
+			.cityon { background-color:#cc141e; color:#fff;}
+			a.cityon:link { color:#fff;}
+			a.cityon:visited { color:#fff;}
+			a.cityon:hover { color:#fff;}
+		#list_off { position:absolute; background-color:#999;z-index:0;filter:alpha(opacity=30); -moz-opacity:0.3;opacity:0.3;z-index:201;width:333px; height:153px;left:2px;*left:2px !important;*left:3px; top:32px;*top:36px !important;*top:34px; display:none;}
+	#head_right { float:right; height:auto;display:block; text-align:right; }
+		#tohome { height:40px; text-align:right; margin-bottom:11px;}
+		#bookemail { width:256px;}
+			#bookemail span { display:block; color:#333; text-align:left; padding:6px 0;}
+			.bookinput,#bookinput { float:left; height:21px; width:173px; border:1px solid #cfcfcf; color:#838383; line-height:21px; padding-left:4px; margin-right:10px; font-size:12px;}
+			.bookbtn {float:left;height:23px; width:59px; color:#fff; background:url(/themes/default/imgs/tuan/book_btn.gif) no-repeat 0 0;background-color:#fd8d05; border:none; }	
+		
+
+/*页面通用横向导航栏css*/
+#navbox { margin: 0px auto; width: 100%;height:41px;  border-top:1px solid #e9666c;background:url(/themes/default/imgs/tuan/nav_bg.gif) repeat-x;background-color:#bd110c;  }
+		
+	#nav {width:950px;height:41px;margin: 0px auto;}	
+	.nav_item {float:left;display:block;height:31px;color:#fff;margin-top:6px;}
+	.nav_li {float:left;width:100px;display:block;height:31px;}
+	.nav_li a {display:block; width:87px;}
+	.nav_a { font-size:14px; font-weight:bold;  text-align:center; line-height:28px;*line-height:30px !important;*line-height:30px; width:87px; }
+	.nav_a:link {color:#fff;}
+	.nav_a:visited {color:#fff;}
+	.nav_a:hover {background:url(/themes/default/imgs/tuan/navli_bg.gif) no-repeat 0 0; color:#9c3908; text-decoration:none;}
+	.nav_on {background:url(/themes/default/imgs/tuan/navli_bg.gif) no-repeat 0 0; color:#9c3908;}
+	a.nav_on:link {color:#9c3908;}
+	a.nav_on:visited {color:#9c3908;}
+	a.nav_on:hover {color:#9c3908;}
+		.nav_on a {color:#9f380b;}
+		.nav_on a:link {color:#9f380b;}
+		.nav_on a:visited {color:#9f380b;}
+		.nav_on a:hover {color:#9f380b;}
+			
+	#nav_user { float:right; color:#fff;height:41px; font-size:14px;}
+	#nav_user li { float:left; }		
+		.nav_act { font-size:12px; margin-top:12px; height:16px; line-height:16px; border-right:1px solid #b10104;padding:0 12px;}
+			.nav_act a {color:#fff; padding-left:21px;background:url(/themes/default/imgs/tuan/nav_gift.gif) no-repeat 0 0;}
+			.nav_act a:link { color:#fff;}
+			.nav_act a:visited { color:#fff;}
+			.nav_act a:hover{color:#fff;}
+		.nav_wel { margin-top:12px; height:16px; line-height:16px;border-left:1px solid #d24c53;padding:0 0 0 12px; color:#ffc684;max-width:240px;overflow:hidden;}			
+		#mypop {position:relative;height:41px;line-height:41px;width:83px;z-index:200;}	
+			.mytuan { position:relative;color:#fff; display:block; text-align:center; width:83px;  height:41px; line-height:41px;z-index:201;}
+			.mytuan:link {color:#fff;}
+			.mytuan:visited {color:#fff;}
+			.mytuan:hover{color:#c90809; font-weight:bold;}	
+			.mytuan_on {color:#c90809;font-weight:bold;}
+			a.mytuan_on:link {color:#c90809; font-weight:bold;}
+			a.mytuan_on:visited {color:#c90809; font-weight:bold;}
+			a.mytuan_on:hover{color:#c90809; font-weight:bold;}	
+			
+			#my_pop {display:none; position:absolute; height:auto; height:52px; width:75px;* width:77px !important;* width:75px; left:2px; top:-2px;background-color:#fff; border:1px solid #d2b281; overflow:hidden; text-align:left;z-index:200; border-bottom:none; }
+			#my_pop a { margin-left:6px;}	
+				#my_popin {display:none;position:absolute; top:50px; right:4px; * right:2px !important;* right:3px;width:112px; background-color:#fff;border:1px solid #d2b281; padding-top:2px; padding-bottom:7px;z-index:199;}
+				#my_popin p { border-bottom:1px solid #f2cfcd;}
+				#my_popin a { display:block; text-align:center; height:37px;color:#c90809;}
+				#my_popin a:link {color:#c90809;}
+				#my_popin a:visited {color:#c90809;}
+				#my_popin a:hover { background-color:#c90809; color:#fff;}
+			.nav_do {margin-top:12px;* margin-top:13px !important;* margin-top:13px; height:16px; line-height:16px;padding:0 0 0 25px;}
+			.nav_do a { color:#fff;}
+			.nav_do a:link { color:#fff;}
+			.nav_do a:visited { color:#fff;}
+			.nav_do a:hover { color:#fff;}
+			.pop_off { position:absolute;line-height:0; font-size:0; background-color:#999;z-index:0;filter:alpha(opacity=30); -moz-opacity:0.3;opacity:0.3;}
+			#pop_off1 { height:241px; width:3px; bottom:-1px; right:-4px; }
+			#pop_off2 { width:112px; bottom:-5px;right:-4px; height:4px;}
+			
+/*页面通用主题css*/
+.navtip {margin: 0px auto; width: 100%;height:11px;background:url(/themes/default/imgs/tuan/nav_bg.gif) repeat-x 0 -41px;}
+	.navtip_on { height:38px; line-height:38px; border-top:2px solid #f66c05;border-bottom:2px solid #f66c05; background-color:#ffd7a2; background-image:none;}
+	.navtip_dl {margin: 0px auto; width: 920px; color:#f66c05; font-size:14px; padding:0 15px;}
+		.navtip_dl dt { float:right; width:44px;background:url(/themes/default/imgs/tuan/close.gif) no-repeat 29px 10px; cursor:pointer; color:#c90809;}
+		.navtip_dl dd {float:left;background:url(/themes/default/imgs/tuan/stop.gif) no-repeat 0 11px; padding-left:20px;}
+#main { margin: 0px auto; width: 950px; height:auto; padding-top:24px; word-wrap:break-word; }
+	.tip_box { border:1px solid #deceaa; background-color:#fff9ef; font-size:14px; line-height:58px; height:58px; padding:0 15px; margin-bottom:15px; position:relative; z-index:1; }
+		.tip_box span { float:left; margin-left:185px;}
+		.tip_box input { margin-top:20px;}
+		.tipin_box { position:absolute; height:46px; width:154px; background:url(/themes/default/imgs/tuan/tipin_bg.gif) no-repeat 0 0; top:-15px; left:15px; line-height:18px; font-weight:bold; padding-top:14px; padding-left:17px; z-index:1;}
+		
+	.zone { height:1%; border:1px solid #deceaa; background-color:#ffffff;margin-bottom:15px; padding:15px;}
+	#left { float:left; width:705px;}	
+	.dbtn { border:none;background:url(/themes/default/imgs/tuan/btn_bg.gif) repeat-x 0 0;background-color:#d8000b; color:#fff; text-align:center; vertical-align:middle; cursor:pointer; }
+	.com_btn { height:28px; width:78px; font-size:14px; padding-top:2px;}
+	.leftbar { font-weight:bold; font-size:28px; line-height:23px; border-bottom:1px solid #ffd7a2; padding-bottom:15px; margin-bottom:20px; padding-top:5px; }
+		.leftbar font { font-size:14px; font-family:Arial, Helvetica, sans-serif; margin-left:3px; font-weight:normal;} 
+		
+	.inputs { border:1px solid #ffc569; background-color:#fff; height:23px; line-height:23px; padding:0 5px;margin-right:10px;}	
+	.inputbox { border:1px solid #ffe0b0; background-color:#fff2d5; padding:15px; margin-bottom:20px;}
+		.inputbox dt{ font-weight:bold; font-size:14px; color:#cc141d; padding-bottom:10px; margin-bottom:15px; border-bottom:1px solid #efe2ca;}
+		.inputbox dd table{ border:none;}
+		.inputbox dd table td{ border:none; padding-top:5px;}
+		.inputbox dd table p{ padding-top:15px; color:#848484;}
+	#popbg {BACKGROUND: #000; FILTER: alpha(opacity=50); LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; opacity: 0.5; z-index:9999998;display:none;}	
+	.pop_dl {margin:0 auto;POSITION: absolute; z-index:9999999;display:none; border:1px solid #decea9; background-color:#fff; width:400px;}	
+		.pop_dl dt { border-bottom:1px solid #decea9; height:39px;text-align:right; padding-right:10px; font-size:14px;background:url(/themes/default/imgs/tuan/close.gif) no-repeat 374px 12px;background-color:#f7e9cf; }
+		.pop_dl dt span { display:block; height:16px; line-height:16px;  cursor:pointer; width:44px; float:right; text-align:left; margin-top:11px;* margin-top:13px !important;*margin-top:13px;}
+		.pop_dl dt div { display:block; height:16px; line-height:16px;  cursor:pointer; width:44px; float:right; text-align:left; margin-top:11px;* margin-top:13px !important;*margin-top:13px;}	
+		.pop_dl dt b { float:left;font-family:arial,sans-serif; font-size:18px; line-height:20px; margin-top:11px;* margin-top:13px !important;*margin-top:13px; font-weight:normal; margin-left:15px;}
+		.pop_dl dd { padding:15px;}
+		
+		.bmail_ok {background:url(/themes/default/imgs/tuan/ok_bg.gif) no-repeat 0 0; color:#C90809;  margin:10px 25px;padding-left:70px;}
+	.bmail_ok li { margin-bottom:10px; padding-top:10px;line-height:18px;}
+	.bmail_ok h4 {font-family:simhei,arial,sans-serif; font-size:18px; }
+	.bmail_ok span { color:#666;}
+		
+	#right {float:right; width:230px;}
+	#right h4 {color:#333; font-size:14px; padding-bottom:10px;}
+	#right h5 { color:#333;font-size:14px; padding-bottom:10px;}
+	#right p { line-height:18px; margin-bottom:20px;color:#666;}
+	.guanzhu { color:#C90809;}
+		a.guanzhu:link { color:#C90809;}
+		a.guanzhu:visited { color:#C90809;}
+		a.guanzhu:hover { color:#C90809;}
+	
+	.ad_box { height:auto; margin-bottom:15px;}
+	
+	.page_box { border-top:1px solid #e2e2e2; padding-top:15px; height:24px; line-height:22px;*line-height:22px !important; *line-height:24px;  text-align:right; padding-bottom:18px; margin-top:30px;}
+	.page_box a {color:#0066cc; display:inline-block;  height:22px; padding:0 8px;}
+	.page_box a:link {color:#0066cc;}
+	.page_box a:visited {color:#0066cc;}
+	.page_box a:hover {color:#0066cc;}
+	.page_box span {border:1px solid #e2e2e2; height:22px;display:inline-block; *vertical-align :middle !important; margin:0 0px; }
+	.page_box font { font-size:12px;padding:0 5px;}
+	#page_on { border:1px solid #fff; font-weight:bold;}
+	
+.mailline { position:relative;z-index:10;}
+.maillist { display:none; position:absolute; left:0px; top:27px; border:1px solid #e2e2e2; background-color:#fff; line-height:20px; padding:6px; color:#999; width:270px;}
+.maillist dt { padding:0 5px;display:block; width:260px;}
+.maillist dd { padding:0 5px; display:block; width:260px; height:20px;}
+.mail_on { background-color:#f2f2f2; color:#000; cursor:pointer;}	
+#emailline { z-index:1000; display:block;}
+#maillist { text-align:left; width:170px;left:0px;*left:0px !important; *left:-256px; top:22px;}
+#maillist dt {width:160px;}
+#maillist dd  {width:160px;}
+
+.stars { height:16px; display:block; line-height:16px; width:180px;background:url(/themes/default/imgs/tuan/stars.gif) no-repeat; background-position:0 0; padding:0; margin:0;}
+.stars a{ float:left;height:16px; width:16px; padding:0; margin:0; cursor:pointer;}
+.stars font { margin-left:10px;}
+	.star0 { background-position:0 -16px;}
+	.star1 { background-position:0 -32px;}
+	.star2 { background-position:0 -48px;}
+	.star3 { background-position:0 -64px;}
+	.star4 { background-position:0 -80px;}
+	
+.article { padding-bottom:30px;}
+	.article dt {height:70px;   margin:32px 32px 0px 32px; text-align:center; font-size:16px; font-weight:bold; color:#000;}
+	.article dt span { display:block; line-height:24px;}
+	#news_time {color:#00bbff; line-height:12px; font-weight:normal; margin-top:5px; font-size:12px;}
+	.article dd {  padding-bottom:30px;  height:auto; font-size:14px;line-height:24px; color:#000; margin:0 10px;  }
+	.article dd img { max-width:650px;}
+	.article dd table { max-width:650px;}
+	.article dd div { max-width:650px;}
+	.article dd a { color:#3399cc;}
+	.article dd a:link { color:#3399cc;}
+	.article dd a:visited { color:#3399cc;}
+	.article dd a:hover { color:#3399cc; text-decoration:underline;}
+	
+	
+	
+	
+	
+	
+	
+	
+#gotop { margin: 0px auto; width:950px; text-align:right; }
+#gotop span{padding-right:258px; }
+		#gotop a { color:#c90809;}
+		#gotop a:link { color:#c90809;}
+		#gotop a:visited { color:#c90809;}
+		#gotop a:hover { color:#c90809;}
+
+	
+/*页面通用页脚css*/		
+#foot{margin: 0px auto;width: 100%; height:auto; color:#000000;background:url(/themes/default/imgs/tuan/foot_bg.gif) repeat-x;  background-color:#e2d3b4; margin-top:15px; }		
+	#footer { margin: 0px auto; width: 960px; height:auto;}
+		#report { height:40px; line-height:40px; text-align:right; padding-right:5px;}
+			#report a { font-size:14px; font-weight:bold; color:#c90809;}
+			#report a:hover {color:#c90809;}
+		#help_box {float:left; height:auto; }		
+		.help { float:left;width:110px; padding-left:48px; height:120px; margin-top:26px; border-left:1px solid #f7f4eb;border-right:1px solid #cfb28a;}
+		.help dt { color:#cc3d01; font-size:14px; font-weight:bold;margin-bottom:5px; height:16px; line-height:16px; margin-bottom:15px;}			
+		.help dd { display:block;  height:18px; line-height:18px; padding-left:10px;background:url(/themes/default/imgs/tuan/reddot.gif) no-repeat 0 7px; background-position:0 7px;*background-position:0 5px !important; *background-position:0 7px;  }
+		.help dd a { color:#cb3e00;}
+		.help dd a:link { color:#cb3e00;}
+		.help dd a:visited { color:#cb3e00;}
+		.help dd a:hover { color:#cb3e00;}
+		
+		#flogo { padding-left:42px; padding-top:25px;}
+		
+
+		#copyright { text-align:center; color:#333; margin-top:30px; padding-bottom:30px; line-height:22px;}
+			#copyright a {color:#969696;} 
+			#copyright a:link {color:#969696;} 
+			#copyright a:visited {color:#969696;} 
+			#copyright a:hover {color:#969696;} 
+
+.scroll_div {background:url(/themes/default/imgs/global/scroll.png) no-repeat top center;bottom:200px; position: fixed; left:1000px; z-index:1;_position: absolute; _bottom: auto; _top: expression( eval(document.compatMode && document.compatMode=='CSS1Compat') ? documentElement.scrollTop + 
+
+(documentElement.clientHeight - this.clientHeight) - 1 : document.body.scrollTop + (document.body.clientHeight - this.clientHeight) - 1); height:28px; width:20px; display:none; color:#FFFFFF; cursor:pointer;}	
+
+* html .scroll_div {background:none;
+filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=corp, src='imgs/global/scroll.png');bottom:200px;
+}	
+

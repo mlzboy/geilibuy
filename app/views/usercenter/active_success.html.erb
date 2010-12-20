@@ -1,0 +1,102 @@
+<% content_for :headstyle do %>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+<%end%>
+<%content_for :headtitle do%>
+<title>系统提示_用户中心_给力百货 - 创意生活零售平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品</title>
+<%end%>
+<% content_for :headstyle do %>
+<link href="/themes/default/css/header.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/reglogin.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/error.css" rel="stylesheet" type="text/css" />
+<%end%>
+<% content_for :headjs do %>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/js-clib.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/header.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/user.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/hotkeys.js"></script> 
+
+<script type="text/javascript">
+  $(document).ready(function(){
+  setHeadFlowNum();//购物车数量
+});
+</script>
+<%end%>
+<% content_for :headother do%>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" />
+<link rel="alternate" type="application/rss+xml" title="RSS|用户中心_给力百货 - 创意生活零售平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品" href="" />
+<% end%>
+<div id='main'>
+    
+    
+      <SCRIPT type=text/javascript>
+$(document).ready(function(){
+	$('.hots_off').hover(function(){											  
+	$('.hots_off').removeClass('hots_on');
+	$(this).addClass('hots_on')	
+											  
+	}, function(){											  
+	//$(this).removeClass('hots_on');
+	});
+});	
+</script>
+
+<div id="global_body">
+	<div class="regok_box">
+    	<ul>
+    	<li class="succ_tip">邮箱验证成功！您的给力百货帐户名为：<b><%=@user.email%></b></li>
+        <li class="succ_tip1">您已经获得<b>30幸运点</b>，可以去免费抽奖了！&nbsp;&nbsp;<a href="http://www.geilibuy.com/lottery.php?new=validated"><img src="/themes/default/imgs/ucenter/tolottery_btn.gif" width="142" height="36" /></a></li>
+      </ul>
+  </div> 
+	<div class="regok_intro" style="display:none">
+    	<div class="quwan_guar"><span>给力百货承诺：</span><img style="margin-left:0;" src="/themes/default/imgs/ucenter/g1.gif" width="24" height="24" />100%正品真货<img src="/themes/default/imgs/ucenter/g2.gif" width="24" height="24" />30天上门退换货<img src="/themes/default/imgs/ucenter/g3.gif" width="24" height="24" />货到付款、开箱验货</div>
+        <ul class="quwan_hots">
+        	<li class="hots_off hots_on">
+            	<ul style="line-height:18px;">
+                	<li style="float:left; margin-right:5px;"><a href=""><img src="/themes/default/imgs/ucenter/hot_span.gif" width="125" height="97" /></a></li>
+                    <li style="height:75px; padding-top:5px;">商品太多，<br />
+不知从哪里逛起？<br />
+先看看最受大家喜爱的商品大汇总吧！</li>
+                    <li style="text-align:right;"><a  class="forget" style="margin:0;" href="">查看详情&gt;&gt;</a></li>
+                </ul>
+            </li>
+        	<li class="hots_off">
+            	<ul style="line-height:18px;">
+                	<li style="float:left; margin-right:5px;"><a href=""><img src="/themes/default/imgs/ucenter/tuan_span.gif" width="125" height="97" /></a></li>
+                    <li style="height:75px; padding-top:5px;">大家一起买，就是便宜！<br />
+                    每天一款超值商品，<br />
+                    呼朋唤友来抢啊！</li>
+                    <li style="text-align:right;"><a  class="forget" style="margin:0;" href="">查看详情&gt;&gt;</a></li>
+                </ul>            	
+            </li>
+        	<li class="hots_off" style="margin-right:0;">
+            	<ul style="line-height:18px;">
+                	<li style="float:left; margin-right:5px;"><a href="http://www.geilibuy.com/lottery.php"><img src="/themes/default/imgs/ucenter/lottery_span.gif" width="125" height="97" /></a></li>
+                    <li style="height:75px; padding-top:5px;">史上，<br />
+                      最有诚意的抽奖活动，<br />
+                    抽奖免费！<br />
+                    领奖也免运费！</li>
+                  <li style="text-align:right;"><a  class="forget" style="margin:0;" href="http://www.geilibuy.com/lottery.php">查看详情&gt;&gt;</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
+  
+  
+  
+  
+    
+  
+
+    <div id='clear'></div>
+
+</div>
+

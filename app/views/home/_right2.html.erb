@@ -1,0 +1,388 @@
+<%
+cc=Category.find_by_id(params[:categoryid])
+whole_categories=[]#for new & promotion
+if cc
+  whole_categories=cc.whole_categories
+else
+  whole_categories=Category.find_by_name("礼品").whole_categories
+end
+%>
+<%
+category_id=params[:categoryid]
+category=Category.find_by_id(category_id)
+root_path=""#category_url(category_id)
+sub_category_id=params[:sub_category_id]
+brand_id=params[:brand_id]
+min=params[:min]
+max=params[:max]
+sort=params[:sort]
+page=params[:page]
+def build_link(root_path,category_id,brand_id,sub_category_id,min,max,sort,page)
+  dict={}
+  dict["category_id"]=category_id		unless category_id.blank?
+  dict["brand_id"]=brand_id 			unless brand_id.blank?
+  dict["sub_category_id"]=sub_category_id 	unless sub_category_id.blank?
+  dict["min"]=min 				unless min.blank?
+  dict["max"]= max.to_s=='10000' ? nil :max.to_s unless max.blank?
+  dict["sort"]=sort 				unless sort.blank?
+  dict["page"]=page 				unless page.blank?
+   
+  r=[]
+  dict.each do |k,v|
+    r<<"#{k.to_s}=#{u(v)}"
+  end
+  if r.size.zero?
+    root_path
+  else
+    root_path+"?"+r.join("&")
+  end
+end
+def display_price(min,max)
+ if max.to_s=="10000"
+  "#{min}元以上"
+ else
+  "#{min}-#{max}元"
+ end
+end
+def sort_style(style,sort)
+ r=""
+ case style
+ when "最新"
+  r="sorted" if sort=="id desc"
+ when "畅销"
+  r="sorted" if sort.blank? or sort=="sale desc"
+ when "价格由低到高"
+  r="sorted" if sort=="p2"
+ when "价格由高到低"
+  r="sorted" if sort=="p2 desc"
+ end
+ r
+  end
+def brand_style1(root_path,category_id,brand_id,sub_category_id,min,max,sort,page)
+ if brand_id.blank?
+%>
+  <span class="elect_on">全部</span>
+<%else%>
+<span><a href="<%=raw build_link(root_path,category_id,"",sub_category_id,min,max,sort,page)%>" title="全部">全部</a></span>
+<%
+ end
+end
+def brand_style2(root_path,category_id,current_brand,sub_category_id,min,max,sort,page,brand_id)
+    if brand_id and brand_id==current_brand.id.to_s
+     
+%>
+ <span class="elect_on"><%=current_brand.name%></span>
+<%else%>
+<span><a href="<%=raw build_link(root_path,category_id,current_brand.id,sub_category_id,min,max,sort,page)%>" title="<%=current_brand.name%>"><%=current_brand.name%></a></span>
+<%end
+end
+def price_style1(root_path,category_id,brand_id,sub_category_id,min,max,sort,page)
+ if min.blank? and max.blank?
+%>
+  <span class="elect_on">全部</span>
+<%else%>
+<span><a href="<%=raw build_link(root_path,category_id,brand_id,sub_category_id,"","",sort,page)%>" title="全部">全部</a></span>
+<%
+ end
+end
+def price_style2(root_path,category_id,brand_id,sub_category_id,current_min,current_max,sort,page,min,max)
+ current_min=current_min.to_s
+ current_max=current_max.to_s
+ if (min==current_min and max==current_max) or (min==current_min and max.blank? and current_max=="10000")
+%>
+ <span class="elect_on"><%=display_price(current_min,current_max)%></span>
+<%else%>
+<span><a href="<%=raw build_link(root_path,category_id,brand_id,sub_category_id,current_min,current_max,sort,page)%>" title="<%=display_price(current_min,current_max)%>"><%=display_price(current_min,current_max)%></a></span>
+<%end
+end
+def sub_category_style1(root_path,category_id,brand_id,sub_category_id,min,max,sort,page)
+ if sub_category_id.blank?
+%>
+  <span class="elect_on">全部</span>
+<%else%>
+<span><a href="<%=raw build_link(root_path,category_id,brand_id,"",min,max,sort,page)%>" title="全部">全部</a></span>
+<%
+ end
+end
+def sub_category_style2(root_path,category_id,brand_id,current_sub_category,min,max,sort,page,sub_category_id)
+ if (current_sub_category.id.to_s==sub_category_id)
+%>
+ <span class="elect_on"><%=current_sub_category.name%></span>
+<%else%>
+<span><a href="<%=raw build_link(root_path,category_id,brand_id,current_sub_category.id,min,max,sort,page)%>" title="<%=current_sub_category.name%>"><%=current_sub_category.name%></a></span>
+<%end
+end
+def page_style1(root_path,category_id,brand_id,sub_category_id,min,max,sort,products)
+%>
+             <li><span><%=products.current_page%>/<%=products.total_pages%></span></li>
+<%if products.previous_page%>
+             <li><span class="sort_box"><a href="<%=raw build_link(root_path,category_id,brand_id,sub_category_id,min,max,sort,@products.previous_page)%>">&#139;</a></span></li>
+<%else%>
+             <li><span class="sort_box"><font>&#139;</font></span></li>
+<%end%>
+<%if products.next_page%>
+             <li><span class="sort_box"><a href="<%=raw build_link(root_path,category_id,brand_id,sub_category_id,min,max,sort,@products.next_page)%>">&#173;下一页&#155;</a></span></li>
+<%else%>
+<li><span class="sort_box"><font>&#173;下一页</font></span></li>
+<%
+end
+end
+
+%>
+<div id="right">
+  <%if whole_categories.size<=2%>
+  <div class="imgcat_title"><%=whole_categories.last.name%></div>
+  <%end%>
+  <%if whole_categories.size==1%>
+  <!--礼品二级分类-->
+      <div class="txtcat_box">
+          <ul>
+            <%whole_categories.first.children.each_with_index do |category,index|%>
+                        <li <%=raw 'style="border-right:none;"' if (index+1)==whole_categories.first.children.size%>><a href="<%=mygift_url(category.id)%>" title="<%=whole_categories.first.name+"-"+category.name%>"><%=category.name%></a></li> 
+            <%end%>
+                      </ul>
+
+      </div>
+  <%end%>
+<!--  末级分类图片-->
+
+  <%if whole_categories.size==2%>	  
+
+      <ul class="imgcat_box">
+    <%
+    list=(1..whole_categories.second.children.size).to_a
+    r=[]
+    rr=list.size%4
+    if rr==0
+     r=list[-[4,list.size].min,list.size]
+    else
+     r=list[-rr,list.size]
+    end
+    whole_categories.second.children.each_with_index do |category,index|%>
+            	<li <%=raw 'style="border-bottom:none;"' if r.include? index+1%>>
+		<a href="<%=category_url(category.id)%>" title="<%=whole_categories.first.name+"-"+whole_categories.second.name+"-"+category.name%>">
+		<img src="<%=category.i1.url%>" /></a>
+		<a href="<%=category_url(category.id)%>" title="<%=whole_categories.first.name+"-"+whole_categories.second.name+"-"+category.name%>"><%=category.name%></a></li>
+    <%end%>
+    <%if list.size%4!=0%>
+                    <li style="border-bottom:none;"></li>
+    <%end%>
+            </ul>
+      <div class="clear"></div>   
+   <%end%>
+  	 
+	  
+      <div class="elect_box">
+
+      	<h1>商品筛选</h1>
+   
+              <dl style="border-top:none;">
+        	<dt><strong>品牌：</strong></dt>
+        	<dd><ul>
+                     <li>
+                            <%brand_style1(root_path,category_id,brand_id,sub_category_id,min,max,sort,page)%>
+                            </li>
+
+		     <%@brands.each do |brand|%>
+
+                      <li>
+		       <%brand_style2(root_path,category_id,brand,sub_category_id,min,max,sort,page,brand_id)%>
+                            </li>
+		    <%end%>
+                  </ul></dd>
+        </dl>
+        <div class="clear"></div>
+
+<%if category and category.third? and category.children.size>0%>
+               <dl >
+        	<dt><strong>类型：</strong></dt>
+        	<dd><ul>
+                      <li>
+			   <%sub_category_style1(root_path,category_id,brand_id,sub_category_id,min,max,sort,page)%>
+
+                            </li>
+		     
+		     <%category.children.each do |sub_category|%>
+                      <li>
+                          <%sub_category_style2(root_path,category_id,brand_id,sub_category,min,max,sort,page,sub_category_id)%>
+                            </li>
+		      <%end%>
+                    </ul></dd>
+        </dl>
+      <div class="clear"></div>
+        
+<%end%>
+         
+   
+            <dl  >
+        	<dt><strong>价格：</strong></dt>
+        	<dd><ul>
+        	            <li>
+                            <%price_style1(root_path,category_id,brand_id,sub_category_id,min,max,sort,page)%>
+                          </li>
+			    <%prices=[[0,10],[10,20],[20,40],[40,60],[60,80],[80,100],[100,10000]]%>
+		       <%prices.each do |price|
+		       %>
+                      <li>
+		       <%price_style2(root_path,category_id,brand_id,sub_category_id,price.first,price.last,sort,page,min,max)%>
+
+                          </li>
+		      <%end%>
+           
+        
+          <li id="price_line"><span>
+            <input id="searchPriceMin" type="text" size="4" class="price_zone" onkeyup="priceSearchAicon(1)" />-<input id="searchPriceMax" type="text" size="4" class="price_zone" onkeyup="priceSearchAicon(2)" />元</span><input name="确定" type="button" onclick="priceSearchAicon();" value="" class="sel_btn"  /></li>
+          </ul></dd>
+        </dl>
+      <div class="clear"></div> 
+         
+    </div>
+
+	
+	   
+      <div class="list_title">  
+      		<div>商品列表</div>             
+          <ul class="sel_opt">                
+             <li><span>排序：</span></li>
+             <li id="unreal_sales"><a href="<%=build_link(root_path,category_id,brand_id,sub_category_id,min,max,"sale desc",1)%>" style="text-decoration: none;"><span title="销量：从高到低" class="bysort <%=sort_style("畅销",sort)%>">畅销</span></a></li>
+             <li id="goods_id"><a href="<%=build_link(root_path,category_id,brand_id,sub_category_id,min,max,"id desc",1)%>" style="text-decoration: none;"><span title="按时间排序" class="bysort <%=sort_style("最新",sort)%>">最新</span></a></li>
+             <li id="goods_price_up"><a href="<%=build_link(root_path,category_id,brand_id,sub_category_id,min,max,"p2",1)%>" style="text-decoration: none;"><span title="价格：由低到高" class="bysort <%=sort_style("价格由低到高",sort)%>">价格由低到高</span></a></li>
+             <li id="goods_price_down"><a href="<%=build_link(root_path,category_id,brand_id,sub_category_id,min,max,"p2 desc",1)%>" style="text-decoration: none;"><span title="价格：由高到低" class="bysort <%=sort_style("价格由高到低",sort)%>">价格由高到低</span></a></li>
+
+<%page_style1(root_path,category_id,brand_id,sub_category_id,min,max,sort,@products)%>
+            </ul> 
+      </div>
+      <%if @products.size>0%>
+		        <div class="list_line">
+      <%@products.each_with_index do |product,index|%>
+
+	     <ul class="goods_list">      
+
+              <li class="goods_pic">
+
+              <a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><img src="<%=product.i1.url(:medium)%>" width="160" height="160" alt="<%=product.name%>" /></a>
+                       	              	  <%if product.promotion%>
+					  <span class="dis_tip"><span class="dis_num"><%=raw show_promotion_num(product)%></span></span>
+					  <%end%>
+            	                            </li>
+                           <li class="goods_brand"><a href="http://www.geilibuy.com/search.php?brand=428">[&nbsp;<%=product.brand.name if product.brand%>&nbsp;]</a></li>
+                           <li class="goods_name">
+                  <a id="list_name_a" href="<%=product_url(product.id)%>" style="color:#000;" title="<%=product.name%>" target="_blank"><%=product.name%></a>
+                                          <%unless product.sub_title.blank?%>
+                                          <span><%=product.sub_title%></span>
+                                          <%end%>
+                                 </li>
+                            <li class="goods_dprice">￥<%=price(product.p1)%>元</li>
+                <li class="goods_price">￥<%=price(product.p2)%>元</li>
+                                        <li class="goods_attr">
+                                          <%if product.new%>
+                            	<span class="new_goods" title="新品"></span>
+                                <!--<span title="进行缺货登记，到货后短信通知(免费)" style="color: rgb(255, 255, 255);" onclick="window.open('http://www.geilibuy.com/user.php?act=add_booking&amp;id=6152')" class="no_goods"></span>-->
+                                          <%end%>                      </li>
+					<%c=product.postsale_comments.size
+					if c>0%>
+                            <li class="goods_pinglun"><a href="goods-13423.html?fm=catelist#comments" target="_blank"><span><%=c%>条评论</span></a></li>
+			    <%end%>
+                        </ul>
+	<%if (index+1)%4==0 and (index+1)!=@products.size%>
+	      <div id="clear"></div></div>
+              <div class="list_line">
+	<%end%>
+
+         <%end%>
+                         <div id="clear"></div></div>
+	      
+      <%end%>
+<%
+def page_style2(root_path,category_id,brand_id,sub_category_id,min,max,sort,page,products)
+  if products.size==0
+   concat(raw %q{<div class="cat_empty">暂时没有对应的商品</div><div class="page_box"></div>})
+   return 
+  end
+  total_pages=products.total_pages
+  current_page=products.current_page
+  
+  a=(1..total_pages).to_a
+   
+  if total_pages>6
+    if current_page-5>0
+      if current_page+2<=total_pages
+	a.delete_if{|x| x< current_page-2}
+      elsif current_page+1<=total_pages
+	a.delete_if{|x| x<current_page-3}
+      elsif current_page<=total_pages
+	a.delete_if{|x| x<current_page-4}
+      end
+    end
+    if current_page+5>0
+      if current_page-2>0
+	a.delete_if{|x| x >current_page+2}
+      elsif current_page-1>0
+	a.delete_if{|x| x>current_page+3}
+      elsif current_page>0
+	a.delete_if{|x| x>current_page+4}
+      end
+    end
+  end
+  if a.first!=1
+    a.unshift "..."
+    a.unshift 1
+  end
+  if a.last!=total_pages
+    a<<"..."
+    a<<total_pages
+  end
+  #puts a
+  #puts "----------"
+  pos=a.index(current_page)
+  def gen_link(root_path,category_id,brand_id,sub_category_id,min,max,sort,page)
+    page=page.to_s
+    #拼接样式输出
+    %Q{<span><a href="#{build_link(root_path,category_id,brand_id,sub_category_id,min,max,sort,page)}">#{page}</a></span>}
+  end
+  
+  r=[]
+  a.each_with_index do |elem,index|
+    _page=elem
+    if elem=="..." and index<pos
+      _page=a[a.index("...")+1]-1
+    end
+    if elem=="..." and index>pos
+      _page=a[a.rindex("...")-1]+1
+    end
+    r<<gen_link(root_path,category_id,brand_id,sub_category_id,min,max,sort,_page)
+  end
+  
+  #修改当前页的样式
+  r[pos]=%Q{<span id="page_on"><font>#{a[pos]}</font></span>}
+  if current_page==1
+    r.unshift %q{<span><font>&#173;上一页</font></span>}
+    r.unshift %q{<span><font>&laquo;首页</font></span>}
+    r.unshift %q{<div class="page_box">}
+  else
+    _page=current_page-1
+    r.unshift %Q{<span><a href="#{build_link(root_path,category_id,brand_id,sub_category_id,min,max,sort,_page)}">上一页</a></span>}
+    r.unshift %Q{<span><a href="#{build_link(root_path,category_id,brand_id,sub_category_id,min,max,sort,1)}">首页</a></span>}
+    r.unshift %q{<div class="page_box">}
+  end
+  if current_page==total_pages
+    r<<%q{<span><font>&#173;下一页</font></span>}
+    r<<%q{<span><font>&#173;尾页&raquo;</font></span>}
+    r<<%Q{<span><font>#{current_page}/共#{total_pages}页</font></span>}
+    r<<%q{</div>}
+  else
+    _page=current_page+1
+    r<< %Q{<span><a href="#{build_link(root_path,category_id,brand_id,sub_category_id,min,max,sort,_page)}">&#173;下一页</a></span>}
+    r<< %Q{<span><a href="#{build_link(root_path,category_id,brand_id,sub_category_id,min,max,sort,total_pages)}">&#173;尾页&raquo;</a></span>}
+    r<<%Q{<span><font>#{current_page}/共#{total_pages}页</font></span>}
+    r<<%q{</div>}
+  
+  end
+  #puts r
+  #puts r.join("")
+  concat(raw r.join(""))
+end
+%>                             
+  <%page_style2(root_path,category_id,brand_id,sub_category_id,min,max,sort,page,@products)%>
+
+ </div>

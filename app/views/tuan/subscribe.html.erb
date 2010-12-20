@@ -1,0 +1,71 @@
+<%content_for :headtitle do%>
+<title>邮件订阅 - 给力团 创意百货天天团 - 给力百货</title>
+<%end%>
+<% content_for :headstyle do %>
+<!--style>
+html {filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity: 0.5; opacity: 0.5;}
+html {filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);}
+</style-->
+<link href="/themes/default/css/tuan_public.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_reglogin.css" rel="stylesheet" type="text/css" />
+<%end%>
+<% content_for :headother do%>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" />
+<link rel="alternate" type="application/rss+xml" title="RSS|邮件订阅 - 给力团 创意百货天天团 - 给力百货" href="" />
+<% end%>
+
+<div class="navtip" id="MetionDivEmail">
+
+<dl class="navtip_dl" style="display:none;" >
+    	<dt>关闭</dt>
+        <dd>退订成功，您不会收到每日团购信息了。</dd>
+    </dl>
+</div>
+
+<div id="main">
+	
+	  <div id="left">
+	<form id="theForm" name="theForm" action="" method="post">
+	  <div class="zone">        
+      <div class="leftbar">
+
+        邮件订阅
+        </div>
+        <dl class="inputbox">
+        <dt>给力团将把每天最新的团购信息发到您的邮箱。</dt>
+        <dd>
+          <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td width="55%">邮件地址：</td>
+
+              <td></td>
+            </tr>
+            <%
+            email=""
+            if has_login?
+            email=current_user.email
+            end
+            %>
+            
+            <tr>
+              <td><input type="text" autocomplete="off" name="t_book_email" class="inputs book_mail" value="<%=email%>" /></td>
+              <td>
+                <input type="button" value="订阅" class="dbtn book_btn" id="bookmail" /></td>
+            </tr>
+            <tr>
+              <td colspan="2"><p></p></td>
+
+            </tr>
+          </table>
+        </dd>
+      </dl>
+    </div>
+    </form>
+	
+	
+	   
+  </div>	
+<div class="clear"></div>     
+</div>
+

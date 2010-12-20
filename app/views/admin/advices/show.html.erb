@@ -1,0 +1,16 @@
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Content:</b>
+  <%= @advice.content %>
+</p>
+
+<p>
+  <b>Ip:</b>
+  <%= @advice.ip %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_advice_path(@advice) %> |
+<%= link_to 'Back', admin_advices_path %>

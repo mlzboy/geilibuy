@@ -1,0 +1,40 @@
+
+<h1>Listing materials</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Size</th>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Title</th>
+    <th>Image url</th>
+    <th>Alt</th>
+    <th>Text</th>
+    <th>Memo</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @materials.each do |material| %>
+  <tr>
+    <td><%= material.id %></td>
+    <td><%= material.size %></td>
+    <td><%= material.name %></td>
+    <td><%= material.kind %></td>
+    <td><%= material.title %></td>
+    <td><%= image_tag material.image_url.url(:show),:style=>"border:1px solid;" %></td>
+    <td><%= material.alt %></td>
+    <td><%= material.text %></td>
+    <td><%= material.memo %></td>
+    <td><%= link_to 'Show', admin_material_path(material) %></td>
+    <td><%= link_to 'Edit', edit_admin_material_path(material) %></td>
+    <td><%= link_to 'Destroy', admin_material_path(material), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<%=will_paginate @materials%>
+<%= link_to 'New Material', new_admin_material_path %>

@@ -1,0 +1,12 @@
+<h3>Top产品分类</h3>
+<%
+for category in categories ||[]
+  if brand.new_record? or !brand.categories.exists?(category.id)
+    concat(check_box_tag 'category_id[]', category.id.to_s)
+  else
+    concat(check_box_tag 'category_id[]', category.id.to_s,true)
+  end
+  concat(category.name)
+  concat(raw "<br>")
+end
+%>

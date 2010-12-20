@@ -1,0 +1,36 @@
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Category:</b>
+  <%= @slot.category_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @slot.name %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @slot.location %>
+</p>
+
+<p>
+  <b>Kind:</b>
+  <%= @slot.kind %>
+</p>
+
+<p>
+  <b>Size:</b>
+  <%= @slot.size %>
+</p>
+
+<p>
+  <b>Memo:</b>
+  <%= @slot.memo %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_slot_path(@slot) %> |
+<%= link_to 'Back', admin_slots_path %>

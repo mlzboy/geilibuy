@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @product.name %>
+</p>
+<%=raw show_image(@product,"i1")%>
+<%=raw show_image(@product,"i2")%>
+<%=raw show_image(@product,"i3")%>
+<%=raw show_image(@product,"i4")%>
+<p>
+  <b>P1:</b>
+  <%= @product.p1 %>
+
+  <b>P2:</b>
+  <%= @product.p2 %>
+
+  <b>P3:</b>
+  <%= @product.p3 %>
+
+  <b>P4:</b>
+  <%= @product.p4 %>
+
+  <b>P5:</b>
+  <%= @product.p5 %>
+</p>
+
+<p>
+  <b>Promotion:</b>
+  <%= @product.promotion %>
+</p>
+
+<p>
+  <b>New:</b>
+  <%= @product.new %>
+
+  <b>Score:</b>
+  <%= @product.score %>
+
+  <b>S1</b>
+  <%= @product.s1 %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=raw @product.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_product_path(@product) %> |
+<%= link_to 'Back', admin_products_path %>
+

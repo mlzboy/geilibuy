@@ -1,0 +1,31 @@
+
+<!--xiao mao generator QQ:hi@15-1688.com-->
+<%= form_for([:admin,@qa]) do |f| %>
+  <% if @qa.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@qa.errors.count, "error") %> prohibited this qa from being saved:</h2>
+
+      <ul>
+      <% @qa.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :question %><br />
+    <%= f.text_area :question,:cols=>40,:rows=>4 %>
+  </div>
+  <div class="field">
+    <%= f.label :answer %><br />
+    <%= f.text_area :answer,:cols=>40,:rows=>4 %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,2 @@
+module Usercenter::UserHelper
+end

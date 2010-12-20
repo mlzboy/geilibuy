@@ -1,0 +1,96 @@
+<%content_for :headmeta do%>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta http-equiv="pragma" content="no-cache"/>
+<meta name="pagename" content="tuan" />
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/>
+<%end%>
+<%content_for :headtitle do%>
+<title>我的订单 - 给力团 创意百货天天团 - 给力百货</title>
+<%end%>
+<% content_for :headstyle do %>
+<!--style>
+html {filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity: 0.5; opacity: 0.5;}
+html {filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);}
+</style-->
+<link href="/themes/default/css/tuan_public.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_ucener.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_others.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_reglogin.css" rel="stylesheet" type="text/css" />
+<%end%>
+<%content_for :headother do%>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" />
+<link rel="alternate" type="application/rss+xml" title="RSS|我的订单 - 给力团 创意百货天天团 - 给力百货" href="" />
+<%end%>
+<%content_for :headjs do%>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/hotkeys.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_divpop.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_user.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_account.js" charset="UTF-8"></script>
+<script>
+$(document).ready(function(){
+  
+  	// 检测是否登录
+	setTuanHeadUserStatus();
+  
+});	
+</script>
+<%end%>
+
+<div class="navtip ">
+</div>
+
+<div id="main">
+		<div id="left" class="uc_left"> 
+<div class="ucoption">
+  <ul class="ucnav">
+    <li class="ucnav_off "><a href="/tuan/account/orders">我的订单</a></li>
+    <li class="ucnav_off "><a href="/tuan/account/invites">我的邀请</a></li>
+    <li class="ucnav_off "><a href="/tuan/account/points">我的积分</a></li>
+    <li class="ucnav_off ucnav_on"><a href="/tuan/account/credit">现金账户</a></li>
+    <li class="ucnav_off "><a href="/tuan/account/settings">账户设置</a></li>
+  </ul>
+</div>
+  <div class="zone">
+    <div class="leftbar">现金账户</div>
+    <dl class="myinvate">
+      <dt><span>充值到给力团账户，方便抢购！&nbsp;&nbsp;<a class="blue" href="/tuan/account/charge">» 立即充值</a></span><br />
+        <b>您当前账户的总余额是 <font><%=price(current_user.money)%></font> 元</b></dt>
+      <dd><b>给力团现金账户明细</b></dd>
+      <dd id="moneyaccount_list">
+        <table width="100%" border="0" cellpadding="0" cellspacing="1" class="goodslist">
+  <tr class="oltd_even">
+    <th width="170" align="center"> 时间</th>
+    <th width="400" align="center">详情</th>
+    <th width="100" align="center">收支</th>
+    <th width="200" align="center"> 金额(元) </th>
+  </tr>
+  <%@cash_details.each do |cash_detail|%>
+      <tr<%=raw cycle("",' class="oltd_odd"')%>>
+    <td width="170" align="center"><%=cash_detail.created_at.strftime("%Y-%m-%d %H:%M:%S")%></td>
+    <td width="400" align="left"><%=cash_detail.memo%></td>
+    <%if cash_detail.cost%>
+    <td width="100" align="center">支出</td>
+    <%else%>
+	<td width="100" align="center">收入</td>
+	<%end%>
+    <td width="200" align="center">¥<%=price(cash_detail.money)%></td>
+  </tr>
+<%end%>
+      </table>
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<div style="height: 40px;"> </div>
+								
+		
+	
+<div class="clear"></div>     
+</div>

@@ -1,0 +1,141 @@
+<%content_for :headmeta do%>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta http-equiv="pragma" content="no-cache"/>
+<meta name="pagename" content="tuan" />
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/>
+<%end%>
+<%content_for :headtitle do%>
+<title>确认付款金额 - 给力团 创意百货天天团 - 给力百货</title>
+<%end%>
+<% content_for :headstyle do %>
+<!--style>
+html {filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity: 0.5; opacity: 0.5;}
+html {filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);}
+</style-->
+<link href="/themes/default/css/tuan_public.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_ucener.css" rel="stylesheet" type="text/css" />
+<%end%>
+<%content_for :headother do%>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" />
+<link rel="alternate" type="application/rss+xml" title="RSS|购物车 - 给力团 创意百货天天团 - 给力百货" href="" />
+<%end%>
+<%content_for :headjs do%>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/hotkeys.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_divpop.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_user.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_buy.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/flow.js" charset="UTF-8"></script>
+<script type="text/javascript">
+$(function(){
+            // 检测是否登录
+            setTuanHeadUserStatus();
+            });
+</script>
+<%end%>
+<div class="navtip" id="MetionDivNum">
+
+<dl class="navtip_dl" style="display:none;" >
+    	<dt>关闭</dt>
+        <dd>抱歉，数量有限，您最多只能购买2件。</dd>
+    </dl>
+</div>
+<%
+def show_pay_price
+  r=@real_money
+  r=@tuan_total_price if @payment.name=="现金账户"
+  r
+end
+%>
+
+<div id="main">
+				<div class="zone">
+  <div class="leftbar" style="border:none;"><img src="/themes/default/imgs/tuan/step3.gif"></div>
+      <div class="leftbar">确认付款金额：<font style="font-size:24px; color:#c90809;">¥ <%=price show_pay_price%></font></div>
+
+      
+      <ul class="myinvate" style="padding-top:0;">      	
+        <li>
+        <table width="100%" border="0" class="paylist">
+  <tr>
+    <td colspan="2" align="center"><img src="<%=@payment.i1.url%>"  /></td>
+    </tr>
+   <tr>
+     <td width="53%" height="50" align="right">
+
+    <%if @payment.name=="现金账户"%>
+        <form action="/tuan/payment" id="tenpayb2c_quwan_form" method="post">
+        <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+       <input type="submit" value="确认支付" class="dbtn com_btn" style="width:140px;"/>
+       </form>
+    <%else%>
+        <form action="/tuan/payment" target="_blank"  id="tenpayb2c_quwan_form" method="post">
+        <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+     <input type="submit" value="前往支付" class="dbtn com_btn" style="width:140px;" id="pay_sure" />
+       </form>
+     <%end%>
+     </td>
+               <td width="39%" align="left">&nbsp;&nbsp;&nbsp;&nbsp;<a class="blue" style="font-size:12px;" href="/tuan/checkout" >» 选择其他支付方式</a></td>
+
+        </tr>
+</table>
+
+        </li>
+
+      </ul> 
+</div>			
+	<div class="clear"></div>     
+</div>
+<% content_for(:bodyfoot) do %>
+<dl class="pop_dl" id="pol_dl_mail">
+  <dt><span>关闭</span></dt>
+  <dd>
+    <ul class="bmail_ok">
+      <li>
+        <h4>邮件订阅成功！</h4>
+
+        <span>给力团的优惠信息将每天及时发送到您的邮箱。</span></li>
+      <li>• 收不到邮件？有可能被误判为垃圾邮件了，请到垃圾邮件文件夹找找。</li>
+      <li>• 如不想继续收给力团每日提醒邮件，您可以在邮件中随时取消订阅。</li>
+    </ul>
+  </dd>
+</dl>
+<div id="popbg"></div>
+
+<div style="display:none"><!--<script src='http://w.cnzz.com/c.php?id=30035654' language='JavaScript' charset='gb2312'></script>--></div>
+<dl class="pop_dl">
+  <dt style="background-image:none;"><b><strong>请付款</strong></b></dt>
+    <dd class="pay_tipbox">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="2"><img src="/themes/default/imgs/tuan/warn_bg.gif" width="47" height="43" /><span>请在新打开的页面上完成付款</span></td>
+
+          </tr>
+          <tr>
+            <td colspan="2">付款完成前请不要关闭此窗口。<br />
+            付款完成后请选择：</td>
+          </tr>
+          <tr>
+            <td align="left">
+                                          <input type="button" onclick="location.href='/tuan/account/orders'" value="已完成付款" class="dbtn com_btn" style="width:130px;">
+
+                            </td>
+            <td align="right">
+                                          <input type="button" onclick="history.go(-1)" value="付款遇到问题" class="dbtn com_btn" style="width:130px;">
+                            </td>
+          </tr>
+          <tr>
+            <td colspan="2">&nbsp;</td>
+          </tr>
+        </table>
+
+    </dd>
+</dl>
+<div id="popbg"></div>
+
+<%end%>

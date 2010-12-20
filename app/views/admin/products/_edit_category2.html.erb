@@ -1,0 +1,85 @@
+<% content_for :head do %>
+<%= javascript_include_tag "jquery.optionTree.js" %>
+<script type="text/javascript">
+function addone(options)
+{
+    var num = $("input[name='category_id[]']").length;	// how many "duplicatable" input fields 
+    var newNum	= new Number(num + 1);		// the numeric ID of the new input field being added
+
+    var template="<div class='field' id='c${newnum}'><input type='text' id='category_id${newnum}' name='category_id[]' /><input type='button' id='del_category_id${newnum}' value='del' /><br/></div>";
+    
+    var html=template.replace("${newnum}",newNum+"");
+    while(html.indexOf("${newnum}")>-1)  
+    {
+    html=html.replace("${newnum}",newNum+"");
+    }
+    
+    //alert(html);
+    $(html).insertAfter($('#c' + num));
+    $("#del_category_id"+newNum).click(function(){
+            $("#c"+newNum).remove();
+    });
+    //console.info(options)
+    $.getJSON('/admin/categories/ajax_sub', function(tree) { 
+        $("#category_id"+newNum).optionTree(tree, options);//.change(displayParents);
+    });  
+  
+}
+
+
+$(function() {
+                    $("#add").click(function(){
+                        var options = {
+                            set_value_on_last_no_empty_value:true,
+                            empty_value: '',
+                            indexed: true,  // the data in tree is indexed by values (ids), not by labels
+                            on_each_change: '/admin/categories/ajax_sub/', // this file will be called with 'id' parameter, JSON data must be returned
+                            set_value_on: 'each', // we will change input value when every select box changes
+                            choose: function(level) {
+                                return 'Choose level ' + level;
+                            }//,
+                            //preselect: {'category_id'+idx: item},
+                            //preselect_only_once: true // prevent auto selecting whole branch when user maniputales one of branch levels
+                        };
+        
+                        addone(options);
+                    });
+                
+                
+                    $.getJSON('/admin/categories/ajax_ids2/<%=@product.id%>',function(data){
+                        category_ids=data
+                        //$(category_ids).each(function(idx,item){
+                        //    //alert(idx);
+                        //    idx+=1;
+                        //    name='category_id'+idx;
+                        
+                        for(var i=0;i<data.length;i++)
+                        {
+                            
+                            var options =
+                            {
+                                set_value_on_last_no_empty_value:true,
+                                empty_value: '',
+                                indexed: true,  // the data in tree is indexed by values (ids), not by labels
+                                on_each_change: '/admin/categories/ajax_sub/', // this file will be called with 'id' parameter, JSON data must be returned
+                                set_value_on: 'each', // we will change input value when every select box changes
+                                choose: function(level) {
+                                    return 'Choose level ' + level;
+                                },
+                                preselect_only_once: true
+                            };
+                            var b={};
+                            b["category_id"+(i+1)]=data[i];
+                            options["preselect"]=b;
+                            setTimeout(addone,(i+1)*1000,options);
+                            
+                            //addone(options);
+                        }
+                    });
+              });
+
+</script>
+<%end%>
+<input id="add" name="add" type="button" value="add" />
+<div id="c0">
+</div>

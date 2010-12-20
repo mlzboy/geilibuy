@@ -1,0 +1,84 @@
+
+<%
+current_category=Category.find_by_id(params[:categoryid])
+whole_categories=[]#for new & promotion
+if current_category
+  whole_categories=current_category.whole_categories
+else
+  current_category=Category.find_by_name("礼品")
+  whole_categories=current_category.whole_categories
+end
+#current_category=Category.find_by_name("礼品")
+#whole_categories=current_category.whole_categories
+%>        
+<div class="top_nav">您当前的位置：<a href=".">首页</a> <code>&gt;</code>
+<%whole_categories.each_with_index do |category,index|%>
+<%unless index+1==whole_categories.size%>
+<a href="<%=mygift_url(category.id)%>"><ur_hrer_href_color><%=category.name%></ur_hrer_href_color></a> <code>&gt;</code> 
+<%
+else%>
+<ur_hrer_href_color><%=category.name%></ur_hrer_href_color>
+<%  
+end
+end%>
+</div>
+<div id="left"> 
+     	 
+ <div class="listbox">
+<%
+case whole_categories.size
+when 1%>
+      <%  whole_categories.first.children.each do |category|%>
+        <div class="list_off"> 
+         <div class="title"><a href="<%=mygift_url(category.id)%>" title="<%=whole_categories.first.name+"-"+category.name%>"><%=category.name%></a></div>
+             <%if category.children.size>0%>
+             <div class="list_pop"> 
+               <div class="pop_ul"> 
+                   <div class="pop_arrow"></div>
+                   <%for i in 0...category.children.size%>
+                   <p <%=raw 'style="border:none;"' if (category.children.size-1)==i%>><a href="<%=mygift_url(category.id)%>" title="<%=whole_categories.first.name+"-"+category.name%>-<%=category.children[i].name%>"><%=category.children[i].name%></a></p> 
+                   <%end%>
+               </div> 
+             </div>
+             <%end%>
+       </div>
+        <%end%>
+<%else%>
+
+      <%whole_categories.first.children.each do |category|%>
+      <%if category.id==whole_categories.second.id%>
+              	<div class="list">
+                <span class="title"><%=category.name%></span>
+                  <%category.children.each do |sub_category|%>
+                                <p><a <%=raw 'class="red_on"' if whole_categories.size>2 and sub_category.id==whole_categories.third.id%> href="<%=mygift_url(sub_category.id)%>" title="<%=whole_categories.first.name+"-"+category.name%>-<%=sub_category.name%>"><%=sub_category.name%></a></p>
+                  <%end%>
+                            </div>
+      
+      <%else%>
+        <div class="list_off"> 
+         <div class="title"><a href="<%=mygift_url(category.id)%>" title="<%=whole_categories.first.name+"-"+category.name%>"><%=category.name%></a></div>
+             <%if category.children.size>0%>
+             <div class="list_pop"> 
+               <div class="pop_ul"> 
+                   <div class="pop_arrow"></div>
+                   <%for i in 0...category.children.size%>
+                   <p <%=raw 'style="border:none;"' if (category.children.size-1)==i%>><a href="<%=mygift_url(category.id)%>" title="<%=whole_categories.first.name+"-"+category.name%>-<%=category.children[i].name%>"><%=category.children[i].name%></a></p> 
+                   <%end%>
+               </div> 
+             </div>
+             <%end%>
+       </div>
+        <%end%>
+        <%end%>
+
+<%end%>
+
+              </div>	 
+
+                            <div class="clear"></div>	 
+	 
+<div id="history_div" t="static" style="display:none;"> 
+    <div id="history_title"></div> 
+    <div id="history_box"></div> 
+</div> 
+</div>

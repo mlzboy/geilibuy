@@ -1,0 +1,2 @@
+module Admin::LotteriesHelper
+end

@@ -1,0 +1,78 @@
+<%content_for :headmeta do%>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="pragma" content="no-cache"/>
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/>
+<meta http-equiv="expires" content=""/>
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+<meta name="pagename" content="tuan" />
+
+<%end%>
+<%content_for :headtitle do%>
+<title>往期团购 - 给力团 创意百货天天团 - 给力百货</title>
+<%end%>
+<% content_for :headstyle do %>
+<!--style>
+html {filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity: 0.5; opacity: 0.5;}
+html {filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);}
+</style-->
+<link href="/themes/default/css/tuan_public.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_others.css" rel="stylesheet" type="text/css" />
+<%end%>
+<%content_for :headother do%>
+<link rel="shortcut icon" href="http://www.geilibuy.com/favicon.ico" />
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" />
+<link rel="alternate" type="application/rss+xml" title="RSS|往期团购 - 给力团 创意百货天天团 - 给力百货" href="" />
+<%end%>
+<%content_for :headjs do%>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/hotkeys.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_divpop.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_user.js" charset="UTF-8"></script>
+<%end%>
+<div class="navtip"></div>
+
+<div id="main">
+  
+  <div id="left">
+    <div class="zone">
+      <div style="margin-bottom: 10px;" class="leftbar">往期团购</div>
+      <div id="HISTORYDIV">
+        <%@deals.each do |tuan|%>
+        <dl class="predeal <%=cycle("pd_left","pd_right")%>">
+    <dt> <b><%=show_chinese_yyyymmdd(tuan.start_time)%></b><br>
+    <a title="<%=tuan.sub_title||""%>" target="_blank" href="<%=mytuan_url(tuan)%>"><%=tuan.sub_title%></a> </dt>
+  <dd class="predeal_img"><a title="<%=tuan.sub_title%>" target="_blank" href="<%=mytuan_url(tuan)%>" class="doing_tipa"></a><a title="<%=tuan.sub_title%>" target="_blank" href="<%=mytuan_url(tuan)%>"><img src="<%=tuan.i1.url(:medium)%>" alt="<%=tuan.sub_title%>"></a>
+        <%if tuan.selling?%>
+        <span class="doing_tip q1"></span>
+        <%elsif tuan.sellout?%>
+        <span class="doing_tip q2"></span>
+        <%end%>
+          </dd>
+  <dd class="predeal_num"><span><%=tuan.current_num%></span>人购买</dd>
+  <dd class="predeal_pirce">市场价：<span>¥<%=tuan.pp1%></span></dd>
+  <dd class="predeal_dis">折&nbsp;&nbsp;&nbsp;扣：<span><%=show_tuan_discount(tuan)%>折</span></dd>
+  <dd class="predeal_pirce">现&nbsp;&nbsp;&nbsp;价：<span>¥<%=tuan.pp2%></span></dd>
+  <dd class="predeal_pirce">节&nbsp;&nbsp;&nbsp;省：<span>¥<%=tuan.pp1-tuan.pp2%></span></dd>
+</dl>
+        <%end%>
+
+<div class="clear"></div>
+<%=raw @page%>
+</div>
+      
+    </div>
+  </div>  <div id="right">
+    
+    <div class="ad_box">  <img alt="给力团全国华丽上线" src="/data/tuan/1288668277387229017.jpg">  </div>
+    
+<%=render 'post'%>
+  
+    </div>
+  <div class="clear"></div>
+</div>
+  <div id="gotop"><span><a href="#">↑回顶部</a></span><div class="clear"></div></div>

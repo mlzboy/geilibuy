@@ -1,0 +1,46 @@
+/*订阅，注册相关css*/
+.book_mail { width:250px;}
+.book_city { width:100px;}
+.book_btn { height:28px; width:78px; font-size:14px; padding-top:2px;}
+
+	
+.reglogin_box { vertical-align:middle; margin-bottom:30px;}	
+.reglogin_box table{ border:none;}
+		.reglogin_box table td{ border:none;}
+		.reglogin_box table h4 { font-weight:normal; font-size:14px; line-height:16px;}
+		.rlinput { width:270px; }
+		.yzm_input { width:50px;}
+		.reg_btn { height:28px; width:78px; font-size:14px; padding-top:2px; margin-right:10px;}
+		.sina_btn { height:23px; width:66px; background:url(/themes/default/imgs/tuan/sina_btn.gif) no-repeat 0 0;margin-right:10px;}
+
+.reg_succ { padding:20px 0;}
+.reg_succ dt { text-align:center; font-size:28px; font-family:"宋体",simhei,arial,sans-serif; height:60px; line-height:60px; border-bottom:1px solid #decea9; margin-bottom:10px;}
+.reg_succ dt img { margin-right:10px;}
+.reg_succ dd { line-height:60px;}
+.reg_succ span { font-size:14px; background-color:#fff2d5; display:block; padding:0 15px;}
+
+
+.combin_box { padding: 5px 20px 35px 20px; height:1%;}
+	.combin_box table { margin-top:0;display:block;}
+	.combin_box table h5{ font-size:12px; font-weight:normal; color:#366599; padding:5px 0px 0px 30px; }
+	.combin_box dt { font-size:14px; line-height:24px; margin-bottom:10px;}
+	.combin_box dd { padding:0 ;}
+	.combin_on { background-color:#fff9ef; border:1px solid #ffe0af;}
+
+	.combin_opt { height:16px; line-height:16px; font-size:14px; padding:10px 10px;}
+	
+
+.on_input { background-color:#fffdf3;}
+	
+.mailline { position:relative;z-index:10;}
+.maillist { display:none; position:absolute; left:0px; top:27px; border:1px solid #e2e2e2; background-color:#fff; line-height:20px; padding:6px; color:#999; width:270px;}
+.maillist dt { padding:0 5px;display:block; width:260px;}
+.maillist dd { padding:0 5px; display:block; width:260px; height:20px;}
+.mail_on { background-color:#f2f2f2; color:#000; cursor:pointer;}
+
+.do_tip { display:inline-block;height:24px;line-height:24px;*line-height:28px !important; *line-height:24px;   padding-right:10px; border:1px solid #eeda7b; color:#fe7201; padding-left:26px;background:url(/themes/default/imgs/tuan/input_warn.gif) no-repeat 4px 4px;background-color:#fffceb;}
+.error_tip {background:url(/themes/default/imgs/tuan/input_error.gif) no-repeat 4px 4px;background-color:#fffceb;}	
+.ok_tip { border:none; background-color:none; background:url(/themes/default/imgs/tuan/input_ok.gif) no-repeat 4px 4px;}
+
+
+.help_tip {background:none;border:none; background-color:none; padding:0; color:#579933;}	

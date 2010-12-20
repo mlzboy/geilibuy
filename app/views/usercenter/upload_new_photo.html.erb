@@ -1,0 +1,54 @@
+<div class="right_top"> <span class="welcome album"></span> <span class="goon_btn"><a style="color: rgb(255, 255, 255);" href="/" title="首页">继续购物</a></span> </div>
+
+<div class="right_line">      	
+        <table class="table" width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tbody><tr>
+                <td class="td_top" height="30" valign="middle" width="70%" align="left"><span class="up_t"><%=@product.name%>的相册</span>(共<%=show_specific_product_count(@product.id)%>张图片)</td>
+            <td class="td_top" valign="middle" width="30%" align="right"><a href="space.php?uid=684022&amp;do=album&amp;id=1123&amp;goodsid=12650">&lt;&lt;返回该商品相册</a>&nbsp;&nbsp;</td>
+              </tr>
+          
+             <tr>
+            <td colspan="2" class="td" valign="middle" align="left">
+            	<ul class="uppic">
+                    <li><a href="<%=product_url(@product.id)%>" target="_blank"><img src="<%=@product.i1.url(:small)%>" alt="<%=@product.name%>"></a></li>
+                    <li><a href="<%=product_url(@product.id)%>" target="_blank"><%=@product.name%></a></li>
+                    <li>[商品编号：<%=@product.id%>]</li>
+                </ul>
+            </td>
+           </tr>
+              
+          <tr>
+            <td colspan="2" class="td_top" height="30" valign="middle" align="left"><span class="up_t">选择图片</span></td>
+          </tr>
+          <tr>
+            <td colspan="2" class="td" height="30" valign="middle" align="left"><p class="up_tip">从电脑中选择你要上传的图片．<br>
+            提示：选择一张图片后，你可以选择下一张图片，这样就可以一次传多张图片了．</p></td>
+          </tr>
+          <tr>
+            <td colspan="2" class="td" valign="middle" align="left">
+
+<!--图片上传部分 START-->
+<form name="ddd" action="<%=request.fullpath%>" accept-charset="UTF-8" enctype="multipart/form-data" method="post">
+           <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+<table class="formtable" cellpadding="0" cellspacing="0">
+<tbody id="attachbody"><tr>
+<td>
+<input id="attach_0" name="attach" size="25" style="padding: 10px; margin: 10px;" class="input_up_img" type="file">
+</td>
+</tr></tbody>
+</table>
+<table class="formtable" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<br>
+<div id="user_photo_up_btn"><input class="u_btn" value="开始上传" style="margin: 10px;" name="uploadsubmit1"  type="submit"></div>
+</td>
+</tr>
+</table>
+</form>
+
+<!---图片上传部分 END-->
+          </td>
+          </tr>
+        </tbody></table>
+      </div>

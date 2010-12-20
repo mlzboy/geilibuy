@@ -1,0 +1,76 @@
+/*订阅，注册相关css*/
+.ucoption{ position:relative;height:40px; width:684px;}
+.ucnav {position:absolute;height:40px; margin-left:18px; top:1px;}
+	.ucnav li { float:left; margin-right:7px; text-align:center; height:38px; line-height:38px; width:100px; font-size:14px; color:#C90809;}
+	.ucnav li a { color:#C90809; display:block;height:38px; line-height:38px; width:100px; }
+	.ucnav li a:link { color:#C90809;}
+	.ucnav li a:visited { color:#C90809;}
+	.ucnav li a:hover{ color:#C90809;}
+	.ucnav_off { border:1px solid #ddcda9; background-color:#f7e9cf;}
+		
+	.ucnav_on { border-bottom:1px solid #fff; background-color:#fff;}
+	.ucnav_on a { font-weight:bold;}
+
+.orderlist { margin:10px; width:660px;}
+.orderlist th { font-size:14px; height:20px;padding:10px;border-bottom:1px solid #fff;border-left:1px solid #fff;}
+.orderlist td { height:60px; padding:10px;border-bottom:1px solid #fff;border-left:1px solid #fff;font-family:Arial, Helvetica, sans-serif;}
+	.oltd_odd { background-color:#fff2d5;}
+	.oltd_even {background-color:#f8edda;}
+	.unpay { color:#c90809;}
+	.passed { color:#999;}
+
+.uc_plbox li {padding:5px; line-height:20px; font-size:14px;}
+.uc_plbox li span { font-size:12px; color:#999;}
+.uc_plbox li font { font-size:14px; color:#C90809;}
+
+.orderdetail { line-height:40px; font-size:14px; padding:30px; padding-top:0;}
+.orderdetail span { color:#C90809;}
+
+.myinvate { font-size:14px;padding:10px; line-height:30px;}
+.myinvate font {font-size:24px;color:#C90809;}
+.myinvate dt { border-bottom:1px solid #ffd7a2; padding-bottom:40px; margin-bottom:20px; line-height:40px;}
+/*.myinvate span { border:1px solid #ffd7a2; padding:5px; background-color:#fff9ee;}*/
+
+.paylist td{ padding:12px 0;}
+	.paylist span { font-size:12px; color:#999; border:none; background-color:#fff; padding-left:20px;}
+
+.pay_tipbox { margin:0 40px; line-height:22px; font-size:14px;}
+.pay_tipbox img { float:left; margin-right:5px;}
+.pay_tipbox span {font-family:simhei,arial,sans-serif; font-size:18px; line-height:50px;}
+.pay_tipbox td { padding:10px 0 5px 0;font-family:Arial, Helvetica, sans-serif;}
+
+.charge_succ { padding:20px 0;}
+.charge_succ dt { text-align:center; font-size:28px; font-family:"宋体",simhei,arial,sans-serif; height:60px; line-height:60px; border-bottom:1px solid #decea9; margin-bottom:10px;}
+.charge_succ dt img { margin-right:10px;}
+.charge_succ dd { line-height:60px;font-size:14px; text-align:center;}
+.charge_succ span {color:#C90809;}
+
+.pay_succ { padding:20px 0;}
+.pay_succ dt { text-align:center; font-size:28px; font-family:"宋体",simhei,arial,sans-serif; height:60px; line-height:60px; border-bottom:1px solid #decea9; margin-bottom:20px;}
+.pay_succ dt img { margin-right:10px;}
+.pay_succ dd { line-height:30px;font-size:14px; margin:0 30px; }
+.pay_succ span {color:#C90809;}
+.pay_succ dd ul { background-color:#fff2d5; padding:5px 15px 15px 15px; margin-top:15px;}
+.payment {font-size:14px; line-height:30px; margin-bottom:15px; font-family:Arial, Helvetica, sans-serif;}
+	.payment dt { color:#C90809; padding:0 10px; margin:10px 0;}
+	.payment dd {  padding:0 10px;margin:10px 0;}
+	.payment font { font-size:24px; font-weight:bold;}
+	.payment span {color:#C90809; font-weight:bold;}
+	.paytip { background-color:#fff2d5;font-family:Arial, Helvetica, sans-serif;}
+
+
+.flow_order { font-size:14px; }
+.flow_order th { height:20px;padding:10px;}
+.flow_order td { height:20px; padding:10px;font-family:Arial, Helvetica, sans-serif;}
+.flow_order td span {color:#C90809;}
+.flow_num { width:55px;}
+
+.flow_addr { font-size:14px;}
+.flow_addr dt { background-color:#fff2d5; padding:10px;}
+.flow_addr dd { margin-bottom:30px;}
+.flow_addr dd ul { line-height:30px; margin:15px 0 10px 10px; padding-bottom:20px;border-bottom:1px dotted #ffc56b; }
+.flow_addr table { margin-top:15px;}
+.flow_addr table td { padding:5px 0;font-family:Arial, Helvetica, sans-serif;}
+.flow_addr span { font-size:12px; color:#999;}
+.goodslist th { border-bottom:1px solid #fff;border-left:1px solid #fff;}
+.goodslist td { border-bottom:1px solid #fff;border-left:1px solid #fff; font-family:Arial, Helvetica, sans-serif;}

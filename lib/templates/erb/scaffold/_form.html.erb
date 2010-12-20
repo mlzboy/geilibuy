@@ -1,0 +1,69 @@
+<%
+def remove_module_name(str)
+  a=file_path.split("/")
+  if a.size==1
+    r=str
+  else
+    a.pop
+    pre=""
+    pre2=""
+    for e in a
+      pre+=e+"_"
+      pre2+=e.capitalize+"::"
+    end
+    if str.index(pre)==0
+      r=str[pre.size,str.size]
+    elsif str.index(pre2)==0
+      r=str[pre2.size,str.size]
+    else
+      r=str
+    end
+  end
+  r
+end
+
+def gen_path
+  a=file_path.split("/")
+  if a.size==1
+    r="@"+remove_module_name(singular_table_name)
+  else
+    a.pop
+    a=a.map{|e| ":"+e}<<"@"+remove_module_name(singular_table_name)
+    r=a.join(',')
+  end
+  "[#{r}]"
+end
+
+def gen_text_area(type)
+  #puts type.class
+  #puts "====================="
+  #puts type
+  if type=="text_area".to_sym
+    ",:cols=>40,:rows=>4"
+  end
+end
+%>
+<!--xiao mao generator QQ:hi@15-1688.com-->
+<%%= form_for(<%=gen_path%>) do |f| %>
+  <%% if @<%=remove_module_name singular_table_name %>.errors.any? %>
+    <div id="error_explanation">
+      <h2><%%= pluralize(@<%=remove_module_name singular_table_name %>.errors.count, "error") %> prohibited this <%=remove_module_name singular_table_name %> from being saved:</h2>
+
+      <ul>
+      <%% @<%=remove_module_name singular_table_name %>.errors.full_messages.each do |msg| %>
+        <li><%%= msg %></li>
+      <%% end %>
+      </ul>
+    </div>
+  <%% end %>
+
+<% for attribute in attributes -%>
+  <div class="field">
+    <%%= f.label :<%= attribute.name %> %><br />
+    <%%= f.<%= attribute.field_type %> :<%= attribute.name %><%=gen_text_area(attribute.field_type)%> %>
+  </div>
+<% end -%>
+  <div class="actions">
+    <%%= f.submit %>
+  </div>
+<%% end %>

@@ -1,0 +1,134 @@
+<div id="posts_list">
+    <h1>Listing materials</h1>
+    <table>
+      <tr>
+        <th>Id</th>
+        <th>Size</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Hyperlink</th>
+        <th>Title</th>
+        <th>Image url</th>
+        <th>Alt</th>
+        <th>Text</th>
+        <th>Memo</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    
+    <% @materials.each do |material| %>
+      <tr id="item<%=material.id%>">
+        <td><%= material.id %></td>
+        <td><%= material.size %></td>
+        <td><%= material.name %></td>
+        <td><%= material.kind %></td>
+        <td><%= material.hyperlink %></td>
+        <td><%= material.title %></td>
+        <td><%= image_tag material.image_url.url(:show),:style=>"border:1px solid;" %></td>
+        <td><%= material.alt %></td>
+        <td><%= material.text %></td>
+        <td><%= material.memo %></td>
+        <td><%= link_to 'Show', admin_material_path(material) %></td>
+        <td><%= link_to 'Edit', edit_admin_material_path(material) %></td>
+        <td><%= link_to 'Destroy', admin_material_path(material), :confirm => 'Are you sure?', :method => :delete %></td>
+        <td><input type="button" name="add" value="add" class="add" data="<%=material.id%>"/></td>
+      </tr>
+    <% end %>
+    </table>
+    
+    <%=will_paginate @materials%>
+    <br />
+</div>
+
+
+<script type="text/javascript">
+
+  $(function(){
+    
+        $('.pagination a').attr('data-remote', 'true');
+
+    
+        $("input[name='add'].add").click(function(){
+          var id=$(this).attr("data");
+          var new_elem=$("#item"+id).clone();
+          var new_id="select"+id
+          if ($("#"+new_id).length==0)
+          {
+            //delete add button
+            $("input[name='add'].add", new_elem).remove();
+            $("<input type='text' name='material_id[]' value='"+id+"'/>").appendTo(new_elem);
+            $("<input type='button' name='higher' value='higher' />").click(function(){
+                  var parent = $(this).parent();
+                  parent.insertBefore(parent.prev());
+              }).appendTo(new_elem);
+            $("<input type='button' name='lower' value='lower' />").click(function(){
+                var parent = $(this).parent();
+                parent.insertAfter(parent.next());
+    
+              }).appendTo(new_elem);
+            $("<input type='button' name='delete' value='delete' />").click(function(){
+                if (confirm("确定删除该项？"))
+                {$("#"+new_id).remove();}
+    
+              }).appendTo(new_elem);        
+            new_elem.wrap("li").attr("id",new_id).appendTo($("#show"));
+            //new_elem.appendTo($("#show"));
+          }
+          else
+          {
+            alert("已在选择区!");
+          }
+        });
+    
+    
+  
+    function submit_query(){
+        $.post($("#form1").attr("action")+".js",$("#form1").serialize(),null,"script");
+        return false;
+        }
+        
+    $("select.condition").change(submit_query);
+    
+    $("#form1 input[name='ajax_query']").click(submit_query);
+    
+    
+  
+  
+  $('input[type="button"].yaya').click(function(){
+    
+       var parent = $(this).parent();
+
+    if(this.value === 'higher'){
+        parent.insertBefore(parent.prev());
+    } else {
+        parent.insertAfter(parent.next());
+    } 
+    });
+  
+    $('input[type="button"].nono').click(function(){
+      if (confirm("确定删除")){
+      $(this).closest("li").remove();
+      }
+    });
+    
+     $("#name_helper").change(function(){
+      var v=$("#name_helper option:selected").text();
+      $("#slot_name").val(v);
+                              });   
+    $("#size_helper").change(function(){
+      var v=$("#size_helper option:selected").text();
+      $("#slot_size").val(v);
+                              });
+    $("#kind_helper").change(function(){
+      var v=$("#kind_helper option:selected").text();
+      $("#slot_kind").val(v);
+                              });
+    $("#location_helper").change(function(){
+      var v=$("#location_helper option:selected").text();
+      $("#slot_location").val(v);
+                              });
+});
+
+</script>

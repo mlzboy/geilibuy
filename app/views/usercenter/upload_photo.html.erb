@@ -1,0 +1,162 @@
+<div class="right_top"> <span class="welcome album"></span> <span class="goon_btn"><a style="color:#fff;" href="./" title="首页">继续购物</a></span> </div>
+
+<%product=@up.product%>
+
+
+<div class="right_line">      	
+
+        <table width="100%"  border="0" cellpadding="0" cellspacing="0" class="table">
+
+          <tr>
+
+            <td width="70%" height="30" align="left" valign="middle" class="td_top"><span class="up_t"><%=product.name%></span>(共 <%=show_specific_product_count(product.id)%> 张图片)</td>
+
+            <td width="30%" align="right" valign="middle" class="td_top"><a href="/usercenter/upload_photos/<%=product.id%>">&lt;&lt;返回该商品相册</a>&nbsp;&nbsp;</td>
+
+          </tr> 
+
+
+
+
+            <tr>
+           	 <td width="70%" height="30" align="left" valign="middle" class="td">&nbsp;&nbsp;<!--(当前第 1 张 | 共 3 张图片)--></td>
+            <td height="30"  align="left" valign="middle" class="td"><span class="goon_btn" style="margin-right:10px;">
+              <a style="color:#fff;" href="/usercenter/upload_photos/<%=product.id%>/new">上传新照片</a></span>  </td>
+          </tr>        
+          <tr>
+            <td colspan="2" align="center" valign="middle" class="td" style="padding-bottom:30px;">
+
+            
+            <ul class="pic_box">
+                <!--<li><a href="space.php?uid=684022&do=album&picid=4170&goodsid=8563&goto=up">上一张</a> | <a href="space.php?uid=684022&do=album&picid=4170&goodsid=8563&goto=down" id="nextlink">下一张</a></li>-->
+                <li><img src="<%=@up.i1.url%>" alt="<%=product.name%>" /></li>
+                <!--<li><a href="/images/u/201012/5/684022_1291524699iNtH.jpg" target="_blank">查看原图</a> | <a href="javascript:if(ischeck('theform', 'ids')){$('theform').submit();}">删除</a></li>-->
+                <li></li>
+
+                <!--<li><a href="cp.php?ac=album&op=edittitle&albumid=1123&picid=4170" id="a_set_title" onclick="ajaxmenu(event, this.id)">修改描述</a></li>-->
+            </ul>
+            
+            </td>
+          </tr>   
+             <tr>
+            <td height="30" colspan="2"  align="left" valign="middle" class="td">&nbsp;&nbsp;上传于 <%=@up.created_at.strftime("%Y-%m-%d %H:%M:%S")%> (<%=number_with_precision @up.i1.size.to_f/1024,:percision=>2%> KB) </td>
+          </tr>      
+        </table>
+      </div>
+
+<!--<form method="post" id="theform" name="theform" action="cp.php?ac=album&op=editpic&albumid=&subop=delete" style="display:none;">-->
+<!---->
+<!--  <input type="submit" name="editpicsubmit" value="删除" class="submit">-->
+<!---->
+<!--<textarea name="title[4170]" rows="4" cols="70" style="display:none;"></textarea>-->
+<!---->
+<!--<input type="checkbox" name="ids[4170]" value="4170" checked="checked">-->
+<!---->
+<!--<input type="hidden" name="refer" value="http://www.geilibuy.com/u/space.php?uid=684022&do=album&id=1123&goodsid=8563" />-->
+<!---->
+<!--<input type="hidden" name="editpicsubmit" value="true" />-->
+<!---->
+<!--<input type="hidden" name="formhash" value="186ed4b3" />-->
+<!---->
+<!--</form>-->
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+<!--
+
+var interval = 5000;
+
+var timerId = -1;
+
+var derId = -1;
+
+var replay = false;
+
+var num = 0;
+
+var endPlay = false;
+
+function forward() {
+
+window.location.href = 'space.php?uid=684022&do=album&picid=4170&goodsid=8563&goto=down&play=1';
+
+}
+
+function derivativeNum() {
+
+num++;
+
+$('displayNum').innerHTML = '[' + (interval/1000 - num) + ']';
+
+}
+
+function playNextPic(stat) {
+
+if(stat || replay) {
+
+derId = window.setInterval('derivativeNum();', 1000);
+
+$('displayNum').innerHTML = '[' + (interval/1000 - num) + ']';
+
+$('playid').innerHTML = '停止播放';
+
+timerId = window.setInterval('forward();', interval);
+
+} else {
+
+replay = true;
+
+num = 0;
+
+if(endPlay) {
+
+$('playid').innerHTML = '重新播放';
+
+} else {
+
+$('playid').innerHTML = '幻灯播放';
+
+}
+
+$('displayNum').innerHTML = '';
+
+window.clearInterval(timerId);
+
+window.clearInterval(derId);
+
+}
+
+}
+
+
+
+
+function update_title() {
+
+$('title_form').style.display='';
+
+}
+
+
+
+//彩虹炫
+
+var elems = selector('div[class~=magicflicker]');
+
+for(var i=0; i<elems.length; i++){
+
+magicColor(elems[i]);
+
+}
+
+
+
+//-->
+
+</script>

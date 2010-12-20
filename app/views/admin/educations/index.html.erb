@@ -1,0 +1,26 @@
+
+<h1>Listing educations</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @educations.each do |education| %>
+  <tr>
+    <td><%= education.id %></td>
+    <td><%= education.name %></td>
+    <td><%= link_to 'Show', admin_education_path(education) %></td>
+    <td><%= link_to 'Edit', edit_admin_education_path(education) %></td>
+    <td><%= link_to 'Destroy', admin_education_path(education), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Education', new_admin_education_path %>

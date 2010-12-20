@@ -1,0 +1,109 @@
+<%content_for :headmeta do%>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta http-equiv="pragma" content="no-cache"/>
+<meta name="pagename" content="tuan" />
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/>
+<%end%>
+<%content_for :headtitle do%>
+<title>我的订单 - 给力团 创意百货天天团 - 给力百货</title>
+<%end%>
+<% content_for :headstyle do %>
+<!--style>
+html {filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity: 0.5; opacity: 0.5;}
+html {filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);}
+</style-->
+<link href="/themes/default/css/tuan_public.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_ucener.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_others.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_reglogin.css" rel="stylesheet" type="text/css" />
+<%end%>
+<%content_for :headother do%>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" />
+<link rel="alternate" type="application/rss+xml" title="RSS|我的订单 - 给力团 创意百货天天团 - 给力百货" href="" />
+<%end%>
+<%content_for :headjs do%>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/hotkeys.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_divpop.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_user.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_account.js" charset="UTF-8"></script>
+<script>
+$(document).ready(function(){
+  
+  	// 检测是否登录
+	setTuanHeadUserStatus();
+  
+});	
+</script>
+<%end%>
+<div class="navtip ">
+</div>
+
+<div id="main">
+					
+<div id="left" class="uc_left"> 
+<div class="ucoption">
+  <ul class="ucnav">
+    <li class="ucnav_off "><a href="/tuan/account/orders">我的订单</a></li>
+    <li class="ucnav_off "><a href="/tuan/account/invites">我的邀请</a></li>
+    <li class="ucnav_off ucnav_on"><a href="/tuan/account/points">我的积分</a></li>
+    <li class="ucnav_off "><a href="/tuan/account/credit">现金账户</a></li>
+    <li class="ucnav_off "><a href="/tuan/account/settings">账户设置</a></li>
+  </ul>
+</div>
+  <div class="zone">
+    <div class="leftbar">我的积分</div>
+    <dl class="myinvate">
+      <dt><!--<span>您有 1 个已消费的订单还没有评价，<a class="blue" href="">现在就去评价吧</a>，评价即可获赠<font style="font-size:14px;">20</font>积分！</span><br />-->
+        <b>您当前账户的总积分是&nbsp;&nbsp;<font><%=current_user.score%></font></b>&nbsp;&nbsp;<a class="blue" target="_blank" href="/score">» 去给力百货积分商城使用积分</a></dt>
+      <dd><b>给力团积分明细</b></dd>
+      <dd id="points_list">
+<table width="100%" border="0" cellpadding="0" cellspacing="1" class="goodslist">
+  <tbody><tr class="oltd_even">
+    <th width="200" align="center"> 时间</th>
+    <th width="300" align="center">详情</th>
+    <th align="center"> 积分 </th>
+  </tr>
+<%if @score_details.size==0%>	
+    <tr>
+    <td align="center" colspan="6"><span style="font-size:12px">暂时没有积分记录</span></td>
+  </tr>
+<%else%>
+  <%@score_details.each do |score_detail|%>
+      <tr>
+    <td width="200" align="center"><%=score_detail.created_at.strftime("%Y-%m-%d %H:%M:%S")%></td>
+    <td width="300" align="left"><%=raw score_detail.memo%></td>
+    <%unless score_detail.cost%>
+        <td align="center" style="color:green"><strong>+<%=score_detail.score%></strong></td>
+    <%else%>
+	    <td align="center" style="color:red"><strong><%=score_detail.score%></strong></td>
+	<%end%>
+  </tr>
+<%end%>
+<%end%>
+  </tbody></table>
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<div style="height: 40px;"> </div>
+<div id="right">
+  <div class="zone">
+    <h4>怎样获得积分？</h4>
+    <p>通过消费，可获赠支付金额*10的积分。通过评价订单，可获赠20积分。</p>
+    <h4>积分有什么用？</h4>
+    <p>您可以去给力百货使用所得积分。<a href="/article-57.html" class="blue">查看详情</a></p>
+  </div>
+</div>
+ 					
+		
+	
+<div class="clear"></div>     
+</div>
+

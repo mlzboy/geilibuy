@@ -1,0 +1,17 @@
+<h3>礼品分类</h3>
+<%
+for gift in gifts
+  concat(raw gift.name+"<br/>")
+  if gift.children.size>0
+    for sub in gift.children
+      if product.new_record? or !product.gifts.exists?(sub.id)
+        concat(check_box_tag 'gift_id[]', sub.id.to_s)
+      else
+        concat(check_box_tag 'gift_id[]', sub.id.to_s,true)
+      end
+      concat(sub.name)
+    end
+    concat(raw "<br>")
+  end
+end
+%>

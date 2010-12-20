@@ -1,0 +1,32 @@
+
+<h1>Listing brands</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Story</th>
+    <th>I1</th>
+    <th>I2</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @brands.each do |brand| %>
+  <tr>
+    <td><%= brand.id %></td>
+    <td><%= brand.name %></td>
+    <td><%= brand.story %></td>
+    <td><%= brand.i1 %></td>
+    <td><%= brand.i2 %></td>
+    <td><%= link_to 'Show', admin_brand_path(brand) %></td>
+    <td><%= link_to 'Edit', edit_admin_brand_path(brand) %></td>
+    <td><%= link_to 'Destroy', admin_brand_path(brand), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Brand', new_admin_brand_path %>

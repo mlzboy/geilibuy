@@ -1,0 +1,496 @@
+<% content_for :headmeta do %>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="pragma" content="no-cache"/>
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/>
+<meta http-equiv="expires" content=""/>
+<meta name="Keywords" content="爱屋格林 彩色印花纸巾 餐巾纸 evergreen餐巾纸 爱屋格林餐巾纸 印花餐巾纸" />
+<meta name="Description" content="您是否厌倦了一成不变的白色餐巾纸呢？让您的餐巾纸穿上时尚的外衣，给餐桌添一抹亮色，给家庭用餐换一种别样的心情吧。给力百货创意居家馆为您提供爱屋格林彩色印花餐巾-悠闲的高尔夫球，货到付款拆包验货30天退换货，为您提供愉悦网购体验！" />
+<meta name="pagename" content="detail" />
+<%end%>
+<%content_for :headtitle do%>
+<title>[爱屋格林彩色印花餐巾-悠闲的高尔夫球] 爱屋格林 【30天免费退换】_厨浴专卖_给力百货 - 创意生活零售平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品</title>
+<%end%>
+<% content_for :headstyle do %>
+<link href="/themes/default/css/header.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/goods.css" rel="stylesheet" type="text/css" />
+<%end%>
+<% content_for :headjs do %>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/header.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/js-clib.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/divpop.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/goods.js" charset="UTF-8"></script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+  setHeadFlowNum();//购物车数量
+});
+</script>
+<%end%>
+<% content_for :headother do%>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" />
+<% end%>
+<% content_for :bodymenu do%>
+<%=render :partial=>"header",:locals=>{:category_id=>@whole_categories[0].id}%>
+<% end%>
+<div id="global_body">
+
+
+
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<div class="top_nav">您当前所在位置:<a href=".">首页</a><%@whole_categories.each do |category|%> <code>&gt;</code> <a href="<%=category_url(category.id)%>"><%=category.name%></a><%end%> <code>&gt;</code> <font color="#cc2b21"><%=@product.name%></font><span id="plate"></span></div>  <div class="left">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<ul class="info">
+  <li><strong class="name"><%=@product.name%></strong></li>
+  <li>
+        商品品牌：
+        <a title="点击查看本品牌所有商品" href="http://www.geilibuy.com/search.php?brand=382"  class="info_a" ><strong>evergreen</strong></a>
+        &nbsp;&nbsp;
+        商品编号：<b><span id="goods_id"><%=@product.id%></span></b></li>
+    <li>市 场 价：<b class="price"><%=price(@product.p1)%>元</b></li>
+  <li>趣 玩 价：<span class="sell"><%=price(@product.p2)%></span>元</li>
+  <%if @product.score%>
+  <li style="position: relative; display: inline-block;"><span class="jfline">积分换购：<%=price(@product.p3)%>元+<span class="jfsell"><%=@product.s1%>积分</span></span><a href="javascript:inToCartAction('<%=@product.id%>','<%=@product.name%>',1,1,2)" class="huan_btn"></a>
+    <div class="clear"></div>
+    <div style="left: 5px; top: -70px; width: 303px; padding-bottom: 5px;" id="cat_pop2" class="pop_out">
+      <div style="width: 281px;" class="pop_in">
+        <div style="border-bottom: medium none; margin-bottom: 0pt;" class="pop_top">
+          <div style="line-height: 13px;" class="close">关闭</div>
+        </div>
+        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+          <tbody><tr>
+            <td align="center" valign="middle" height="50" colspan="2"><span style="color: rgb(0, 0, 0); font-size: 14px;" class="pop_inf">商品已成功添加到购物车</span></td>
+          </tr>
+          <tr>
+            <td align="right" width="70%" valign="middle" height="30"><a href="/shopping/cart" class="pop_btn">去购物车结算</a></td>
+            <td align="left" width="30%" valign="middle"><a onclick="$('.close').click();" style="cursor: pointer;" class="info_a">继续逛&gt;&gt;</a></td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle" height="20" colspan="2"></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+  </li>
+  <%end%>
+      <li class="score">商品评分：<span class="star s0"></span> <a class="info_a" id="topshowall" href="#comments">(已有0条买家评论)</a> </li>
+  <li>累计销售：<%=@product.sale%>件</li>
+  <li> 至 <span id="addr_do"> <span id="addr" name="2">北京</span><span id="toaddr">：</span>
+    <div class="pop_out" id="addr_pop">
+      <div class="pop_in">
+        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" id="addr_list">
+          <tbody>
+            <tr>
+                            <td align="center" valign="middle" name="2">北京</td>
+                                          <td align="center" valign="middle" name="3">天津</td>
+                                          <td align="center" valign="middle" name="4">河北</td>
+                                          <td align="center" valign="middle" name="5">山西</td>
+                                          <td align="center" valign="middle" name="6">内蒙古</td>
+                                          <td align="center" valign="middle" name="7">辽宁</td>
+                                          <td align="center" valign="middle" name="8">吉林</td>
+                          </tr>
+            <tr>
+                                          <td align="center" valign="middle" name="9">黑龙江</td>
+                                          <td align="center" valign="middle" name="10">上海</td>
+                                          <td align="center" valign="middle" name="11">江苏</td>
+                                          <td align="center" valign="middle" name="12">浙江</td>
+                                          <td align="center" valign="middle" name="13">安徽</td>
+                                          <td align="center" valign="middle" name="14">福建</td>
+                                          <td align="center" valign="middle" name="15">江西</td>
+                          </tr>
+            <tr>
+                                          <td align="center" valign="middle" name="16">山东</td>
+                                          <td align="center" valign="middle" name="17">河南</td>
+                                          <td align="center" valign="middle" name="18">湖北</td>
+                                          <td align="center" valign="middle" name="19">湖南</td>
+                                          <td align="center" valign="middle" name="20">广东</td>
+                                          <td align="center" valign="middle" name="21">广西</td>
+                                          <td align="center" valign="middle" name="22">海南</td>
+                          </tr>
+            <tr>
+                                          <td align="center" valign="middle" name="23">重庆</td>
+                                          <td align="center" valign="middle" name="24">四川</td>
+                                          <td align="center" valign="middle" name="25">贵州</td>
+                                          <td align="center" valign="middle" name="26">云南</td>
+                                          <td align="center" valign="middle" name="27">西藏</td>
+                                          <td align="center" valign="middle" name="28">陕西</td>
+                                          <td align="center" valign="middle" name="29">甘肃</td>
+                          </tr>
+            <tr>
+                                          <td align="center" valign="middle" name="30">青海</td>
+                                          <td align="center" valign="middle" name="31">宁夏</td>
+                                          <td align="center" valign="middle" name="32">新疆</td>
+                                          <td align="center" valign="middle" name="33">香港</td>
+                                          <td align="center" valign="middle" name="34">台湾</td>
+                                        </tr>
+          </tbody>
+        </table>
+        <div class="pop_tip">以上金额为运费估算值<br />
+          实际运费金额以订单确认页面的金额为准！</div>
+      </div>
+    </div>
+    </span> <span id="kuaidi"></span>　<a class="info_a" href="http://www.geilibuy.com/article-15.html" target="_blank">运费说明</a> </li>
+  <li class="paymethods">
+    <ul>
+      <li><a class="pay1">满99元免运费</a></li>
+      <li><a class="pay3">允许开箱验货</a></li>
+      <li><a class="pay4">30天上门退换</a></li>
+      <li><a class="pay5">支持货到付款</a></li>
+    </ul>
+  </li>
+    <li id="paykey"  style="position:relative;">
+      <%
+      style_products=@product.style_products
+      if style_products.size>0
+      style_products.unshift @product
+      %>
+        <dl>
+      <dt class="kt">颜色及款式：</dt>
+      <dd> <span class="gstyle garrow" select="0">
+        <p><%=@product.name%></p>
+        <ul class="gstyle_pop">
+          <%style_products.each_with_index do |product,index|%>
+          <li<%=raw ' class="gpop_on"' if index==0%><a title="<%=product.name%>" href="<%=product_url(product.id)%>"><%=product.name%></a></li>
+          <%end%>
+                  </ul>
+        </span> </dd>
+    </dl>
+        <%end%>
+    <dl>
+      <dt class="kt" style="padding-top:2px;*padding-top:1px !important;*padding-top:1px;">数量：</dt>
+      <dd>
+        <input type="text" id="buynum" onKeyUp="this.value=this.value.replace(/[^0-9]/g,'');" value="1">
+        </input>
+      </dd>
+      <dd style="padding-left:5px;padding-top:2px;*padding-top:1px !important;*padding-top:1px;">件</dd>
+    </dl>
+            <div><a class="buy_btn" href="javascript:inToCartAction('<%=@product.id%>','<%=@product.name%>',1,0,1)"></a> </div>
+    <input type="hidden" value="12" id="gs">
+    <div class="pop_out" id="cat_pop1" style="left:5px;*left:5px !important;*left:-15px; top:6px; width:303px; padding-bottom:5px;">
+      <div class="pop_in" style="width:281px;">
+        <div class="pop_top" style="border-bottom:none; margin-bottom:0;">
+          <div class="close" style=" line-height:13px;*line-height:12px !important;*line-height:14px;">关闭</div>
+        </div>
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="50" colspan="2" align="center" valign="middle"><span class="pop_inf" style="color:#000;font-size:14px;">商品已成功添加到购物车</span></td>
+          </tr>
+          <tr>
+            <td width="70%" height="30" align="right" valign="middle"><a class="pop_btn" href="/shopping/cart">去购物车结算</a></td>
+            <td width="30%" align="left" valign="middle"><a class="info_a" style="cursor:pointer;" onClick="$('.close').click();" >继续逛&gt;&gt;</a></td>
+          </tr>
+          <tr>
+            <td height="20" colspan="2" align="center" valign="middle"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+      </li>
+  </ul>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<div class="pic">
+  <div id="pic_box">
+         <img class="switch_item" src="<%=@product.i1.url(:big)%>" width="400" height="400" alt="<%=@product.name%>" title="<%=@product.name%>" turnXml = '0'/>          <img class="switch_item" src="<%=@product.i2.url(:big)%>" width="400" height="400" alt="<%=@product.name%>" title="<%=@product.name%>" turnXml = '1'/>          <img class="switch_item" src="<%=@product.i3.url(:big)%>" width="400" height="400" alt="<%=@product.name%>" title="<%=@product.name%>" turnXml = '2'/>          <img class="switch_item" src="<%=@product.i4.url(:big)%>" width="400" height="400" alt="<%=@product.name%>" title="<%=@product.name%>" turnXml = '3'/>       </div>
+  <ul class="pic_index">
+                <li class="pic_li pic_on" turnXml = '0' cGXML = "10849" iMXML ="10849"><img src="<%=@product.i1.url(:thumb)%>" title="<%=@product.name%>[1]" /></li>
+                        <li class="pic_li " turnXml = '1' cGXML = "10849" iMXML ="17446"><img src="<%=@product.i2.url(:thumb)%>" title="<%=@product.name%>[2]" /></li>
+                        <li class="pic_li " turnXml = '2' cGXML = "10849" iMXML ="17447"><img src="<%=@product.i3.url(:thumb)%>" title="<%=@product.name%>[3]" /></li>
+                        <li class="pic_li " turnXml = '3' cGXML = "10849" iMXML ="17448"><img src="<%=@product.i4.url(:thumb)%>" title="<%=@product.name%>[4]" /></li>
+              </ul>
+  <div class="do_some" style="position:relative;"> <a class="share"> </a> <a class="collect" href="javascript:collectGoodsAction('<%=@product.id%>')"> </a>
+  <div class="pop_out" id="share_pop"  style="left:20px; top:-167px;">
+    <div class="pop_in">
+      <div class="pop_top"><span class="pop_top2"></span><div class="close">关闭</div></div>
+      <div class="share_box"><a href="http://www.geilibuy.com/share.php?goods_id=10849&share_sign=sinablog" title="分享到新浪微博" target="_blank"><img src="/themes/default/imgs/goods/xinlang.jpg" alt="分享到新浪微博"/></a></div>
+      <div class="share_box"><a href="http://www.geilibuy.com/share.php?goods_id=10849&share_sign=kaixin001" title="分享到开心网" target="_blank"><img src="/themes/default/imgs/goods/kaixin.jpg" alt="分享到开心网"/></a></div>
+      <div class="share_box"><a href="http://www.geilibuy.com/share.php?goods_id=10849&share_sign=xiaonei" title="分享到校内网" target="_blank"><img src="/themes/default/imgs/goods/xiaonei.jpg" alt="分享到校内网"/></a></div>
+      <div class="share_box"><a href="http://www.geilibuy.com/share.php?goods_id=10849&share_sign=163blog" title="分享到网易微博" target="_blank"><img src="/themes/default/imgs/goods/wangyi.jpg" alt="分享到网易微博"/></a></div>
+      <div class="share_box"><a href="http://www.geilibuy.com/share.php?goods_id=10849&share_sign=baidublog" title="分享到百度i贴吧" target="_blank"><img src="/themes/default/imgs/goods/baidu.jpg" alt="分享到百度i贴吧"/></a></div>
+<!--      <div class="share_box"><a href="http://www.geilibuy.com/share.php?goods_id=10849&share_sign=qqblog" title="分享到腾讯微薄" target="_blank"><img src="/themes/default/imgs/goods/qq.jpg" alt="分享到腾讯微薄"/></a></div>
+-->      <div class="share_box"><a href="javascript:void((function(s,d,e,r,l,p,t,z,c){var f='http://t.sohu.com/third/post.jsp?',u=z||d.location,p=['&url=',e(u),'&title=',e(t||d.title),'&content=',c||'gb2312','&pic=',e(p||'')].join('');function%20a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=660,height=470,left=',(s.width-660)/2,',top=',(s.height-470)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,'','','','您是否厌倦了一成不变的白色餐巾纸呢？让您的餐巾纸穿上时尚的外衣，给餐桌添一抹亮色，给家庭用餐换一种别样的心情吧。给力百货创意居家馆为您提供爱屋格林彩色印花餐巾-悠闲的高尔夫球，货到付款拆包验货30天退换货，为您提供愉悦网购体验！，来自给力百货','http%3A%2F%2Fwww.geilibuy.com%2Fgoods.php%3Fid%3D10849%26quwanlianmeng%3Dsohut%26argv2%3Ddetail%26u%3D698313','utf-8'));" title="分享到搜狐微博"><img src="/themes/default/imgs/goods/sohu.jpg" alt="分享到搜狐微博"/></a></div>
+      <div class="share_box"><a href="http://www.geilibuy.com/share.php?goods_id=10849&share_sign=doubanblog" title="分享到豆瓣网" target="_blank"><img src="/themes/default/imgs/goods/douban.jpg" alt="分享到豆瓣网"/></a></div>
+      <div class="clear"></div>
+      &nbsp;&nbsp;成功邀请好友注册，将获得抽奖幸运点　<a style="color:#0066cc;" href="http://www.geilibuy.com/lottery.php" target="_blank">查看详情>></a> </div>
+  </div>
+  </div>
+</div>
+<!--<a class="switch_item" href="javascript:picClickAction('10849','17448');"></a>-->
+ </div>
+  <div class="right">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<div class="group_box">
+  <input type="hidden" id="structurecodetmp" name="structurecodetmp" value="110303" />
+  <div class="group">
+    <ul class="group_bar">
+      <li id="gb1">&nbsp;</li>
+      <li id="gb2">&nbsp;<span class="group_tip"></span></li>
+    </ul>
+    <div class="g_1">
+
+    </div>
+    <div class="g_2" style="display:none;">
+
+    </div>
+  </div>
+</div>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <%five_products=@whole_categories.last.online_five_products(@product.id)
+    if five_products.size>0%>
+<div class="list" style="padding-bottom:0;">
+  <div class="t_span"><span class="t_t2"></span></div>
+  <%five_products.each do |product|%>
+    <ul style="clear:both;">
+    <li class="f_img"><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><img src="<%=product.i1.url(:small)%>"  alt="<%=product.name%>"/></a></li>
+    <li style="text-align:left;"><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>16%></a></li>
+    <li style="text-align:left;"><span>￥<%=price(product.p2)%>元</span></li>
+  </ul>
+    <%end%>
+        <div class="clear"></div>
+</div>
+<%end%>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<div class="list" id="visited" t="static" style="display:none;">
+  <div class="t_span"><span class="t_t3"></span></div>
+  <div class="goods_history_visited_box"> </div>
+  <div class="clear"></div>
+</div>
+</div>
+  <div class="left" style="overflow:hidden;">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<div class="act_top"><span></span></div>
+<div class="premium">
+  <table width="700" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+      <td width="40" height="20"><font color="#cc0000">买赠</font></td>
+      <td width="520">给力百货光棍节活动，全场满129元赠贴心毯！</td>
+      <td width="180">(结束日期：2010-11-16)</td>
+
+    </tr>
+          </table>
+</div>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <div class="scrip_bar">
+      <ul>
+        <li class="scrip_1 scrip_on"><img src="/themes/default/imgs/goods/bg.gif" /></li>
+        <li class="scrip_2"><img src="/themes/default/imgs/goods/bg.gif" /></li>
+        <li class="scrip_3" style="display:none;"><img src="/themes/default/imgs/goods/bg.gif" /></li>
+      </ul>
+    </div>
+    <div class="details1">
+
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<%if !@product.editor.blank?%>
+<div class="intro_box">
+  <div class="introbar"><span class="i_b1"></span></div>
+  <div class="intro"><p><%=@product.editor%></p></div>
+</div>
+<%end%>
+<div class="intro_box">
+  <div class="introbar"><span class="i_b2"></span></div>
+  <%if !@product.weight.blank?%>
+        <div class="intro">重量：<%=@product.weight%></div>
+  <%end%>
+  <%if !@product.size.blank?%>
+        <div class="intro">产品尺寸：<%=@product.size%></div>
+  <%end%>
+  <%if !@product.material.blank?%>
+        <div class="intro">材质：<%=@product.material%></div>
+  <%end%>
+  <%if !@product.wrap.blank?%>
+        <div class="intro">产品包装：<%=@product.wrap%></div>
+  <%end%>
+      </div>
+<br>
+<div class="gs_box">
+<%=raw @product.description%>
+</div>
+  <br>
+<div class="scrip_box">
+  <div class="scrip_top"><span class="s_t1"></span></div>
+  <img src="/themes/default/imgs/goods/sv.jpg"></div>
+<div class="vote_line">
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td align="left" valign="middle">以上的商品详情对您了解这个商品:</td>
+      <td align="left" valign="middle"><a class="vote_btn1" style="cursor:pointer" onclick="stepCookieClickAction('10849','698313',1)"></a><a class="vote_btn2" style="cursor:pointer" onclick="stepCookieClickAction('10849','698313',0)"></a></td>
+      <td height="40" align="left" valign="middle">(感谢您的投票,这对我们完善商品信息将很有帮助)</td>
+    </tr>
+  </table>
+</div>
+ </div>
+    <div class="details2">
+
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<div class="scrip_box"><a name="comments"></a>
+  <div class="scrip_top"><span class="s_t2"></span><code><a style="cursor:pointer" id="showallpl" href="#comments">查看所有评论(<font id="comment_count"></font>)</a> <a style="cursor:pointer" id="showbestpl" href="#comments">查看精选评论(<font id="comment_count2"></font>)</a></code></div>
+  <div class="clear"></div>
+  <div class="do_line">
+    <ul class="star_line">
+      <li class="star_li"> 创意&nbsp;&nbsp; <span class="star s0"></span> <span class="star_in"> 详情
+        <div class="starpop">
+          <div> <font>创意评分详情(0)</font>
+            <ul>
+              <li><span class="star s5"></span><span class="chart_bg"><span class="chart" style="width:0px;"></span></span><span class="chart_num">0</span></li>
+              <li><span class="star s4"></span><span class="chart_bg"><span class="chart" style="width:0px;"></span></span><span class="chart_num">0</span></li>
+              <li><span class="star s3"></span><span class="chart_bg"><span class="chart" style="width:0px;"></span></span><span class="chart_num">0</span></li>
+              <li><span class="star s2"></span><span class="chart_bg"><span class="chart" style="width:0px;"></span></span><span class="chart_num">0</span></li>
+              <li><span class="star s1"></span><span class="chart_bg"><span class="chart" style="width:0px;"></span></span><span class="chart_num">0</span></li>
+            </ul>
+            <span class="starpop_arrow"></span> </div>
+        </div>
+        </span> </li>
+      <li class="star_li"> 功能&nbsp;&nbsp; <span class="star s0"></span> <span class="star_in"> 详情
+        <div class="starpop">
+          <div> <font>功能评分详情(0)</font>
+            <ul>
+              <li><span class="star s5"></span><span class="chart_bg"><span class="chart" style="width:0px;"></span></span><span class="chart_num">0</span></li>
+              <li><span class="star s4"></span><span class="chart_bg"><span class="chart" style="width:0px;"></span></span><span class="chart_num">0</span></li>
+              <li><span class="star s3"></span><span class="chart_bg"><span class="chart" style="width:0px;"></span></span><span class="chart_num">0</span></li>
+              <li><span class="star s2"></span><span class="chart_bg"><span class="chart" style="width:0px;"></span></span><span class="chart_num">0</span></li>
+              <li><span class="star s1"></span><span class="chart_bg"><span class="chart" style="width:0px;"></span></span><span class="chart_num">0</span></li>
+            </ul>
+            <span class="starpop_arrow"></span> </div>
+        </div>
+        </span> </li>
+      <li class="star_li"> 品质&nbsp;&nbsp; <span class="star s0"></span> <span class="star_in"> 详情
+        <div class="starpop">
+          <div> <font>品质评分详情(0)</font>
+            <ul>
+              <li><span class="star s5"></span><span class="chart_bg"><span class="chart" style="width:0px;"></span></span><span class="chart_num">0</span></li>
+              <li><span class="star s4"></span><span class="chart_bg"><span class="chart" style="width:0px;"></span></span><span class="chart_num">0</span></li>
+              <li><span class="star s3"></span><span class="chart_bg"><span class="chart" style="width:0px;"></span></span><span class="chart_num">0</span></li>
+              <li><span class="star s2"></span><span class="chart_bg"><span class="chart" style="width:0px;"></span></span><span class="chart_num">0</span></li>
+              <li><span class="star s1"></span><span class="chart_bg"><span class="chart" style="width:0px;"></span></span><span class="chart_num">0</span></li>
+            </ul>
+            <span class="starpop_arrow"></span> </div>
+        </div>
+        </span> </li>
+    </ul>
+    <div class="do_pl">购买过该商品的用户才能发表评论，<br />
+      发布评论赠送<span>20积分</span> 评论被选为精华再赠送<span>50积分</span><br />
+      <a href="http://www.geilibuy.com/article-57.html">积分是什么？</a><a class="pl_btn" href="http://www.geilibuy.com/user.php?act=comment_list_new&goods_id=10849"></a></div>
+    <div class="clear"></div>
+  </div>
+  <div id="goods_comments_list_box_body">
+
+  </div>
+</div>
+ </div>
+    <div class="details3">
+
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<div id="goods_up_pic_tab">
+</div> </div>
+    <div class="details4">
+
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<div class="scrip_box">
+  <div class="scrip_top"><span class="s_t3"></span></div>
+  <div class="zixun_bar">
+    <ul>
+      <li id="zx1" class="zixun_li zixun_on">全部咨询(<code><font id="user_comment_count"></font></code>)</li>
+      <li id="zx2" class="zixun_li">最有价值咨询(<code><font id="user_comment_count2"></font></code>)</li>
+    </ul>
+  </div>
+  <div id="show_comments">
+
+  </div>
+  <form action="javascript:;" onsubmit="submitComment(this)" method="post" name="commentForm" id="commentForm">
+    <ul class="wenti_box">
+      <li>你有什么购买问题及产品意见？</li>
+      <li>
+        <textarea class="wenti_input" name="content" id="goods_question_contens_box" cols="" rows=""></textarea>
+      </li>
+      <li>
+        <input class="wenti_btn" name="" type="submit" value="" />
+        <input name="email" type="text" id="email" size="30" maxlength="80" value="<%=show_email%>" style='display:none;'/>
+        <input name="comment_rank" type="radio" value="5" checked="checked" style='display:none;'/>
+        <input name="id" type="hidden"  value="<%=@product.id%>" />
+    </li>
+    </ul>
+  </form>
+</div>
+<script type="text/javascript">
+/**
+ * 提交评论信息
+*/
+function submitComment(frm)
+{
+        var cmt_empty_content="咨询内容不能为空！";
+	var cmt = new Object;
+
+	cmt.email           = frm.elements['email'].value;
+	cmt.content         = frm.elements['content'].value;
+	cmt.id              = frm.elements['id'].value;
+	cmt.type			= 0;
+	cmt.rank            = 0;
+	if (cmt.email.length > 0)
+	{
+		if (!(isEmail(cmt.email)))
+		{
+			alert(cmt_error_email);
+			return false;
+		}
+	}
+
+	if (cmt.content.length == 0)
+	{
+		alert(cmt_empty_content);
+		return false;
+	}
+	$.ajax({
+		type: "POST",
+		url: "/presale_consultings",
+		data: 'cmt='+ $.toJSON(cmt),
+		success: function(result){
+			result = eval('('+result+')');
+			if (result.message)
+			{
+				alert(result.message);
+			}
+
+			if (result.error == 0)
+			{
+				var layer = document.getElementById('show_comments');
+				layer.style.display = '';
+				if (layer)
+				{
+					layer.innerHTML = result.content;
+					$('#zx1').addClass('zixun_on');
+					$('#zx2').removeClass('zixun_on')
+					$("#goods_question_contens_box").text("");
+					$("#user_comment_count").text(result.count);
+				}
+			}
+		}
+	});
+	return false;
+}
+</script> </div>
+  </div>
+  <div class="clear"></div>
+</div>
+<%content_for :bodyfoot do%>
+<!--[if IE 6]><script type="text/javascript">try {document.execCommand('BackgroundImageCache', false, true);} catch(e) {}</script><![endif]-->
+<div id="popbg"></div>
+<div id="popimg"></div>
+<%end%>
+<%content_for :outhtml do%>
+
+<%end%>
+

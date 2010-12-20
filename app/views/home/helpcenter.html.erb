@@ -1,0 +1,81 @@
+<% content_for :headmeta do %>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+<meta name="pagename" content="article" />
+<%end%>
+<%content_for :headtitle do%>
+<title><%=@article.title%>_<%=@article.article_category.name%>_帮助中心_给力百货 - 创意生活零售平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品</title>
+<%end%>
+<% content_for :headstyle do %>
+<link href="/themes/default/css/header.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/help.css" rel="stylesheet" type="text/css" />
+<%end%>
+<% content_for :headjs do %>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/header.js" charset="UTF-8"></script>
+<%end%>
+<% content_for :headother do%>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" />
+<link rel="alternate" type="application/rss+xml" title="<%=@article.title%>_<%=@article.article_category.name%>_助中心_给力百货 - 创意生活零售平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品" href="" />
+<% end%>
+
+<div id="global_body">
+   
+      
+    
+     <!--<div id="help_top_line"><a href=""><img src="imgs/help/about_ours_btn.gif" /></a><a href=""><img src="imgs/help/quwan_ued_btn.gif" /></a><a href=""><img src="imgs/help/help_center_btn.gif" /></a><span id="plate"></span></div>-->
+    
+    <div id="help_left_box">
+      
+      <%ArticleCategory.find_by_name("帮助中心").children.each do |article_category|%>
+         	  <div class="help_left_title">◎<%=article_category.name%></div>
+      <ul class="help_left_list">
+<%article_category.articles.each do |article|%>
+                 	<li><a href="/helpcenter/<%=article.id%>" objFlag ='<%=article.id%>'>·<%=article.title%></a></li>
+<%end%>
+                </ul>
+      <%end%>
+
+      
+      
+      
+      
+         </div>
+      <div id="help_right_box">
+	  
+	  
+      <div id="help_right_view_position" style="color:#000;">您当前的位置：<a href="/">首页</a>&nbsp;&gt;&nbsp; <%=@article.article_category.name%>&nbsp;&gt;&nbsp; <%=@article.title%></div>
+
+      
+	  
+        <!--<div id="help_right_index_box">
+        	<ul class="help_right_index_box_ul">
+            	<li id="help_right_index_box_li_selected">配送方式</li>
+                <li>配送方式</li>
+                <li>配送方式</li>
+                <li>配送方式</li>
+                <li>配送方式</li>
+            </ul>
+            <div id="help_right_index_icon"></div>
+          <div id="clear"></div>
+        </div>-->
+        <div id="way_title"><%=@article.title%></div>
+<div class="help_text_box" style="color:#000;">
+        <%=raw @article.content%>
+</div>
+      </div>
+
+    <div id="clear"></div>
+    
+    
+    
+</div>
+
+
+
+
+

@@ -1,0 +1,71 @@
+<div class="right_top">
+        	<span class="welcome myfav"></span>
+            <span class="goon_btn"><a style="color:#fff;" href="./"  title="首页">继续购物</a></span>             
+        </div>        
+      <div class="right_line">
+        <p style="line-height:24px;"><strong>您共收藏了<font> <%=@favorites.total_entries%> </font>个商品</strong></p>
+        <table width="100%"  border="0" cellpadding="0" cellspacing="0" class="table">
+          <tr>
+            <td height="30" colspan="7" align="left" valign="middle" class="td_top"><span style="padding-left:5px; margin-right:200px;"><input type="checkbox" id='colect_goods_list_all' value="all" onclick="checkBoxAction(this);" />&nbsp;全选</span>您共选择了&nbsp;<span id="GOODS_NUM">0</span>&nbsp;件玩物，合计金额：<span id="GOODS_MONEY_COUNT">0.00元</span></td>
+          </tr>
+	  <%@favorites.each do |favorite|
+	  product=favorite.product
+	  %>
+		            <tr>
+            <td width="4%" align="left" valign="middle" class="td_fav" style="padding-left:5px;">
+			<div><input type="checkbox" name="colect_goods_list" dXml = '<%=favorite.id%>' value="<%=favorite.product_id%>" onclick="mathPriceAction(this)" /></div>
+			</td>
+            <td width="14%" align="center" valign="middle" class="td_fav">
+			<a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><img src='<%=product.i1.url(:small)%>' alt='<%=product.name%>' width='55' height='55'/></a>
+			</td>
+            <td width="21%" align="center" valign="middle" class="td_fav">
+			<a  style="color:#653000;" href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank" ><%=truncate product.name,:length=>14%></a>
+			</td>
+            <td width="30%" align="center" valign="middle" class="td_fav">
+                            给力百货价：<span id="THIS_PRICE_<%=product.id%>" style="color:#653000;"><%=price(product.p2)%>元</span>
+              
+              </td>
+		
+            <td width="%" align="center" valign="middle" class="td_fav"  style="text-align:left;*text-align:center !important;#text-align:center"><div class="list" style="position: relative;"><span>
+                        			<a class="buy_btn" onClick="inTooCartAction('<%=product.id%>','<%=product.name%>',1,'','',$(this))" style="cursor:pointer;"></a>
+			        			  </span></div></td>
+            <td width="17%" align="center" valign="middle" class="td_fav">
+			<a style="color:#653000;"  href="javascript:if (confirm('您确定要从收藏夹中删除选定的玩物吗？')) location.href='/usercener/favorite_delete?id=<%=product.id%>'">删除</a></td>
+          </tr>
+		<%end%>
+
+            <td colspan="7" align="right" valign="middle" class="td td_sum"><span class="right_top"><span class="goon_btn"><a style="color:#fff;" href="javascript:allBuyDeletAction(0);">删除选中商品</a></span></span><span class="right_top"><span class="goon_btn"><a style="color:#fff;" href="javascript:allBuyDeletAction(1);">购买选中商品</a></span></span></td>
+          </tr>
+		          </table>        
+      </div>              
+	<form name="selectPageForm" id='page_list_sort_form' action="/user.php" method="get">
+<input type="hidden" id='page_list_order' name="order" value="" />
+<input type="hidden" id='page_list_sort' name="sort" value="" />
+<input type="hidden" name="act" value="collection_list" />
+</form>
+<SCRIPT type=text/javascript>
+$(document).ready(function(){
+$('.user_colloction_tab').find('tr').hover(function(){
+
+    $(this).css({"background-color":"#efefef"}).siblings().css({"background-color":"#f6f6f6"});
+
+	}, function(){
+	$(this).css({"background-color":"#f6f6f6"});
+	});
+
+});
+</script>  
+	  
+      
+<%=raw @page%>
+
+<% content_for :outhtml do %>
+<script type="text/javascript">
+  $(document).ready(function(){
+    
+	
+  stepUserCenterAction('collection_list');//设置活动menu
+  setHeadFlowNum();//购物车数量
+});
+</script>
+<%end%>

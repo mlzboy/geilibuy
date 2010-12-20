@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="pragma" content="no-cache"/>
+<meta http-equiv="Cache-Control" content="no-cache,   must-revalidate"/>
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+
+<title>购物流程_给力百货 - 创意生活零售平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品</title>
+
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" />
+<link rel="alternate" type="application/rss+xml" title="RSS|购物流程_给力百货 - 创意生活零售平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品" href="" />
+
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/header.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/js-clib.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/flow.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/hotkeys.js"></script> 
+<script type="text/javascript" src="/themes/default/js/divpop.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/qw-bargain.js" charset="UTF-8"></script>
+
+<link href="/themes/default/css/header.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/flow.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+
+<div id="head">    	
+    <div id="logo"><a title="给力百货" href="/"><img src="/themes/default/imgs/global/logo.gif" /></a></div>
+    <%if session.key?("user")%>
+    <div id="head_right">
+                  <ul class="head_user">
+            <li><span><strong><%=session["user"]["nick"]%>,</strong>欢迎光临给力百货!</span>
+                            </li>
+            <li>|</li>
+            <li id="mypop">
+            	<a id="myquwan" href="/usercenter">我的给力</a>
+                <div id="my_pop">                                    	
+                  <a href="/usercenter/order_list">我的订单</a>
+                  <a href="/usercenter/scores">我的积分</a>
+                  <a href="/usercenter/favorites">我的收藏夹</a>
+                  <a href="/usercenter/account">现金账户</a>                    
+                </div>
+            </li>
+            <li>|</li>
+            <li><a href="/usercenter/order_list">订单管理</a></li>
+            <li>|</li>
+            <li><a href="/usercenter/logout">退出</a></li>
+            <li>|</li>
+            <li><a class="fav_a" href="javascript:myAddBookmark('给力百货 - 创意生活第一品牌：在线销售创意家居生活用品','')">收藏本站</a></li>            
+        </ul> 
+               </div>
+    <%else%>
+    <div id="head_right">
+                  <ul class="head_user">
+          <li><a href="/usercenter/login">登录</a></li>
+
+            <li>|</li>
+            <li><a href="/usercenter/register">注册</a></li>
+            <li>|</li>
+            <li><a class="fav_a" href="javascript:myAddBookmark('给力百货 - 创意生活第一品牌：在线销售创意家居生活用品','')">收藏本站</a></li> 
+        </ul>
+               </div>
+    <%end%>
+    <div class="clear"></div>
+
+</div>
+<div class="flowtop"></div>
+
+<div id="global_nav_box">
+  <div id="global_nav"></div>
+</div>
+
+    <%= yield%>
+  
+
+
+  
+  
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<div id="foot"> 
+	<div id="footer"> 
+    	<div id="phone"><img src="/themes/default/imgs/global/bg.gif" /></div> 
+        <div id="help_box"> 
+            <dl class="help"> 
+                <dt><span class="help1"></span></dt> 
+                <dd><a target="_blank" href="/helpcenter/10">网站购物流程</a></dd> 
+                <dd><a target="_blank" href="/helpcenter/11">会员积分计划</a></dd> 
+                <dd><a target="_blank" href="/helpcenter/12">优惠券/礼品卡说明</a></dd> 
+                <dd><a target="_blank" href="/helpcenter/9">常见问题</a></dd> 
+            </dl> 
+            <dl class="help"> 
+                <dt><span class="help2"></span></dt> 
+                <dd><a target="_blank" href="/helpcenter/15">支付方式</a></dd> 
+                <dd><a target="_blank" href="/helpcenter/14">发票制度说明</a></dd> 
+           </dl>             
+            <dl class="help"> 
+                <dt><span class="help3"></span></dt>              
+                <dd><a target="_blank" href="/helpcenter/18">配送方式</a></dd> 
+                <dd><a target="_blank" href="/helpcenter/cod_area">货到付款支持城市</a></dd> 
+                <dd><a target="_blank" href="/helpcenter/17">配送收费标准</a></dd> 
+                <dd><a target="_blank" href="/helpcenter/16">配送时间保证</a></dd>                
+               
+            </dl>             
+            <dl class="help"> 
+                <dt><span class="help4"></span></dt> 
+                <dd><a target="_blank" href="/helpcenter/20">如何办理退换货</a></dd> 
+                <dd><a target="_blank" href="/helpcenter/19">如何退款</a></dd> 
+                <dd><a target="_blank" href="/helpcenter/21">联系客服</a></dd> 
+            </dl> 
+             <dl class="help"> 
+                <dt><span class="help5"></span></dt> 
+                <dd><a target="_blank" href="/about/26">给力百货招聘</a></dd> 
+                <dd><a target="_blank" href="/about/28">加入给力百货设计师</a></dd> 
+                <dd><a target="_blank" href="/about/25">加入给力百货代理商</a></dd> 
+                <dd><a target="_blank" href="/about/27">加入给力百货供应商</a></dd> 
+            </dl> 
+            <div class="clear"></div> 
+        </div> 
+        <div class="clear"></div> 
+        <div class="guarantee"><a class="guar_1"></a><a class="guar_2" ></a><a class="guar_3"></a></div>   
+        <div id="links"><a target="_blank" href="/about/24">关于我们</a><span>|</span><a target="_blank" href="/about/29">联系我们</a><span>|</span><a target="_blank" href="/about/30">友情链接</a><span>|</span><a target="_blank" href="/about/23">使用协议</a><span>|</span><a target="_blank" href="/about/25">企业团购</a><span>|</span><a target="_blank" href="http://www.geilibuy.com/map.html">网站地图</a><span>|</span><a target="_blank" href="/advice">投诉与建议</a></div> 
+        <div id="honor"><a target="_blank" class="honor1" href="http://huodong.ebrun.com/2009b2c/lssc50.php"></a><a target="_blank" class="honor2" href="http://huodong.ebrun.com/2009b2c/xfz100.php"></a><a target="_blank" class="honor3" href="http://www.geilibuy.com/article-180.html"></a><a target="_blank" class="honor4" href="http://gongzhong.sh.gov.cn/VoteList.aspx?query=9_0_1"></a><a target="_blank" class="honor5" href="http://www.geilibuy.com/article-270.html"></a><a target="_blank" class="honor6" href="http://www.paidai.com/forum/special.php"></a></div>                
+        <div id="copyright">北京市公安局海淀分局备案编号 1101032138 | <a href="http://www.miibeian.gov.cn" target="_blank">京ICP证100388号</a><br/>©给力百货 2008-2010 北京玩者天下网络技术有限公司 版权所有<br/><a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202010082000008" target="_blank"><img width="40" height="48" src="/themes/default/imgs/global/gs.gif" /></a></div> 
+  </div> 
+</div> 
+<div class="scroll_div"></div>
+<!--[if IE 6]><script type="text/javascript">try {document.execCommand('BackgroundImageCache', false, true);} catch(e) {}</script><![endif]-->
+<!--<script src='http://w.cnzz.com/c.php?id=30035654' language='JavaScript' charset='gb2312'></script>-->
+
+<div id="popbg"></div>
+</body>
+</html>

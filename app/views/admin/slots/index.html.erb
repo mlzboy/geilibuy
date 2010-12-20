@@ -1,0 +1,38 @@
+
+<h1>Listing slots</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Category</th>
+    <th>Name</th>
+    <th>Location</th>
+    <th>Type</th>
+    <th>Size</th>
+    <th>Memo</th>
+    <th>当前广告位内置物料数量</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @slots.each do |slot| %>
+  <tr>
+    <td><%= slot.id %></td>
+    <td><%= show_category_name(slot.category_id) %></td>
+    <td><%= slot.name %></td>
+    <td><%= slot.location %></td>
+    <td><%= slot.kind %></td>
+    <td><%= slot.size %></td>
+    <td><%= slot.memo %></td>
+    <td><%= slot.materials.size %></td>
+    <td><%= link_to 'Show', admin_slot_path(slot) %></td>
+    <td><%= link_to 'Edit', edit_admin_slot_path(slot) %></td>
+    <td><%= link_to 'Destroy', admin_slot_path(slot), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+<%=will_paginate @slots%>
+<br />
+
+<%= link_to 'New Slot', new_admin_slot_path %>

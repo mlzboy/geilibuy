@@ -1,0 +1,99 @@
+
+<%
+current_category=Category.find_by_id(params[:categoryid])
+whole_categories=current_category.whole_categories
+%>        
+<div class="top_nav">您当前的位置：<a href="/">首页</a> <code>&gt;</code>
+<%whole_categories.each_with_index do |category,index|%>
+<%unless index+1==whole_categories.size%>
+<a href="<%=category_url(category.id)%>"><ur_hrer_href_color><%=category.name%></ur_hrer_href_color></a> <code>&gt;</code> 
+<%
+else%>
+<ur_hrer_href_color><%=category.name%></ur_hrer_href_color>
+<%  
+end
+end%>
+</div>
+<div id="left"> 
+     	 
+ <div class="listbox">
+<%
+case whole_categories.size
+when 1%>
+      <%  whole_categories.first.children.each do |category|%>
+        <div class="list_off"> 
+         <div class="title"><a href="<%=category_url(category.id)%>" title="<%=whole_categories.first.name+"-"+category.name%>"><%=category.name%></a></div>
+             <%if category.children.size>0%>
+             <div class="list_pop"> 
+               <div class="pop_ul"> 
+                   <div class="pop_arrow"></div>
+                   <%for i in 0...category.children.size%>
+                   <p <%=raw 'style="border:none;"' if (category.children.size-1)==i%>><a href="<%=category_url(category.id)%>" title="<%=whole_categories.first.name+"-"+category.name%>-<%=category.children[i].name%>"><%=category.children[i].name%></a></p> 
+                   <%end%>
+               </div> 
+             </div>
+             <%end%>
+       </div>
+        <%end%>
+<%else%>
+
+      <%whole_categories.first.children.each do |category|%>
+      <%if category.id==whole_categories.second.id%>
+              	<div class="list">
+                <span class="title"><%=category.name%></span>
+                  <%category.children.each do |sub_category|%>
+                                <p><a <%=raw 'class="red_on"' if whole_categories.size>2 and sub_category.id==whole_categories.third.id%> href="<%=category_url(sub_category.id)%>" title="<%=whole_categories.first.name+"-"+category.name%>-<%=sub_category.name%>"><%=sub_category.name%></a></p>
+                  <%end%>
+                            </div>
+      
+      <%else%>
+        <div class="list_off"> 
+         <div class="title"><a href="<%=category_url(category.id)%>" title="<%=whole_categories.first.name+"-"+category.name%>"><%=category.name%></a></div>
+             <%if category.children.size>0%>
+             <div class="list_pop"> 
+               <div class="pop_ul"> 
+                   <div class="pop_arrow"></div>
+                   <%for i in 0...category.children.size%>
+                   <p <%=raw 'style="border:none;"' if (category.children.size-1)==i%>><a href="<%=category_url(category.id)%>" title="<%=whole_categories.first.name+"-"+category.name%>-<%=category.children[i].name%>"><%=category.children[i].name%></a></p> 
+                   <%end%>
+               </div> 
+             </div>
+             <%end%>
+       </div>
+        <%end%>
+        <%end%>
+
+<%end%>
+
+              </div>	 
+<%
+ad41=ad_materials("热门关键词1",location,category_name)
+ad42=ad_materials("热门关键词2",location,category_name)
+%>	 
+	 
+<div id="keyword_title"></div> 
+        <div id="keyword_box">
+          <%ad41.each_with_index do |material,index|%>
+              	<ul class="keyword_ul"> 
+            	<li><span><%=index+1%></span></li> 
+                <li><a href="<%=material.hyperlink%>" target="_blank"><img src="<%=material.image_url.url%>" alt="<%=material.alt%>" width="55" height="55" /></a></li> 
+                <li><a href="<%=material.hyperlink%>" target="_blank"><%=material.text%></a></li> 
+            </ul>
+          <%end%>
+                  <div id="clear"></div> 
+            <ul class="keyword_ul keyword_ul_1">
+              <%ad42.each_with_index do |material,index|%>
+                <li><span><%=index+3%>.</span><a href="<%=material.hyperlink%>" target="_blank"><%=material.text%></a></li> 
+              <%end%>
+            </ul> 
+        </div> 
+       	<div id="electbrand_title"></div> 
+        
+                        <ul id="electbrand_ul"> 
+            <li><a href="brandlist.php?id=243"><img src="/data/brandlogo/1271185521445102788.jpg" alt="喜家家" /></a></li> 
+            <li><a href="brandlist.php?id=243">[查看本品牌商品]</a></li> 
+        </ul> 
+                            <div class="clear"></div>	 
+	 
+<%=render 'history'%> 
+</div>

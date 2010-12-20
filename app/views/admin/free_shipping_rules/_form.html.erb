@@ -1,0 +1,35 @@
+
+<!--xiao mao generator QQ:hi@15-1688.com-->
+<%= form_for([:admin,@free_shipping_rule]) do |f| %>
+  <% if @free_shipping_rule.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@free_shipping_rule.errors.count, "error") %> prohibited this free_shipping_rule from being saved:</h2>
+
+      <ul>
+      <% @free_shipping_rule.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :start_time %><br />
+    <%= f.datetime_select :start_time %>
+  </div>
+  <div class="field">
+    <%= f.label :end_time %><br />
+    <%= f.datetime_select :end_time %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :money %><br />
+    <%= f.text_field :money %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

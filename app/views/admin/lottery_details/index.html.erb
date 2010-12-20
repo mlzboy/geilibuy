@@ -1,0 +1,34 @@
+
+<h1>Listing lottery_details</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>User</th>
+    <th>Say</th>
+    <th>Big</th>
+    <th>Ip</th>
+    <th>Product</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @lottery_details.each do |lottery_detail| %>
+  <tr>
+    <td><%= lottery_detail.id %></td>
+    <td><%= lottery_detail.user_id %></td>
+    <td><%= lottery_detail.say %></td>
+    <td><%= lottery_detail.big %></td>
+    <td><%= lottery_detail.ip %></td>
+    <td><%= lottery_detail.product_id %></td>
+    <td><%= link_to 'Show', admin_lottery_detail_path(lottery_detail) %></td>
+    <td><%= link_to 'Edit', edit_admin_lottery_detail_path(lottery_detail) %></td>
+    <td><%= link_to 'Destroy', admin_lottery_detail_path(lottery_detail), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Lottery detail', new_admin_lottery_detail_path %>

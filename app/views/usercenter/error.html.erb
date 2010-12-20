@@ -1,0 +1,43 @@
+<% content_for :headstyle do %>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+<%end%>
+<%content_for :headtitle do%>
+<title>系统提示_用户中心_给力百货 - 创意生活零售平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品</title>
+<%end%>
+<% content_for :headstyle do %>
+<link href="/themes/default/css/header.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/error.css" rel="stylesheet" type="text/css" />
+<%end%>
+<% content_for :headjs do %>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/js-clib.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/header.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/user.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/hotkeys.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+  setHeadFlowNum();//购物车数量
+});
+</script>
+<%end%>
+<% content_for :headother do%>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" />
+<link rel="alternate" type="application/rss+xml" title="RSS|用户中心_给力百货 - 创意生活零售平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品" href="" />
+<% end%>
+<div id="global_body">
+
+  <div class="out_box">
+      <span class="error_tip"><%=raw @error_info%></span>
+         <br/>
+        <span><a href="javascript:window.history.go(-1);">返回</a></span>
+    </div>
+
+</div>
+

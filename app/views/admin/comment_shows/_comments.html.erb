@@ -1,0 +1,134 @@
+<div id="posts_list">
+
+<h1>Listing postsale_comments</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Content</th>
+    <th>Value</th>
+    <th>Reply</th>
+    <th>Ip</th>
+    <th>Feature</th>
+    <th>Quality</th>
+    <th>Product</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @postsale_comments.each do |postsale_comment| %>
+  <tr id="item<%=postsale_comment.id%>">
+    <td><%= postsale_comment.id %></td>
+    <td><%= postsale_comment.content %></td>
+    <td><%= postsale_comment.value %></td>
+    <td><%= postsale_comment.reply %></td>
+    <td><%= postsale_comment.creative %></td>
+    <td><%= postsale_comment.feature %></td>
+    <td><%= postsale_comment.quality %></td>
+    <td><%= postsale_comment.product_id %></td>
+    <td><%= postsale_comment.user_id %></td>
+    <td><%= link_to 'Show', admin_postsale_comment_path(postsale_comment) %></td>
+    <td><%= link_to 'Edit', edit_admin_postsale_comment_path(postsale_comment) %></td>
+    <td><%= link_to 'Destroy', admin_postsale_comment_path(postsale_comment), :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><input type="button" name="add" value="add" class="add" data="<%=postsale_comment.id%>" data2="<%=postsale_comment.product_id%>"/></td>
+  </tr>
+<% end %>
+</table>
+
+    <%=will_paginate @postsale_comments%>
+    <br />
+</div>
+
+
+<script type="text/javascript">
+
+  $(function(){
+    
+        $('.pagination a').attr('data-remote', 'true');
+
+    
+        $("input[name='add'].add").click(function(){
+          var productid=$(this).attr("data2");        
+          var commentid=$(this).attr("data");
+          var new_elem=$("#item"+commentid).clone();
+          var new_id="select"+productid;
+          if ($("#"+new_id).length==0)
+          {
+            //delete add button
+            $("input[name='add'].add", new_elem).remove();
+            $("<input type='text' name='comment_id[]' value='"+commentid+"'/>").appendTo(new_elem);
+            $("<input type='button' name='higher' value='higher' />").click(function(){
+                  var parent = $(this).parent();
+                  parent.insertBefore(parent.prev());
+              }).appendTo(new_elem);
+            $("<input type='button' name='lower' value='lower' />").click(function(){
+                var parent = $(this).parent();
+                parent.insertAfter(parent.next());
+    
+              }).appendTo(new_elem);
+            $("<input type='button' name='delete' value='delete' />").click(function(){
+                if (confirm("确定删除该项？"))
+                {$("#"+new_id).remove();}
+    
+              }).appendTo(new_elem);        
+            new_elem.wrap("li").attr("id",new_id).appendTo($("#show"));
+            //new_elem.appendTo($("#show"));
+          }
+          else
+          {
+            alert("该产品某一条评论已在选择区!");
+          }
+        });
+    
+    
+  
+    function submit_query(){
+        $.post($("#form1").attr("action")+".js",$("#form1").serialize(),null,"script");
+        return false;
+        }
+        
+    $("select.condition").change(submit_query);
+    
+    $("#form1 input[name='ajax_query']").click(submit_query);
+    
+    
+  
+  
+  $('input[type="button"].yaya').click(function(){
+    
+       var parent = $(this).parent();
+
+    if(this.value === 'higher'){
+        parent.insertBefore(parent.prev());
+    } else {
+        parent.insertAfter(parent.next());
+    } 
+    });
+  
+    $('input[type="button"].nono').click(function(){
+      if (confirm("确定删除")){
+      $(this).closest("li").remove();
+      }
+    });
+    
+     //$("#product_show_name_helper").change(function(){
+     // var v=$("#product_show_name_helper option:selected").text();
+     // $("#product_show_name").val(v);
+     //                         });   
+    //$("#size_helper").change(function(){
+    //  var v=$("#size_helper option:selected").text();
+    //  $("#slot_size").val(v);
+    //                          });
+    //$("#product_show_kind_helper").change(function(){
+    //  var v=$("#product_show_kind_helper option:selected").text();
+    //  $("#product_show_kind").val(v);
+    //                          });
+    $("#location_helper").change(function(){
+      var v=$("#location_helper option:selected").text();
+      $("#comment_show_location").val(v);
+                              });
+});
+
+</script>

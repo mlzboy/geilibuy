@@ -1,0 +1,27 @@
+<%
+      product_ids=get_history_product_ids
+if product_ids.size>0
+%>
+<dl class="visited_dl">
+      	<dt>浏览历史记录</dt>
+
+
+<%
+      products=Product.find(product_ids)
+      content=""
+      products.each do |product|
+          content+=%Q{
+        <dd><a title="#{product.name}" href="/product/#{product.id}" target="_blank">
+        <img alt="#{product.name}" src="#{product.i1.url(:thumb)}" height="55" width="55"></a></dd>
+        }
+      end
+%>
+      <%
+       concat(raw content)
+      %>
+
+                    <div class="clear"></div>    
+      </dl>
+
+  
+  <%end%>

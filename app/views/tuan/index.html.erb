@@ -1,0 +1,272 @@
+<%if @tuan.end?%>
+    <%content_for :headtitle do%>
+	<%if params[:yyyymmdd].blank?%>
+	    <title>给力团 给力我的给力 - 给力百货</title>
+	<%else%>
+	    <title><%=@tuan.edm_title%> - 给力团 给力我的给力</title>
+	<%end%>
+    <%end%>
+    <%content_for :headjs do%>
+    <script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="/themes/default/js/tuan.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="/themes/default/js/hotkeys.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="/themes/default/js/tuan_divpop.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="/themes/default/js/tuan_user.js" charset="UTF-8"></script>
+    <script>
+    $(document).ready(function(){
+            
+            // 检测是否登录
+            setTuanHeadUserStatus();
+            //获取邀请链接
+            //getTuanShareUrl();
+            
+            //获取首页的评论列表
+            //tuan_getDealsCommentList(1,193,1);
+    
+    });	
+    </script>
+    <%end%>
+<%end%>
+<div class="navtip"></div>
+
+<div id="main">
+  
+  
+<%if has_login?%>
+<%num=current_user.un_evalute_tuan_orders_num%>
+    <%if num > 0 %>
+    <div class="tip_box" id="ORDER_METION">您有 <font id="ORDER_NUM"><%=num%></font>个已消费的订单还没有评价，<a class="blue" href="/tuan/account/orders">现在就去评价吧，</a>评价即可获赠积分！</div>
+    <%end%>
+    <!--在cookie中有或是order中有纪录时进行显示-->
+    <%if current_user.already_tuan_ordered?(@tuan)%>
+    <div class="tip_box" id="UNPAYED_ORDER_METION">您已经下过订单，但还没有付款。<a id="unpayedorder" class="blue" href="/tuan/account/orders">查看订单并付款</a></div>
+    <%end%>
+<%end%>
+<%if @tuan.end?%>
+<div class="tip_box">抱歉，这期团购已结束
+<%unless @tuan.product_id.nil?%>
+                  	  ，<a class="blue" href="<%=product_url(@tuan.product_id)%>">点此查看</a>该商品详情。
+<%end%>        	  
+</div>
+<%end%>
+
+<%
+share_url=url_encode("http://www.geilibuy.com#{mytuan_url(@tuan)}")
+#share_url=url_encode("http://www.15-1688.com")
+share_title=url_encode(@tuan.edm_title)
+%>
+  
+ <div id="left">
+<dl id="tuanshare" class="zone share">
+<dt>分享到：</dt>
+<dd> <a target="_blank" class="im">MSN/QQ</a> <a target="_blank" href="http://share.xiaonei.com/share/buttonshare.do?link=<%=raw share_url%>&title=<%=raw share_title%>" class="renren">人人</a>
+<a target="_blank" href="http://www.kaixin001.com/repaste/share.php?title=<%=raw share_title%>&rurl=<%=raw share_url%>" class="kaixin">开心</a>
+<a target="_blank" href="nhttp://v.t.sina.com.cn/share/share.php?url=<%=raw share_url%>&title=<%=raw share_title%>" class="sina">新浪微博</a>
+<a target="_blank" href="http://9.douban.com/recommend/widget?src=<%=raw share_url%>&title=<%=raw share_title%>" class="douban">豆瓣</a>
+<a target="_blank" href="http://v.t.qq.com/share/share.php?title=<%=raw share_title%>&url=<%=raw share_url%>" class="my_qq">腾讯微博</a>
+  
+</dd>
+<dd id="copylink"> <b id="urldoc">把下面的链接通过 MSN 或 QQ 发送给好友：</b>
+  <input type="text" onfocus="this.select()" value="http://www.geilibuy.com/tuan" class="bookinput" id="qqmsnurl" name="qqmsnurl" autocomplete="off" style="width: 300px;">
+  <!--[if IE]>
+    <input type="submit" value="复制链接" class="dbtn copybtn" onClick="copy1(document.getElementById('qqmsnurl').value)">
+    <![endif]-->
+</dd>
+</dl>
+      <div class="zone">
+        	<div id="today"><%if @tuan.selling?%><span>今日团购：</span><%end%><%=@tuan.title%></div>
+			<div class="deal_inf">
+                <div class="deal_box deal_btn" style="border-top:none;">
+               	  <div id="deal_btn">
+               	                     	<a class="d_btn<%=show_tuan_status(@tuan)%>" href="/tuan/order"></a>
+                  	                    <span class="d_price">¥<%=@tuan.pp2%></span>
+                  </div>
+     			 <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                        <tbody>
+                            <tr>
+                                <th>市场价</th>
+                                <th>折扣</th>
+                                <th>节省</th>
+                            </tr>
+                            <tr>
+                                <td><del>¥<%=@tuan.pp1%></del></td>
+                                <td><%=show_tuan_discount(@tuan)%>折</td>
+                                <td>¥<%=@tuan.pp1-@tuan.pp2%></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <%if @tuan.end?%>
+                <dl class="deal_box" id="d_time">
+                	<dt class="time_over">本团购结束于</dt>
+                    <dd><span><%=show_chinese_yyyymmddmmhh(@tuan.end_time)%></span></dd>
+                </dl>
+                <dl class="deal_box" id="d_status" style="margin-bottom:0">                	
+                    <dd class="d_chart"><img src="/themes/default/imgs/tuan/dealsucc.gif"></dd>
+                    <dd><span>共有<%=@tuan.current_num%>人购买</span></dd>	
+              	</dl>
+                <%else%>
+                            <dl class="deal_box" id="d_time">
+                	<dt class="time_on">剩余时间</dt>
+                    <dd id="update_time"><b> </b>小时&nbsp;&nbsp;<b> </b>分钟&nbsp;&nbsp;<b> </b>秒 </dd>
+                </dl>                
+                 <dl class="deal_box"  id="d_status"style="margin-bottom:0">
+                  
+                 </dl>
+                 <%end%>
+                
+                
+
+
+                            	
+              
+        </div>
+<div class="deal_intro">
+            	<img src="<%=@tuan.i1.url(:big)%>" />
+                <dl class="d_tip">
+                	<dt>提示</dt>
+                	<dd>
+                    	<ul>
+                          <%@tuan.tips.each do |tip|%>
+                            <li><%=tip.title%></li>
+                          <%end%>
+                        </ul>
+                  </dd>
+                </dl>
+                <dl class="d_tip">
+                	<dt>亮点</dt>
+                	<dd>
+                    	<ol class="d_light">
+                          <%@tuan.features.each do |feature|%>
+                            <li><%=feature.title%></li>
+                          <%end%>
+                        </ol>
+                  </dd>
+                </dl>
+            </div>
+            <div class="clear"></div>  
+      </div>
+        <div class="zone detail">
+        	<h4>本单详情</h4>
+                <%@tuan.details.each do |detail|%>
+            <table class="detail_item" style="margin: 5px 0px" width="100%" border="0">
+    <tbody>
+        <tr>
+            <td style="padding-right: 10px; padding-left: 10px; font-weight: bold; font-size: 14px; padding-bottom: 0px; color: rgb(255,255,255); line-height: 30px; padding-top: 0px; background-color: rgb(251,129,6)"><%=detail.title%></td>
+        </tr>
+        <tr>
+            <td style="padding-right: 0px; padding-left: 0px; font-weight: normal; font-size: 14px; padding-bottom: 10px; color: rgb(0,0,0); line-height: 22px; padding-top: 10px">
+            <%=raw detail.content%>
+            </td>
+        </tr>
+    </tbody>
+</table>
+            <%end%>
+
+<table class="detail_item" style="font-size: 14px" width="100%" border="0">
+    <tbody>
+        <tr>
+            <td style="font-weight: bold; margin-bottom: 15px; color: rgb(50,50,50); line-height: 33px; height: 33px">他们说</td>
+        </tr>
+    </tbody>
+</table>
+<%
+ts_container=[]
+if @tuan.ts1 and @tuan.ts1.strip!=""
+  ts_container<<[@tuan.ts1,@tuan.ts1_name]
+end
+if @tuan.ts2 and @tuan.ts2.strip!=""
+  ts_container<<[@tuan.ts2,@tuan.ts2_name]
+end
+if @tuan.ts3 and @tuan.ts3.strip!=""
+  ts_container<<[@tuan.ts3,@tuan.ts3_name]
+end
+ts_container.each do |ts|
+  say,name=ts
+%>
+<table class="detail_item" style="font-size: 14px" width="100%" border="0">
+    <tbody>
+        <tr>
+            <td class="yinhao" style="padding-left: 25px; font-weight: normal; font-size: 14px; background: url(/themes/default/imgs/tuan/yinhao.gif) no-repeat 0px 0px; color: rgb(0,0,0); line-height: 24px"><%=say%></td>
+        </tr>
+        <tr>
+            <td style="padding-left: 25px; line-height: 24px"><span style="padding-right: 10px; display: block; font-weight: normal; padding-bottom: 10px; color: rgb(0,0,0); text-align: right"><%=name%></span></td>
+        </tr>
+    </tbody>
+</table>
+<%end%>
+<table class="detail_item" style="font-size: 14px" width="100%" border="0">
+    <tbody>
+        <tr>
+            <td style="font-weight: bold; margin-bottom: 15px; color: rgb(50,50,50); line-height: 33px; height: 33px">给力百货说</td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr>
+            <td style="font-weight: normal; margin-bottom: 15px; color: rgb(0,0,0); line-height: 24px">
+            <%=raw @tuan.ws1%>        
+            </td>
+        </tr>
+    </tbody>
+</table>            
+            
+           
+        </div>
+    </div>  
+  <div id="right">
+    <div style="height: 37px;"> </div>
+    
+    
+<div class="ad_box">  <img src="/data/tuan/1288668277387229017.jpg" alt="给力团全国华丽上线" />  </div>
+     
+    
+<div class="zone">
+  <h4>邀请有奖</h4>
+  <dl class="invitbar">
+    <dt><a href="http://www.geilibuy.com/tuan/account/share" style="font-weight:normal;">每邀请一位好友首次购买，您将获 <strong>5</strong> 元返利</a></dt>
+    <dd><a class="guanzhu" href="http://www.geilibuy.com/tuan/account/share">» 点击获取您的专用邀请链接</a></dd>
+  </dl>
+</div>
+
+<div class="zone">
+  <h4>给力团答疑</h4>
+<dl class="liuyan_dl">
+    <dt id="CommentList"><a target="_blank" href="/tuan/qa" class="guanzhu">查看全部(<span id="CommentCount"><%=Qa.where(:tuan_id=>@tuan.id).where(:hide=>false).count()%></span>)</a> | <a target="_blank" href="/tuan/qa" class="guanzhu">我要提问</a></dt>
+<%Qa.where(:tuan_id=>@tuan.id).where(:hide=>false).order("id desc").all.each do |qa|%>
+<dd title="<%=qa.question%>"><%=truncate qa.question,:length=>12%></dd>
+<%end%>
+  </dl>
+  <img src="/themes/default/imgs/tuan/telbar.gif" /> </div>
+
+<div class="zone">
+  <h4>关注我们</h4>
+  <ul class="about_ul">
+    <li><a class="boke boke1 fl" href="http://t.sina.com.cn/quwan" target="_blank">给力百货的新浪微博</a>
+      <div class="clear"></div>
+    </li>
+    <li><a class="boke boke2 fl" href="http://t.163.com/quwanwang" target="_blank">给力百货的网易微博</a>
+      <div class="clear"></div>
+    </li>
+    <li><a class="boke boke3 fl" href="http://t.qq.com/quwan" target="_blank">给力百货的腾讯微博</a>
+      <div class="clear"></div>
+    </li>
+    <li><a class="boke boke5 fl" href="http://tieba.baidu.com/i/29899092" target="_blank">给力百货的百度<b style=" font-weight:normal; padding:0 3px 0 0;">i</b>贴吧</a>
+      <div class="clear"></div>
+    </li>
+    <li><a class="boke boke4 fl" href="http://www.douban.com/group/quwan/" target="_blank">给力百货的豆瓣小组</a>
+      <div class="clear"></div>
+    </li>
+    <li><a class="boke boke6 fl" href="http://blog.geilibuy.com/" target="_blank">给力百货博客</a>
+      <div class="clear"></div>
+    </li>
+  </ul>
+</div>
+    
+    
+<%=render 'post'%>
+</div>
+ </div>
+  <div class="clear"></div>
+</div>
+<div id="gotop"><span><a href="#">↑回顶部</a></span><div class="clear"></div></div>

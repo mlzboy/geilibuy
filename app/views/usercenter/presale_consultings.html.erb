@@ -1,0 +1,66 @@
+ <div class="right_top">
+        	<span class="welcome zixun"></span>
+            <span class="goon_btn"><a style="color:#fff;" href="./" title="首页">继续购物</a></span>             
+        </div>        
+      <div class="right_line">
+      <p style="line-height:24px;">您一共有<font> <%=@presale_consultings.total_entries%> </font>条交流信息，其中<font> <%=count_replied_presale_consulting%> </font>条已经得到回复</p>
+        <table width="100%"  border="0" cellpadding="0" cellspacing="0" class="table">
+                        
+<%@presale_consultings.each_with_index do |presale_consulting,index|%>
+          <tr>
+            <td height="30" colspan="7" align="left" valign="middle" class="td_top"><span style="padding-left:10px; color:#000;">针对商品“<a href='goods-788.html' target="_blank"><%=presale_consulting.product.name%></a>”发表的内容</span></td>
+          </tr>
+          <tr>
+            <td colspan="7" align="left" valign="middle" class="td">
+            <div class="zixun_p"><p><%=presale_consulting.content%><font>[<%=presale_consulting.created_at.strftime("%Y-%m-%d %H:%M:%S")%>]</font></p></div>
+            			<%unless presale_consulting.reply.blank?%>
+				<p class="zixun_re"><%=presale_consulting.reply%></p>
+				
+									   <%if presale_consulting.satisfy.nil?%>
+									   <p class="isok">你对这条回复满意吗：
+								     <span id="is_satisfied_box<%=index%>">
+								       <a href="javascript:issatisfied('<%=presale_consulting.id%>',1,'<%=index%>');">满意</a><a href="javascript:issatisfied('<%=presale_consulting.id%>',0,'<%=index%>');">不满意</a></span>
+							   <span id="is_satisfied_box_modify0" style="display:none;"><span></span>
+							  <a href="javascript:issatisfiedshow(<%=index%>);">修改</a></span></p>
+									   <%end%>
+									   <%if presale_consulting.satisfy==true%>
+									   
+									   
+								   <p class="isok">你对这条回复满意吗：
+								     <span id="is_satisfied_box<%=index%>" style="display:none;">
+								       <a href="javascript:issatisfied('<%=presale_consulting.id%>',1,'<%=index%>');">满意</a><a href="javascript:issatisfied('<%=presale_consulting.id%>',0,'<%=index%>');">不满意</a></span>
+							   <span id="is_satisfied_box_modify<%=index%>"  ><span><%=presale_consulting.satisfy ? "满意" : "不满意"%>！</span>
+							  <a href="javascript:issatisfiedshow(<%=index%>);">修改</a></span></p>
+								   <%end%>
+								   <%if presale_consulting.satisfy==false%>
+								   <p class="isok">你对这条回复满意吗：
+								     <span id="is_satisfied_box<%=index%>" style="display: none; ">
+								       <a href="javascript:issatisfied('<%=presale_consulting.id%>',1,'<%=index%>');">满意</a><a href="javascript:issatisfied('<%=presale_consulting.id%>',0,'<%=index%>');">不满意</a></span>
+							   <span id="is_satisfied_box_modify<%=index%>" style="display: inline-block; "><span><font>不满意</font></span><span class="user_ifok_btn"><a href="javascript:issatisfiedshow(<%=index%>);">修改</a></span></span></p>
+								   <%end%>
+			<%end%>
+			
+			</td></tr>
+<%end%>
+		  
+        </table>        
+      </div>         
+<form name="selectPageForm" id='page_list_sort_form' action="/user.php" method="get">
+<input type="hidden" id='page_list_order' name="order" value="" />
+<input type="hidden" id='page_list_sort' name="sort" value="" />
+<input type="hidden" name="page" value="" />
+<input type="hidden" name="act" value="comment_list" />
+</form>      
+<%=raw @page%>
+
+
+<% content_for :outhtml do %>
+<script type="text/javascript">
+  $(document).ready(function(){
+  stepUserCenterAction('comment_list');//设置活动menu
+  setHeadFlowNum();//购物车数量
+});
+</script>
+<%end%>
+
+

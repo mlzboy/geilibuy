@@ -1,0 +1,68 @@
+/*页面除去头尾部分全局css*/
+#help_top_line { position:relative; height:22px; line-height:22px; color:#888888; border-bottom:1px solid #c0c0c0; margin-bottom:4px; text-align:right; padding-right:32px;}
+	#help_top_line img { margin-left:5px;}
+	#plate { position:absolute; right:0; top:7px; display:block; height:21px; width:15px; background:url(http://www.geilibuy.com/themes/default/imgs/goods/plate.gif) no-repeat top left; }
+#help_left_box { padding-left:56px; float:left; width:135px; height:auto;  background:url(http://www.geilibuy.com/themes/default/imgs/help/help_info_title.gif) no-repeat top center; padding-top:73px;padding-bottom:20px; margin-bottom:20px;background-color:#f7f7f7;}
+	.help_left_title { padding-top:35px; color:#000; font-weight:bold; font-size:14px;}
+		.help_left_title a { color:#000;}
+		.help_left_title a:link { color:#000;}
+		.help_left_title a:visited { color:#000;}
+		.help_left_title a:hover { color:#000;}
+		
+.help_left_title_selected { color:#ca2c23; font-weight:bold;}	
+	.help_left_title_selected a{ color:#ca2c23;}
+	.help_left_title_selected a:link { color:#ca2c23;}
+	.help_left_title_selected a:visited { color:#ca2c23;}
+	.help_left_title_selected a:hover { color:#000;}	
+			
+.help_left_list li { line-height:24px;}	
+	.help_left_list a { color:#000;}
+	.help_left_list a:link { color:#000;}
+	.help_left_list a:visited { color:#000;}
+	.help_left_list a:hover { color:#000;}	
+	
+.help_left_list_selected { color:#ca2c23;}	
+	.help_left_list_selected a{ color:#ca2c23;}
+	.help_left_list_selected a:link { color:#ca2c23;}
+	.help_left_list_selected a:visited { color:#ca2c23;}
+	.help_left_list_selected a:hover { color:#000;}	
+	
+#help_right_box { float:left; width:769px; height:auto;}
+	#help_right_view_position { margin-top:52px; height:21px; line-height:21px; background-color:#f9f9f9; padding-left:25px; color:#bababa; margin-bottom:27px;}
+	#help_right_index_box { height:21px; border-bottom:4px solid #e4e4e4; margin-left:20px; position:relative;}
+		.help_right_index_box_ul { position:absolute; display:block; left:0; top:0;}
+		.help_right_index_box_ul li { display:block; float:left; width:80px; margin-right:4px; line-height:21px; text-align:center; background:url(http://www.geilibuy.com/themes/default/imgs/help/help_right_index_bg_2.gif) no-repeat top left; border-bottom:none;}
+		#help_right_index_box_li_selected {display:block; float:left; width:80px; height:39px; color:#fff; margin-right:4px;background:url(http://www.geilibuy.com/themes/default/imgs/help/help_right_index_bg_1.gif) no-repeat top left;}
+		#help_right_index_icon {
+	position:absolute;
+	width:87px;
+	height:61px;
+	background:url(http://www.geilibuy.com/themes/default/imgs/help/explain_way.gif) no-repeat top left;
+	right:-3px;
+	bottom:6px;
+}
+#help_right_index_icon1 {
+	position:absolute;
+	width:87px;
+	height:61px;
+	background:url(http://www.geilibuy.com/themes/default/imgs/help/fishman_way.gif) no-repeat top left;
+	right:-3px;
+	bottom:6px;
+}
+	#way_title { margin-left:20px; margin-top:30px; height:14px; padding-bottom:8px; border-bottom:1px solid #e9e9e9; background:url(http://www.geilibuy.com/themes/default/imgs/help/way_square.gif) no-repeat 0 2px; color:#d10000; font-weight:bold; line-height:14px; padding-left:20px;}
+	.question_title { margin-left:20px; margin-top:30px; height:14px; padding-bottom:8px; border-bottom:1px solid #e9e9e9; color:#d10000; font-weight:bold; line-height:14px; }
+		.question_title span { float:left;}
+		.to_top_box { float:right; }
+			.to_top_box a {color:#ca2c23; display:block;background:url(http://www.geilibuy.com/themes/default/imgs/help/top_arrow.gif) no-repeat top left; width:30px;padding-left:15px; }
+			.to_top_box a:link {color:#ca2c23;}
+			.to_top_box a:visited {color:#ca2c23;}
+			.to_top_box a:hover {color:#ca2c23;}
+	#special_notice{ margin-left:20px; margin-top:30px; padding-top:2px; height:14px; padding-bottom:8px; border-bottom:1px solid #e9e9e9; background:url(http://www.geilibuy.com/themes/default/imgs/help/star_empty.gif) no-repeat 0 0; color:#979797; font-weight:bold; line-height:14px; padding-left:20px;}
+
+.help_text_box {  margin-left:20px; line-height:22px; color:#6f6f6f;}	
+.help_text_boxx a { color:#3399cc;}
+.help_text_box a:link { color:#3399cc;}
+.help_text_box a:visited { color:#3399cc;}
+.help_text_box a:hover { color:#3399cc; text-decoration:underline;}
+
+.help_tel_box { background-color:#f7f7f7; height:auto; padding:35px; line-height:35px; padding-left:45px; margin-bottom:15px;}　

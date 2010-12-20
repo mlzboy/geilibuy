@@ -1,0 +1,97 @@
+
+<!--xiao mao generator QQ:hi@15-1688.com-->
+<%= form_for([:admin,@slot]) do |f| %>
+  <% if @slot.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@slot.errors.count, "error") %> prohibited this slot from being saved:</h2>
+
+      <ul>
+      <% @slot.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!--<div class="field">-->
+  <!--  <%= f.label :category_id %><br />-->
+  <!--  <%= f.text_field :category_id %>-->
+  <!--</div>-->
+  <%top_cateogries_with_home(@slot)%>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+    <%slot_name_helper%>
+  </div>
+  <div class="field">
+    <%= f.label :location %><br />
+    <%= f.text_field :location %>
+    <%location_helper%>
+  </div>
+  <div class="field">
+    <%= f.label :kind %><br />
+    <%= f.text_field :kind%>
+    <%kind_helper%>
+  </div>
+  <div class="field">
+    <%= f.label :size %><br />
+    <%= f.text_field :size %>
+    <%size_helper%>
+  </div>
+  <div class="field">
+    <%= f.label :memo %><br />
+    <%= f.text_area :memo,:cols=>40,:rows=>4 %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  
+  
+  <ul id="show">
+    <%if !@slot.new_record?
+    @slot.materials.each do |material|%>
+    <li id="select<%= material.id %>">
+    <tr>
+    <td><%= material.id %></td>
+    <td><%= material.size %></td>
+    <td><%= material.name %></td>
+    <td><%= material.kind %></td>
+    <td></td>
+    <td><%= material.title %></td>
+    <td><%= image_tag material.image_url.url(:show),:style=>"border:1px solid;" %></td>
+    <td><%= material.alt %></td>
+    <td><%= material.text %></td>
+    <td><%= material.memo %></td>
+    <td><%= link_to 'Show', admin_material_path(material) %></td>
+    <td><%= link_to 'Edit', edit_admin_material_path(material) %></td>
+    <td><%= link_to 'Destroy', admin_material_path(material), :confirm => 'Are you sure?', :method => :delete %></td>
+    <td></td>
+  <input type="text" value="<%= material.id %>" name="material_id[]">
+    <input type="button" value="higher" name="higher" class="yaya">
+      <input type="button" value="lower" name="lower" class="yaya">
+        <input type="button" value="delete" name="delete" class="nono">
+      </tr>
+    </li>
+    <%end
+    end%>
+    
+    
+  </ul>
+
+<% end %>
+<hr>
+<form method="post" action="/admin/materials/query" id="form1">
+<select name="size" class="condition">
+<%@sizes.each do |size|%>
+  <option value="<%=size%>" <%="selected" if size.strip()==""%>><%=size%></option>
+<%end%>
+</select>
+<select name="kind" class="condition">
+<%@kinds.each do |kind|%>
+  <option value="<%=kind%>"><%= kind%></option>
+<%end%>
+</select>
+<input type="text" name="keyword" />
+<input type="button" name="ajax_query" value="query" />
+</form>
+<%= render "materials"%>

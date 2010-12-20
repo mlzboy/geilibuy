@@ -1,0 +1,30 @@
+           <div class="right_top">
+        	<span style="float:left;"><strong style="color:#000; font-size:14px;">我的积分</strong></span>
+            <span class="goon_btn"><a style="color:#fff;" href="/score">去积分商城</a></span>             
+        </div>
+        <div class="right_top">
+       	<span style="float:left;">您目前的可用积分为：<span style="color:#ff6600; padding-right:20px;"><font style="font-family:Georgia,Times,serif; font-size:24px;"><%=current_user.score%></font> 积分</span><a style="color:#999999;" href="http://www.geilibuy.com/article-57.html" target="">[如何获得更多积分]</a></span></div>
+      <div class="right_line">  
+      <span><strong style="color:#000; line-height:30px; float:left;">积分消费明细</strong><span style="float:right; text-align:right;">总获取积分：<%=@total_get%> 积分 | 总消费积分：<%=@total_cost%> 积分</span><div class="clear"></div></span>       	
+        <table width="100%"  border="0" cellpadding="0" cellspacing="0" class="table">
+          <tr>
+            <td width="29%" height="30" align="center" valign="middle" class="td_top">积分变动时间</td>
+            <td width="45%" align="left" valign="middle" class="td_top">积分变动原因</td>
+            <td width="26%" align="center" valign="middle" class="td_top">积分变动额度</td>
+            </tr>
+          <%@score_details.each do |score_detail|%>
+                  <tr>
+            <td align="center" valign="middle" class="td"><%=score_detail.created_at.strftime("%Y年%m月%d日 %H:%M:%S")%></td>
+            <td align="left" valign="middle" class="td"><%=raw score_detail.memo%></td>
+            <td align="center" valign="middle" class="td">
+              <%if score_detail.score > 0 %>
+                            <strong style="color:#339900;">+<%=score_detail.score%></strong>
+              <%else%>
+                            <strong style="color:#ff0000;">-<%=score_detail.score.abs%></strong>
+              <%end%>
+                          </tr>
+          <%end%>
+                  <tr></tr>
+        </table>        
+      </div>       
+<%=raw @page%>     

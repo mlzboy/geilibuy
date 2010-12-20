@@ -1,0 +1,92 @@
+<% content_for :headmeta do %>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="Doulex 创意居家" />
+<meta name="Description" content="Doulex凝聚了设计师的奇思妙想，不断的激发，积极的情感以创造出独一无二的产品，简约的设计风格中蕴含着精致的用心，每一个作品都有着让人快乐的丰富用途，Doulex力求让生活多一些欢乐。" />
+<meta name="pagename" content="brandgoodslist" />
+<%end%>
+<%content_for :headtitle do%>
+<title>Doulex_精选品牌_给力百货_给力百货 - 创意生活零售平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品</title>
+<%end%>
+<% content_for :headstyle do %>
+<link href="/themes/default/css/header.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/brand.css" rel="stylesheet" type="text/css" />
+<%end%>
+<% content_for :headjs do %>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script> 
+<script type="text/javascript" src="/themes/default/js/header.js" charset="UTF-8"></script> 
+<%end%>
+<% content_for :headother do%>
+<link rel="shortcut icon" href="/favicon.ico" /> 
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" /> 
+<% end%>
+<div id="main"> 
+<div class="top_nav"><a href=".">首页</a> <code>&gt;</code> <a href="/brands">品牌中心</a> <code>&gt;</code> <span><%=@brand.name%></span></div> 
+<div id="intro_box"> 
+    	<div id="intro_img"><img src="<%=@brand.i1.url%>" width="232" height="303" /></div> 
+        <div id="intro"><%=@brand.story%></div> 
+        <div id="intro_goods"> 
+        	<ul id="intro_ul"> 
+            	<li id="intro_li_1">
+                  <%if @select_products.size>0
+                      product=@select_products.shift
+                  %>
+                	<a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" /></a>
+                  <%end%>
+                  <%if @select_products.size>0
+                      product=@select_products.shift
+                  %>
+                	<a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" /></a>
+                  <%end%>
+                </li> 
+                <li id="intro_li_2"> 
+                	<span id="li_2_span_img1">
+                  <%if @select_products.size>0
+                      product=@select_products.shift
+                  %>
+                	<a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" /></a>
+                  <%end%>
+                      </span> 
+                    <span id="li_2_span_img2">
+                  <%if @select_products.size>0
+                      product=@select_products.shift
+                  %>
+                	<a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" /></a>
+                  <%end%>
+                  </span> 
+</li> 
+                <li id="intro_li_3"> 
+                  <%if @select_products.size>0
+                      product=@select_products.shift
+                  %>
+                	<a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" /></a>
+                  <%end%>
+                </li> 
+            </ul> 
+        </div> 
+        <div id="clear"></div> 
+    </div>
+
+
+<%=render 'right3'%>
+
+ 
+<div id='clear'></div> 
+</div>
+
+<% content_for :bodyfoot do%>
+<!--[if IE 6]><script type="text/javascript">try {document.execCommand('BackgroundImageCache', false, true);} catch(e) {}</script><![endif]-->
+<div id="global_foot_white"></div>
+<script type="text/javascript" src="/themes/default/js/js-clib.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
+<% end%>
+
+<%content_for :outhtml do%>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#banner').switchboxaction({Time:5000,SwitchTime:5000,switchindex:'#b_bar',onclass:'bar_on',SwitchMode:'Hover',AutoStart:true,SwitchEffect:'fadeOut'});
+    setHeadFlowNum();//购物车数量
+});
+</script>
+<%end%>

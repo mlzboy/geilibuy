@@ -1,0 +1,132 @@
+
+
+  <%=kindeditor_javacript_include_tag%>
+<%= form_for [:admin,@product],:html=>{:multipart=>true} do |f| %>
+  <% if @product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% @product.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<!--lexus add at 20101028-->
+<%#if @product.new_record? or @product.category_ids.size==0%>
+<%if @product.new_record? or @product.categories.size==0%>
+<%= render :partial=>'new_category2',:locals=>{:parent=>@parent} %>
+<%else%>
+<%= render :partial=>'edit_category2',:locals=>{:product=>@product} %>
+<%end%>
+<%if @product.new_record? or @product.brand.nil?%>
+<%= render :partial=>'new_brand'%>
+<%else%>
+<%= render :partial=>'edit_brand',:locals=>{:product=>@product} %>
+<%end%>
+
+<%= render :partial=>'upload',:locals=>{:f=>f} %>
+
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :sub_title %>
+    <%= f.text_field :sub_title %>
+  </div>
+  <div class="field">
+    <%= f.label :p1 %>
+    <%= f.text_field :p1,:size=>6%>
+
+    <%= f.label :p2 %>
+    <%= f.text_field :p2,:size=>6%>
+
+    <%= f.label :p3 %>
+    <%= f.text_field :p3,:size=>6%>
+
+    <%= f.label :p4 %>
+    <%= f.text_field :p4,:size=>6%>
+
+    <%= f.label :p5 %>
+    <%= f.text_field :p5,:size=>6%>
+  </div>
+  <div class="field">
+    <%= f.label :view %>
+    <%= f.text_field :view,:size=>6%>
+
+    <%= f.label :sale %>
+    <%= f.text_field :sale,:size=>6%>
+
+    <%= f.label :stock %>
+    <%= f.text_field :stock,:size=>6%>
+  </div>
+    <div class="field">
+    <%= f.label :on %>
+    <%= f.check_box :on,:size=>6%>是否在架上
+
+    <%= f.label :promotion %>
+    <%= f.check_box :promotion %>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= f.label :new %>
+    <%= f.check_box :new %>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <%= f.label :score %>
+    <%= f.check_box :score %>
+
+    <%= f.label :s1 %>
+    <%= f.text_field :s1,:size=>6%>
+  </div>
+      <div class="field">
+    <%= f.label :material %>
+    <%= f.text_field :material,:size=>10 %>
+    <%= f.label :weight %>
+    <%= f.text_field :weight,:size=>10 %>
+    <%= f.label :wrap %>
+    <%= f.text_field :wrap,:size=>10 %>
+    <%= f.label :size %>
+    <%= f.text_field :size,:size=>10 %>
+    <%= f.label :lucky %>
+    <%= f.text_field :lucky,:size=>10 %>
+    <%= f.label :big %>
+    <%= f.check_box :big %>
+  </div>
+  <div class="field">
+    <%= f.label :editor %><br />
+    <%= f.text_area :editor,:cols=>80,:rows=>5 %>
+  </div>
+  <div class="field">
+    <%= f.label :caution %><br />
+    <%= f.text_area :caution,:cols=>80,:rows=>5,:id=>"kindeditor2"%>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description,:rows=>8,:cols=>80,:id=>"kindeditor",:style=>"width:730px;height:500px;visibility:hidden;"%>
+  </div>
+  <div class="field">
+    <%= f.label :memo %><br />
+    <%= f.text_area :memo,:cols=>80,:rows=>5 %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<script type="text/javascript">
+function create_kindeditor(num)
+{
+      var n='kindeditor'+num
+      //KE.remove(n);
+      KE.show({
+                  id : n,
+                  allowFileManager : true,
+                  imageUploadJson:'/kindeditor/upload'
+              });
+      KE.create(n);
+}
+$(function(){
+  create_kindeditor(2);
+  })
+</script>

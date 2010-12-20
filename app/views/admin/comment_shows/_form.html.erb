@@ -1,0 +1,85 @@
+
+<!--xiao mao generator QQ:hi@15-1688.com-->
+<%= form_for([:admin,@comment_show]) do |f| %>
+  <% if @comment_show.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment_show.errors.count, "error") %> prohibited this comment_show from being saved:</h2>
+
+      <ul>
+      <% @comment_show.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!--<div class="field">-->
+  <!--  <%= f.label :category_id %><br />-->
+  <!--  <%= f.text_field :category_id %>-->
+  <!--</div>-->
+  <%top_cateogries_with_home(@comment_show)%>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :location %><br />
+    <%= f.text_field :location %>
+<%location_helper%>
+  </div>
+  <div class="field">
+    <%= f.label :kind %><br />
+    <%= f.text_field :kind %>
+
+  </div>
+  <div class="field">
+    <%= f.label :memo %><br />
+    <%= f.text_area :memo,:cols=>40,:rows=>4 %>
+  </div>
+
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  
+  
+  <ul id="show">
+    <%if !@comment_show.new_record?
+    @comment_show.postsale_comments.each do |postsale_comment| %>
+        <li id="select<%= postsale_comment.product_id %>">
+  <tr>
+    <td><%= postsale_comment.id %></td>
+    <td><%= postsale_comment.content %></td>
+    <td><%= postsale_comment.value %></td>
+    <td><%= postsale_comment.reply %></td>
+    <td><%= postsale_comment.ip %></td>
+    <td><%= postsale_comment.creative %></td>
+    <td><%= postsale_comment.feature %></td>
+    <td><%= postsale_comment.quality %></td>
+    <td><%= postsale_comment.product_id %></td>
+    <td><%= postsale_comment.user_id %></td>
+    <td><%= link_to 'Show', admin_postsale_comment_path(postsale_comment) %></td>
+    <td><%= link_to 'Edit', edit_admin_postsale_comment_path(postsale_comment) %></td>
+    <td><%= link_to 'Destroy', admin_postsale_comment_path(postsale_comment), :confirm => 'Are you sure?', :method => :delete %></td>
+    <td></td>
+  <input type="text" value="<%= postsale_comment.id %>" name="comment_id[]">
+    <input type="button" value="higher" name="higher" class="yaya">
+      <input type="button" value="lower" name="lower" class="yaya">
+        <input type="button" value="delete" name="delete" class="nono">
+      </tr>
+    </li>
+    <%end
+    end%>
+    
+    
+  </ul>
+
+<% end %>
+<hr>
+<form method="post" action="/admin/products/query" id="form1">
+<!--加一个category分类-->
+<input type="text" name="keyword" />
+<input type="button" name="ajax_query" value="query" />
+</form>
+<%=render "comments"%>

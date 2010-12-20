@@ -1,0 +1,21 @@
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Category:</b>
+  <%= @comment_show.category_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @comment_show.name %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @comment_show.location %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_comment_show_path(@comment_show) %> |
+<%= link_to 'Back', admin_comment_shows_path %>

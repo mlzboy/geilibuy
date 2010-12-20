@@ -1,0 +1,69 @@
+<h1>Listing products</h1>
+<form id="form2" action="/admin/products/search" method="post">
+     <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+
+<%=render "new_category2"%>
+<div>
+  <div class="field">
+    <%= label_tag :keyword %>
+    <%= text_field_tag :keyword%>
+    
+    <%= label_tag :stock %>
+    <%= check_box_tag :stock%>
+
+    <%= label_tag :on %>
+    <%= check_box_tag :on%>
+
+    <%= label_tag :promotion %>
+    <%= check_box_tag :promotion %>
+    
+    <%= label_tag :new %>
+    <%= check_box_tag :new %>
+    
+    <%= label_tag :score %>
+    <%= check_box_tag :score %>
+
+    <input id="ajax_query" type="button" name="ajax_query" value="query" />
+  </div>
+
+
+<hr>
+<div id="posts_list">
+
+<%=render "products"%>
+
+</div>
+
+<br />
+</form>
+<%= link_to 'New Product', new_admin_product_path %>
+<script type="text/javascript">
+      //$('.pagination a').attr('data-remote', 'true');
+      //$('.pagination a').click(function(){
+      //  alert($(this).attr("href"));
+      //  var result="";
+      //  var subject=$(this).attr("href");//  /admin/products/search?page=9
+      //  var myregexp = /\/admin\/products\/search\?page=(\d+)/;
+      //  var match = myregexp.exec(subject);
+      //  if (match != null) {
+      //          result = match[1];
+      //  }
+      //  alert(result);
+      //  $("input[name='page']").val(result);
+      //          $("#source").val("");
+      //
+      //  alert($("#form2").serialize());
+      //  $.post($("#form2").attr("action")+".js",$("#form2").serialize(),null,"script");
+      //  return false;
+      //  
+      //  });
+
+      $("#ajax_query").click(function(){
+        $("#source").val("query");
+        //alert($("#form2").serialize());
+        
+              $.post($("#form2").attr("action")+".js",$("#form2").serialize(),null,"script");
+        return false;  
+        });  
+  
+</script>

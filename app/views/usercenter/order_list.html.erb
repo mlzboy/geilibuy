@@ -1,0 +1,56 @@
+   	  <div class="right_top">
+        	<span class="welcome myorder"></span>
+            <span class="goon_btn"><a style="color:#fff;" href="./" title="首页">继续购物</a></span>
+        </div>
+      <div class="right_line"><p style="line-height:24px;"><strong>您共有<font> <%=@orders.size%> </font>条订单信息<span >，点击订单号查看订单详情</span></strong></p>
+        <table width="100%"  border="0" cellpadding="0" cellspacing="0" class="table">
+          <tr>
+            <td align="center" valign="middle" class="td_top">订单号</td>
+            <td align="center" valign="middle" class="td_top">收货人</td>
+            <td align="center" valign="middle" class="td_top">付款方式</td>
+            <td align="center" valign="middle" class="td_top">订单金额</td>
+            <td align="center" valign="middle" class="td_top">订单状态</td>
+            <td align="center" valign="middle" class="td_top">下单时间</td>
+            <td align="center" valign="middle" class="td_top">操作</td>
+          </tr>
+<%@orders.each do |order|%>
+<%logger.debug("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG")%>
+<%logger.debug(order.id)%>
+<%logger.debug(order.id)%>
+<%logger.debug(order.id)%>
+		             <tr>
+            <td align="center" valign="middle" class="td">
+                                                <a href="/usercenter/order_detail/<%=order.sn%>"><%=order.sn%></a>
+                                            </td>
+            <td align="center" valign="middle" class="td"><%=order.consignee%></td>
+            <td align="center" valign="middle" class="td"><%=order.payment_name%></td>
+            <td align="center" valign="middle" class="td"><%=price(order.total_price)%>元</td>
+            <td align="center" valign="middle" class="td"><%=order.current_order_status.name%></td>
+            <td align="center" valign="middle" class="td"><%=order.created_at.strftime("%Y-%m-%d %H:%M:%S")%></td>
+            <td align="center" valign="middle" class="td"><span id="s_<%=order.sn%>">
+<%if order.current_order_status.value==1%>
+<%if order.payment.name!="货到付款"%>
+<a href="<%=raw gen_pay_link(order,request.ip)%>">付款</a> | <%end%><a onclick="if (!confirm('您确认要取消该订单吗？取消后此订单将视为无效订单')) return false;" href="/usercenter/order_cancle/<%=order.id%>">取消订单</a>
+<%else%>
+<a href="/usercenter/order_detail/<%=order.sn%>">查看</a>
+<%end%>
+</span></td>
+          </tr>
+<%end%>
+                   </table>
+      </div>
+<form name="selectPageForm" id='page_list_sort_form' action="/user.php" method="get">
+<input type="hidden" id='page_list_order' name="order" value="" />
+<input type="hidden" id='page_list_sort' name="sort" value="" />
+<input type="hidden" name="act" value="order_list" />
+</form>
+
+
+<div class="page_box"><span><font>&laquo;首页</font></span><span><font>&#173;上一页</font></span><span id="page_on"><font>1</font></span><span><font>&#173;下一页</font></span><span><font>&#173;尾页&raquo;</font></span><span><font>1/共1页</font></span></div>
+<% content_for :outhtml do %>
+<script type="text/javascript">
+  stepUserCenterAction('order_list');//设置活动menu
+  setHeadFlowNum();//购物车数量
+</script>
+<%end%>
+

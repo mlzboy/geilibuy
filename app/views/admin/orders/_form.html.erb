@@ -1,0 +1,68 @@
+
+<!--xiao mao generator QQ:hi@15-1688.com-->
+<%= form_for([:admin,@order]) do |f| %>
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% @order.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :sn %><br />
+    <%= f.text_field :sn %>
+  </div>
+  <div class="field">
+    <%= f.label :real_money %><br />
+    <%= f.text_field :real_money %>
+  </div>
+  <div class="field">
+    <%= f.label :cost_scores %><br />
+    <%= f.text_field :cost_scores %>
+  </div>
+  <div class="field">
+    <%= f.label :tuan_id %><br />
+    <%= f.text_field :tuan_id %>
+  </div>
+  <div class="field">
+    <%= f.label :delivery_id %><br />
+    <%= f.text_field :delivery_id %>
+  </div>
+  <div class="field">
+    <%= f.label :total_price %><br />
+    <%= f.text_field :total_price %>
+  </div>
+  <div class="field">快递单号
+    <%= f.label :delivery_no %><br />
+    <%= f.text_field :delivery_no %>
+  </div>
+  <div class="field">
+    <%= f.label :delivery_price %><br />
+    <%= f.text_field :delivery_price %>
+  </div>
+  <div class="field">
+    <%= f.label :products_num %><br />
+    <%= f.text_field :products_num %>
+  </div>
+  <div class="field">
+<select name="order_status_id">
+<%show_order_status_options(@order.current_order_status.value)%>
+</select>
+<select name="order[delivery_company_id]">
+<%show_delivery_company_options(@order.delivery_company_id)%>
+</select>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+

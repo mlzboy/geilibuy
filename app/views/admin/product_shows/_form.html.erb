@@ -1,0 +1,103 @@
+
+<!--xiao mao generator QQ:hi@15-1688.com-->
+<%= form_for([:admin,@product_show],:html=>{:multipart=>true}) do |f| %>
+  <% if @product_show.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@product_show.errors.count, "error") %> prohibited this product_show from being saved:</h2>
+
+      <ul>
+      <% @product_show.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!--<div class="field">-->
+  <!--  <%= f.label :category_id %><br />-->
+  <!--  <%= f.text_field :category_id %>-->
+  <!--</div>-->
+  <%top_cateogries_with_home(@product_show)%>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+ <%product_show_name_helper%>
+  </div>
+  <div class="field">
+    <%= f.label :location %><br />
+    <%= f.text_field :location %>
+<%location_helper%>
+  </div>
+  <div class="field">
+    <%= f.label :kind %><br />
+    <%= f.text_field :kind %>
+<%product_show_kind_helper%>
+  </div>
+  <div class="field">
+    <%= f.label :memo %><br />
+    <%= f.text_area :memo,:cols=>40,:rows=>4 %>
+  </div>
+  <div class="field">
+    <%= f.label :position %><br />
+    <%= f.text_field :position %>
+  </div>
+  <div class="field">
+    <%= f.label :suite %>
+    <%= f.check_box :suite %>
+    <%= f.label :suite_on %>
+    <%= f.check_box :suite_on %>
+    <%= f.label :suite_name %>
+    <%= f.text_field :suite_name %>
+    <%= f.label :suite_num %>
+    <%= f.text_field :suite_num %>
+    <%= f.label :suite_price %>
+    <%= f.text_field :suite_price %>
+    <%= f.label :suite_pic %>
+    <%= f.file_field :suite_pic %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  
+  
+  <ul id="show">
+    <%if !@product_show.new_record?
+    @product_show.products.each do |product| %>
+    <li id="select<%= product.id %>">
+  <tr>
+    <td><%= product.id %></td>
+    <td><%= product.name %></td>
+    <td><%= product.p1 %></td>
+    <td><%= product.p2 %></td>
+    <td><%= product.p3 %></td>
+    <td><%= product.p4 %></td>
+    <td><%= product.p5 %></td>
+    <td><%= product.promotion %></td>
+    <td><%= product.new %></td>
+    <td><%= product.score %></td>
+    <td><%= product.s1 %></td>
+    <td><%=image_tag product.i1.url(:small)%></td>
+    <td><%= link_to 'Show', admin_product_path(product) %></td>
+    <td><%= link_to 'Edit', edit_admin_product_path(product) %></td>
+    <td><%= link_to 'Destroy', admin_product_path(product), :confirm => 'Are you sure?', :method => :delete %></td>
+    <td></td>
+  <input type="text" value="<%= product.id %>" name="product_id[]" size="2">
+    <input type="button" value="higher" name="higher" class="yaya">
+      <input type="button" value="lower" name="lower" class="yaya">
+        <input type="button" value="delete" name="delete" class="nono">
+      </tr>
+    </li>
+    <%end
+    end%>
+    
+    
+  </ul>
+
+<% end %>
+<hr>
+<form method="post" action="/admin/products/query" id="form1">
+<!--加一个category分类-->
+<input type="text" name="keyword" />
+<input type="button" name="ajax_query" value="query" />
+</form>
+<%=render "products"%>

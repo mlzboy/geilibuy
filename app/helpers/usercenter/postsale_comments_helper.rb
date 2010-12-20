@@ -1,0 +1,2 @@
+module Usercenter::PostsaleCommentsHelper
+end

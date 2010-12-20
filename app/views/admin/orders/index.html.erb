@@ -1,0 +1,49 @@
+
+<h1>Listing orders</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>User</th>
+    <th>Sn</th>
+    <th>订单状态</th>
+    <th></th>
+    <th>Real money</th>
+    <th>Cost scores</th>
+    <th>Tuan</th>
+    <th>Delivery</th>
+    <th>Total price</th>
+    <th>Delivery price</th>
+    <th>Products num</th>
+    <th>Payment</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @orders.each do |order| %>
+  <tr>
+    <td><%= order.id %></td>
+    <td><%= order.user_id %></td>
+    <td><a href="/usercenter/order_detail/<%=order.sn%>"><%= order.sn %></td>
+    <td><%= order.current_order_status.name %></td>
+    <td></td>
+    <td><%= order.real_money %></td>
+    <td><%= order.cost_scores %></td>
+    <td><%= order.tuan_id %></td>
+    <td><%= order.delivery_name%></td>
+    <td><%= order.total_price %></td>
+    <td><%= order.delivery_price %></td>
+    <td><%= order.products_num %></td>
+  <td><%= order.payment_name %></td>
+    <td><%= link_to 'Show', admin_order_path(order) %></td>
+    <td><%= link_to 'Edit', edit_admin_order_path(order) %></td>
+    <td><%= link_to 'Destroy', admin_order_path(order), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%#= link_to 'New Order', new_admin_order_path %>
+

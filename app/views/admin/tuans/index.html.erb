@@ -1,0 +1,54 @@
+
+<h1>Listing tuans</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Product</th>
+    <th>Status</th>
+    <th>Pp1</th>
+    <th>Dp1</th>
+    <th>Dp1 num</th>
+    <th>Dp2</th>
+    <th>Dp2 num</th>
+    <th>Title</th>
+    <th>Start time</th>
+    <th>End time</th>
+    <th>Min time</th>
+    <th>Min num</th>
+    <th>Max time</th>
+    <th>Max num</th>
+    <th>On</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tuans.each do |tuan| %>
+  <tr>
+    <td><%= tuan.id %></td>
+    <td><%= tuan.product_id %></td>
+    <td><%= tuan.status %></td>
+    <td><%= tuan.pp1 %></td>
+    <td><%= tuan.dp1 %></td>
+    <td><%= tuan.dp1_num %></td>
+    <td><%= tuan.dp2 %></td>
+    <td><%= tuan.dp2_num %></td>
+    <td><%= tuan.title %></td>
+    <td><%= tuan.start_time %></td>
+    <td><%= tuan.end_time %></td>
+    <td><%= tuan.min_time %></td>
+    <td><%= tuan.min_num %></td>
+    <td><%= tuan.max_time %></td>
+    <td><%= tuan.max_num %></td>
+    <td><%= tuan.on %></td>
+    <td><%= link_to 'Show', admin_tuan_path(tuan) %></td>
+    <td><%= link_to 'Edit', edit_admin_tuan_path(tuan) %></td>
+    <td><%= link_to 'Destroy', admin_tuan_path(tuan), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Tuan', new_admin_tuan_path %>

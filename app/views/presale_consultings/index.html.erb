@@ -1,0 +1,26 @@
+
+<h1>Listing presale_consultings</h1>
+
+<table>
+  <tr>
+    <th>Content</th>
+    <th>Ip</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @presale_consultings.each do |presale_consulting| %>
+  <tr>
+    <td><%= presale_consulting.content %></td>
+    <td><%= presale_consulting.ip %></td>
+    <td><%= link_to 'Show', presale_consulting_path(presale_consulting) %></td>
+    <td><%= link_to 'Edit', edit_presale_consulting_path(presale_consulting) %></td>
+    <td><%= link_to 'Destroy', presale_consulting_path(presale_consulting), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Presale consulting', new_presale_consulting_path %>

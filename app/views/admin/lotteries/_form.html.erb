@@ -1,0 +1,43 @@
+
+<!--xiao mao generator QQ:hi@15-1688.com-->
+<%= form_for([:admin,@lottery]) do |f| %>
+  <% if @lottery.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@lottery.errors.count, "error") %> prohibited this lottery from being saved:</h2>
+
+      <ul>
+      <% @lottery.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :first_num %><br />
+    <%= f.text_field :first_num %>
+  </div>
+  <div class="field">
+    <%= f.label :second_num %><br />
+    <%= f.text_field :second_num %>
+  </div>
+  <div class="field">
+    <%= f.label :third_num %><br />
+    <%= f.text_field :third_num %>
+  </div>
+  <div class="field">
+    <%= f.label :first_rate %><br />
+    <%= f.text_field :first_rate %>
+  </div>
+  <div class="field">
+    <%= f.label :second_rate %><br />
+    <%= f.text_field :second_rate %>
+  </div>
+  <div class="field">
+    <%= f.label :third_rate %><br />
+    <%= f.text_field :third_rate %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

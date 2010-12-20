@@ -1,0 +1,27 @@
+
+<!--xiao mao generator QQ:hi@15-1688.com-->
+<%= form_for([:admin,@delivery_time]) do |f| %>
+  <% if @delivery_time.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@delivery_time.errors.count, "error") %> prohibited this delivery_time from being saved:</h2>
+
+      <ul>
+      <% @delivery_time.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :position %><br />
+    <%= f.text_field :position %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

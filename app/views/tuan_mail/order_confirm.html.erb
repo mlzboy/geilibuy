@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+ <title></title>
+</head>
+<body>
+<table width="716" border="0" align="center" cellpadding="0" cellspacing="0" style="border:1px solid #dcdcdc;">
+  <tr>
+    <td width="20">&nbsp;</td>
+    <td style="padding-top:20px; padding-bottom:20px;" align="left"><a href="http://www.geilibuy.com/tuan/" target="_blank" style="border:none;"><img style="border:none;" src="http://www.geilibuy.com/themes/default/imgs/send_mail/tuan/tuan_logo.jpg" width="198" height="43" border="0" /></a></td>
+    <td width="20">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="20" height="61" align="right" valign="bottom">&nbsp;</td>
+    <td align="left" valign="bottom" bgcolor="#f4f4f4"><table border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td height="41" bgcolor="#ce000a"  align="left" style="padding-left:10px; padding-right:10px; color:#fff; font-size:22px; font-family:microsoft yahei,simhei;">您在给力团的订单已确认</td>
+      </tr>
+    </table></td>
+    <td width="20">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="20">&nbsp;</td>
+    <td align="center" bgcolor="#f4f4f4"><table width="100%" border="0" cellpadding="0" cellspacing="0" style="font-size:14px;">
+      <tr>
+        <td style="padding-top:15px; padding-left:15px;"  align="left"><strong>感谢您的订购，</strong><strong style="color:#d30009;"><%=@order.user.nick%>:</strong></td>
+      </tr>
+      <tr>
+        <td  align="left"style="padding-top:5px; padding-left:15px; padding-right:15px; padding-bottom:15px; color:#7a7a7a; line-height:22px;">给力团已收到您于<%=@order.order_statuses.first.created_at.strftime('%Y-%m-%d %H:%M:%S')%>提交的订单<a href="http://www.geilibuy.com/tuan/order_detail/<%=@order.sn%>" target="_blank" style="border:none; color:#09F;">T<%=@order.sn%></a>，我们将及时为您处理，预计在
+24小时内为您配货发出。如果您要查看您的订单，请登录给力团页面右上方的“我的给力团”。<div style=" border:none;border-top:1px dashed #b9b9b9; margin-top:15px;margin-bottom:3px;"></div></td>
+      </tr>
+    </table>
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" style="font-size:14px; margin-bottom:15px;">
+        <tr>
+        <td height="35" align="left" valign="middle" bgcolor="#dcdcdc" style=" padding-left:15px;"><span style="padding-top:10px;"><strong>配送信息</strong></span></td>
+        </tr>
+        <tr>
+        <td height="30" style=" height:5px;">&nbsp;</td>
+        </tr>
+        <tr>
+        <td height="30" align="left" style=" padding-left:15px; color:#7a7a7a;"><%=@order.consignee%></td>
+        </tr>
+        <tr>
+        <td height="30"  align="left"style=" padding-left:15px; color:#7a7a7a;"><%=@order.address%></td>
+        </tr>
+        <tr>
+        <td height="30"  align="left"style=" padding-left:15px; color:#7a7a7a;"><%=@order.city%> <%=@order.district%> 区</td>
+        </tr>
+        <tr>
+        <td height="30"  align="left"style=" padding-left:15px; color:#7a7a7a;">电话：<%=@order.mobile ||@order.tel%></td>
+        </tr>
+    </table>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" style="font-size:14px;margin-bottom:15px;">
+        <tr>
+        <td height="35" bgcolor="#dcdcdc" style=" padding-left:15px;" align="left" valign="middle"><span style="padding-top:10px;"><strong>订单详情</strong></span></td>
+        </tr>
+        <tr>
+        <td height="30" style=" height:5px;">&nbsp;</td>
+        </tr>
+        <tr>
+        <td height="30" align="left" style=" padding-left:15px; color:#7a7a7a;"><strong>订单编号：</strong><a href="http://www.geilibuy.com/tuan/order_detail/<%=@order.sn%>" target="_blank" style="border:none; color:#09F;">T<%=@order.sn%></a></td>
+        </tr>
+        <tr>
+        <td height="30" align="left" style=" padding-left:15px; color:#7a7a7a;"><strong>付款方式：</strong><%=@order.payment_name%></td>
+        </tr>
+        <tr>
+        <td height="30" align="left" style=" padding-left:15px; color:#7a7a7a;"><strong>商品金额：</strong>¥<%=price(@order.products_price)%></td>
+        </tr>
+        <tr>
+        <td height="30" align="left" style=" padding-left:15px; color:#7a7a7a;"><strong>配送费用：</strong>￥<%=price(@order.delivery_price)%></td>
+        </tr>
+        <tr>
+        <td height="30" align="left" style=" padding-left:15px; color:#7a7a7a;"><strong>订单总额：</strong>￥<%=price(@order.total_price)%></td>
+        </tr>
+    </table>
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" style="font-size:14px;margin-bottom:15px;">
+        <tr>
+          <td width="34%" bgcolor="#dcdcdc" style=" padding-left:15px;" align="left" valign="middle"><span style="padding-top:10px;"><strong>商品名称</strong></span></td>
+          <td width="27%" bgcolor="#dcdcdc" style=" padding-left:15px;"  align="left" valign="middle"><span style="padding-top:10px;"><strong>商品数量</strong></span></td>
+          <td width="24%" bgcolor="#dcdcdc" style=" padding-left:15px;"  align="left" valign="middle"><span style="padding-top:10px;"><strong>商品单价</strong></span></td>
+        <td width="15%" height="35" bgcolor="#dcdcdc" style=" padding-left:15px;" valign="middle"><span style="padding-top:10px;"><strong>商品总价</strong></span></td>
+        </tr>
+        <tr>
+          <td style=" height:5px;">&nbsp;</td>
+          <td style=" height:5px;">&nbsp;</td>
+          <td style=" height:5px;">&nbsp;</td>
+        <td height="30" style=" height:5px;">&nbsp;</td>
+        </tr>
+        <tr>
+          <td   align="left" style=" padding-left:15px; color:#7a7a7a;"><a href="http://www.geilibuy.com<%=mytuan_url(@order.tuan)%>" target="_blank" style="border:none; color:#09F;"><%=@order.tuan.sub_title%></a></td>
+          <td  align="left" style=" padding-left:15px; color:#7a7a7a;"></td>
+          <td  align="left" style=" padding-left:15px; color:#7a7a7a;">￥<%=price(@order.tuan.pp2)%></td>
+        <td  align="left" height="30" style=" padding-left:15px; color:#7a7a7a;">￥<%=price(@order.total_price)%></td>
+        </tr>
+<tr>
+          <td height="30" colspan="4" align="left" style="padding-left:15px;padding-right:15px;color:#7a7a7a;font-size:12px;line-height:18px"> <div style="border:none;border-top:1px dashed #b9b9b9;margin-top:15px;margin-bottom:15px"></div>此订单确认邮件仅确认我们已收到了您的订单，<wbr>只有当我们向您发出订单发货通知邮件时，<wbr>我们和您之间的订购合同才成立。<br>欢迎您再次到给力团购物，祝您购物愉快！
+          <br></td>
+        </tr>
+    </table>
+      <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" style="font-size:14px;">
+        <tr>
+          <td align="right" style=" padding-bottom:15px;"><a href="http://www.geilibuy.com/tuan/" target="_blank" style="color:#ce000a;border:none;text-decoration:none;">给力团</a>&nbsp;&nbsp;<a href="http://www.geilibuy.com/" target="_blank" style="color:#ce000a;border:none; text-decoration:none;">给力百货</a></td>
+        </tr>
+      </table></td>
+    <td width="20">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="20">&nbsp;</td>
+    <td align="center" valign="middle" style="font-size:12px;">
+      <table width="100%" border="0">
+        <tr>
+        <td width="40%" align="right"><a href="http://www.geilibuy.com/tuan/qa/<%=show_yyyymmdd(@order.tuan.start_time)%>" target="_blank" style="border:none;"><img style="border:none;" src="http://www.geilibuy.com/themes/default/imgs/send_mail/tuan/mail_btn.gif" width="81" height="28" border="0" /></a></td>
+        <td width="60%" style="padding-left:15px; font-size:12px;">给力百货7&times;24小时客服400-88-16016</td>
+        </tr>
+        </table>
+    </td>
+    <td width="20" style="height:80px;">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

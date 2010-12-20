@@ -1,0 +1,48 @@
+
+<h1>Listing coupons</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Money</th>
+    <th>Start time</th>
+    <th>End time</th>
+    <th>User</th>
+    <th>Status</th>
+    <th>Kind</th>
+    <th>Code</th>
+    <th>From</th>
+    <th>Min money</th>
+    <th>Min products num</th>
+    <th>Memo</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @coupons.each do |coupon| %>
+  <tr>
+    <td><%= coupon.id %></td>
+    <td><%= coupon.name %></td>
+    <td><%= coupon.money %></td>
+    <td><%= coupon.start_time %></td>
+    <td><%= coupon.end_time %></td>
+    <td><%= coupon.user_id %></td>
+    <td><%= coupon.status %></td>
+    <td><%= coupon.kind %></td>
+    <td><%= coupon.code %></td>
+    <td><%= coupon.from %></td>
+    <td><%= coupon.min_money %></td>
+    <td><%= coupon.min_products_num %></td>
+    <td><%= coupon.memo %></td>
+    <td><%= link_to 'Show', admin_coupon_path(coupon) %></td>
+    <td><%= link_to 'Edit', edit_admin_coupon_path(coupon) %></td>
+    <td><%= link_to 'Destroy', admin_coupon_path(coupon), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Coupon', new_admin_coupon_path %>

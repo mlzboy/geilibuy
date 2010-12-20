@@ -1,0 +1,36 @@
+
+<h1>Listing comment_shows</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Category</th>
+    <th>Name</th>
+    <th>Location</th>
+    <th>内置数量</th>
+    <th>备注</th>
+    <th>Position</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @comment_shows.each do |comment_show| %>
+  <tr>
+    <td><%= comment_show.id %></td>
+    <td><%=show_category_name(comment_show.category_id) %></td>
+    <td><%= comment_show.name %></td>
+    <td><%= comment_show.location %></td>
+    <td><%=comment_show.postsale_comments.size%></td>
+    <td><%=comment_show.memo%></td>
+    <td></td>
+    <td><%= link_to 'Show', admin_comment_show_path(comment_show) %></td>
+    <td><%= link_to 'Edit', edit_admin_comment_show_path(comment_show) %></td>
+    <td><%= link_to 'Destroy', admin_comment_show_path(comment_show), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Comment show', new_admin_comment_show_path %>

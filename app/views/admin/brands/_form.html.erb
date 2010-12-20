@@ -1,0 +1,36 @@
+
+<!--xiao mao generator QQ:hi@15-1688.com-->
+<%= form_for [:admin,@brand],:html => { :multipart => true } do |f| %>
+  <% if @brand.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@brand.errors.count, "error") %> prohibited this brand from being saved:</h2>
+
+      <ul>
+      <% @brand.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<%= render :partial=>'category',:locals=>{:brand=>@brand,:categories=>@categories} %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :story %><br />
+    <%= f.text_area :story,:cols=>40,:rows=>4 %>
+  </div>
+  <div class="field">用于品牌详细页260px × 338px (缩放至 232px × 303px)
+    <%= f.label :i1 %> <br />
+    <%= f.file_field :i1 %>
+  </div>
+  <div class="field">用于品牌列表页179px × 123px
+    <%= f.label :i2 %><br />
+    <%= f.file_field :i2 %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+

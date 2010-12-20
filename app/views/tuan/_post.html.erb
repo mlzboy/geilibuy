@@ -1,0 +1,11 @@
+<div class="zone">
+  <h4>给力团公告</h4>
+  <ul class="newsbar" style="font-size:14px;">
+  <%
+  article_category=ArticleCategory.find_by_name("给力团公告")
+           articles=article_category.top_five_articles%>            
+            <%articles.each do |article|%>
+          <li><a class="blue" target="_blank" href="<%=myarticle_tuan_url(article.id)%>"><%=truncate article.title,:length=>18%></a></li>
+            <%end%>
+          </ul>
+</div>

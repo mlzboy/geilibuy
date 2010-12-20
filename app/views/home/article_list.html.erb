@@ -1,0 +1,61 @@
+<% content_for :headmeta do %>
+<meta name="Generator" content="给力百货 geilibuy.com " /> 
+<meta http-equiv="X-UA-Compatible" content="IE=7" /> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta name="Keywords" content="" /> 
+<meta name="Description" content="" /> 
+<meta name="pagename" content="article" /> 
+<%end%>
+<%content_for :headtitle do%>
+<title><%=@article_category.name%>_文章资讯_给力百货 - 创意生活零售平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品</title> 
+<%end%>
+<% content_for :headstyle do %>
+<link href="/themes/default/css/header.css" rel="stylesheet" type="text/css" /> 
+<link href="/themes/default/css/news.css" rel="stylesheet" type="text/css" /> 
+<%end%>
+<% content_for :headjs do %>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script> 
+<script type="text/javascript" src="/themes/default/js/header.js" charset="UTF-8"></script>
+<%end%>
+<% content_for :headother do%>
+<link rel="shortcut icon" href="/favicon.ico" /> 
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" /> 
+<link rel="alternate" type="application/rss+xml" title="RSS|<%=@article_category.name%>_文章资讯_给力百货 - 创意生活零售平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品" href="" /> 
+<% end%>
+<div id="global_body"> 
+      
+	  <div class="top_nav">您当前的位置：<a href="" target="_blank">首页</a>&gt;<span><%=@article_category.name%></span></div> 
+<div id="left">
+  <%@articles.each do |article|%>
+                <div class="list <%=cycle("","gray")%>"> 
+        	<ul> 
+                <li class="list_name"><a href="<%=myarticle_url(article.id)%>" title="<%=article.title%>"><%=article.title%></a></li> 
+                <li class="list_time"><%=article.updated_at.strftime("%Y-%m-%d")%></li> 
+                <li class="list_intro"><%=raw truncate strip_tags(article.content),:length=>300%></li> 
+                <li class="detail"><a href="<%=myarticle_url(article.id)%>">查看详情>></a></li> 
+            </ul> 
+        </div>
+  <%end%>
+
+<%=raw @page%>
+
+</div>
+      
+<%=render 'article_right'%>
+<div id="clear"></div>  
+</div>
+<% content_for :bodyfoot do%>
+<!--[if IE 6]><script type="text/javascript">try {document.execCommand('BackgroundImageCache', false, true);} catch(e) {}</script><![endif]--> 
+<div id="global_foot_white"></div> 
+<script type="text/javascript" src="/themes/default/js/js-clib.js" charset="UTF-8"></script> 
+<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script> 
+<script type="text/javascript" src="/themes/default/js/article.js" charset="UTF-8"></script> 
+<% end%>
+
+<%content_for :outhtml do%>
+<script type="text/javascript"> 
+$(document).ready(function(){
+	setHeadFlowNum();//购物车数量
+});
+</script>
+<%end%>

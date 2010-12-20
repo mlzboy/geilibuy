@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head>
+<%if content_for?(:headmeta) %>
+<%= yield(:headmeta) %>
+<%else%>
+<meta name="Generator" content="给力百货 geilibuy.com " /> 
+<meta http-equiv="X-UA-Compatible" content="IE=7" /> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta http-equiv="pragma" content="no-cache"/> 
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/> 
+<meta http-equiv="expires" content=""/> 
+<meta name="Keywords" content="创意家居 居家 设计 创意家居用品 时尚办公 个人时尚 个性用品 新奇特 玩具 创意杂货 创意礼品 Propaganda Mr.P HumanTouch Luft Zakka 礼品 精品店 动漫 Takara 马克杯 家居饰品" /> 
+<meta name="Description" content="给力百货，最有创意的生活、办公、个人时尚产品网上购物商城，数千种时尚创意家居商品直销，通过便捷，诚信的服务，为您提供愉悦的网上购物经历，带来高品质的生活体验！" /> 
+<meta name="pagename" content="index" /> 
+<% end %>
+
+<%if content_for?(:headtitle) %>
+<%= yield(:headtitle) %>
+<%else%>
+<title>给力百货 - 创意生活零售平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品</title> 
+<%end%>
+
+<%if content_for?(:headother) %>
+<%= yield(:headother) %>
+<%else%>
+<link rel="shortcut icon" href="/favicon.ico" /> 
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" /> 
+<link rel="alternate" type="application/rss+xml" title="RSS|给力百货 - 创意生活零售平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品" href="feed.xml" /> 
+<%end%>
+
+<%if content_for?(:headstyle) %>
+<%= yield(:headstyle) %>
+<%else%>
+<!--style>
+html {filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity: 0.5; opacity: 0.5;}
+html {filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);}
+</style--> 
+<link href="/themes/default/css/header.css" rel="stylesheet" type="text/css" /> 
+<link href="/themes/default/css/index.css" rel="stylesheet" type="text/css" /> 
+<%end%>
+
+<%if content_for?(:headjs) %>
+<%= yield(:headjs) %>
+<%else%>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script> 
+<script type="text/javascript" src="/themes/default/js/header.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/lazyload.js" charset="UTF-8"></script> 
+<script type="text/javascript" charset="utf-8"> 
+$(document).ready(function(){
+	$(".ad,.catbox,.ad4,#ad4").find("img").lazyload({effect : "fadeIn",placeholder : "/themes/default/imgs/global/grey.gif"});
+	});
+</script> 
+<%end%>
+</head> 
+<body>
+
+<%if content_for?(:bodyjs) %>
+<%= yield(:bodyjs) %>
+<%else%>
+
+<%end%>
+<%if content_for?(:bodymenu) %>
+<%= yield(:bodymenu) %>
+<%else%>
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<%=render :partial=>"header",:locals=>{:category_id=>-1}%>
+<% end %>
+
+
+<%= yield %>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<div id="foot"> 
+	<div id="footer"> 
+    	<div id="phone"><img src="/themes/default/imgs/global/bg.gif" /></div> 
+        <div id="help_box"> 
+            <dl class="help"> 
+                <dt><span class="help1"></span></dt> 
+                <dd><a target="_blank" href="/helpcenter/10">网站购物流程</a></dd> 
+                <dd><a target="_blank" href="/helpcenter/11">会员积分计划</a></dd> 
+                <dd><a target="_blank" href="/helpcenter/12">优惠券/礼品卡说明</a></dd> 
+                <dd><a target="_blank" href="/helpcenter/9">常见问题</a></dd> 
+            </dl> 
+            <dl class="help"> 
+                <dt><span class="help2"></span></dt> 
+                <dd><a target="_blank" href="/helpcenter/15">支付方式</a></dd> 
+                <dd><a target="_blank" href="/helpcenter/14">发票制度说明</a></dd> 
+           </dl>             
+            <dl class="help"> 
+                <dt><span class="help3"></span></dt>              
+                <dd><a target="_blank" href="/helpcenter/18">配送方式</a></dd> 
+                <dd><a target="_blank" href="/helpcenter/cod_area">货到付款支持城市</a></dd> 
+                <dd><a target="_blank" href="/helpcenter/17">配送收费标准</a></dd> 
+                <dd><a target="_blank" href="/helpcenter/16">配送时间保证</a></dd>                
+               
+            </dl>             
+            <dl class="help"> 
+                <dt><span class="help4"></span></dt> 
+                <dd><a target="_blank" href="/helpcenter/20">如何办理退换货</a></dd> 
+                <dd><a target="_blank" href="/helpcenter/19">如何退款</a></dd> 
+                <dd><a target="_blank" href="/helpcenter/21">联系客服</a></dd> 
+            </dl> 
+             <dl class="help"> 
+                <dt><span class="help5"></span></dt> 
+                <dd><a target="_blank" href="/about/26">给力百货招聘</a></dd> 
+                <dd><a target="_blank" href="/about/28">加入给力百货设计师</a></dd> 
+                <dd><a target="_blank" href="/about/25">加入给力百货代理商</a></dd> 
+                <dd><a target="_blank" href="/about/27">加入给力百货供应商</a></dd> 
+            </dl> 
+            <div class="clear"></div> 
+        </div> 
+        <div class="clear"></div> 
+        <div class="guarantee"><a class="guar_1"></a><a class="guar_2" ></a><a class="guar_3"></a></div>   
+        <div id="links"><a target="_blank" href="/about/24">关于我们</a><span>|</span><a target="_blank" href="/about/29">联系我们</a><span>|</span><a target="_blank" href="/about/30">友情链接</a><span>|</span><a target="_blank" href="/about/23">使用协议</a><span>|</span><a target="_blank" href="/about/25">企业团购</a><span>|</span><a target="_blank" href="http://www.geilibuy.com/map.html">网站地图</a><span>|</span><a target="_blank" href="/advice">投诉与建议</a></div> 
+        <div id="honor"><a target="_blank" class="honor1" href="http://huodong.ebrun.com/2009b2c/lssc50.php"></a><a target="_blank" class="honor2" href="http://huodong.ebrun.com/2009b2c/xfz100.php"></a><a target="_blank" class="honor3" href="http://www.geilibuy.com/article-180.html"></a><a target="_blank" class="honor4" href="http://gongzhong.sh.gov.cn/VoteList.aspx?query=9_0_1"></a><a target="_blank" class="honor5" href="http://www.geilibuy.com/article-270.html"></a><a target="_blank" class="honor6" href="http://www.paidai.com/forum/special.php"></a></div>                
+        <div id="copyright">北京市公安局海淀分局备案编号 1101032138 | <a href="http://www.miibeian.gov.cn" target="_blank">京ICP证100388号</a><br/>©给力百货 2008-2010 北京玩者天下网络技术有限公司 版权所有<br/><a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202010082000008" target="_blank"><img width="40" height="48" src="/themes/default/imgs/global/gs.gif" /></a></div> 
+  </div> 
+</div> 
+<div class="scroll_div"></div>
+<%if content_for?(:bodyfoot) %>
+<%= yield(:bodyfoot) %>
+<%else%>
+<!--tongji-->
+<!--<script src='http://w.cnzz.com/c.php?id=30035654' language='JavaScript' charset='gb2312'></script> -->
+<script type="text/javascript" src="/themes/default/js/js-clib.js" charset="UTF-8"></script> 
+<script type="text/javascript" src="/themes/default/js/photo-switch.js" charset="UTF-8"></script> 
+<script type="text/javascript" src="/themes/default/js/photo-move.js" charset="UTF-8"></script> 
+<script type="text/javascript"> 
+$(document).ready(function(){  
+   setHeadUserStatus();// 检测是否登录
+   setHeadFlowNum();//购物车数量
+});
+</script> 
+<script type="text/javascript" src="/themes/default/js/index.js" charset="UTF-8"></script> 
+<script type="text/javascript" charset="utf-8"> 
+$(document).ready(function(){
+$('.rank').find('dd').hover(function(){				  
+	$('.rank').find('.rank_on').hide();
+	$('.rank').find('.rank_off').show();		
+	$(this).find('.rank_on').show();		  
+	$(this).find('.rank_off').hide();	
+	}, function(){											  
+	});
+$('#fbox').switchboxaction({Time:5000,SwitchTime:3000,switchindex:'#fbar',onclass:'fbar_on',SwitchMode:'Hover',AutoStart:true,SwitchEffect:'fadeOut'});
+$('#nbox').switchboxaction({Time:5000,SwitchTime:3000,switchindex:'#nbar',onclass:'nbar_on',SwitchMode:'Hover',AutoStart:true,SwitchEffect:'fadeOut'});
+$(".brandlist").Slider({prevId:'.brand_left',nextId:'.brand_right',shownum:4,offbtn:'off_btn',offline:4});
+$(".comment").Slider({prevId:'.comment_down',nextId:'.comment_up',shownum:0,vertical:true,offbtn:'off_btn',offline:1});
+  //IndexgetTuanGouCountDown();//团购倒计时
+});
+</script> 
+<%end%>
+
+</body> 
+</html>
+<%if content_for?(:outhtml) %>
+<%= yield(:outhtml) %>
+<%else%>
+<%end%>

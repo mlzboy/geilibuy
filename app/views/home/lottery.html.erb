@@ -1,0 +1,348 @@
+<%
+location="抽奖首页"
+ps1=ps_products("一等奖",location,"")
+ps2=ps_products("二等奖",location,"")
+ps3=ps_products("三等奖",location,"")
+%>
+<% content_for :headmeta do %>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="pragma" content="no-cache"/>
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/>
+<meta http-equiv="expires" content=""/>
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+<meta name="pagename" content="lottery" />
+<%end%>
+<%content_for :headtitle do%>
+<title>给力百货抽奖总动员</title>
+<%end%>
+<% content_for :headstyle do %>
+<link href="/themes/default/css/header.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/lottery.css" rel="stylesheet" type="text/css" />
+<%end%>
+<% content_for :headjs do %>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/js-clib.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/header.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/lottery.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/flow.js" charset="UTF-8"></script>
+
+<%end%>
+<% content_for :headother do%>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" />
+<% end%>
+<div id="global_wish_body">
+
+
+     <!--<div class="wish_share_update_box" id="winner_multi">
+  	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+     <td class="wish_share_update_left"><img src="/themes/default/imgs/wish/warn.gif" width="34" height="32" /></td>
+    <td height="40" class="wish_share_update_left" style="padding-left:70px;">邮件系统正在升级，验证邮件发送会略有延迟，请您耐心等待。
+  <div id="status2" style="display:none;"></div></td>
+  </tr>
+</table>
+  </div>-->
+
+
+
+    <div id="wish_banner"  style="height:280px;">
+    	<div id="wish_banner_img" style="height:275px;"><img src="/themes/default/imgs/wish/banner.gif" width="710" height="202" border="0"  usemap="#wish_banner_Map" />
+    	  <div id="wish_banner_img_in" style="height:auto;">
+
+    	    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        	    <tr>
+        	      <td height="75" align="center" valign="middle"><font><%=LotteryDetail.count%></font><span>人已中奖<a style="font-family:microsoft yahei" href="#do">快去抽奖吧>></a></span></td>
+       	        </tr>
+      	    </table>
+        	</div>
+    	  </div>
+    <div id="wish_banner_func"  style="height:275px;">
+<%unless has_login?%>
+<div style="height: 275px; font-family: microsoft yahei;" id="wish_login_box_out">
+        	<div id="wish_login_box">
+
+        	  <table cellspacing="0" cellpadding="0" border="0" align="center" width="215" height="93">
+                  <tbody><tr>
+                    <td align="center" valign="middle" height="160" colspan="2"><img src="/themes/default/imgs/wish/wish_step_pic.gif"></td>
+                  </tr>
+                  <tr>
+                    <td align="center" width="50%" valign="middle" height="43"><a href="/usercenter/login?back_url=/lottery">登录</a></td>
+                    <td align="center" valign="middle"><a href="/usercenter/register?back_url=/lottery">注册</a></td>
+                  </tr>
+              </tbody></table>
+              </div>
+	       <div id="clear"></div>
+	       <div id="wish_role_box">
+		 <table cellspacing="0" cellpadding="0" border="0" width="100%">
+			       <tbody><tr>
+				 <td align="center" width="48%"><a href="/lottery#tips" style="padding-left: 3px; color: rgb(189, 16, 8);">抽奖小贴士</a></td>
+				 <td align="center" width="52%"><a href="#rule" style="padding-left: 5px; color: rgb(189, 16, 8);">活动规则</a></td>
+			       </tr>
+			     </tbody></table>
+			     </div>
+  </div>
+<%else%>
+<%u=current_user
+if u.active==false
+email=u.email
+url="http://www."+email[email.index("@")+1,email.size]
+%>
+<div style="height: 275px; font-family: microsoft yahei;" id="wish_login_box_out">
+        	<div id="wish_login_box">
+        	                                  <table cellspacing="0" cellpadding="0" border="0" align="center" width="228" height="143">
+              <tbody><tr>
+                <td align="center" valign="bottom" height="40">&nbsp;</td>
+              </tr>
+              <tr>
+                <td align="center" valign="bottom" height="40"><span id="wish_login_info">请先验证你的注册邮箱<br>
+                才能参加抽奖活动</span></td>
+              </tr>
+              <tr>
+                <td align="center" valign="middle" height="53" id="email_btn"><a target="_blank" href="<%=raw url%>">去验证邮箱</a></td>
+              </tr>
+              <tr>
+                <td align="center" valign="bottom" height="13"><div id="resend">没有收到验证邮件？<a style="background: none repeat scroll 0% 0% transparent; color: rgb(6, 112, 198); font-size: 12px; font-weight: normal; padding: 0pt; margin: 0pt; display: inline;" href="javascript:resendHashMail();sendHashMail('http://mail.163.com');">[重发邮件]</a></div><div style="color: rgb(0, 152, 0); border: 1px solid rgb(238, 238, 238); background-color: rgb(254, 255, 193); display: none; height: 25px; line-height: 25px; margin: 0pt 18px;" id="resenddone">验证邮件已再次发送，请查收。</div></td>
+              </tr>
+          </tbody></table>
+                            </div>
+<div id="clear"></div>
+<div id="wish_role_box">
+  <table cellspacing="0" cellpadding="0" border="0" width="100%">               
+                <tbody><tr>
+                  <td align="center" width="48%"><a href="/lottery.php#tips" style="padding-left: 3px; color: rgb(189, 16, 8);">抽奖小贴士</a></td>
+                  <td align="center" width="52%"><a href="#rule" style="padding-left: 5px; color: rgb(189, 16, 8);">活动规则</a></td>
+                </tr>
+              </tbody></table>
+              </div>
+  </div>
+<%else%>
+      <div id="wish_login_box_out"  style="height:275px; font-family:microsoft yahei">
+        	<div id="wish_login_box">
+
+                <table width="228" height="186" border="0" align="center" cellpadding="0" cellspacing="0">
+              <tr>
+                <td height="10" align="center" valign="bottom">&nbsp;</td>
+              </tr>
+              <tr>
+                <td height="50" align="center" valign="bottom">
+                  <span id="wish_login_info"><font color="#000">欢迎你，<%=current_user.email%>!</font><br />
+                    你还有 <%=current_user.lucky%> 个幸运点</span><span onclick="location.href='user.php?act=invite'" style="cursor:pointer;color:#0670c6;"> [查看详情] </span>
+                    </td>
+              </tr>
+              <tr>
+                <td height="43" align="center" valign="middle" id="getmore_btn"><a href="/share">获取更多机会</a></td>
+              </tr>
+              <tr>
+                <td height="43" align="center" valign="middle" id="getgift_btn">
+                  <a href="javascript:void(0)">领取 <font color="#ffffff">0 </font>个奖品</a>
+                    </td>
+              </tr>
+          </table>
+	  </div>
+	  <div id="clear"></div>
+	  <div id="wish_role_box">
+	       <table width="100%" border="0" cellpadding="0" cellspacing="0">
+			     <tr>
+			       <td width="48%" align="center"><a style="padding-left:3px; color:#BD1008" href="/lottery#tips">抽奖小贴士</a></td>
+			       <td width="52%" align="center"><a style="padding-left:5px; color:#BD1008" href="#rule">活动规则</a></td>
+			     </tr>
+	     </table>
+	  </div>
+  </div>
+<%end%>
+<%end%>
+  <div id="wish_win_list_box"></div>
+      </div>
+        <div id="clear"></div>
+	</div>
+<div id="get_more_banner" style="display:none;"><a href="/share"><img src="/themes/default/imgs/wish/get_more_banner.jpg" width="980" height="116" /></a></div>
+<div style="display:none;">
+  <img src="/themes/default/imgs/wish/pop_title_bg.jpg" />
+  <img src="/themes/default/imgs/wish/pop_close_btn.jpg" />
+  <img src="/themes/default/imgs/wish/pop_body_bg.jpg" />
+  <img src="/themes/default/imgs/wish/btn_bg.jpg" />
+</div>
+
+
+<div class="wish_other_box">
+
+    	<div class="wish_role_title"><img src="/themes/default/imgs/wish/win_list_title.gif" /></div>
+        <table width="928" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td class="win_list_td_title" width="69" >昵称（IP）</td>
+            <td class="win_list_td_title" width="42" >&nbsp;</td>
+            <td class="win_list_td_title" width="75" >&nbsp;</td>
+            <td class="win_list_td_title" width="188" >奖品</td>
+            <td class="win_list_td_title" width="446" >获奖感言</td>
+            <td class="win_list_td_title" width="108" >中奖时间</td>
+          </tr>
+<%LotteryDetail.order("id desc").limit(3).all.each do |lottery_detail|%>
+                     <tr>
+            <td class="win_list_td" style="line-height:14px;"><span><%=lottery_detail.user.nick%></span><br /><span style="color:#999999">IP:<%=lottery_detail.ip.split(".")[0,2].join(".")%>.*.*</span></td>
+            <td align="center" valign="middle" class="win_list_td">&nbsp;</td>
+
+                        <td align="center" valign="middle" class="win_list_td">
+              <a href="<%=product_url(lottery_detail.product_id)%>" target="_blank" title="<%=lottery_detail.product.name%>" >
+            <img style="border:1px solid #cccccc; margin:5px;" src="<%=lottery_detail.product.i1.url(:small)%>" width="48" height="48"/></a>
+            </td>
+            <td class="win_list_td" style="line-height:14px;">
+              <a  href="<%=product_url(lottery_detail.product_id)%>" target="_blank" title="<%=lottery_detail.product.name%>"><%=lottery_detail.product.name%></a>
+              <br />￥<%=price(lottery_detail.product.p2)%></td>
+
+             <td class="win_list_td"  style="line-height:14px; padding:3px;"><div style="display: block; width: 400px; word-wrap: break-word;"><%=lottery_detail.say%></div></td>
+            <td class="win_list_td" style="line-height:14px;"><%=lottery_detail.created_at.strftime("%Y-%m-%d %H:%M:%S")%></td>
+          </tr>
+<%end%>
+
+                  </table>
+        <div class="wish_look_more_list"><a href="/lottery_list" target="_blank">查看全部幸运儿名单</a></div>
+        <br/>
+
+    <div id="clear"></div>
+</div>
+<%
+def show_js_status(product,level)
+     num=-3
+     if has_login?
+	  u=current_user
+	  email=u.email
+	  url="http://www."+email[email.index("@")+1,email.size]
+	  if u.lucky<product.lucky
+	       num=-1
+	  elsif u.active==false
+	       num=-2
+	  else
+	       num=1
+	  end
+	  r=%Q{javascript:checkuserstatus('#{num}','#{level}_#{product.id}','#{url}');}
+     else
+	  r=%Q{javascript:checkuserstatus('#{num}','#{level}_#{product.id}','');}
+     end
+     r
+end
+%>
+
+<a name="do"></a>
+    <div class="wish_gift_box">
+    	          <div class="wish_gift_zone_title" style="padding-top:10px;"><img src="/themes/default/imgs/wish/wish_gift_zone1_bg.gif" width="251" height="45" /></div>
+          <div class="wish_gift_zone1">
+            <%ps1.each do |product|%>
+                  	<ul class="wish_gift_block_1">
+            	<li class="wish_gift_block_img1"><a href="<%=product_url(product.id)%>" target="_blank">
+                  <img src="<%=product.i1.url(:big)%>" />
+            	  </a></li>
+                <li class="wish_gift_block_name"><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>14%></a></li>
+				<li class="wish_gift_block_price">价值：￥<%=price(product.p2)%></li>
+                <li class="wish_gift_block_btn"><a href="<%=raw show_js_status(product,1)%>"><img src="/themes/default/imgs/wish/wish_btn.gif" /></a></li>
+                <li class="wish_gift_block_point">需<%=product.lucky%>个幸运点</li>
+            </ul>
+            <%end%>
+
+                          <div id="clear"></div>
+                             </div>
+                <div class="wish_gift_zone_title" ><img src="/themes/default/imgs/wish/wish_gift_zone2_bg.gif" width="251" height="45" /></div>
+          <div class="wish_gift_zone2">
+    <%ps2.each do |product|%>
+                  	<ul class="wish_gift_block_2">
+            	<li class="wish_gift_block_img2"><a href="<%=product_url(product.id)%>" target="_blank">
+                  <img src="<%=product.i1.url(:medium)%>" />
+            	  </a></li>
+                <li class="wish_gift_block_name"><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>14%></a></li>
+				<li class="wish_gift_block_price">价值：￥<%=price(product.p2)%></li>
+                <li class="wish_gift_block_btn"><a href="<%=raw show_js_status(product,2)%>"><img src="/themes/default/imgs/wish/wish_btn.gif" /></a></li>
+                <li class="wish_gift_block_point">需<%=product.lucky%>个幸运点</li>
+            </ul>
+  <%end%>
+
+                          <div id="clear"></div>
+                             </div>
+                <div class="wish_gift_zone_title" ><img src="/themes/default/imgs/wish/wish_gift_zone3_bg.gif" width="251" height="45" /></div>
+          <div class="wish_gift_zone3">
+    <%ps3.each do |product|%>
+                  	<ul class="wish_gift_block_3">
+            	<li class="wish_gift_block_img3"><a href="<%=product_url(product.id)%>" target="_blank">
+                  <img src="<%=product.i1.url(:medium)%>" />
+            	  </a></li>
+                <li class="wish_gift_block_name"><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>14%></a></li>
+				<li class="wish_gift_block_price">价值：￥<%=price(product.p2)%></li>
+                <li class="wish_gift_block_btn"><a href="<%=raw show_js_status(product,3)%>"><img src="/themes/default/imgs/wish/wish_btn.gif" /></a></li>
+                <li class="wish_gift_block_point">需<%=product.lucky%>个幸运点</li>
+            </ul>
+    <%end%>
+
+                          <div id="clear"></div>
+                             </div>
+      	  </div>
+
+
+    <a name="tips"></a>
+    <div class="wish_other_box">
+    	<div class="wish_role_title"><img src="/themes/default/imgs/wish/choujiang_tips.gif" /></div>
+        <ol class="wish_role_list" style="margin-left:30px;">
+   	    <li>奖品价值越高，中奖概率越低哦；</li>
+        <li>幸运点太少？可以用积分换，也可以试着<a style="color:#0066cc" href="http://www.geilibuy.com/lottery.php?act=share" target="_blank">邀请好友参加</a>哦；</li>
+        <li>试着攒些幸运点，等到概率翻倍的时间试试手气；</li>
+        <li>注册马甲抽奖会有损人品哦，独乐乐不如众乐乐，大家好才是真的好^_^</li>
+        <li>用户不需为奖品支付任何费用（包括运费），请人民群众放心！</li>
+        <li>奖品的配送方式为普通快递，用户收到奖品请在快递人员在场时开箱验货，如发现产品存在问题请立即联系给力百货客服400-88-16016；</li>
+        <li>中奖用户甚至可以将奖品暂存入购物车，随奖品购物免收运费哦，我们会不会太贴心了...</li>
+        <li>抽奖有概率，玩家请坦然，优惠券当安慰奖也不错嘛。</li>
+        </ol><br/>
+      <div id="clear"></div>
+  </div>
+  <a name="rule"></a>
+    <div class="wish_role_box">
+        <ol class="wish_role_list">
+            <li>本次活动仅限给力百货注册用户参与，给力百货员工及亲属不得参与本次活动；</li>
+            <li>为了保证活动的真实有效，所有参与活动的用户需要验证注册邮箱；</li>
+            <li>新注册用户可以得到30个幸运点；</li>
+            <li>你每邀请1个朋友参加活动（注册并验证邮箱），你可以获得20个幸运点；你邀请来的朋友再每邀请一人参加活动，你还可以获得10个幸运点；</li>
+            <li>中奖用户分享抽奖活动可自动得到双倍奖励的幸运点，中奖用户在中奖后的3天内每邀请1个朋友参加活动可以获得40个幸运点，中奖用户的朋友获得60个幸运点；</li>
+            <li>禁止以任何不正当手段参加活动，一经发现给力百货有权取消该用户的获奖资格；</li>
+            <li>同一用户注册多个账号参加抽奖会被视为作弊，我们会人工核查，对于查实的作弊行为，扣发全部奖品并取消参加抽奖的资格；</li>
+            <li>中奖用户领奖时须短信验证手机号，验证后手机号将与帐户绑定，一个手机号只能绑定一个帐户，给力百货绝不会对外公开您的手机信息，用户参与抽奖活动不需验证手机；</li>
+            <li>活动不设结束时间，用户积累的幸运点长期有效；</li>
+            <li>活动最终解释权归给力百货所有。</li>
+        </ol>
+      <div id="clear"></div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="clear"></div>
+</div>
+<%content_for :bodyfoot do %>
+<!--[if IE 6]><script type="text/javascript">try {document.execCommand('BackgroundImageCache', false, true);} catch(e) {}</script><![endif]-->
+<map name="wish_banner_Map" id="wish_banner_Map">
+    <area shape="rect" coords="20,111,233,194" href="?act=guide" target="_blank" />
+    <area shape="rect" coords="250,112,464,197" href="?act=guide" target="_blank" />
+    <area shape="rect" coords="480,111,694,197" href="?act=guide" target="_blank" />
+</map>
+<script type="text/javascript">
+$(function(){
+     
+        setHeadUserStatus();// 检测是否登录
+   setHeadFlowNum();//购物车数量
+
+     });
+</script>
+<%end%>

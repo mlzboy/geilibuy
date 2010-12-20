@@ -1,0 +1,32 @@
+
+<h1>Listing free_shipping_rules</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Start time</th>
+    <th>End time</th>
+    <th>Name</th>
+    <th>Price</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @free_shipping_rules.each do |free_shipping_rule| %>
+  <tr>
+    <td><%= free_shipping_rule.id %></td>
+    <td><%= free_shipping_rule.start_time %></td>
+    <td><%= free_shipping_rule.end_time %></td>
+    <td><%= free_shipping_rule.name %></td>
+    <td><%= free_shipping_rule.money %></td>
+    <td><%= link_to 'Show', admin_free_shipping_rule_path(free_shipping_rule) %></td>
+    <td><%= link_to 'Edit', edit_admin_free_shipping_rule_path(free_shipping_rule) %></td>
+    <td><%= link_to 'Destroy', admin_free_shipping_rule_path(free_shipping_rule), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Free shipping rule', new_admin_free_shipping_rule_path %>

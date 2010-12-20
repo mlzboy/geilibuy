@@ -1,0 +1,40 @@
+
+<h1>Listing cash_orders</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Sn</th>
+    <th>User</th>
+    <th>Tuangou</th>
+    <th>Payment</th>
+    <th>Ip</th>
+    <th>Money</th>
+    <th>Payment name</th>
+    <th>New scores</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @cash_orders.each do |cash_order| %>
+  <tr>
+    <td><%= cash_order.id %></td>
+    <td><%= cash_order.sn %></td>
+    <td><%= cash_order.user_id %></td>
+    <td><%= cash_order.tuangou %></td>
+    <td><%= cash_order.payment_id %></td>
+    <td><%= cash_order.ip %></td>
+    <td><%= cash_order.money %></td>
+    <td><%= cash_order.payment_name %></td>
+    <td><%= cash_order.new_scores %></td>
+    <td><%= link_to 'Show', admin_cash_order_path(cash_order) %></td>
+    <td><%= link_to 'Edit', edit_admin_cash_order_path(cash_order) %></td>
+    <td><%= link_to 'Destroy', admin_cash_order_path(cash_order), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Cash order', new_admin_cash_order_path %>

@@ -1,0 +1,77 @@
+
+<!--xiao mao generator QQ:hi@15-1688.com-->
+<%= form_for([:admin,@material],:html=>{:multipart=>true}) do |f| %>
+  <% if @material.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@material.errors.count, "error") %> prohibited this material from being saved:</h2>
+
+      <ul>
+      <% @material.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %> 用于描述图片信息<br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :kind %><br />
+    <%= f.text_field :kind %><%kind_helper%>
+  </div>
+  <div class="field">
+    <%= f.label :hyperlink %> for hyperlink<br />
+    <%= f.text_field :hyperlink %>
+  </div>
+  <div class="field">
+    <%= f.label :title %> for hyperlink<br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :image_url %><br />
+    <%= f.file_field :image_url %>
+  </div>
+  <div class="field">
+    <%= f.label :size %><br />
+    <%= f.text_field :size %><%size_helper%>
+  </div>  <div class="field">
+    <%= f.label :alt %> for image<br />
+    <%= f.text_field :alt %>
+  </div>
+  <div class="field">
+    <%= f.label :text %> for hyperlink show<br />
+    <%= f.text_field :text %>
+  </div>
+  <div class="field">
+    <%= f.label :memo %><br />
+    <%= f.text_area :memo,:cols=>40,:rows=>4 %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<script type="text/javascript">
+$(function()
+{
+      $("#size_helper").change(function(){
+      var v=$("#size_helper option:selected").text();
+      $("#material_size").val(v);
+                              });
+    $("#kind_helper").change(function(){
+      var v=$("#kind_helper option:selected").text();
+      $("#material_kind").val(v);
+                              });
+    $("#location_helper").change(function(){
+      var v=$("#location_helper option:selected").text();
+      $("#material_location").val(v);
+                              });
+    
+    $("#material_name").blur(function(){
+      $("#material_text").val($(this).value);
+      $("#material_alt").val($(this).value);
+      $("#material_title").val($(this).value);
+      });
+});
+</script>

@@ -1,0 +1,41 @@
+
+<h1>Listing payments</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Memo</th>
+    <th>Parent</th>
+    <th>Position</th>
+    <th>I1</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th>hide</th>
+  </tr>
+
+<% @payments.each do |payment| %>
+  <tr>
+    <td><%= payment.id %></td>
+    <td><%show_payment_url(payment) %></td>
+    <td><%= payment.memo %></td>
+    <td><%= payment.parent_id %></td>
+    <td><%= payment.position %></td>
+    <td><%= image_tag payment.i1.url %></td>
+    <td><%= link_to 'Show', admin_payment_path(payment) %></td>
+    <td><%= link_to 'Edit', edit_admin_payment_path(payment) %></td>
+    <td><%= link_to 'Destroy', admin_payment_path(payment), :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%=payment.hide%></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%#= link_to 'New Payment', new_admin_payment_path %>
+<%if params[:id].blank?%>
+<a href="/admin/payments/new">new payment</a>
+<%else%>
+<a href="/admin/payments/new?parent_id=<%=params[:id]%>">new payment</a>
+<%end%>

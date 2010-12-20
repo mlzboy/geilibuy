@@ -1,0 +1,2 @@
+module AlipayHelper
+end

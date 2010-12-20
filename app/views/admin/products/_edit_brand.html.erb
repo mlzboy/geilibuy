@@ -1,0 +1,29 @@
+<script type="text/javascript">
+$(function() {
+    $.getJSON('/admin/brands/ajax_ids/<%=@product.brand_id||-1%>',function(data){
+            var  brand_ids=eval(data);
+            var options = {
+                  empty_value: '',
+                  indexed: true,  // the data in tree is indexed by values (ids), not by labels
+                  on_each_change: '/admin/brands/ajax_get_brands_by_category_id', // this file will be called with 'id' parameter, JSON data must be returned
+                  set_value_on: 'each', // we will change input value when every select box changes
+                  choose: function(level) {
+                      return 'Choose level ' + level;
+                  },
+                  preselect: {'brand_id': brand_ids},
+                  preselect_only_once: true // prevent auto selecting whole branch when user maniputales one of branch levels
+              };
+        
+            $.getJSON('/admin/brands/ajax_get_brands_by_category_id', function(tree) { 
+                $("#brand_id").optionTree(tree, options);//.change(displayParents);
+            });       
+        
+        });
+
+});
+
+</script>
+<h3>品牌分类</h3>
+ <div class="field">
+<input type="text" id="brand_id" name="brand_id" />
+</div>

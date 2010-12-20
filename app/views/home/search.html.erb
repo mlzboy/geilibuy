@@ -1,0 +1,98 @@
+<% content_for :headmeta do %>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta name="Keywords" content="枕头" />
+<meta name="Description" content="" />
+<meta name="pagename" content="search" />
+<%end%>
+<%content_for :headtitle do%>
+<title>商品搜索_给力百货 - 创意生活零售平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品</title>
+<%end%>
+<% content_for :headstyle do %>
+<link href="/themes/default/css/header.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/catogry.css" rel="stylesheet" type="text/css" />
+<%end%>
+<% content_for :headjs do %>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/header.js" charset="UTF-8"></script>
+<%end%>
+<% content_for :headother do%>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" />
+<% end%>
+<div id="main">
+    
+    
+
+    
+
+    
+<div class="top_nav">您当前的位置：<a href=".">首页</a> <code>&gt;</code> <span>商品搜索</span></div>
+
+<div id="left">
+
+ 	 
+	 
+<div class="listbox">
+      <%  Category.top.each do |category|%>
+        <div class="list_off"> 
+         <div class="title"><a href="<%=category_url(category.id)%>" title="category.name%>"><%=category.name%></a></div>
+             <%if category.children.size>0%>
+             <div class="list_pop"> 
+               <div class="pop_ul"> 
+                   <div class="pop_arrow"></div>
+                   <%for i in 0...category.children.size%>
+                   <p <%=raw 'style="border:none;"' if (category.children.size-1)==i%>><a href="<%=category_url(category.id)%>" title="<%=category.name%>-<%=category.children[i].name%>"><%=category.children[i].name%></a></p> 
+                   <%end%>
+               </div> 
+             </div>
+             <%end%>
+       </div>
+        <%end%>
+
+</div>
+
+	 
+	 
+
+</div>
+
+<%=render 'right4'%>
+<div id='clear'></div>
+</div>
+<% content_for :bodyfoot do%>
+<script type="text/javascript" src="/themes/default/js/js-clib.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/category.js" charset="UTF-8"></script>
+<!--[if IE 6]><script type="text/javascript">try {document.execCommand('BackgroundImageCache', false, true);} catch(e) {}</script><![endif]-->
+<div id="global_foot_white"></div>
+<% end%>
+<%content_for :outhtml do%>
+<script type="text/javascript">
+$(document).ready(function(){
+	setHeadFlowNum();//购物车数量
+	//setSearchAicon('goods_id','DESC');//排序按钮
+});
+</script>
+
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+
+/* 列表页左侧列表弹出操作事件 */
+  $('.list_off').hover(function(){
+	  $('.listbox').find('.list_off').removeClass('list_on');
+	  $(this).addClass('list_on');
+	  $(this).find('.list_pop').show();	
+	}, function(){									  
+	  $(this).find('.list_pop').hide();
+	});
+  /* 价格搜索按钮显示 */
+  $('.price_zone').focus(function(){
+   $('.sel_btn').show();
+  }); 
+
+
+});
+  </script>
+<%end%>

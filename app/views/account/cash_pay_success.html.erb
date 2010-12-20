@@ -1,0 +1,61 @@
+<%content_for :headmeta do%>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="pragma" content="no-cache"/>
+<meta name="pagename" content="tuan" />
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/>
+<%end%>
+<%content_for :headtitle do%>
+<title>确认付款金额 - 给力团 创意百货天天团 - 给力百货</title>
+<%end%>
+<% content_for :headstyle do %>
+<!--style>
+html {filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity: 0.5; opacity: 0.5;}
+html {filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);}
+</style-->
+<link href="/themes/default/css/tuan_public.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_ucener.css" rel="stylesheet" type="text/css" />
+<%end%>
+<%content_for :headother do%>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" />
+<link rel="alternate" type="application/rss+xml" title="RSS|确认付款金额 - 给力团 创意百货天天团 - 给力百货" href="" />
+<%end%>
+<%content_for :headjs do%>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/hotkeys.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_divpop.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_user.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_buy.js" charset="UTF-8"></script>
+<script>
+$(document).ready(function(){
+  
+  	// 检测是否登录
+	setTuanHeadUserStatus();
+  
+});	
+</script>
+<%end%>
+<div class="navtip" id="MetionDivNum">
+<dl class="navtip_dl" style="display:none;" >
+    	<dt>关闭</dt>
+        <dd>抱歉，数量有限，您最多只能购买2件。</dd>
+    </dl>
+</div>
+
+<div id="main">
+					
+		
+<div id="left" class="uc_left">    
+    <div class="zone">      
+      <dl class="charge_succ">
+        <dt><img src="/themes/default/imgs/tuan/ok_bg.gif" width="58" height="40" />恭喜，充值成功！</dt>
+        <dd>您充值的金额为 <span><%=price(@cash_order.money)%></span> 元，账户余额为 <span><%=price(current_user.money)%></span> 元。<a class="blue" href="/tuan/account/credit" target="_blank">查看账户余额</a></dd>        
+      </dl>
+    </div>
+  </div>
+	<div class="clear"></div>     
+</div>

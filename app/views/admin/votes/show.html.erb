@@ -1,0 +1,21 @@
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @vote.name %>
+</p>
+
+<p>
+  <b>Position:</b>
+  <%= @vote.position %>
+</p>
+
+<p>
+  <b>Parent:</b>
+  <%= @vote.parent_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_vote_path(@vote) %> |
+<%= link_to 'Back', admin_votes_path %>

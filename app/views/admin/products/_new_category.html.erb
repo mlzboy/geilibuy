@@ -1,0 +1,99 @@
+<% content_for :head do %>
+  <script type="text/javascript">
+  //http://www.electrictoolbox.com/jquery-add-option-select-jquery/
+    function count(){
+      var big=$("#big").val();
+      var medium=$("#medium").val();
+      var small=$("#small").val();
+      //alert(small);
+      //alert(medium);
+      //alert(big);
+      if (small!="" && small!=null)
+      {
+        $("#category_id").val(small);
+      }
+      else if(medium!="" && medium!=null)
+      {
+        $("#category_id").val(medium);
+      }
+      else{
+        $("#category_id").val(big);
+      }
+      //alert($("#category_id").val());
+    }
+    function clear_all_option(obj_id)
+    {
+      $("#"+obj_id+" option").remove();
+    }
+    function add_option(id,name,value)
+    {
+                    var option = new Option(name, value);
+              //alert(item.category.name);
+                var dropdownList = $("#"+id)[0];
+                if ($.browser.msie) {
+                    dropdownList.add(option);
+                }
+                else {
+                    dropdownList.add(option, null);
+                }
+      
+    }
+    function sub_categories(id,val){
+      if (val=="") return;
+      $.get('/admin/categories/'+val+"/sub.js",function(data){
+            var data=eval(data);
+            if (data.length>0){
+            clear_all_option(id);
+            add_option(id,"","")
+            $(data).each(function(idx,item){
+                  add_option(id,item.category.name,item.category.id);
+              });
+            }
+            else{
+              $("#"+id).html('');
+            }
+      
+    })}
+    
+    $(function(){
+      $("#big").change(function(){
+          sub_categories("medium",$(this).val());
+          count();
+          });
+      
+        $("#medium").change(function(){
+          sub_categories("small",$(this).val());
+          count();
+          });
+        
+        $("#small").change(function(){
+          count();
+          })
+        
+        $("#big").change();
+        count();
+        
+        
+        });
+      
+  </script>
+<% end %>
+  
+  <div class="field">
+<select name="big" id="big">
+  <%
+  container=[]
+  for category in @parent
+    container.push([category.name,category.id])
+  end%>
+  <%=
+  options_for_select(container, selected = nil)%>
+</select>
+<select name="medium" id="medium">
+  
+</select>
+<select name="small" id="small">
+  
+</select>
+<input type="text" name="category_id" id="category_id">
+  </div>

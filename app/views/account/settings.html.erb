@@ -1,0 +1,119 @@
+<%content_for :headmeta do%>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta http-equiv="pragma" content="no-cache"/>
+<meta name="pagename" content="tuan" />
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/>
+<%end%>
+<%content_for :headtitle do%>
+<title>我的订单 - 给力团 创意百货天天团 - 给力百货</title>
+<%end%>
+<% content_for :headstyle do %>
+<!--style>
+html {filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity: 0.5; opacity: 0.5;}
+html {filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);}
+</style-->
+<link href="/themes/default/css/tuan_public.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_ucener.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_others.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_reglogin.css" rel="stylesheet" type="text/css" />
+<%end%>
+<%content_for :headother do%>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" />
+<link rel="alternate" type="application/rss+xml" title="RSS|我的订单 - 给力团 创意百货天天团 - 给力百货" href="" />
+<%end%>
+<%content_for :headjs do%>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/hotkeys.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_divpop.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_user.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_account.js" charset="UTF-8"></script>
+<script>
+$(document).ready(function(){
+  
+  	// 检测是否登录
+	setTuanHeadUserStatus();
+  
+});	
+</script>
+<%end%>
+<%unless flash["info"]%>
+<div class="navtip ">
+</div>
+<%else%>
+<div class="navtip navtip_on">
+<dl class="navtip_dl">
+    	<dt>关闭</dt>
+        <dd><%=flash["info"]%></dd>
+    </dl></div>
+<%end%>
+<div id="main">
+								<div id="left" class="uc_left"> 
+<div class="ucoption">
+  <ul class="ucnav">
+    <li class="ucnav_off "><a href="/tuan/account/orders">我的订单</a></li>
+    <li class="ucnav_off "><a href="/tuan/account/invites">我的邀请</a></li>
+    <li class="ucnav_off "><a href="/tuan/account/points">我的积分</a></li>
+    <li class="ucnav_off "><a href="/tuan/account/credit">现金账户</a></li>
+    <li class="ucnav_off ucnav_on"><a href="/tuan/account/settings">账户设置</a></li>
+  </ul>
+</div>
+<%user=current_user%>
+  <div class="zone">
+    <div class="leftbar">账户设置</div>
+    <div class="reglogin_box">
+      <form name="formPassword" id="formPassword" action="/tuan/account/settings" method="post"  onSubmit="return tuan_editPassword()" >
+       		  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="18%" height="48" align="right" valign="middle"><h4>Email：</h4></td>
+            <td valign="middle"><input type="text" autocomplete="off" value="<%=user.email%>" disabled="disabled" name="email" class="inputs rlinput" style="border-color:#e2e2e2;"/>
+              <span>不可修改</span></td>
+          </tr>
+          <tr>
+            <td height="48" align="right" valign="middle"><h4>昵称：</h4></td>
+            <td valign="middle"><input type="text" autocomplete="off" name="nickname" id="nickname" class="inputs rlinput" value="<%=user.nick%>" maxlength="30" /></td>
+          </tr>
+          <tr>
+            <td height="30" align="right" valign="middle">&nbsp;</td>
+            <td valign="bottom" style="color:#c90809;">如果想修改密码，请填写。如果不想修改，请保持空白：</td>
+          </tr>
+          <tr>
+            <td height="48" align="right" valign="middle"><h4>旧密码：</h4></td>
+            <td valign="middle"><input type="password" autocomplete="off" name="oldpwd" id="oldpwd" class="inputs rlinput" value="" />
+              <span id="tishi"></span></td>
+          </tr>
+          <tr>
+            <td height="48" align="right" valign="middle"><h4>新密码：</h4></td>
+            <td valign="middle"><input type="password" autocomplete="off" name="newpwd" id="newpwd" class="inputs rlinput" value="" />
+              <span id="tishi1">最少6个字符</span></td>
+          </tr>
+          <tr>
+            <td height="48" align="right" valign="middle"><h4>确认新密码：</h4></td>
+            <td valign="middle"><input type="password" autocomplete="off" name="newpwd2" id="newpwd2" class="inputs rlinput" value="" />
+              <span id="tishi2">输入与上面相同的密码</span></td>
+          </tr>
+          <tr>
+            <td height="48" align="right" valign="middle">&nbsp;</td>
+            <td valign="middle"><input type="hidden" name="op_act" value="edit" />
+              <input type="hidden" name="code" value="" />
+              <input type="submit" value="保存修改" class="dbtn reg_btn" /></td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div style="height: 40px;"> </div>
+		
+		
+	
+<div class="clear"></div>     
+</div>
+

@@ -1,0 +1,96 @@
+<% content_for :headmeta do %>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+<meta name="pagename" content="article" />
+<%end%>
+<%content_for :headtitle do%>
+<title>意见反馈_用户中心_给力百货 - 创意生活零售平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品</title>
+<%end%>
+<% content_for :headstyle do %>
+<link href="/themes/default/css/header.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/about.css" rel="stylesheet" type="text/css" />
+<%end%>
+<% content_for :headjs do %>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/header.js" charset="UTF-8"></script>
+<%end%>
+<% content_for :headother do%>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" />
+<link rel="alternate" type="application/rss+xml" title="RSS|意见反馈_用户中心_给力百货 - 创意生活零售平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品" href="" />
+<% end%>
+<div id="global_body">
+   
+      	
+	
+	<!--<div id="about_top_line"><a href=""><img src="/themes/default//themes/default/imgs/help/about_ours_btn.gif" /></a><a href=""><img src="/themes/default/imgs/help/quwan_ued_btn.gif" /></a><a href=""><img src="/themes/default/imgs/help/help_center_btn.gif" /></a><span id="plate"></span></div>-->
+	
+<div id="about_left_box">
+        <ul class="about_left_list">
+        <%ArticleCategory.find_by_name("关于我们").articles.each do |article|%>
+        	            <li class='about_left_list_li'><a href="/about/<%=article.id%>" objFlag = "<%=article.id%>">·<%=article.title%></a></li>
+        <%end%>
+
+
+                      <li class='about_left_list_li'><a href="/advice" objFlag = "advice">·意见反馈</a></li>
+                 </ul>
+  </div>
+
+<div id="about_right_box">
+	  
+	  
+      <div id="about_right_view_position">您当前的位置：<a href="./">首页</a>&nbsp;&gt;&nbsp; 关于我们&nbsp;&gt;&nbsp; 意见反馈</div>      	    	  <div class="about_right_title"><img src="/themes/default/imgs/about/about_advice_title.gif" width="167" height="20" /></div>
+
+      <div class="about_text_box">
+          <p>您对给力百货的使用体验有任何建议？<br/>
+          您发现了给力百货的页面错误？<br/>
+          您希望给力百货增加哪些商品？<br/>
+          给力百货非常希望听到您的宝贵想法和建议，我们将在24小时内给您答复。<br/>
+          如果您留下真实姓名与联系方式，将有机会获得给力百货送出的小礼品。</p>
+
+          </div>
+      <div id="about_info_edit_box_other">
+    	<ul class="about_info_edit_box_other_index">
+        	<li id="leave_message_li_1" class="about_info_edit_box_other_index_li_selected">给给力百货留言</li>
+        </ul>
+    	<div id="clear"></div>
+    	<form action="/advice" method="post" name="formMsg" onSubmit="return submitMsg()">
+                     <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+        <div class="about_leave_message_box">
+
+        	<textarea name="msg_content" id="msg_nologin" cols="" rows="" ></textarea>
+        </div>
+        <input name="msg_type" type="hidden" value="0" />
+		<input name="msg_title" type="hidden" size="30" value="意见反馈"/>
+		<input type="hidden" name="act" value="act_add_message_nologin" />
+    </div>
+            <div class="about_text_box" style="display:none;"><span>请输入验证码：
+        <span><input type="text" size="8" name="captcha"  />
+        <!--<img src="captcha.php?952987291" alt="captcha" style="cursor: pointer;height:22px;vertical-align:middle;padding-bottom:6px;" onClick="this.src='captcha.php?'+Math.random()" />-->
+	</span>
+        
+        <div id="clear"></div></div>
+          <div id="about_right_btn_box"><input type="image" src="/themes/default/imgs/about/about_fabiao_btn.gif" id="submitMsg" /></div>
+    </form>	          </div>
+    <div id="clear"></div>
+</div>
+<%content_for :bodyfoot do %>
+<!--[if IE 6]><script type="text/javascript">try {document.execCommand('BackgroundImageCache', false, true);} catch(e) {}</script><![endif]-->
+<div id="global_foot_white"></div>
+<script type="text/javascript" src="/themes/default/js/js-clib.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/article.js" charset="UTF-8"></script>
+<%end%>
+<%content_for :outhtml do%>
+<script type="text/javascript">
+$(document).ready(function(){
+    stepUserCenterAction('advice');//设置活动menu
+	  setHeadFlowNum();//购物车数量
+             setHeadUserStatus();// 检测是否登录
+
+});
+</script>
+<%end%>

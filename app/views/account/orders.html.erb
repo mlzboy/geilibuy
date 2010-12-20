@@ -1,0 +1,210 @@
+<%content_for :headmeta do%>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="pragma" content="no-cache"/>
+<meta name="pagename" content="tuan" />
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/>
+<%end%>
+<%content_for :headtitle do%>
+<title>我的订单 - 给力团 创意百货天天团 - 给力百货</title>
+<%end%>
+<% content_for :headstyle do %>
+<!--style>
+html {filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity: 0.5; opacity: 0.5;}
+html {filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);}
+</style-->
+<link href="/themes/default/css/tuan_public.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_ucener.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_others.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_reglogin.css" rel="stylesheet" type="text/css" />
+<%end%>
+<%content_for :headother do%>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" />
+<link rel="alternate" type="application/rss+xml" title="RSS|我的订单 - 给力团 创意百货天天团 - 给力百货" href="" />
+<%end%>
+<%content_for :headjs do%>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/hotkeys.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_divpop.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_user.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_account.js" charset="UTF-8"></script>
+<script>
+function order_cancle(sn){
+	if (confirm("确定删除T"+sn+"订单?"))
+	{
+		window.location.href="/tuan/order_cancle/"+sn;
+	}
+	else
+	{
+		return false;
+	}
+
+
+}
+$(document).ready(function(){
+
+  	// 检测是否登录
+	setTuanHeadUserStatus();
+
+});
+</script>
+<%end%>
+<div class="navtip ">
+</div>
+
+<div id="main">
+
+
+<div id="left" class="uc_left">
+<div class="ucoption">
+  <ul class="ucnav">
+    <li class="ucnav_off ucnav_on"><a href="/tuan/account/orders">我的订单</a></li>
+    <li class="ucnav_off "><a href="/tuan/account/invites">我的邀请</a></li>
+    <li class="ucnav_off "><a href="/tuan/account/points">我的积分</a></li>
+    <li class="ucnav_off "><a href="/tuan/account/credit">现金账户</a></li>
+    <li class="ucnav_off "><a href="/tuan/account/settings">账户设置</a></li>
+  </ul>
+</div>
+<div id="order_list" class="zone">
+<div class="leftbar">我的订单</div>
+<table cellspacing="0" cellpadding="0" border="0" width="100%" class="orderlist">
+  <tr class="oltd_even">
+    <th align="center">订单号</th>
+    <th align="center" width="180"> 团购商品</th>
+    <th align="center"> 总价</th>
+    <th align="center"> 下单时间</th>
+    <th align="center" width="63"> 订单状态 </th>
+    <th align="center" width="65">操作</th>
+  </tr>
+<%
+def show_order_link(order)
+	if order.current_order_status.value==1
+		%Q{<span class="passed">T#{order.sn}</span>}
+	else
+		%Q{<a href="/tuan/order_detail/#{order.sn}" class="blue">T#{order.sn}</a>}
+	end
+end
+#在application_helper中可能有1,2两个类似函数
+def show_order_status3(order)
+	logger.debug("GGGGGGG00000000000------------------")
+	logger.debug(order.current_order_status.value)
+	if order.current_order_status.value >= 64
+		%Q{<span class="passed">#{order.current_order_status.name}</span>}
+	elsif order.current_order_status.value==1
+		%Q{<span class="unpay">未付款</span>}
+	else
+		%Q{#{order.order_status}}
+	end
+end
+def show_operate(order)
+	v=order.current_order_status.value
+	if v==1
+		%Q{<a class="blue" href="#{gen_tuan_order_pay_link(order,request.ip)}">付款</a> <a class="blue" href="javascript:void(0)" onClick="order_cancle('#{order.sn}');">取消</a>}
+	elsif v<64
+    logger.debug("VVVVVVVVVVVVVVVVVVVV---------------")
+    logger.debug(v)
+		r=%Q{<a class="blue" href="/tuan/order_detail/#{order.sn}">查看</a> }
+    if order.product_rank==-2
+      r+=%Q{<a class="red" recid="#{order.id}" groupbuyid="205" goodsid="10599" commentid="" rank="" content="" id="red_#{order.id}" href="javascript:void(0)">       评价
+       </a>}
+    else
+      r+=%Q{<span style='color: #C90809;'>已评价</span>}
+    end
+    r
+	else
+		""
+	end
+end
+%>
+
+  <%if @orders.size==0%>
+  <tr>
+    <td align="center" colspan="6">您还没有下订单</td>
+  </tr>
+  <%end%>
+  <%@orders.each do |order|%>
+      <tr<%= raw cycle("",' class="oltd_odd"')%>>
+    <td align="center"><%=raw show_order_link(order)%></td>
+    <td align="left" width="180"><a title="<%=order.tuan.sub_title%>" target="_blank" href="<%=mytuan_url(order.tuan)%>" class="blue"><%=truncate order.tuan.sub_title,:length=>36%></a></td>
+    <td align="center">¥<%=price(order.total_price)%></td>
+    <td align="center"><%=order.created_at.strftime("%Y-%m-%d")%></td>
+    <td align="center"><%=raw show_order_status3(order)%></td>
+        <td align="center"><%=raw show_operate(order)%></td>
+     </tr>
+  <%end%>
+
+      </table>
+</div>
+</div>
+
+<div style="height: 40px;"> </div>
+<div id="right">
+  <div class="zone">
+    <h4>什么是已过期订单？</h4>
+    <p>如果某个订单未及时付款，那么等团购结束时就无法再付款了，这种订单就是过期订单。</p>
+    <h4>哪种订单可以评价？</h4>
+    <p> 只有已付款并发货的订单才可以评价，参与评价可以获得积分奖励哦！</p>
+  </div>
+</div>
+
+
+
+<div class="clear"></div>
+</div>
+<%content_for :bodyfoot do%>
+<dl class="pop_dl" id="pol_dl_mail">
+  <dt><span>关闭</span></dt>
+  <dd>
+    <ul class="bmail_ok">
+      <li>
+        <h4>邮件订阅成功！</h4>
+        <span>给力团的优惠信息将每天及时发送到您的邮箱。</span></li>
+
+      <li>• 收不到邮件？有可能被误判为垃圾邮件了，请到垃圾邮件文件夹找找。</li>
+      <li>• 如不想继续收给力团每日提醒邮件，您可以在邮件中随时取消订阅。</li>
+    </ul>
+  </dd>
+</dl>
+<div id="popbg"></div>
+<div style="display:none"><!--<script src='http://w.cnzz.com/c.php?id=30035654' language='JavaScript' charset='gb2312'></script>--></div>
+
+<dl class="pop_dl">
+    <dt><b><strong>我要评价</strong></b><span id="pingclose">关闭</span></dt>
+    <dd>
+        <ul class="uc_plbox">
+            <li>给本商品打分<br />
+              <span class="stars" id="stars">
+
+            	<a></a>
+                <a></a>
+                <a></a>
+                <a></a>
+                <a></a>
+                <font id="pingarr"></font><input type="hidden" name="pingvar" id="pingvar" value="-1">
+            </span>
+
+              </li>
+
+            <li>评论<br />
+              <label>
+                <textarea name="textarea" id="pingcontent" cols="33" rows="5" onkeyup="lentxt(0,200,'#pingcontent');" onclick="lentxt(1,200,'#pingcontent');">评论不能超过200个字</textarea>
+              </label>
+            </li>
+            <li>
+              <input type="hidden" name="pingorderid" id="pingorderid" value="">
+              <input type="hidden" name="pinggroupbuyid" id="pinggroupbuyid" value="">
+
+              <input type="hidden" name="pinggoodsid" id="pinggoodsid" value="">
+              <input type="hidden" name="pingcommentid" id="pingcommentid" value="">
+              <input type="submit" value="提交" class="dbtn com_btn" id="pingsubmit" /></li>
+            <li><span>评价即可获赠20积分<br />您可以去给力百货使用所得积分，<a class="blue" href="http://www.geilibuy.com/points.php" target="_blank">查看详情</a></span></li>
+        </ul>
+    </dd>
+</dl>
+
+<%end%>
+

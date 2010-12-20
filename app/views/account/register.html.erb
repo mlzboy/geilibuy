@@ -1,0 +1,139 @@
+<%content_for :headmeta do%>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="pragma" content="no-cache"/>
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/>
+<meta http-equiv="expires" content=""/>
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+<meta name="pagename" content="tuan" />
+<%end%>
+<%content_for :headtitle do%>
+<title>注册 - 给力团 创意百货天天团 - 给力百货</title>
+<%end%>
+<% content_for :headstyle do %>
+<!--style>
+html {filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity: 0.5; opacity: 0.5;}
+html {filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);}
+</style-->
+<link href="/themes/default/css/tuan_public.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_reglogin.css" rel="stylesheet" type="text/css" />
+
+<%end%>
+<%content_for :headjs do%>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/hotkeys.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_divpop.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_user.js" charset="UTF-8"></script>
+<%end%>
+<div class="navtip"></div>
+
+<div id="main">
+			
+<div id="left">
+    <div class="zone">
+      <div class="leftbar">注册<font>或者</font><font><a href="login" class="red">登录</a></font>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#848484;font-size:12px;font-weight:normal;">您可以用给力百货账号直接登录</span></div>
+      <div class="reglogin_box">
+              <form id="formUser" action="/usercenter/register<%=show_tuan_register_back_url%>" method="post" name="formUser">
+
+        <!--<form id="formUser" action="actregister" method="post" name="formUser">-->
+      	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+           <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+        <tr>
+          <td width="18%" height="48" align="right" valign="middle"><h4>Email：</h4></td>
+          <td width="40%" valign="middle">
+          <div class="mailline">
+          <input type="text"  class="inputs rlinput uemail" autocomplete="off" name="email" value="" id="email" />
+          <dl class="maillist">
+
+        	<dt>请选择邮箱类型</dt>
+            <dd class="inputmail"></dd>
+            <dd addr="163.com">@163.com</dd>
+            <dd addr="126.com">@126.com</dd>
+            <dd addr="263.com">@263.com</dd>            
+            <dd addr="qq.com">@qq.com</dd>
+            <dd addr="hotmail.com">@hotmail.com</dd>
+
+            <dd addr="gmail.com">@gmail.com</dd>
+            <dd addr="sohu.com">@sohu.com</dd>
+            <dd addr="chinaren.com">@chinaren.com</dd>
+            <dd addr="yahoo.com.cn">@yahoo.com.cn</dd>
+        </dl><input type="hidden" name="prevIndex" class="prevIndex" value="-1" /> 
+        </div>
+          </td>
+
+          <td width="42%" valign="middle"><span></span></td>
+        </tr>
+        <tr>
+          <td height="48" align="right" valign="middle"><h4>昵称：</h4></td>
+          <td valign="middle"><input type="text"  name="nick" id="nick"  class="inputs rlinput psd_input" value="" /></td>
+          <td valign="middle"><span></span></td>
+        </tr>
+        <tr>
+
+          <td height="48" align="right" valign="middle"><h4>密码：</h4></td>
+          <td valign="middle"><input type="password" name="password" id="password" class="inputs rlinput psd_input" value="" /></td>
+          <td valign="middle"><span></span></td>
+        </tr>
+        <tr>
+          <td height="48" align="right" valign="middle"><h4>确认密码：</h4></td>
+          <td valign="middle"><input  type="password"   name="confirm_password" id="confirm_password" class="inputs rlinput psd_input" value="" /></td>
+          <td valign="middle"><span></span></td>
+
+        </tr>
+        <!--<tr>-->
+        <!--  <td height="48" align="right" valign="middle"><h4>输入验证码：</h4></td>-->
+        <!--  <td valign="middle">-->
+        <!--  <input type="text" id="captcha" name="captcha" class="inputs yzm_input"><img src="http://www.geilibuy.com/captcha.php?1223828974" alt="看不清？请点击！" id="captcha1" style="cursor:pointer;" onClick="this.src='http://www.geilibuy.com/captcha.php?'+Math.random()" />-->
+        <!--    <a onClick="$('#captcha1').click();"  tabindex="-1" class="blue" style="cursor:pointer;">看不清，换一张？</a></td>-->
+        <!--  <td valign="middle"><span></span></td>-->
+        <!--</tr>-->
+
+        <tr>
+          <td height="30" align="right" valign="middle">&nbsp;</td>
+          <td valign="middle"><input name="bookcheck" type="checkbox" class="checkbox" id="bookcheck"  value="1" checked="checked" />
+          <label for="bookcheck">订阅每日最新团购信息</label></td>
+          <td valign="middle">&nbsp;</td>
+        </tr>
+        <tr>
+          <td height="30" align="right" valign="middle"></td>
+
+          <td valign="middle"><input name="agreement" type="checkbox" id="agreement_input"  value="1" class="autologin" checked="checked" />
+           <label for="xieyi">已阅读并接受<a href="http://www.geilibuy.com/tuan/about/articles-401.html"  tabindex="-1"  class="blue">《给力团用户协议》</a></label></td>
+          <td valign="middle"><span></span></td>
+        </tr>
+        <tr>
+          <td height="48" align="right" valign="middle">&nbsp;</td>
+          <td valign="middle"><input type="button" onclick="checkSignupForm()" value="注册" class="dbtn reg_btn" /><span></span></td>
+          <td valign="middle"><span></span></td>
+
+        </tr>
+      </table>
+      <input type="hidden" name="back_act" value="" />
+    </form>
+      </div>
+    </div>
+  </div>   
+  <div id="right">
+    <div class="zone">
+
+    	<h5>已经有给力团或给力百货账号？</h5><br />
+    	<span style="font-size:14px;">请直接<a class="blue" href="login">登录</a></span>
+    </div>
+     <div class="zone">
+    	<h5>新浪微博账号可以直接登录</h5>
+    <a href="javascript:void(0)" onclick="window.open('http://api.t.sina.com.cn/oauth/authorize?display=popup&oauth_token=647bc78af86bf8584ee30e08820a3ca5&oauth_callback=http%3A%2F%2Fwww.geilibuy.com%2Fuser_combine_respond.php');" style="text-decoration:none;"><input type="button" value="" class="dbtn sina_btn" /></a>
+    </div>
+
+    
+    <form id="sinaweibologinForm" name="sinaweibologinForm" action="combine" method="post">
+      <input type="hidden" name="wbid" value="" id="wbid" />
+      <input type="hidden" name="wbcode" value="" id="wbcode" />
+      <input type="hidden" name="wbname" value="" id="wbname" />
+      <input type="hidden" name="back_act" value="" id="back_act" />
+    </form></div>						
+<div class="clear"></div>     
+</div>

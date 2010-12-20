@@ -1,0 +1,45 @@
+<% content_for :head do %>
+<%= javascript_include_tag "jquery.js" %>
+
+<%= javascript_include_tag "jquery.optionTree.js" %>
+<script type="text/javascript">
+$(function() {
+    var category_ids=[];
+    $.getJSON('/admin/categories/ajax_ids/<%=@product.category_id || "-1"%>',function(data){
+        category_ids=eval(data);
+    var options = {
+            empty_value: 'null',
+            indexed: true,  // the data in tree is indexed by values (ids), not by labels
+            on_each_change: '/admin/categories/ajax_sub', // this file will be called with 'id' parameter, JSON data must be returned
+            set_value_on: 'each', // we will change input value when every select box changes
+            choose: function(level) {
+                return 'Choose level ' + level;
+            },
+            preselect: {'category_id':category_ids}, // array of default values - if on any level option value will be in this list, it will be selected
+                                                                        // be careful of variable types - '111' !== 111
+            preselect_only_once: false
+
+        };
+
+        var displayParents = function() {
+            var labels = []; // initialize array
+            $(this).siblings('select') // find all select
+                           .find(':selected') // and their current options
+                             .each(function() { labels.push($(this).text()); }); // and add option text to array
+            $('#demo6-result').html($('<div>').text(this.value + ':' + labels.join(' > ')));  // and display the labels
+            }
+
+    $.getJSON('/admin/categories/ajax_sub', function(tree) { // initialize the tree by loading the file first
+        $('input[name=category_id]').optionTree(tree, options).change(displayParents);
+    });        
+        
+        });
+
+});
+</script>
+<%end%>
+ <div class="field">
+<input type="text" name="category_id" />
+</div>
+<div class="results" id="demo6-result"></div>
+  </div>

@@ -1,0 +1,22 @@
+.out_box { border:1px solid #e2e2e2; padding:30px; text-align:center; margin-bottom:20px; padding-bottom:60px;}
+.error_tip { font-size:20px; font-weight:bold; font-family:microsoft yahei; color:#000; line-height:35px;background:url(/themes/default/imgs/global/404.gif) no-repeat center left; padding-left:50px;display:inline-block;height:35px; }
+.out_box img { margin-bottom:10px;}
+.out_box ul { text-align:left; margin-left:295px; line-height:20px; color:#999;}
+.out_box a { display:inline-block; margin-left:5px; height:28px; width:142px; line-height:28px; color:#0187c5; background:url(/themes/default/imgs/ucenter/btn_bg.gif) no-repeat top left;margin-top:30px;}
+.out_box a:link {color:#0187c5;}
+.out_box a:visited {color:#0187c5;}
+.out_box a:hover{color:#0187c5;}
+
+.pop_btn {display:inline-block; text-align:center; margin:0 10px; color:#fff;font-weight:bold; height:24px;line-height:24px; *line-height:26px !important; *line-height:22px;  width:108px;background:url(/themes/default/imgs/global/bg.gif) no-repeat -165px -313px; border:none;}
+
+.ok_title { display:block; height:25px; padding-left:30px; margin-bottom:10px; width:125px;background:url(/themes/default/imgs/flow/flow_bg.gif) no-repeat -288px -256px; line-height:25px; font-size:14px; font-weight:bold; color:#000;}
+.tipline1 {  border:1px solid #F1CE98; background-color:#FFFCEB;  text-align:center; padding:25px 0 15px 0;} 
+.ok_title1 { width:320px; font-size:16px; display:inline-block;}
+.wenxin { border:1px solid #e2e2e2; padding:10px; }
+		.wenxin dt { color:#141414; font-weight:bold; font-size:16px; padding-bottom:10px;font-family:microsoft yahei; }	
+		.wenxin dd { line-height:24px;color:#7e7e7e;}
+			.wenxin dd span { color:#ff0000;}
+			.wenxin dd a { color:#0000ff;}
+			.wenxin dd a:link { color:#0000ff;}
+			.wenxin dd a:visited { color:#0000ff;}
+			.wenxin dd a:hover { color:#0000ff;}

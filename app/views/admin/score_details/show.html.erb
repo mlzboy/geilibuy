@@ -1,0 +1,26 @@
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @score_detail.user_id %>
+</p>
+
+<p>
+  <b>Score:</b>
+  <%= @score_detail.score %>
+</p>
+
+<p>
+  <b>Memo:</b>
+  <%= @score_detail.memo %>
+</p>
+
+<p>
+  <b>Cost:</b>
+  <%= @score_detail.cost %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_score_detail_path(@score_detail) %> |
+<%= link_to 'Back', admin_score_details_path %>

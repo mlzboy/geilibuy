@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<%if content_for?(:headmeta) %>
+<%= yield(:headmeta) %>
+<%else%>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+<% end %>
+
+<%if content_for?(:headtitle) %>
+<%= yield(:headtitle) %>
+<%else%>
+<title>收货地址_用户中心_给力百货 - 创意生活零售平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品</title>
+<%end%>
+
+<%if content_for?(:headother) %>
+<%= yield(:headother) %>
+<%else%>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" />
+<link rel="alternate" type="application/rss+xml" title="RSS|收货地址_用户中心_给力百货 - 创意生活零售平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品" href="" />
+<%end%>
+
+<%if content_for?(:headstyle) %>
+<%= yield(:headstyle) %>
+<%else%>
+<link href="/themes/default/css/header.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/user.css" rel="stylesheet" type="text/css" />
+<%end%>
+<%if content_for?(:headjs) %>
+<%= yield(:headjs) %>
+<%else%>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/js-clib.js" charset="UTF-8"></script>
+
+<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/header.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/user.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/flow.js" charset="UTF-8"></script>
+<%end%>
+</head>
+<body>
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+
+<%if content_for?(:bodymenu) %>
+<%= yield(:bodymenu) %>
+<%else%>
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<%=render :partial=>"header",:locals=>{:category_id=>-1}%>
+<% end %>
+
+
+<div id='main'>
+
+
+ <div class="top_nav">您当前的位置：<a href=".">首页</a> <code>&gt;</code> <a href="/usercenter/">用户中心</a> <code>&gt;</code> <span>收货地址</span></div>  <div id="left_box">
+
+
+
+<span id="left_title"></span>
+<ul class="left_ul">
+  <li><a href="/usercenter/welcome" objFlag = "default">欢迎页</a></li>
+</ul>
+<ul class="left_ul">
+  <li><a href="/usercenter/order_list" objFlag = "order_list">我的订单</a></li>
+  <li><a href="/usercenter/favorites" objFlag = "collection_list">我的收藏夹</a></li>
+  <li><a href="/usercenter/bought_products" objFlag = "bought_goods">购入的商品</a></li>
+
+  <li><a href="user.php?act=booking_list" objFlag = "booking_list">缺货登记</a></li>
+  <li><a href="/usercenter/postsale_comments" objFlag = "comment_list_new">商品评论</a></li>
+  <li><a href="/usercenter/presale_consultings" objFlag = "comment_list">购买咨询</a></li>
+  <li><a href="/usercenter/upload_photos" objFlag = "goods_pic">商品相册</a></li>
+</ul>
+<ul class="left_ul">
+  <li><a href="/usercenter/vipcard" objFlag = "vipcart">我的打折卡</a></li>
+
+  <li><a href="/usercenter/coupons" objFlag = "bonus">购物优惠券&nbsp;/&nbsp;礼品卡</a></li>
+  <li><a href="/usercenter/scores" objFlag = "points">我的积分</a></li>
+  <li><a href="/usercenter/invites" objFlag = "invite">抽奖总动员</a></li>
+</ul>
+<ul class="left_ul">
+  <li><a href="/usercenter/account" objFlag = "money_account">我的现金账户</a></li>
+</ul>
+
+<ul class="left_ul">
+  <li><a href="/usercenter/address" objFlag = "address_list">收货地址</a></li>
+  <li><a href="/usercenter/profile" objFlag = "profile">编辑个人档案</a></li>
+  <li><a href="/usercenter/mod_password"  objFlag = "reset_password">修改密码</a></li>
+</ul>
+
+                             <%=render 'history'%>
+
+
+        <div class="clear"></div>
+  </div>
+  <div id="right_box">
+
+
+
+
+
+
+
+
+
+
+<%=yield%>
+
+
+
+
+
+
+  </div>
+
+<div id='clear'></div>
+</div>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<div id="foot">
+	<div id="footer">
+    	<div id="phone"><img src="/themes/default/imgs/global/bg.gif" /></div>
+        <div id="help_box">
+            <dl class="help">
+                <dt><span class="help1"></span></dt>
+
+                <dd><a target="_blank" href="http://www.geilibuy.com/article-132.html">网站购物流程</a></dd>
+                <dd><a target="_blank" href="http://www.geilibuy.com/article-57.html">会员积分计划</a></dd>
+                <dd><a target="_blank" href="http://www.geilibuy.com/article-133.html">优惠券/礼品卡说明</a></dd>
+                <dd><a target="_blank" href="http://www.geilibuy.com/article-334.html">常见问题</a></dd>
+            </dl>
+            <dl class="help">
+                <dt><span class="help2"></span></dt>
+
+                <dd><a target="_blank" href="http://www.geilibuy.com/article-13.html">支付方式</a></dd>
+                <dd><a target="_blank" href="http://www.geilibuy.com/article-135.html">发票制度说明</a></dd>
+           </dl>
+            <dl class="help">
+                <dt><span class="help3"></span></dt>
+                <dd><a target="_blank" href="http://www.geilibuy.com/article-14.html">配送方式</a></dd>
+                <dd><a target="_blank" href="http://www.geilibuy.com/area.php">货到付款支持城市</a></dd>
+                <dd><a target="_blank" href="http://www.geilibuy.com/article-15.html">配送收费标准</a></dd>
+
+                <dd><a target="_blank" href="http://www.geilibuy.com/article-16.html">配送时间保证</a></dd>
+
+            </dl>
+            <dl class="help">
+                <dt><span class="help4"></span></dt>
+                <dd><a target="_blank" href="http://www.geilibuy.com/article-136.html">如何办理退换货</a></dd>
+                <dd><a target="_blank" href="http://www.geilibuy.com/article-137.html">如何退款</a></dd>
+                <dd><a target="_blank" href="http://www.geilibuy.com/article-29.html">联系客服</a></dd>
+            </dl>
+             <dl class="help">
+
+                <dt><span class="help5"></span></dt>
+                <dd><a target="_blank" href="http://www.geilibuy.com/article-52.html">给力百货招聘</a></dd>
+                <dd><a target="_blank" href="http://www.geilibuy.com/article-94.html">加入给力百货设计师</a></dd>
+                <dd><a target="_blank" href="http://www.geilibuy.com/article-48.html">加入给力百货代理商</a></dd>
+                <dd><a target="_blank" href="http://www.geilibuy.com/article-91.html">加入给力百货供应商</a></dd>
+            </dl>
+            <div class="clear"></div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="guarantee"><a class="guar_1"></a><a class="guar_2" ></a><a class="guar_3"></a></div>
+        <div id="links"><a target="_blank" href="http://www.geilibuy.com/article-21.html">关于我们</a><span>|</span><a target="_blank" href="http://www.geilibuy.com/article-138.html">联系我们</a><span>|</span><a target="_blank" href="http://www.geilibuy.com/article-139.html">友情链接</a><span>|</span><a target="_blank" href="http://www.geilibuy.com/article-22.html">使用协议</a><span>|</span><a target="_blank" href="http://www.geilibuy.com/article-48.html">大宗购买</a><span>|</span><a target="_blank" href="http://www.geilibuy.com/map.html">网站地图</a><span>|</span><a target="_blank" href="http://www.geilibuy.com/article-53.html">投诉与建议</a></div>
+        <div id="honor"><a target="_blank" class="honor1" href="http://huodong.ebrun.com/2009b2c/lssc50.php"></a><a target="_blank" class="honor2" href="http://huodong.ebrun.com/2009b2c/xfz100.php"></a><a target="_blank" class="honor3" href="http://www.geilibuy.com/article-180.html"></a><a target="_blank" class="honor4" href="http://gongzhong.sh.gov.cn/VoteList.aspx?query=9_0_1"></a><a target="_blank" class="honor5" href="http://www.geilibuy.com/article-270.html"></a><a target="_blank" class="honor6" href="http://www.paidai.com/forum/special.php"></a></div>
+        <div id="copyright">北京市公安局海淀分局备案编号 1101032138 | <a href="http://www.miibeian.gov.cn" target="_blank">京ICP证100388号</a><br/>©给力百货 2008-2010 北京玩者天下网络技术有限公司 版权所有<br/><a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202010082000008" target="_blank"><img width="40" height="48" src="/themes/default/imgs/global/gs.gif" /></a></div>
+
+  </div>
+</div>
+<div class="scroll_div"></div>
+<!--[if IE 6]><script type="text/javascript">try {document.execCommand('BackgroundImageCache', false, true);} catch(e) {}</script><![endif]-->
+<!--<script src='http://w.cnzz.com/c.php?id=30035654' language='JavaScript' charset='gb2312'></script>-->
+<div id="global_foot_white"></div>
+</body>
+</html>
+<%if content_for?(:outhtml) %>
+<%= yield(:outhtml) %>
+<%else%>
+<script type="text/javascript">
+  stepUserCenterAction('address_list');//设置活动menu
+  setHeadFlowNum();//购物车数量
+  
+        setHeadUserStatus();// 检测是否登录
+
+</script>
+<% end %>
+

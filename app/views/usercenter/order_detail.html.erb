@@ -1,0 +1,95 @@
+<div class="right_top"> <span class="welcome myorder"></span> <span class="goon_btn"><a style="color:#fff;" href="/" title="首页">继续购物</a></span> </div>
+<div class="right_line"> <span><strong style="color:#000;">订单号：<%=@order.sn%> <%=show_order_status2(@order.current_order_status.value)%></strong> <a href="/usercenter/order_list">[返回订单列表]</a></span>
+  <ul class="order_info">
+    <li>收货人：<%=@order.consignee%></li>
+    <li>收货地址：<%=@order.address%></li>
+    <li>电话：<%=@order.tel%></li>
+    <li>手机：<%=@order.mobile%></li>
+    <li>送货方式：<%=@order.delivery_name%>            <!--<font color=red>(申通快递)</font>-->
+          </li>
+   <%if @order.current_order_status.value>=2%> 
+        <li>发货单号：
+      
+      <span>368717546607</span>
+                                                      <form name="trackForm" method="post" onSubmit="return checkSubmitForm();" action="http://218.83.161.253:8082/jump.asp?wen=368717546607" target="_blank">
+        <input name="wen" type="hidden" value="368717546607"/>
+        <input name="action" type="hidden" value="chk"/>
+        <span class="send_order_span"> <a href="javascript:document.trackForm.submit();">[查看配送状态]</a> </span>
+      </form>
+                            </li>
+  <%end%>
+        <li>付款方式：<%=@order.payment_name%></li>
+<li style="text-align:center;">
+  <%if @order.current_order_status.value==1%>
+<div style="text-align:center">
+    <a href="<%=raw gen_pay_link(@order,request.remote_ip)%>"><img src="/themes/default/imgs/global/flow/pay.jpg"/></a>
+</div></br>
+<%end%>
+</li>
+<%if @order.order_statuses.size>1
+#@order.order_statuses.each do |status|
+OrderStatus.where(:order_id=>@order.id).group(:value).all.each do |status|
+  %>
+    <li><%=show_order_status(status.value)%>时间： <%=status.created_at.strftime("%Y-%m-%d %H:%M:%S")%></li>
+<%end
+end%>
+  </ul>
+</div>
+<div class="right_line"> <span><strong style="font-size:14px; color:#000;">[商品清单]</strong></span>
+  <table width="100%"  border="0" cellpadding="0" cellspacing="0" class="table">
+    <tr>
+      <td width="24%" height="30" align="center" valign="middle" class="td_top">商品名称</td>
+      <td width="11%" align="center" valign="middle" class="td_top">市场价</td>
+      <td width="21%" align="center" valign="middle" class="td_top">单价</td>
+      <td width="12%" align="center" valign="middle" class="td_top">花费积分</td>
+      <td width="11%" align="center" valign="middle" class="td_top">选购数量</td>
+      <td width="21%" align="center" valign="middle" class="td_top">单品小计</td>
+    </tr>
+    <%@order.order_products.each do |order_product|%>
+            <tr>
+      <td align="center" valign="middle" class="td">        <a href="<%=product_url(order_product.product_id)%>" target="_blank" title="<%=order_product.name%>"><%=truncate order_product.name,:length=>16%></a>
+        </td>
+      <td align="center" valign="middle" class="td"><%=price(order_product.p1)%>元</td>
+      <td align="center" valign="middle" class="td"><%=price(order_product.p2)%>元(省<%=price(order_product.p1-order_product.p2)%>元)</td>
+      <td align="center" valign="middle" class="td">&nbsp;</td>
+      <td align="center" valign="middle" class="td"><%=order_product.num%></td>
+      <td align="center" valign="middle" class="td"><%=price(order_product.num*order_product.p2)%>元</td>
+    </tr>
+             <%end%>
+             
+    <%@order.order_suites.each do |order_suite|%>
+            <tr>
+      <td align="center" valign="middle" class="td">        <a href="#" title="<%=order_suite.name%>"><%=truncate order_suite.name,:length=>16%></a>
+        </td>
+      <td align="center" valign="middle" class="td"></td>
+      <td align="center" valign="middle" class="td"><%=price(order_suite.suite_price)%>元</td>
+      <td align="center" valign="middle" class="td">&nbsp;</td>
+      <td align="center" valign="middle" class="td"><%=order_suite.num%></td>
+      <td align="center" valign="middle" class="td"><%=price(order_suite.num*order_suite.suite_price)%>元</td>
+    </tr>
+             <%end%>       
+             
+    <tr>
+      <td colspan="6" align="right" valign="middle" class="td td_sum" style="padding:10px;"><table  border="0" align="right" cellpadding="0" cellspacing="0" style="line-height:20px; white-space:nowrap;">
+          <tr>
+            <td align="left">(共计：<%=@order.products_num%>件玩物)</td>
+            <td align="right">合计金额：</td>
+            <td align="left"><%=price(@order.products_price)%>元 </td>
+          </tr>
+                    <tr>
+            <td align="right">&nbsp;</td>
+            <td align="right"> 配送费用：</td>
+            <td align="left"><span>+</span> <%=price(@order.delivery_price)%>元</td>
+          </tr>
+                     
+           
+           
+          <tr>
+            <td align="right">&nbsp;</td>
+            <td align="right"> 应付金额：</td>
+            <td align="left"><span>=</span> <span><%=price(@order.real_money)%>元</span></td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+</div>

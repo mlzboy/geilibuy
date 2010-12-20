@@ -1,0 +1,46 @@
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Sn:</b>
+  <%= @cash_order.sn %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @cash_order.user_id %>
+</p>
+
+<p>
+  <b>Tuangou:</b>
+  <%= @cash_order.tuangou %>
+</p>
+
+<p>
+  <b>Payment:</b>
+  <%= @cash_order.payment_id %>
+</p>
+
+<p>
+  <b>Ip:</b>
+  <%= @cash_order.ip %>
+</p>
+
+<p>
+  <b>Money:</b>
+  <%= @cash_order.money %>
+</p>
+
+<p>
+  <b>Payment name:</b>
+  <%= @cash_order.payment_name %>
+</p>
+
+<p>
+  <b>New scores:</b>
+  <%= @cash_order.new_scores %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_cash_order_path(@cash_order) %> |
+<%= link_to 'Back', admin_cash_orders_path %>

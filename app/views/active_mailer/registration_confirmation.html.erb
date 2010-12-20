@@ -1,0 +1,14 @@
+<%=@user.email%>您好！
+<pre>
+欢迎注册给力百货！
+
+这是一封给力百货发送的验证邮件，用来确认您的注册邮箱真实有效。如果您已经通过验证了，请忽略这封邮件。
+
+请点击以下链接(或者复制到您的浏览器)来验证你的邮件地址:
+<a href="http://www.15-1688.com:3000/usercenter/check?act=validate_email&hash=<%=@user.active_code%>&back_url=/lottery">
+http://www.15-1688.com:3000/usercenter/check?act=validate_email&hash=<%=@user.active_code%>&back_url=/lottery
+</a>
+
+邮箱验证成功后，您将得到给力百货为您赠送的抽奖“幸运点”，您可以使用“幸运点”参与给力百货抽奖总动员活动，抽奖过程完全免费，领取奖品也免收任何费用。 给力百货
+<%=Time.now.strftime("%Y-%m-%d")%>
+</pre>

@@ -1,0 +1,173 @@
+<%
+categories=header()
+%>
+<%search_ad1=ad_materials("文字","搜索框","")%>
+<%search_ad2=ad_materials("文字链","搜索框右侧","")%>
+<div id="head" onmouseover="$('.nav_pop').hide();$('.nav_a').removeClass('on');">    	
+    <div id="logo"><a title="给力百货" href="/"><img src="/themes/default/imgs/global/logo.gif" /></a></div> 
+    <div id="slogan"><a title="给力百货" href="http://www.geilibuy.com/article-18.html"><img src="/themes/default/imgs/global/bg.gif" /></a></div> 
+    <!--<div id="head_right"> -->
+    <!--       <ul class="head_user" style="display:none;"> -->
+    <!--      <li id="login"><a href="http://www.geilibuy.com/user.php?act=login&100000">登录</a></li> -->
+    <!--        <li>|</li> -->
+    <!--        <li id="register"><a href="http://www.geilibuy.com/user.php?act=register&100000">注册</a></li> -->
+    <!--        <li>|</li> -->
+    <!--        <li><a class="fav_a" href="javascript:myAddBookmark('给力百货 - 创意生活第一品牌：在线销售创意家居生活用品','http://www.geilibuy.com')">收藏本站</a></li> -->
+    <!--</ul> -->
+    <!--<ul class="head_user" style="display:none;"> -->
+    <!--        <li><span><strong><span id="nickname"></span>,</strong>欢迎光临给力百货!</span> -->
+    <!--          <a id="msg_a" href="http://www.geilibuy.com/user.php">&nbsp;</a> -->
+    <!--          </li> -->
+    <!--        <li>|</li> -->
+    <!--        <li id="mypop"> -->
+    <!--        	<a id="myquwan" href="http://www.geilibuy.com/user.php">我的给力百货</a> -->
+    <!--            <div id="my_pop">                                    	-->
+    <!--              <a href="http://www.geilibuy.com/user.php?act=order_list">我的订单</a> -->
+    <!--              <a href="http://www.geilibuy.com/user.php?act=points">我的积分</a> -->
+    <!--              <a href="http://www.geilibuy.com/user.php?act=collection_list">我的收藏夹</a> -->
+    <!--              <a href="http://www.geilibuy.com/user.php?act=money_account">现金账户</a>  -->
+    <!--            </div> -->
+    <!--        </li> -->
+    <!--        <li>|</li> -->
+    <!--        <li><a href="http://www.geilibuy.com/user.php?act=order_list">订单管理</a></li> -->
+    <!--        <li>|</li> -->
+    <!--        <li><a href="http://www.geilibuy.com/user.php?act=logout">退出</a></li> -->
+    <!--        <li>|</li> -->
+    <!--        <li><a class="fav_a" href="javascript:myAddBookmark('给力百货 - 创意生活第一品牌：在线销售创意家居生活用品','http://www.geilibuy.com')">收藏本站</a></li>            -->
+    <!--    </ul> -->
+    <!--<ul class="head_user"></ul> -->
+    <!--       <div id="head_other"> -->
+    <!--    	<div class="clear"></div> -->
+    <!--        <span class="tel_btn"></span> -->
+    <!--        <a class="raffle_btn" href="http://www.geilibuy.com/lottery.php"></a> -->
+    <!--        <a class="points_btn" href="http://www.geilibuy.com/points.php"></a>            -->
+    <!--        <span class="hotspan"></span>            -->
+    <!--    </div>       -->
+    <!--</div> -->
+    
+  <div id="head_right"> 
+            <ul class="head_user" style="display:none;"> 
+      <li id="login"><a href="/usercenter/login">登录</a></li> 
+      <li>|</li> 
+      <li id="register"><a href="/usercenter/register">注册</a></li> 
+      <li>|</li> 
+      <li><a class="fav_a" href="javascript:myAddBookmark('给力百货 - 创意生活第一品牌：在线销售创意家居生活用品','http://www.geilibuy.com')">收藏本站</a></li> 
+    </ul> 
+    <ul class="head_user" style="display:none;"> 
+      <li><span><strong><span id="nickname"></span>,</strong>欢迎光临给力百货!</span> <a id="msg_a" href="http://www.geilibuy.com/user.php">&nbsp;</a> </li> 
+      <li>|</li> 
+      <li id="mypop"> <a id="myquwan" href="/usercenter">我的给力</a> 
+        <div id="my_pop"> <a href="/usercenter/order_list"">我的订单</a> <a href="/usercenter/scores"">我的积分</a> <a href="/usercenter/favorites">我的收藏夹</a> <a href="/usercenter/account"">现金账户</a> </div> 
+      </li> 
+      <li>|</li> 
+      <li><a href="/usercenter/order_list">订单管理</a></li> 
+      <li>|</li> 
+      <li><a href="/usercenter/logout">退出</a></li> 
+      <li>|</li> 
+      <li><a class="fav_a" href="javascript:myAddBookmark('给力百货 - 创意生活第一品牌：在线销售创意家居生活用品','http://www.geilibuy.com')">收藏本站</a></li> 
+    </ul> 
+    <ul class="head_user"> 
+    </ul> 
+        <div id="head_other"> <a href="http://www.geilibuy.com/zhuanti/campus-agent.html" target="_blank" title="校园代理"><img height="32" width="100" src="/themes/default/imgs/global/head_campus.gif"></a> <a href="/score" target="_blank" title="积分商城"><img height="32" width="100" src="/themes/default/imgs/global/head_points.gif"></a> <a href="/lottery" target="_blank" title="免费抽奖"><img height="32" width="100" src="/themes/default/imgs/global/head_lottery.gif"></a> <a href="/tuan" target="_blank" title="给力百货团购"><img height="32" width="100" src="/themes/default/imgs/global/head_tuan.gif"></a> 
+      <div class="clear"></div> 
+      <!--<span class="tel_btn"></span>--> 
+    </div> 
+  </div> 
+
+    <div class="clear"></div> 
+</div> 
+<div id="navbox"> 
+    <div id="nav">   
+    	<ul class="nav_item"> 
+        	<li class="nav_li" style="border-left:none;"> 
+        	  <a class="index_a  <%="indexon_a" if category_id==-1%>" href="/"  title="首页" >首页</a> 
+        	</li>
+		<%categories.each_with_index{|category,idx|
+		    sub_sub_height=category.children.map {|sub_category| sub_category.children.size}
+		    sub_sub_height<<0 if sub_sub_height==[]
+		    logger.debug("================")
+		    logger.debug(sub_sub_height)
+		    sub_sub_height=32*sub_sub_height.max+42
+		    sub_height=sub_sub_height+20
+		    sub_width=category.children.size*128
+		    sub_width=128 if sub_width==0
+		    if idx==(categories.size-1)
+			sub_style='sytle="border-right:none;"'
+		    else
+			sub_style=""
+		    end
+		    %>
+        	              <li class="nav_li" <%=raw sub_style%>> 
+                          	<a class="nav_a <%="nava_on on" if category.id==category_id%>" href="<%=category_url(category.id)%>" title="" onmouseover="$('.nav_a').removeClass('on');$(this).addClass('on');$('.nav_pop').hide();$(this).parent().find('.nav_pop').show();"><%=category.name%></a> 
+                              <dl class="nav_pop pop_right" style="width:<%=sub_width%>px;height:<%=sub_height%>px;"  onmouseout="$(this).hide();$('.nav_a').removeClass('on');">
+				<%for sub_category in category.children%>
+                                  	<dd style="height:<%=sub_sub_height%>px;" onmouseover="$(this).parent().show();$(this).parent().parent().find('.nav_a').addClass('on');"> 
+                        <span><a href="<%=category_url(sub_category.id)%>" title="<%=category.name%>-<%=sub_category.name%>"><%=sub_category.name%></a></span>
+					<%for sub_sub_category in sub_category.children%>
+                                                <p><a href="<%=category_url(sub_sub_category.id)%>" title="<%=(category.name+"-"+sub_category.name+"-"+sub_sub_category.name)%>"><%=sub_sub_category.name%></a></p> 
+                                        <%end%>
+					    </dd>
+				<%end%>
+				 </dl> 
+            </li>
+		<%}%>
+ 
+                  </ul> 
+        <script> </script> 
+	<ul id="nav_cartbox"> 
+          <li class="nav_cart"> 
+          	<a class="nav_carta"  href="/shopping/cart">我的购物车(<font id="ECS_CARTINFO"></font>)</a> 
+            <div class="cart_pop"></div> 
+          </li> 
+          <li class="nav_check"><a class="" href="/shopping/cart">去结账</a></li>       
+	</ul>        
+    </div> 
+    <!--<div id="nav_off"></div>--> 
+</div> 
+	
+	
+	
+	
+	      
+    <div id="nav_off"> 
+      
+    <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
+		codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=10,0,0,0"
+		width="1" height="1" id="cache1" align="middle"> 
+		<param name="allowScriptAccess" value="sameDomain" /> 
+		<param name="allowFullScreen" value="false" /> 
+		<param name="movie" value="cache.swf" /> 
+		<param name="quality" value="high" /> 
+		<param name="bgcolor" value="#ff0000" /> 
+		<embed src="/cache.swf" quality="high" bgcolor="#ffffff" width="1" height="1"
+			id="cache2" align="middle" allowScriptAccess="always" allowFullScreen="false"
+			type="application/x-shockwave-flash"
+			pluginspage="http://www.adobe.com/go/getflashplayer_cn" /> 
+		</object> 
+    
+    </div> 
+</div> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<div class="sobox"> 
+	<div class="so"> 
+    	<ul class="so_ul"> 
+        	<li><a class="so_a1" href="/new"></a></li> 
+            <li><a class="so_a2" href="/promotion"></a></li> 
+            <li><a class="so_a3" href="/brands"></a></li> 
+            <li><a class="so_a4" href="/gift"></a></li> 
+        </ul> 
+       <form id="searchForm" name="searchForm" method="get" action="/search" onsubmit="return checkSearchFormAction();"> 
+        <span class="search">
+<%
+search_text=""
+search_text=search_ad1[0].text if search_ad1.size>0
+%>
+<input type="text" title="可输入商品名称、商品ID、商品品牌进行搜索" onblur="javascript:if(this.value=='')this.value='<%=search_text%>'" onfocus="javascript:if(this.value=='<%=search_text%>')this.value='';" value="<%=search_text%>" id="so_txt" name="keywords"><input id="so_btn" type="submit" id="searchbtn" value="" title="可输入商品名称、商品ID、商品品牌进行搜索" /> 
+        	                                                                    <%search_ad2.each do |material|%>
+										    <a href="<%=material.hyperlink%>"><%=material.text%></a>
+										    <%end%>
+                                        　
+        </span> 
+        </form> 
+	</div> 
+</div> 

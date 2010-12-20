@@ -1,0 +1,37 @@
+
+<h1>Listing votes</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Position</th>
+    <th>Parent</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th>count</th>
+  </tr>
+
+<% @votes.each do |vote| %>
+  <tr>
+    <td><%= vote.id %></td>
+    <td><a href="<%=show_vote_url(vote)%>"><%= vote.name %></a></td>
+    <td><%= vote.position %></td>
+    <td><%= vote.parent_id %></td>
+    <td><%= link_to 'Show', admin_vote_path(vote) %></td>
+    <td><%= link_to 'Edit', edit_admin_vote_path(vote) %></td>
+    <td><%= link_to 'Destroy', admin_vote_path(vote), :confirm => 'Are you sure?', :method => :delete %></td>
+    <th><%=show_vote_item_count(vote)%></th>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%#= link_to 'New Vote', new_admin_vote_path %>
+<%if params[:id].blank?%>
+<a href="/admin/votes/new">new vote topic</a>
+<%else%>
+<a href="/admin/votes/new?parent_id=<%=params[:id]%>">new vote item</a>
+<%end%>

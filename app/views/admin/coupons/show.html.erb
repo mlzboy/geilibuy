@@ -1,0 +1,66 @@
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @coupon.name %>
+</p>
+
+<p>
+  <b>Money:</b>
+  <%= @coupon.money %>
+</p>
+
+<p>
+  <b>Start time:</b>
+  <%= @coupon.start_time %>
+</p>
+
+<p>
+  <b>End time:</b>
+  <%= @coupon.end_time %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @coupon.user_id %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @coupon.status %>
+</p>
+
+<p>
+  <b>Kind:</b>
+  <%= @coupon.kind %>
+</p>
+
+<p>
+  <b>Code:</b>
+  <%= @coupon.code %>
+</p>
+
+<p>
+  <b>From:</b>
+  <%= @coupon.from %>
+</p>
+
+<p>
+  <b>Min money:</b>
+  <%= @coupon.min_money %>
+</p>
+
+<p>
+  <b>Min products num:</b>
+  <%= @coupon.min_products_num %>
+</p>
+
+<p>
+  <b>Memo:</b>
+  <%= @coupon.memo %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_coupon_path(@coupon) %> |
+<%= link_to 'Back', admin_coupons_path %>

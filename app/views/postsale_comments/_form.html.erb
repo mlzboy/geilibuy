@@ -1,0 +1,55 @@
+
+<!--xiao mao generator QQ:hi@15-1688.com-->
+<%= form_for([@postsale_comment]) do |f| %>
+  <% if @postsale_comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@postsale_comment.errors.count, "error") %> prohibited this postsale_comment from being saved:</h2>
+
+      <ul>
+      <% @postsale_comment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :content %><br />
+    <%= f.text_area :content,:cols=>40,:rows=>4 %>
+  </div>
+  <div class="field">
+    <%= f.label :value %><br />
+    <%= f.check_box :value %>
+  </div>
+  <div class="field">
+    <%= f.label :reply %><br />
+    <%= f.text_area :reply,:cols=>40,:rows=>4 %>
+  </div>
+  <div class="field">
+    <%= f.label :ip %><br />
+    <%= f.text_field :ip %>
+  </div>
+  <div class="field">
+    <%= f.label :creative %><br />
+    <%= f.text_field :creative %>
+  </div>
+  <div class="field">
+    <%= f.label :feature %><br />
+    <%= f.text_field :feature %>
+  </div>
+  <div class="field">
+    <%= f.label :quality %><br />
+    <%= f.text_field :quality %>
+  </div>
+  <div class="field">
+    <%= f.label :product_id %><br />
+    <%= f.text_field :product_id %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

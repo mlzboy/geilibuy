@@ -1,0 +1,123 @@
+<% content_for :headers do %>
+<%= javascript_include_tag 'jquery-1.3.1.min', 'jquery.Jcrop.min' %>
+<%= stylesheet_link_tag 'jquery.Jcrop' %>
+<script language="Javascript">
+<%
+pw,ph=@field.styles[:process].geometry.scan(/\d+/)
+arr=@field.styles.keys.reject{|k| k==:process}
+left=arr[1,arr.size]  
+for k in left
+  v=@field.styles[k]
+  w,h=v.geometry.scan(/\d+/)
+%>
+function showPreview_<%=k.to_s%>(coords)
+{
+	var rx = <%=w%> / coords.w;
+	var ry = <%=h%> / coords.h;
+	var ratio = <%= @model.avatar_geometry(@field_name,:original).width %> / <%= @model.avatar_geometry(@field_name,:process).width %>;
+	var w =Math.round(rx * <%= @model.avatar_geometry(@field_name,:process).width.to_i %>);
+	var h =Math.round(ry * <%= @model.avatar_geometry(@field_name,:process).height.to_i %>);
+	$('#preview_<%=k.to_s%>').css({
+		width: w + 'px',
+		height: h + 'px',
+		marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+		marginTop: '-' + Math.round(ry * coords.y) + 'px'
+	});
+  //$('#crop_x').val(Math.round(coords.x * ratio));
+  //$('#crop_y').val(Math.round(coords.y * ratio));
+  //$('#crop_w').val(Math.round(coords.w * ratio));
+  //$('#crop_h').val(Math.round(coords.h * ratio));
+}
+<%
+end
+k=arr.first
+v=@field.styles[k]
+w,h=v.geometry.scan(/\d+/)
+%>
+function showPreview(coords)
+{
+	var rx = <%= w %> / coords.w;
+	var ry = <%= h %> / coords.h;
+	var ratio = <%= @model.avatar_geometry(@field_name,:original).width %> / <%= @model.avatar_geometry(@field_name,:process).width %>;
+	var w =Math.round(rx * <%= @model.avatar_geometry(@field_name,:process).width.to_i %>);
+	var h =Math.round(ry * <%= @model.avatar_geometry(@field_name,:process).height.to_i %>);
+	$('#preview').css({
+		width:  w+ 'px',
+		height: h+ 'px',
+		marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+		marginTop: '-' + Math.round(ry * coords.y) + 'px'
+	});
+  $('#crop_x').val(Math.round(coords.x * ratio));
+  $('#crop_y').val(Math.round(coords.y * ratio));
+  $('#crop_w').val(Math.round(coords.w * ratio));
+  $('#crop_h').val(Math.round(coords.h * ratio));
+  //showPreview2(coords)
+  <%for elem in left%>
+  showPreview_<%=elem.to_s%>(coords);
+  <%end%>
+}
+
+
+$(function() {
+  $('#cropbox').Jcrop({
+      onSelect: showPreview,
+      onChange: showPreview,
+      setSelect:   [ 0, 0, <%= w %>, <%= h %> ],
+      aspectRatio: <%= w %>/<%= h %>
+    });
+  
+      $("#restore").click(function(){
+    	$("#form1").attr("action","/admin/crops/restore?model_name=<%=@model_name%>&field_name=<%=@field_name%>&id=<%=@id%>");
+    	$("#form1").submit();
+    
+    });
+});
+
+</script>
+<% end %>
+
+<p>
+  <b>Name:</b>
+
+</p>
+
+<p>
+<div style="float:left">
+  <%= image_tag @field.url(:process), :id => 'cropbox' %>
+</div>
+<div style="float:right;">
+<%
+arr=@field.styles.keys.reject{|k| k==:process}
+left=arr[1,arr.size]
+k=arr.first
+v=@field.styles[k]
+w,h=v.geometry.scan(/\d+/)
+%>
+  <p><%=w%>x<%=h%><p>
+<div style="width:<%= w %>px;height:<%= h %>px;overflow:hidden;border:1px solid;">
+  <%= image_tag @field.url(:process), :id => 'preview' %>
+</div>
+<%
+for k in left
+  v=@field.styles[k]
+  w,h=v.geometry.scan(/\d+/)
+%>
+	<p><%=w%>x<%=h%><p>
+	<div style="width:<%= w %>px;height:<%= h %>px;overflow:hidden;border:1px solid;">
+	  <%= image_tag @field.url(:process), :id => 'preview_'+k.to_s %>
+	</div>
+
+<%end%>
+</div>
+</p>
+<div style="clear:both;"></div>
+<form id="form1" name="form1" accept-charset="UTF-8" action="/admin/crops/update?model_name=<%=@model_name%>&field_name=<%=@field_name%>&id=<%=@id%>" method="post">
+   <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  <input id="crop_x" name="crop_x" size="30" type="text" /><br />
+  <input id="crop_y" name="crop_y" size="30" type="text" /><br />
+  <input id="crop_w" name="crop_w" size="30" type="text" /><br />
+  <input id="crop_h" name="crop_h" size="30" type="text" /><br />
+  <input id="crop" name="crop" type="submit" value="Crop!" />
+  <input id="restore" name="restore" type="button" value="restore!" />
+</form>
+

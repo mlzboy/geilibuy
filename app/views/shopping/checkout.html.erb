@@ -1,0 +1,709 @@
+<div id="global_body">
+    
+      
+<div class="step_box" id="step_2"><img src="/themes/default/imgs/flow/step-3.gif"/></div>
+<br/>
+
+    
+<!--    <form action="flow.php?step=done" method="post" name="theForm" id="theForm" onsubmit="return checkOrderForm(this)">-->
+    <!--<form action="/shopping/checkout" method="post" name="theForm" id="theForm" onsubmit="return checkLimitBuy(this)">-->
+        <form action="/shopping/checkout" method="post" name="theForm" id="theForm">
+            <input type="hidden" value="<%=@address.id%>" name="address_id" />
+                <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+
+      
+<div class="cart_title"> <span id="limit_top">收货人信息</span><a style="float:left; color:#0066cc; padding-top:10px; padding-left:10px;" href="/shopping/address_list">&lt;选择其他使用过的地址&gt;</a>
+
+  <p>有问题？请查看<a href="http://www.geilibuy.com/article.php?id=334" target="_blank">帮助中心</a>，或联系客服 400-88-16016</p>
+</div>
+<div class="cart_box order_item">
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="14%" align="right" valign="middle"><b>收货人姓名：</b></td>
+      <td width="88%" align="left" valign="middle"><%=@address.consignee%></td>
+
+    </tr>
+    <tr>
+      <td align="right" valign="middle"><b>详细地址：</b></td>
+      <td align="left" valign="middle"><%=@address.address%></td>
+    </tr>
+    <tr>
+      <td align="right" valign="middle"><b>电话：</b>
+
+        <input type="hidden" id="limitbuy_tel" name="limitbuy_tel" value="<%=@address.mobile || @address.tel%>"/></td>
+      <td align="left" valign="middle"><span style="position:relative"> <%=@address.mobile || @address.tel%>        <div id="tel_pop" class="pop_out" style="top:15px; left:0; width:700px;">
+          <div class="pop_in" style="width:678px;">
+            <div class="pop_top">
+              <div style="position: absolute; top: 0pt; right: 0pt;" id="close" class="close">关闭</div>
+            </div>
+            <table cellspacing="0" cellpadding="0" border="0" width="100%">
+
+              <tbody>
+                <tr>
+                  <td width="18%" height="20" align="right" valign="top" style="color:#ca110e; font-weight:bold; font-size:14px;"><img src="/themes/default/imgs/global/404.gif" width="42" height="29" />温馨提示：</td>
+                  <td width="82%" height="20" align="left" valign="top" style="font-size:14px; color:#666;">同一个收货人电话只能用来购买限量的下列商品：</td>
+                </tr>
+                <tr>
+                  <td height="20" align="center" valign="top"></td>
+                  <td height="20" align="left" valign="top" style="font-size:14px; color:#666;"><div id="limit_show"></div></td>
+
+                </tr>
+                <tr>
+                  <td height="10" colspan="2" align="center" valign="middle"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        </span></td>
+
+    </tr>
+  </table>
+</div>
+    
+    
+      <div class="cart_title"> <span>选择付款方式</span> </div>
+<div class="cart_box order_item">
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="14%" align="left" valign="middle"><b>
+        <input type="radio" name="wangyin" id="wangyin" value="radio" />
+        <input type="radio" name="wangyin" id="wangyin_dis" value="radio" style="display:none;"/><label for="wangyin">网上银行</label></b></td>
+      <td width="88%" align="left" valign="middle">通过国内各大银行，官方网站在线支付平台支付。<font color="red">（+20积分）</font></td>
+    </tr>
+    <tr id="wangyin_box"><!-- style="display:none;"-->
+      <td align="left" valign="middle">&nbsp;</td>
+      <td align="left" valign="middle">
+
+        <table width="90%" border="0" cellpadding="0" cellspacing="0" class="bank_box">
+          <tr>
+            <%payments=Payment.sub
+            for index in 1..payments.size
+                  id=payments[index-1].id
+                  img=payments[index-1].i1.url
+            %>
+           <td align="left" valign="middle"><input type="radio" wanyin="1" name="payment" id="radio_<%=id%>" value="<%=id%>" class="sradio"/></td>
+            <td align="left" valign="middle"><img src="<%=img%>" width="134" height="41" onClick="click_payment_pic('radio_<%=id%>')"/></td>
+            <%if index%4==0%>
+                  <td align="left" valign="middle">&nbsp;</td>
+            </tr>
+            <%=raw "<tr>" unless index==payments.size%>
+            <%end%>
+ 
+            <%end%>
+            
+
+        </table>
+        
+      </td>
+    </tr>
+    <%Payment.where("parent_id is null and special=0 and hide=0").order("position").all.each do |payment|%>
+                    <tr>
+      <td align="left" valign="middle"><b>
+        <input type="radio" name="payment" id="radio_<%=payment.id%>" value="<%=payment.id%>"  wanyin="0" cod="0" class="sradio" />
+        <label for="radio_<%=payment.id%>"><%=payment.name%></label></b></td>
+      <td align="left" valign="middle"><%=raw payment.memo%></td>
+    </tr>
+      <%end%>
+      
+   <%
+   #根据用户选择的配送地址,来判定是否有货到付款这项
+   payment=Payment.find_by_name("货到付款")
+   is_show_cod=false
+   if payment
+         is_show_cod=true
+   %>
+   <tr>
+      <td align="left" valign="middle"><b>
+        <input type="radio" name="payment" id="radio_<%=payment.id%>" value="<%=payment.id%>"  wanyin="0" cod="1" class="sradio" />
+        <label for="radio_<%=payment.id%>"><%=payment.name%></label></b></td>
+      <td align="left" valign="middle"><%=raw payment.memo%></td>
+    </tr>      
+<%end%>
+      <!--<tr>-->
+    <!--  <td align="left" valign="middle"><b>-->
+    <!--    <input type="radio" name="payment" id="radio_5" value="5"  isCod="0" onclick="selectPayment(this)" class="sradio" />-->
+    <!--    <label for="radio_5">支付宝</label></b></td>-->
+    <!--  <td align="left" valign="middle">支付宝作为诚信中立的第三方机构，充分保障货款安全及买卖双方利益,支持各大银行网上支付。<font color="red">（+20积分）</font></td>-->
+    <!--</tr>-->
+    <!--                                                                        <tr>-->
+    <!--  <td align="left" valign="middle"><b>-->
+    <!--    <input type="radio" name="payment" id="radio_29" value="29"  isCod="0" onclick="selectPayment(this)" class="sradio" />-->
+    <!--    <label for="radio_29">财付通</label></b></td>-->
+    <!--  <td align="left" valign="middle">腾讯旗下在线支付平台，支持各大银行网上支付<font color="red">（+20积分）</font></td>-->
+    <!--</tr>-->
+    
+    <!--                                                                                                                                                            -->
+    <!--<tr>-->
+    <!--  <td colspan="2" align="left" valign="middle"><span class="more_item more_item_off" id="more_item_paymnet">&lt;更多支付方式&gt;</span></td>-->
+    <!--</tr>-->
+    <!--                        <tr class="more_item_paymnet" style="display:none;">-->
+    <!--  <td align="left" valign="middle"><b>-->
+    <!--    <input type="radio" name="payment" id="radio_30" value="30"  isCod="0" onclick="selectPayment(this)" class="sradio" />-->
+    <!--    <label for="radio_30" style="overflow:hidden;">惠众买单</label></b></td>-->
+    <!--  <td align="left" valign="middle">惠众积分支付，用户用惠众积分订货，惠众用现金为用户买单。<font color="red">（+20积分）</font></td>-->
+    <!--</tr>-->
+    <!--                                                                    <tr class="more_item_paymnet" style="display:none;">-->
+    <!--  <td align="left" valign="middle"><b>-->
+    <!--    <input type="radio" name="payment" id="radio_7" value="7"  isCod="0" onclick="selectPayment(this)" class="sradio" />-->
+    <!--    <label for="radio_7" style="overflow:hidden;">快钱</label></b></td>-->
+    <!--  <td align="left" valign="middle">支持工、招、交、建、农、广发等银行普通网银用户支付，方便快捷，安全高效，无需注册。<font color="red">（+20积分）</font></td>-->
+    <!--</tr>-->
+                                                                                                                          </table>
+</div>
+
+
+
+      <div class="cart_title"> <span>选择送货方式</span> </div>
+<div class="cart_box order_item">
+    <label for="ECS_NEEDINSURE" style="display:none;">
+      <input name="need_insure" id="ECS_NEEDINSURE" type="checkbox"  onclick="selectInsure(this.checked)" value="1"  disabled="true"  /> 配送是否需要保价  </label>
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+<%
+def show_free_shipping(price)
+    if price==price(0)
+        "已免运费"
+    else
+        "￥#{price}元"
+    end
+end
+%>
+      <%@deliveries.where("special=0 and hide=0").order("position").all.each do |delivery|%>
+            <tr>
+      <td width="13%" align="left" valign="middle"><b>
+        <input type="radio" name="shipping" cod="0" class="shipping_radio_input" value="<%=delivery.id%>"  p1="<%=shipping_fee(delivery)%>" id="click_<%=delivery.id%>" />
+        <span id="shipping_name_<%=delivery.id%>" ><label for="click_<%=delivery.id%>"><%=raw delivery.name%></label></span></b></td>
+      <td width="38%" align="left" valign="middle"><%=raw delivery.memo%></td>
+      <td width="49%" align="left" valign="middle"><b>费用：<font><%=show_free_shipping(shipping_fee(delivery))%></font></b></td>
+    </tr>
+            <%end%>
+            
+<%if is_show_cod
+delivery=Delivery.find_by_name("货到付款")
+%>
+            <tr>
+      <td width="13%" align="left" valign="middle"><b>
+        <input type="radio" name="shipping" cod="1" class="shipping_radio_input" value="<%=delivery.id%>"  p1="<%=price(delivery.p1)%>" id="click_<%=delivery.id%>" />
+        <span id="shipping_name_<%=delivery.id%>" ><label for="click_<%=delivery.id%>"><%=delivery.name%></label></span></b></td>
+      <td width="38%" align="left" valign="middle"><%=raw delivery.memo%></td>
+      <td width="49%" align="left" valign="middle"><b>费用：<font>￥<%=price(delivery.p1)%>元</font></b></td>
+    </tr>
+<%end%>
+    <!--            <tr>-->
+    <!--  <td width="13%" align="left" valign="middle"><b>-->
+    <!--    <input type="radio" name="shipping" class="shipping_radio_input" value="6"  supportCod="0" insure="0" onclick="selectShipping(this)" id="click_6" />-->
+    <!--    <span id="shipping_name_6" ><label for="click_6">普通快递</label></span></b></td>-->
+    <!--  <td width="38%" align="left" valign="middle">给力百货的国内普通快递服务与多家快递公司合作，支持开箱验货<font>&nbsp;</font></td>-->
+    <!--  <td width="49%" align="left" valign="middle"><b>费用：<font>￥8.00元</font></b></td>-->
+    <!--</tr>-->
+    <!--            <tr>-->
+    <!--  <td width="13%" align="left" valign="middle"><b>-->
+    <!--    <input type="radio" name="shipping" class="shipping_radio_input" value="15"  supportCod="1" insure="0" onclick="selectShipping(this)" id="click_15" />-->
+    <!--    <span id="shipping_name_15" ><label for="click_15">货到付款</label></span></b></td>-->
+    <!--  <td width="38%" align="left" valign="middle">支持全国范围的货到付款，先验货，后付款<font>&nbsp;</font></td>-->
+    <!--  <td width="49%" align="left" valign="middle"><b>费用：<font>￥15.00元</font></b></td>-->
+    <!--</tr>-->
+                  </table>
+  
+  <script type="text/javascript" charset="utf-8">
+  
+function formatFloat(src, pos)
+{
+    var src=parseFloat(src);
+    return Math.round(src*Math.pow(10, pos))/Math.pow(10, pos);
+}
+function calc_shipping_price()
+{
+      //alert("bb");
+      //calc shipping price
+      var c=$("input[name='shipping']:checked");
+      if (c.length==0)
+      {
+            $("#yunfei").text("0.00元");
+            //alert(c);
+      }
+      else
+      {
+            var yunfei=c.attr("p1");
+            $("#yunfei").text(yunfei+"元");
+            //alert(yunfei);
+            //console.debug(yunfei);
+      }
+      //calc_total_price();
+      //calc_score();
+      calc_cash_money()
+}
+function calc_total_price_except_cash_money_pay()
+{
+      //alert("dd");
+      var total_goods_price=$("#total_goods_price").val();
+      //alert(total_goods_price);
+      var yunfei=$("#yunfei").text();
+      //alert(yunfei);
+      //alert(yunfei.replace(/[^\d.]*/g, ""));
+      var yunfei = $("#yunfei").text().replace(/[^\d.]*/g, "");
+      //var yunfei = $("#yunfei").text().replace(/[^\d.]*/g, "").trim();
+      //alert(yunfei);
+      //alert(yunfei);
+      
+      var bonus=$("#youhuiquanjianmian").text().replace(/[^\d.]*/g, "")
+      //var cash_money=$("#moneypay").text().replace(/[^\d.]*/g, "")
+      var t=parseFloat(yunfei)+parseFloat(total_goods_price)-parseFloat(bonus);
+      var r=formatFloat(t,2);
+      var v="￥"+r+"元"
+      //var v="￥"+(formatFloat(t,2))+"元"
+      //console.debug("total price");
+      //console.debug(v)
+      //alert(v);
+      //$("#yingfujiner").text(v);
+    return r;
+}
+function calc_total_price()
+{
+      //alert("dd");
+      var total_goods_price=$("#total_goods_price").val();
+      //alert(total_goods_price);
+      var yunfei=$("#yunfei").text();
+      //alert(yunfei);
+      //alert(yunfei.replace(/[^\d.]*/g, ""));
+      var yunfei = $("#yunfei").text().replace(/[^\d.]*/g, "");
+      //var yunfei = $("#yunfei").text().replace(/[^\d.]*/g, "").trim();
+      //alert(yunfei);
+      //alert(yunfei);
+      
+      var bonus=$("#youhuiquanjianmian").text().replace(/[^\d.]*/g, "")
+      var cash_money=$("#moneypay").text().replace(/[^\d.]*/g, "")
+      var t=parseFloat(yunfei)+parseFloat(total_goods_price)-parseFloat(bonus)-parseFloat(cash_money);
+      var r=formatFloat(t,2);
+      var v="￥"+r+"元"
+      //var v="￥"+(formatFloat(t,2))+"元"
+      //console.debug("total price");
+      //console.debug(v)
+      //alert(v);
+      $("#yingfujiner").text(v);
+    return r;
+}
+function calc_score()
+{
+      var total_goods_price=$("#total_goods_price").val();
+      var bonus=$("#youhuiquanjianmian").text().replace(/[^\d.]*/g, "");
+      var cash_money=$("#moneypay").text().replace(/[^\d.]*/g, "");
+      var r=parseFloat(total_goods_price)-parseFloat(bonus)-parseFloat(cash_money);
+      var s=formatFloat(r,0)*10;
+      if (s<0){s=0;}
+      $("#huodejifen").text(s);
+      return s;
+}
+function clear_no_wanyin_checked()
+{
+      $("input[name='payment'][wanyin='0']").each(function(){
+            $(this).attr("checked",false);
+      });     
+}
+
+/* *
+ * 是否选择用户账户支付
+ */
+function changeMoneyAccount2(val)
+{
+    var total_price=calc_total_price_except_cash_money_pay();
+    if (val==0)
+    {
+        $("#moneypay").text("-0.00元");
+        $("#availablemoney").text("0.00元");
+        $("#change_money_discount").hide();
+    }
+    else
+    {
+        //console.info(total_price);
+        var cash_money=parseFloat($("#accountmoney").text().replace(/[^\d.]*/g, ""));
+        if (cash_money>0 && cash_money>=total_price)
+        {
+            $("#availablemoney").text(formatFloat(total_price,2)+"元")
+            $("#moneypay").text("-"+formatFloat(total_price,2)+"元");
+
+        }
+        else
+        {
+            $("#moneypay").text("-"+$("#accountmoney").text());
+            $("#availablemoney").text($("#accountmoney").text());
+        }
+        $("#change_money_discount").show();
+    }
+calc_total_price();
+calc_score();
+
+}
+function calc_cash_money()
+{
+    if ($("input[name='yuebtn']:checked").length==0)
+    {
+        changeMoneyAccount2(0)
+    }
+    else
+    {
+        changeMoneyAccount2(1)
+    }
+    
+}
+
+
+
+//alert(formatFloat("1212.2356", 2));
+$(document).ready(function(){
+    
+$("input[name='shipping']").click(function(){
+                  //alert($(this).attr("fee"));
+                  //console.debug($(this).attr("fee"));
+                  var yunfei=$(this).attr("p1");
+                  var total_goods_price=$("#total_goods_price").val()
+                  $("#yunfei").text(yunfei+"元");
+                  //var t=parseFloat(yunfei)+parseFloat(total_goods_price)
+                  //var v="￥"+(formatFloat(t,2))+"元"
+                  //alert(v);
+                  //$("#yingfujiner").text(v);
+                  calc_cash_money();
+                  
+                  })
+
+$("#theForm").submit(function(){
+        var pay_money=parseFloat($("#yingfujiner").text().replace(/[^\d.]*/g, ""));
+      if ($("input[name='payment']:checked").length==0 && pay_money>0)
+      {
+            alert("请选择一种支付方式");
+            return false;
+      }
+      if ($("input[name='shipping']:checked").length==0)
+      {
+            alert("请选择一种送货方式");
+            return false;
+      }  
+      return true;
+      });
+      
+      
+calc_shipping_price();
+//calc_total_price();
+calc_cash_money();
+//calc_score();
+
+ $("#ECS_BONUS").val('0');
+// $('#more_item_paymnet').toggle(function(){
+//	$('#more_item_paymnet').addClass('more_item_on').removeClass('more_item_off');									  
+//    $(".more_item_paymnet").show();
+//  },function(){
+//	  $('#more_item_paymnet').addClass('more_item_off').removeClass('more_item_on');
+//	$(".more_item_paymnet").hide();  
+  //});
+
+
+
+  $('#wangyin').click(function(){
+      $("#wangyin_box").show();
+      clear_no_wanyin_checked();
+  });
+  
+  $("input[name='payment']").click(function(){
+      //#当选择为网银时,同时checked网银在线按钮,否则不checked
+    if($(this).attr("wanyin")=='0'){
+      $('#wangyin_dis').click();
+      
+    }else{
+      $('#wangyin').click();
+    }
+    //如果选择的是货到付款,则同步处理送货方式
+    if($(this).attr("cod")=='1')
+    {
+      //console.debug("hahah");
+      $("input[name='shipping'][cod='1']").attr("checked",true);
+    }else
+    {
+      //console.debug("33333");
+      $("input[name='shipping'][cod='1']").attr("checked",false);
+    }
+    calc_shipping_price();
+  });
+  
+  //$("input[name='payment'][cod='1']").click(function(){
+  //    console.debug("hahah");
+  //    $("input[name='shipping'][cod='1']").attr("checked",true);
+  //    });
+  //$("input[name='payment'][cod='0']").click(function(){
+  //    console.debug("33333");
+  //    $("input[name='shipping'][cod='1']").attr("checked",false);
+  //    });
+  $("input[name='shipping']").click(function(){
+    //如果选择的是货到付款,则同步处理支付方式
+    if($(this).attr("cod")=='1')
+    {
+      //console.debug("hahah");
+      $("input[name='payment'][cod='1']").attr("checked",true);
+    }else
+    {
+      //console.debug("33333");
+      $("input[name='payment'][cod='1']").attr("checked",false);
+    }
+      });
+  
+  $("#ECS_BONUS").change(function(){
+    var type;
+    var val=$(this).val();
+  $("#total_card_notice").hide();
+   selectedBonus = val;
+  $.ajax({
+     type: "GET",
+     url: "/shopping/check?step=change_bonus",
+     cache: false,
+     data: 'bonus=' + val + "&m=" + Math.random(),
+     success:function (response){
+      obj = $.evalJSON(response);
+        if (obj.error){
+        alert(obj.error);
+        $('#ECS_BONUS')[0].value = '0';
+        }
+        else
+        {
+        var result = obj;
+        if (result.error){
+          alert(result.error);
+          location.href = './';
+          }else{
+            if(!type){
+                document.getElementById('total_card_notice').innerHTML = '';
+            }
+            
+          document.cookie = "bonusSn=";
+          //refresh_checkout(result.new_info);
+          //使用了优惠券后重新计算积分和金额，并增加相应的显示
+          var r=result.new_info
+          //console.info(r);
+          if (r["youhuiquanjianmian"]=="-0.00元")
+          {
+            $("#youhuiquanjianmian").text(r["youhuiquanjianmian"]);
+            $("#change_bonus_discount").hide();
+            //console.info("hide");
+          }
+          else
+          {
+            $("#youhuiquanjianmian").text(r["youhuiquanjianmian"]);
+            $("#change_bonus_discount").show();
+            //console.info("show");
+          }
+          //calc_total_price();
+          //calc_score();
+          calc_cash_money();
+
+          
+//          alert(result.new_info.yunfei);
+//          $("#ECS_ORDERTOTAL").html(result.content);
+          }
+        }
+     }
+   });
+    
+    });
+  
+
+  
+  
+  
+  
+});
+</script>
+
+  <table width="100%" border="0" cellpadding="0" cellspacing="0" style="display:none;">
+    <tr>
+      <td colspan="2" align="left" valign="middle"><div style="border-bottom:1px dashed #ccc; margin:5px 0; height:1px; font-size:0; line-height:0;">&nbsp;</div></td>
+    </tr>
+    <tr>
+      <td width="14%" align="right" valign="middle"><b> 最佳送货时间：</b></td>
+      <td align="left" valign="middle"><select class="info_input" name="city2">
+          <option selected="selected" value="35">周一至周五均可送货</option>
+        </select>
+        <b>预计发货日记：2110年01月12日</b></td>
+    </tr>
+    <tr>
+      <td align="right" valign="middle"><b> 其他要求：</b></td>
+      <td align="left" valign="middle"><input name="textfield5" type="text" class="info_input" id="textfield5" size="62" value="none"/></td>
+    </tr>
+  </table>
+</div>    
+    
+<!--      <div class="cart_title"> <span>购物凭证</span> </div>-->
+<!--<div class="cart_box order_item">-->
+<!--  <table width="100%" border="0" cellpadding="0" cellspacing="0">      -->
+<!--      <tr>-->
+<!--        <td align="right" valign="middle"><b>购物凭证：</b></td>-->
+<!--        <td align="left" valign="middle"><select class="info_input" name="voucher" id="voucher" onChange="changeVoucherAction($(this).val())">-->
+<!--          <option selected="selected" value="0">购物清单</option>-->
+<!--          <option value="1">购物清单+发票</option>-->
+<!--        </select></td>-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        <td width="14%" align="right" valign="middle"><b> 购物清单：</b></td>-->
+<!--        <td align="left" valign="middle"><input type="radio" name="show_price_sign" id="ECS_SHOWPRICESIGN1" value="0" checked="true"/>-->
+<!--        <b style="padding-left:0;"><a onClick="click_payment_pic('ECS_SHOWPRICESIGN1')" class="flow_info_editting_body_img">打印价格</a></b><input type="radio" name="show_price_sign" id="ECS_SHOWPRICESIGN2" value="1" />-->
+<!--        <b style="padding-left:0;"><a onClick="click_payment_pic('ECS_SHOWPRICESIGN2')" class="flow_info_editting_body_img">不打印价格</a></b>（送礼时不想透露商品的价格）-->
+<!--        </td>-->
+<!--      </tr>-->
+<!--      <tr id="ineed_inv" style="display:none;">-->
+<!--        <td align="right" valign="middle"><b> 发票抬头：</b></td>-->
+<!--        <td align="left" valign="middle"> <input name="inv_payee" type="text" id="ECS_INVPAYEE" value="" size="40" class="info_input" /><b> 发票内容：</b><input name="need_inv" type="hidden" id="ECS_NEEDINV"  value="1" />-->
+<!--          <select name="inv_content" id="ECS_INVCONTENT" >-->
+<!--            <option value="办公用品">办公用品</option><option value="玩具">玩具</option>          </select></td>-->
+<!--      </tr>-->
+<!--    </table>-->
+<!--</div>    -->
+    
+      <div class="cart_title"> <span>选购的商品</span>
+  <div style="float:right; padding-top:10px;"><a class="item_opt" href="/shopping/cart" >&lt;&lt;返回购物车</a></div>
+</div>
+<div class="cart_box">
+  <table width="100%" border="0" cellpadding="0" cellspacing="0" class="cart_item_top">
+    <tr>
+      <td width="179" align="center">商品</td>
+      <td width="269">名称</td>
+      <td width="172">单价</td>
+      <td width="170">数量</td>
+      <td width="168">小计</td>
+    </tr>
+  </table>
+<%=raw gen_shoppingcart_on_checkout_page%>
+  
+</div>
+<div class="cart_title"> <span>订单结算信息</span></div>
+<div class="cart_box">
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="179" align="center"></td>
+      <td width="269"></td>
+      <td width="172"></td>
+      <td width="170"></td>
+      <td width="168"></td>
+    </tr>
+  </table>
+<%
+def show_coupon_options
+    u=current_user
+    html=""
+    Coupon.where(:user_id=>u.id).where("start_time < '#{Time.now}'").where("end_time > '#{Time.now}'").where(:status=>"未使用").where("min_money <= #{get_products_price}").where(:hide=>false).all.each do |coupon|
+        html+=%Q{"<option value='#{coupon.id}'>#{price(coupon.money)}元，#{price(coupon.min_money)}元可用，#{coupon.end_time.strftime("%Y年%m月%d日")}到期</option>"}
+    end
+html
+end
+%>
+  <table width="930" border="0" align="center" cellpadding="0" cellspacing="0" class="cart_item" id="bought_item">
+                <tr>
+            <td colspan="5" align="left" valign="middle" class="card_td" style="height:70px;"><div style="position:relative;"><strong>使用优惠券/礼品卡：</strong>输入验证码：
+          <input name="bonus_sn" type="text" class="info_input" id="bonus_sn" size="10" />
+          &nbsp;&nbsp;<a href="javascript:addBonus($('#bonus_sn').val());"><img src="/themes/default/imgs/flow/besure_btn.gif" width="43" height="24" /></a>&nbsp;&nbsp;<strong style="color:#333">或者</strong>&nbsp;使用已有优惠券/礼品卡：
+          <!--<select name="bonus" onchange="changeBonus(this.value)" id="ECS_BONUS" style='color:#666666;'>-->
+          <select name="bonus" id="ECS_BONUS" style='color:#666666;'>
+            <option value="0" selected>请选择</option>
+            <%=raw show_coupon_options%>
+                      </select>
+          <span class="input_tip" id="total_card_notice" style="position:absolute; left:120px; top:21px; display:none;"></span> </div></td>
+          </tr>
+<%
+u=current_user
+if u.money>0%>
+<tr>
+      <td align="left" height="40" style="height: 54px;" class="card_td" colspan="3"><span id="yuetxt" style="color: rgb(204, 204, 204);"><strong style="color: rgb(204, 204, 204);">
+        <input type="checkbox" style="margin-right: 5px;" id="yuebtn" name="yuebtn">
+        <label for="yuebtn">使用帐户余额：</label></strong>本次使用余额：<font id="availablemoney" style="color: rgb(204, 204, 204);">0.00元</font>(帐户可用余额:<span id="accountmoney"><%=price(u.money)%>元</span>)　提示：如使用现金账户<strong style="color: rgb(204, 204, 204);">全额支付</strong>订单，任选一个支付方式即可。</span></td>    
+</tr>
+<script type="text/javascript">
+
+
+
+	$(document).ready(function(){
+		$('#yuetxt').css({"color":"#ccc"});
+		$('#yuetxt').find('strong').css({"color":"#ccc"});
+		$('#yuetxt').find('font').css({"color":"#ccc"});	
+		$('#yuebtn').attr("checked",false);
+		$('#yuebtn').click(function(){
+			if($('#yuebtn').attr("checked")!=true)
+			{
+				$('#yuetxt').css({"color":"#ccc"});
+				$('#yuetxt').find('strong').css({"color":"#ccc"});
+				$('#yuetxt').find('font').css({"color":"#ccc"});
+				// 未选中
+				changeMoneyAccount2(0);
+			}
+			else
+			{
+				$('#yuetxt').css({"color":"#666"});
+				$('#yuetxt').find('strong').css({"color":"#c00"});
+				$('#yuetxt').find('font').css({"color":"#ff6655"});
+				// 选中
+				changeMoneyAccount2(1);
+			}
+		});
+	});
+	</script>
+<%end%>
+                  </table>
+  <table width="930" border="0" align="center" cellpadding="0" cellspacing="0" >
+  <tr>
+  <td>
+  <table width="800" border="0" align="right" cellpadding="0" cellspacing="0" class="cart_count"  style="white-space:nowrap;">
+    <tr>
+      <td width="685" align="right">商品金额：</td>
+      <td width="115" height="20" align="left"><strong>￥<%=price(get_products_price)%>元</strong></td>
+    </tr>
+                <tr id="flow_info_orderlist_discount_line2" style="display:none;">
+      <td align="right">银行折扣：<a id="bank_saving_info" style="display:none;"></a></td>
+      <td height="20" align="left"><strong>￥</strong><strong id="bank_saving_money">-</strong></td>
+    </tr>
+
+                                                    <tr>
+      <td align="right" id="reset_shipping_name">运费：</td>
+      <td height="20" align="left"><strong id="yunfei">0.00元</strong></td>
+    </tr>
+<%if get_total_cost_scores>0%>
+                                                    <tr id="flow_info_orderlist_discount_line2">
+      <td align="right">积分换购：</td>
+      <td align="left" height="20"><strong></strong><strong id="bank_saving_money">-<%=get_total_cost_scores%>积分</strong></td>
+    </tr>
+<%end%>
+        <tr id="change_bonus_discount" style="display:none;">
+      <td align="right">优惠券折价：</td>
+      <td height="20" align="left"><strong>￥</strong><strong id="youhuiquanjianmian">0.00元</strong></td>
+    </tr>
+    <tr id="change_money_discount" style="display:none;">
+      <td align="right">现金账户支付：</td>
+      <td height="20" align="left"><strong>￥</strong><strong id="moneypay">-0.00元</strong></td>
+    </tr>
+    <tr>
+      <td height="40" colspan="2" align="right" style="border-top:1px solid #e2e2e2;">应付金额：<span id="yingfujiner">￥<%=price(get_products_price)%>元</span></td>
+    </tr>
+    <tr>
+      <td height="20" colspan="2" align="right" valign="top"><font>您将获得<b id="huodejifen"><%=get_total_new_scores%></b>积分
+                </font></td>
+      <!--<font>您将获得<b id="huodejifen">710</b>积分-->
+      <!--          ，以及价值<b id="huodeyouhuiquan">40.00元</b>的优惠券。-->
+      <!--          </font>-->
+    </tr>
+      </table>
+  </td>
+  </tr>
+  </table>
+</div>
+    
+    
+      <div class="cart_btn">
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="40%" align="right" valign="middle"><font style="font-weight:normal; margin-right:20px;">请仔细核对以上信息后，点击"确认订单"</font></td>
+      <td width="60%" height="78" align="left" valign="middle"><input type="image" id="submitOrder" src="/themes/default/imgs/flow/order_btn.gif" ><a href="http://www.geilibuy.com/" id="submitOrder" style="margin-top:0px;display:none;"><img style="margin-top:0px;" src="/themes/default/imgs/flow/order_btn.gif" width="142" height="36" /></a></td>
+    </tr>
+  </table>
+</div>    
+      <input type="hidden" name="step" value="done" />
+      <input type="hidden" value="done" name="step">
+      <input type="hidden" value="" name="have_rewards">
+    </form>
+  </div>
+  
+  
+

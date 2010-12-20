@@ -1,0 +1,211 @@
+    	 <div class="right_top">
+        	<span class="welcome dizhi"></span>
+            <span class="goon_btn"><a style="color:#fff;" href="./" title="首页">继续购物</a></span>             
+        </div>
+	 <%if @addresses.size>0%>
+            <div class="right_line">
+
+	  <p style="line-height:30px;color:#000;"><strong style="font-size:14px;">[编辑收货信息]</strong>（带*的栏目必须填写，以下您所填写的信息将作为您购买商品时的收货信息，请务必详细填写！）</p>
+          <%@addresses.each_with_index do |address,index|%>
+	                                 <form action="/usercenter/address" method="post" name="theForm" id="theForm" onsubmit="return checkConsignee(this,true)">
+               <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+	  <table width="100%"  border="0" cellpadding="0" cellspacing="0" class="table">
+          <tr>
+            <td width="20" align="left" valign="middle">&nbsp;</td>
+            <td align="left" valign="middle">&nbsp;</td>
+            <td height="30" align="left" valign="middle" >&nbsp;</td>
+          </tr>
+
+          <tr>
+            <td align="left" valign="middle" class="td_form">&nbsp;</td>
+            <td height="40" align="right" valign="middle" class="td_form"><span style="color:#652f00; padding-right:10px;">收货人姓名：</span></td>
+            <td align="left" valign="middle" class="td_form">
+              <input name="consignee" type="text" id="consignee_<%=index%>"  value="<%=address.consignee%>" /><span style="color:#db2954; padding-left:10px; font-weight:bold;">* </span><span class="consignee_table_notice" style="color:#c3323d;"></span>
+            </td>
+          </tr>
+          <tr>
+
+            <td align="left" valign="middle" class="td_form">&nbsp;</td>
+            <td height="40" align="right" valign="middle" class="td_form"><span style="color:#652f00; padding-right:10px;">配送区域：</span></td>
+            <td align="left" valign="middle" class="td_form">
+           <select name="country" id="selCountries_<%=index%>" onchange="region.changed(this, 1, 'selProvinces_<%=index%>')" style='display:none;'>
+        <option value="1" selected>中国</option>
+              </select>
+          <select name="province" id="selProvinces_<%=index%>" onchange="region.changed(this, 2, 'selCities_<%=index%>')">
+		     <%=show_province_options(address.province_id)%>
+              </select>
+          <select name="city" id="selCities_<%=index%>" onchange="region.changed(this, 3, 'selDistricts_<%=index%>')">
+		     <%=show_city_options(address.city_id)%>
+              </select>
+	                <select name="district" id="selDistricts_<%=index%>" >
+		     <%=show_district_options(address.district_id)%>
+              </select>
+	      
+	      <span style="color:#db2954; padding-left:10px; font-weight:bold;">* </span><span class="country_table_notice" style="color:#c3323d;"></span>
+
+            </td>
+          </tr>
+          <tr>
+            <td align="left" valign="middle" class="td_form">&nbsp;</td>
+            <td height="40" align="right" valign="middle" class="td_form"><span style="color:#652f00; padding-right:10px;">详细地址：</span></td>
+            <td align="left" valign="middle" class="td_form">
+              <label>
+            <input name="address" type="text"  style="width:395px;"     id="address_<%=index%>" value="<%=address.address%>" />
+
+            </label><span style="color:#db2954; padding-left:10px; font-weight:bold;">* </span><span class="address_table_notice" style="color:#c3323d;"></span>
+            </td>
+          </tr>
+          <tr>
+            <td align="left" valign="middle" class="td_form">&nbsp;</td>
+            <td height="40" align="right" valign="middle" class="td_form"><span style="color:#652f00; padding-right:10px;">邮政编码：</span></td>
+            <td align="left" valign="middle" class="td_form">
+              <label>
+
+            <input name="zipcode" type="text"  style="width:152px;"      id="zipcode_<%=index%>" value="<%=address.zipcode%>" />
+            </label><span style="color:#652f00; padding-right:10px;">（使用平邮配送时，需要准确邮编）</span><span id="table_notice"><font><span class="zipcode_table_notice" style="color:#c3323d;"></span>
+            </td>
+          </tr>
+          <tr>
+            <td width="20" align="left" valign="middle" class="td_form">&nbsp;</td>
+            <td width="14%" height="40" align="right" valign="middle" class="td_form"><span style="color:#652f00; padding-right:10px;">电话：</span></td>
+            <td align="left" valign="middle" class="td_form">
+
+              <input name="tel" type="text"   id="tel_<%=index%>"   value="<%=address.tel%>" />
+              手机：
+              <input name="mobile" type="text"   id="mobile_<%=index%>" value="<%=address.mobile%>" />
+              <span style="color:#652f00; padding-right:10px;">（手机和电话必填其一）</span><span style="color:#db2954;font-weight:bold;">*</span><br /><span class="tel_table_notice" style="color:#c3323d;"></span>
+            </td>
+          </tr>
+          <tr>
+            <td align="left" valign="middle" class="td_form">&nbsp;</td>
+
+            <td height="40" align="right" valign="middle" class="td_form"><span style="color:#652f00; padding-right:10px;">送货时间：</span></td>
+            <td align="left" valign="middle" class="td_form">
+            <select name="best_time" id="best_time_<%=index%>" >
+<%=show_delivery_time_options(address.delivery_time_id)%>
+    </select></td>
+
+          </tr>
+          <tr>
+            <td align="left" valign="middle" class="td_form">&nbsp;</td>
+            <td height="40" align="left" valign="middle" class="td_form">&nbsp;</td>
+            <td align="left" valign="middle" class="td_form"> 
+                            <input class="u_btn" type="submit" value="保存修改" />
+                                          
+               <!--新版不需要删除按钮<a href="javascript:if (confirm('您确定要删除该收货人信息吗？')) location.href='flow.php?step=drop_consignee&amp;id=134768'">
+               <img name="button" src='/themes/default/imgs/global/flow/add_del.gif'  value="删除" style="margin-left:5px;"/></a>-->
+                           </td>
+          </tr>
+
+          <tr>
+            <td align="left" valign="middle" class="td">&nbsp;</td>
+            <td align="left" valign="middle" class="td">&nbsp;</td>
+            <td align="left" valign="middle" class="td">&nbsp;</td>
+          </tr>
+        </table>           <input type="hidden" name="act" value="act_edit_address" /><input name="email" type="hidden" id="email_<%=index%>" value="<%=show_email%>" />
+           <input name="address_id" type="hidden" value="<%=address.id%>" />
+          </form>
+                                                    <!--<hr id="global_consignee_hr"/>--><br />
+<%end%>
+                                       </div>
+	    <%end%>
+	    
+                                    <div class="right_line">
+	   <p style="line-height:30px;color:#000;"><strong style="font-size:14px;">[添加新的地址]</strong>（您最多可以添加5组地址信息，方便您购物时选择，新添加的地址将成为你的默认收货地址，请务必详细填写！）</p>
+       <form action="/usercenter/address" method="post" name="theForm" id="theForm" onsubmit="return checkConsignee(this)">
+            <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+
+<table width="100%"  border="0" cellpadding="0" cellspacing="0" class="table">
+          <tr>
+            <td width="20" align="left" valign="middle">&nbsp;</td>
+            <td align="left" valign="middle">&nbsp;</td>
+
+            <td height="30" align="left" valign="middle" >&nbsp;</td>
+          </tr>
+          <tr>
+            <td align="left" valign="middle" class="td_form">&nbsp;</td>
+            <td height="40" align="right" valign="middle" class="td_form"><span style="color:#652f00; padding-right:10px;">收货人姓名：</span></td>
+            <td align="left" valign="middle" class="td_form">
+              <input name="consignee" type="text" id="consignee_new"  value="" /><span style="color:#db2954; padding-left:10px; font-weight:bold;">* </span><span class="consignee_table_notice" style="color:#c3323d;"></span>
+            </td>
+
+          </tr>
+          <tr>
+            <td align="left" valign="middle" class="td_form">&nbsp;</td>
+            <td height="40" align="right" valign="middle" class="td_form"><span style="color:#652f00; padding-right:10px;">配送区域：</span></td>
+            <td align="left" valign="middle" class="td_form">
+           <select name="country" id="selCountries_new" onchange="region.changed(this, 1, 'selProvinces_new')" style='display:none;'>
+        <option value="1" selected>中国</option>
+              </select>
+
+          <select name="province" id="selProvinces_new" onchange="region.changed(this, 2, 'selCities_new')">
+<%=show_province_options%>
+              </select>
+
+          <select name="city" id="selCities_new" onchange="region.changed(this, 3, 'selDistricts_new')">
+    <option value="0">请选择市</option>
+              </select>
+          <select name="district" id="selDistricts_new" style="display:none">
+    <option value="0">请选择区</option>
+              </select><span style="color:#db2954; padding-left:10px; font-weight:bold;">* </span><span class="country_table_notice" style="color:#c3323d;"></span>
+            </td>
+
+          </tr>
+          <tr>
+            <td align="left" valign="middle" class="td_form">&nbsp;</td>
+            <td height="40" align="right" valign="middle" class="td_form"><span style="color:#652f00; padding-right:10px;">详细地址：</span></td>
+            <td align="left" valign="middle" class="td_form">
+              <label>
+            <input name="address" type="text"  style="width:395px;"     id="address_new" value="" />
+            </label><span style="color:#db2954; padding-left:10px; font-weight:bold;">* </span><span class="address_table_notice" style="color:#c3323d;"></span>
+
+            </td>
+          </tr>
+          <tr>
+            <td align="left" valign="middle" class="td_form">&nbsp;</td>
+            <td height="40" align="right" valign="middle" class="td_form"><span style="color:#652f00; padding-right:10px;">邮政编码：</span></td>
+            <td align="left" valign="middle" class="td_form">
+              <label>
+            <input name="zipcode" type="text"  style="width:152px;"      id="zipcode_new" value="" />
+
+            </label><span style="color:#652f00; padding-right:10px;">（使用平邮配送时，需要准确邮编）</span><span id="table_notice"><font><span class="zipcode_table_notice" style="color:#c3323d;"></span>
+            </td>
+          </tr>
+          <tr>
+            <td width="20" align="left" valign="middle" class="td_form">&nbsp;</td>
+            <td width="14%" height="40" align="right" valign="middle" class="td_form"><span style="color:#652f00; padding-right:10px;">电话：</span></td>
+            <td align="left" valign="middle" class="td_form">
+              <input name="tel" type="text"   id="tel_new"   value="" />
+
+              手机：
+              <input name="mobile" type="text"   id="mobile_new" value="" />
+              <span style="color:#652f00; padding-right:10px;">（手机和电话必填其一）</span><span style="color:#db2954;font-weight:bold;">*</span><br /><span class="tel_table_notice" style="color:#c3323d;"></span>
+            </td>
+          </tr>
+          <tr>
+            <td align="left" valign="middle" class="td_form">&nbsp;</td>
+            <td height="40" align="right" valign="middle" class="td_form"><span style="color:#652f00; padding-right:10px;">送货时间：</span></td>
+
+            <td align="left" valign="middle" class="td_form">
+            <select name="best_time" id="best_time_new" >
+<%=show_delivery_time_options%>
+    </select></td>
+          </tr>
+
+          <tr>
+            <td align="left" valign="middle" class="td_form">&nbsp;</td>
+            <td height="40" align="left" valign="middle" class="td_form">&nbsp;</td>
+            <td align="left" valign="middle" class="td_form"> 
+                            <input class="u_btn" type="submit" value="保存修改" />
+                                          </td>
+          </tr>
+          <tr>
+            <td align="left" valign="middle" class="td">&nbsp;</td>
+
+            <td align="left" valign="middle" class="td">&nbsp;</td>
+            <td align="left" valign="middle" class="td">&nbsp;</td>
+          </tr>
+        </table>       <input type="hidden" name="act" value="act_edit_address" /><input name="email" type="hidden" id="email_1" value="<%=show_email%>" />
+       <input name="address_id" type="hidden" value="" />
+       </form>
+      </div>

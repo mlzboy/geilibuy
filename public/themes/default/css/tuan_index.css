@@ -1,0 +1,104 @@
+/*页面除去头尾部分全局css*/
+.share { margin-bottom:0; border-bottom:none; width:480px; margin-left:30px;padding:10px; height:16px;line-height:16px; overflow:hidden;}
+.share_on { height:73px;}
+	.share dt {  float:left;color:#333; font-size:12px; padding-left:5px;}
+	.share dd {  float:left; }
+	.share dd a { float:left;background-image:url(/themes/default/imgs/tuan/share-logo.gif); background-repeat:no-repeat; color:#333;}
+	.share dd a:link {color:#333;}
+	.share dd a:visited {color:#333;}
+	.share dd a:hover {color:#333;}
+		.im { background-position:0 0;padding-left:25px;margin-right:10px; cursor:pointer;}
+		.renren { background-position:0 -25px; padding-left:30px;margin-right:10px;}
+		.kaixin {background-position:0 -46px;padding-left:22px;margin-right:10px; }
+		.sina {background-position:0 -70px; padding-left:23px;margin-right:10px;}
+		.douban {background-position:0 -93px; padding-left:22px;margin-right:10px;}
+		.shuoke {background-position:0 -116px; padding-left:20px;margin-right:10px; }
+		.my_qq {background-position:0 -165px; padding-left:20px;margin-right:10px; }
+		.fuzhi {background-position:200px 0; padding-left:0; margin-left:10px; margin-right:0;cursor:pointer;}
+	#copylink { clear:left; width:400px; padding-top:5px;}
+		.copybtn { height:23px; width:78px; font-weight:normal; display:block; padding-top:0px;*padding-top:2px !important;*padding-top:2px; }
+		#copylink b{color:#333; text-align:left; font-size:14px; padding:6px 0; display:block;}
+		
+#today { display:block;font-size:30px; line-height:37px; color:#000; font-weight:bold; font-family:simhei,arial,sans-serif; padding:15px; background-color:#FFF; }
+	#today span {  color:#c90809;}
+.deal_inf{ float:left; width:230px;}			
+	.deal_box { height:auto; width:179px; background-color:#f7e9cf; border:1px solid #ddcda9; padding:10px; margin-bottom:15px;}
+	.deal_btn { position:relative; padding-top:105px;}		
+		#deal_btn {  position:absolute; top:-16px; left:-28px; display:block; z-index:2;width:232px; height:76px; background:url(/themes/default/imgs/tuan/dealbtn_bg.gif) no-repeat 0 0; text-align:right; padding-top:42px; padding-right:22px;}	
+			.d_btn { float:right; height:42px; width:105px; background:url(/themes/default/imgs/tuan/deal_btn.gif) no-repeat 0 0; }
+			.d_btn1 { background-position:0 -42px;}
+			.d_btn2 { background-position:0 -84px;}
+			.d_price {float:left; font-size:32px;  font-family:Helvetica,arial,sans-serif; line-height:40px; margin-left:20px;*margin-left:15px !important;*margin-left:15px; color:#fff; text-align:center; width:105px;  }
+			
+		.deal_btn table th{ font-weight:normal; width:33%; text-align:center;}
+		.deal_btn table td{ font-size:16px; font-family:Helvetica,arial,sans-serif; line-height:30px; padding-top:6px; height:30px;text-align:center; font-weight:bold;}
+		
+		#d_time dt{ font-size:14px; line-height:25px;height:25px; padding-left:30px; padding-bottom:5px;}
+		.time_over{background:url(/themes/default/imgs/tuan/sandtime1.gif) no-repeat 0 0; }
+		.time_on{background:url(/themes/default/imgs/tuan/sandtime.gif) no-repeat 0 0; }
+		#d_time dd { border:1px solid #e2c69f; height:32px; background-color:#faf0db; line-height:32px; text-align:center; background:url(/themes/default/imgs/tuan/dtime_bg.gif) repeat-x 0 0; color:#c90809; }
+		#d_time b { font-weight:normal; font-size:24px; font-family:Arial, Helvetica, sans-serif;}
+		#d_time span { font-size:12px; color:#333;}
+		
+		#d_status { text-align:center; padding: 20px 10px;}
+		#d_status dt { line-height:24px;}
+		#d_status span {font-size:18px; font-weight:bold;}
+		#d_status b { font-size:18px; color:#c90809;font-family:Helvetica,arial,sans-serif;}
+		#d_status p {font-size:12px; color:#666;}
+		.d_chart { padding:20px 0;}
+		.d_chart img{ margin-bottom:10px;}
+			#dealchart { display:block; height:50px; background:url(/themes/default/imgs/tuan/chart_bg.gif) no-repeat 0 14px;}
+			#dealchart dt { height:14px;background:url(/themes/default/imgs/tuan/chart_role.gif) no-repeat 0 0px;}
+			#dealchart dd { height:20px;}
+			#dealchart b { font-size:14px; color:#666; padding-top:2px;}
+			#chart_img { padding-left:5px; padding-top:5px;}
+				#d_role { float:left;background:url(/themes/default/imgs/tuan/role.gif) no-repeat 0 0px; height:7px; line-height:0; font-size:0; width:164px;}
+				#end_role { float:left; width:3px;height:7px; line-height:0; font-size:0;background:url(/themes/default/imgs/tuan/role.gif) no-repeat -164px 0;}
+			
+		
+		.dealok { height:40px; display:block; line-height:20px; width:85px;background:url(/themes/default/imgs/tuan/dealok_bg.gif) no-repeat 0 1px; padding-left:43px; font-size:16px; color:#333; margin-left:24px;*margin-left:0 !important;*margin-left:0px; font-weight:bold; }
+.invitbar { width:195px;}
+.invitbar strong { color:#c90809;}
+.invitbar dt {background:url(/themes/default/imgs/tuan/giftbar.gif) no-repeat 0 0px;  height:40px; padding:8px 0 0 50px; font-size:14px; line-height:16px;}	
+.invitbar a{ font-weight:bold;}	
+	
+.liuyan_dl { padding-bottom:15px; line-height:24px;}
+	.liuyan_dl dt { color:#c90809;line-height:24px;}
+	.liuyan_dl dd { color:#666; border-bottom:1px dotted #e2e2e2;line-height:20px; margin-bottom:5px; padding-bottom:5px;}
+
+.about_ul {}
+.about_ul li { line-height:18px; padding:4px 0; font-size:14px;}
+	.boke { background-image:url(/themes/default/imgs/tuan/share-logo.gif); background-repeat:no-repeat;padding-left:23px; color:#666;}
+		a.boke:link { color:#666;}
+		a.boke:visited { color:#666;}
+		a.boke:hover { color:#c90809;}
+		.boke1 {background-position:0 -70px;}
+		.boke2 {background-position:0 -140px;}
+		.boke3 {background-position:0 -165px;}
+		.boke4 {background-position:0 -93px;}
+		.boke5 {background-position:0 -189px;}
+		.boke6 {background-position:0 -212px;}
+.newsbar {list-style:disc; list-style-position:outside; list-style-type:disc;padding-left:15px; line-height:22px; font-size:14px;}		
+		
+.deal_intro{float:left; width:442px; border:none; }
+	.deal_intro img { border:1px solid #d3b181;}
+	.d_tip { float:left; width:221px; display:block; margin-top:25px;}
+		.d_tip dt {font-family:simhei,arial,sans-serif; font-size:18px;line-height:24px; padding-bottom:5px;}
+		.d_tip dd { line-height:24px;}
+	.d_light { list-style:disc; list-style-position:outside; list-style-type:disc;padding-left:15px;}	
+	
+.detail { line-height:24px; padding:15px 17px; overflow:hidden;}
+	.detail a { color:#1f71cb;}
+	.detail a:link { color:#1f71cb;}
+	.detail a:visited{ color:#1f71cb;}
+	.detail a:hover { color:#1f71cb;}
+	.detail h4 { color:#333; font-size:16px; }
+	.detail_item { padding:5px 0;}
+	.detail_item dt { background-color:#fb8106; color:#fff; font-weight:bold; font-size:14px; text-align:left; line-height:30px; padding:0 10px;-moz-border-radius:3px;}
+	.detail_item dd { padding:10px 0; line-height:22px; font-size:14px;}
+	
+	.liuyan_item { padding-bottom:15px;font-size:14px; }
+	.liuyan_item dt { height:33px; line-height:33px;font-weight:bold; padding-left:15px;  color:#323232;margin-bottom:15px;}
+	.liuyan_item dd { line-height:24px; padding-left:25px; }
+	.liuyan_item span {  color:#c90809;padding-bottom:30px; display:block; text-align:right; padding-right:10px;}
+	.yinhao { background:url(/themes/default/imgs/tuan/yinhao.gif) no-repeat 0 0; }

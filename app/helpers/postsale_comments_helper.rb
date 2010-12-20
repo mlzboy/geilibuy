@@ -1,0 +1,2 @@
+module PostsaleCommentsHelper
+end

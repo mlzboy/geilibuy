@@ -1,0 +1,92 @@
+<% content_for :headmeta do %>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="原创品牌 原创设计 设计品牌 创意居家" />
+<meta name="Description" content="" />
+<meta name="pagename" content="brandlist" />
+<%end%>
+<%content_for :headtitle do%>
+<title>精选品牌_给力百货_给力百货 - 创意生活零售平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品</title>
+<%end%>
+<% content_for :headstyle do %>
+<link href="/themes/default/css/header.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/brand.css" rel="stylesheet" type="text/css" />
+<!--<link href="/themes/default/css/foot.css" rel="stylesheet" type="text/css" />-->
+<%end%>
+<% content_for :headjs do %>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/header.js" charset="UTF-8"></script>
+<%end%>
+<% content_for :headother do%>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" />
+<% end%>
+<div id="main">
+<div class="top_nav" style="margin-bottom:20px;">您当前的位置：<a href=".">首页</a> <code>&gt;</code> <span>品牌中心</span></div>
+<%
+ad0=ad_materials("轮询位","品牌中心","")
+%>
+<div id="banner_box">
+    <div id="b_flash">
+      <ul id="banner">
+	<%ad0.each do |material|%>
+              	<li class="switch_item"><a href="<%=material.hyperlink%>" target="_blank" title="<%=material.title%>"><img src="<%=material.image_url.url%>"  alt="<%=material.alt%>"  width="705" height="240" /></a></li>
+	<%end%>
+               </ul>
+      <ul id="b_bar">
+	<%ad0.each_with_index do |material,index|%>
+              	<li class="b_bar  <%='bar_on' if index==0%>">0<%=index+1%></li>
+	<%end%>
+              </ul>
+      </div>
+
+    </div>
+<div id="list_top">
+   	  <ul id="top_bar">
+   	       	      <li class="top_bar <%='top_baron' if params[:category_id].blank?%>">
+		      <%if params[:category_id].blank?%>
+		      全部
+		      <%else%>
+		      <a href="/brands">全部</a>
+		      <%end%>
+		      </li>
+   	          	<%Category.normal.each do |category|%>
+      	      	              <li class="top_bar <%='top_baron' if !params[:category_id].blank? and params[:category_id]==category.id.to_s%>"><a href="/brands?category_id=<%=category.id%>"><%=category.name%></a></li>
+			<%end%>
+                         </ul>
+</div>
+    <%@brands.each do |brand|%>
+      <div id="brand_box">
+   	  <ul>
+        	<li class="brand_logo"><a href="<%=brand_url(brand.id)%>"><img src="<%=brand.i1.url(:show)%>" /></a></li>
+
+            <li class="brand_name"><span>设计品牌:</span><a href="<%=brand_url(brand.id)%>"><%=brand.name%></a></li>
+      </ul>
+  	</div>
+    <%end%>
+
+
+<div id="clear"></div>
+</div>
+<% content_for :bodyfoot do%>
+<!--[if IE 6]><script type="text/javascript">try {document.execCommand('BackgroundImageCache', false, true);} catch(e) {}</script><![endif]-->
+<div id="global_foot_white"></div>
+<script type="text/javascript" src="/themes/default/js/js-clib.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/photo-switch.js" charset="UTF-8"></script>
+<% end%>
+
+<%content_for :outhtml do%>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#banner').switchboxaction({Time:5000,SwitchTime:5000,switchindex:'#b_bar',onclass:'bar_on',SwitchMode:'Hover',AutoStart:true,SwitchEffect:'fadeOut'});
+    setHeadFlowNum();//购物车数量
+
+     /*静态页面调用该函数*/
+        setHeadUserStatus();
+});
+
+</script>
+<%end%>
+

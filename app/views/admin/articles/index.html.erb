@@ -1,0 +1,31 @@
+
+<h1>Listing articles</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Title</th>
+    <th>Content</th>
+    <th>Article categories</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @articles.each do |article| %>
+  <tr>
+    <td><%= article.id %></td>
+    <td><a href="/article/<%= article.id%>"><%= article.title %></td>
+    <td><%=raw truncate strip_tags(article.content),:length=>300%></td>
+    <td><%= article.article_category_id %></td>
+    <td><%= link_to 'Show', admin_article_path(article) %></td>
+    <td><%= link_to 'Edit', edit_admin_article_path(article) %></td>
+    <td><%= link_to 'Destroy', admin_article_path(article), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Article', new_admin_article_path %>
+

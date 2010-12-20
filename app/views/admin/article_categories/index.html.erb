@@ -1,0 +1,34 @@
+
+<h1>Listing article_categories</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Position</th>
+    <th>Memo</th>
+    <th>tuangou</th>
+    <th>parent_id</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @article_categories.each do |article_category| %>
+  <tr>
+    <td><%= article_category.id %></td>
+    <td><%= article_category.name %></td>
+    <td><%= article_category.position %></td>
+    <td><%= article_category.memo %></td>
+    <td><%= article_category.tuangou %></td>
+    <td><%= article_category.parent_id %></td>
+    <td><%= link_to 'Show', admin_article_category_path(article_category) %></td>
+    <td><%= link_to 'Edit', edit_admin_article_category_path(article_category) %></td>
+    <td><%= link_to 'Destroy', admin_article_category_path(article_category), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Article category', new_admin_article_category_path %>

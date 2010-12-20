@@ -1,0 +1,242 @@
+<% content_for :headmeta do %>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+<meta name="pagename" content="points" />
+<%end%>
+<%content_for :headtitle do%>
+<title>积分换购_给力百货 - 创意生活零售平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品</title>
+<%end%>
+<% content_for :headstyle do %>
+<link href="/themes/default/css/header.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/integral.css" rel="stylesheet" type="text/css" />
+<%end%>
+<% content_for :headjs do %>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/header.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/integral.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/divpop.js" charset="UTF-8"></script>
+<SCRIPT type=text/javascript>
+
+$(".close").live("click", function(){
+	$("#popbg").fadeOut();
+	$(".pop_out").fadeOut();
+	});
+
+</script>
+<%end%>
+<% content_for :headother do%>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" />
+<link rel="alternate" type="application/rss+xml" title="RSS|积分换购_给力百货 - 创意生活零售平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品" href="" />
+<% end%>
+<div id='main'>
+
+
+ <div class="top_nav">您当前的位置：<a href=".">首页</a> <code>&gt;</code> <span>积分换购</span></div>    <div id="left_box">
+
+
+    	<span id="left_title"></span>
+    	<ul class="left_ul">
+            <li><a href="/score" objFlag = "view_shop">积分换购</a></li>
+            <li><a href="/score_exchange" objFlag = "exchange">积分抽奖</a></li>
+		</ul>
+
+
+	    <br/>
+
+<%=render 'usercenter/history'%>
+        <div class="clear"></div>
+  </div>
+  <div id="right_box">
+
+
+
+        <div class="right_top">
+            <span>积分换购</span>
+<%if has_login?%>
+                        <p>你当前的积分为：<strong><%=current_user.score%></strong><a target="_blank" href="user.php?act=points">[我的积分]</a> <a target="_blank" href="article-57.html">[积分规则]</a></p>
+<%else%>
+<p><a class="item_opt" href="/usercenter/login?back_url=/score">[登录]</a> 后显示你的积分。<a href="article-57.html" target="_blank">[积分规则]</a></p>
+<%end%>
+
+                     </div>
+      <div>
+        <%@products.each_with_index do |product,index|%>
+          	<ul class="list" style="position:relative;">
+        	<li class="list_img"><a href="<%=product_url(product.id)%>" target="_blank"><img src="<%=product.i1.url(:medium)%>" width="160" height="160" alt="<%=product.name%>" /></a><span class="duihao"></span></li>
+        	               <li class="li_c"><b><a href="/brands/<%=product.brand_id%>">[&nbsp;<%=product.brand.name%>&nbsp;]</a></b></li>
+
+            <li><a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=product.name%></a></li>
+            <li>现金价:<span>￥<%=price(product.p2)%></span></li>
+            <li>换购价:<span>￥<%=price(product.p3)%></span><font> + <%=product.s1%>积分</font></li>
+            <li class="goods_attr">
+              <%if product.new%>
+                            	<span class="new_goods" title="新品"></span>
+                              <%end%>
+                                   </li>
+            <li class="li_c"><a class="list_btn" onClick="inTooCartAction('<%=product.id%>','<%=product.name%>',1,0,1,$(this))" style="cursor:pointer;"></a></li>
+        </ul>
+                <%if (index+1)==4 and (index+1)!=@products.size%>
+                                               <div id="clear"></div></div>
+           <div>
+                <%end%>
+        <%end%>
+
+                   <div id="clear"></div></div>
+     <%=raw @page%>
+
+	       </div>
+
+<div id='clear'></div>
+</div>
+<% content_for :bodyfoot do%>
+<!--[if IE 6]><script type="text/javascript">try {document.execCommand('BackgroundImageCache', false, true);} catch(e) {}</script><![endif]-->
+
+<!--<script src='http://w.cnzz.com/c.php?id=30035654' language='JavaScript' charset='gb2312'></script>-->
+<div id="global_foot_white"></div>
+
+ <div style="width: 303px; padding-bottom: 5px; top: 169px; left: -100px;" id="cat_pop" class="pop_out">
+      <div style="width: 281px;" class="pop_in">
+        <div style="border-bottom: medium none; margin-bottom: 0pt;" class="pop_top">
+          <div style="line-height: 13px;" class="close">关闭</div>
+        </div>
+        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+          <tbody>
+            <tr>
+              <td height="50" align="center" valign="middle" colspan="2"><span style="color: rgb(0, 0, 0); font-size: 14px;" class="pop_inf">商品已成功添加到购物车</span></td>
+            </tr>
+            <tr>
+              <td height="30" align="right" width="70%" valign="middle"><a href="/shopping/cart" class="pop_btn">去购物车结算</a></td>
+              <td align="left" width="30%" valign="middle"><a onclick="$('.close').click();" class="info_a" style="cursor: pointer; color: rgb(31, 113, 203);">继续逛&gt;&gt;</a></td>
+            </tr>
+            <tr>
+              <td height="20" align="center" valign="middle" colspan="2"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
+<div id="popbg"></div>
+
+
+
+
+<div class="pop_out" id="login_pop">
+  <div class="do_box pop">
+    <div class="do_top"><img src="/themes/default/imgs/ucenter/login_title.gif" width="137" height="44" />已注册用户从这里登录<div class="close">关闭</div></div>
+    <form action="flow.php?step=login" method="post" name="loginForm" id="loginForm" onSubmit="return checkLoginForm()">
+      <table width="433" border="0" cellpadding="0" cellspacing="0" class="do_list">
+        <tr>
+          <td width="65" height="46" align="right" valign="middle">邮件地址:</td>
+          <td width="240" valign="middle"><input name="username"  id="login_user" class="do_input" type="text" value="" onBlur="checkE(this.value);"/>
+          </td>
+          <td width="118" valign="middle"><span id="u_id" ></span>
+            <div class="flow_input_box_tip_box"></div></td>
+        </tr>
+        <tr>
+          <td height="46" align="right" valign="middle">密码:</td>
+          <td valign="middle"><input name="password" class="do_input" id="login_pass" type="password" value=""/>
+          </td>
+          <td valign="middle"><span></span></td>
+        </tr>
+        <tr>
+          <td height="30" align="right" valign="middle">&nbsp;</td>
+          <td valign="middle"><input type="checkbox" name="remember" value="1"  />
+            <b>记住登录状态</b></td>
+          <td valign="middle">&nbsp;</td>
+        </tr>
+        <tr>
+          <td height="56" align="right" valign="middle">&nbsp;</td>
+          <td colspan="2" valign="middle"><input type="image" src="/themes/default/imgs/ucenter/login_btn.gif" />
+            <a class="forget" href="/user.php?act=get_password">忘记密码？</a></td>
+        </tr>
+        <tr>
+          <td height="56" align="right" valign="middle">&nbsp;</td>
+          <td colspan="2" valign="top" style="border-top:1px dashed #e2e2e2; padding-top:10px;">没有帐号?&nbsp;&nbsp;&nbsp;&nbsp;<a class="do_other"  href="#" id="regpop_btn">10秒钟快速注册 &gt;&gt;</a></td>
+        </tr>
+      </table>
+      <input name="act" type="hidden" value="signin" />
+      <input type="hidden" name="back_act" value="integral.php?act=view_shop" />
+    </form>
+  </div>
+</div>
+
+
+<div class="pop_out" id="reg_pop">
+  <div class="do_box pop">
+    <div class="do_top"><img src="/themes/default/imgs/ucenter/reg_title.gif" width="138" height="44" />您所提供的资料不会做其它用途，请放心填写<div class="close">关闭</div></div>
+    <form action="flow.php?step=login" method="post" name="formUser" id="formUser" onSubmit="return checkSignupForm(this)">
+      <table width="433" border="0" cellpadding="0" cellspacing="0" class="do_list">
+        <tr>
+          <td width="65" height="46" align="right" valign="middle">邮件地址:</td>
+          <td width="240" valign="middle"><input name="email" class="do_input" type="text" id="email" onBlur="regCheckE(this.value);"/>
+          </td>
+          <td width="118" valign="middle"><span id="u_id_r">请使用有效邮箱</span></td>
+        </tr>
+        <tr>
+          <td height="46" align="right" valign="middle">密码:</td>
+          <td valign="middle"><input name="password" class="do_input" type="password" id="password" onBlur="check_passwd(this.value);"/></td>
+          <td valign="middle"><span id="pass_wd">不能少于6位字符</span></td>
+        </tr>
+        <tr>
+          <td height="46" align="right" valign="middle">确认密码:</td>
+          <td valign="middle"><input name="confirm_password" class="do_input" type="password" id="conform_password" onBlur="check_conform_passwd(this.value);"/></td>
+          <td valign="middle"><span id="conform_pass_wd">请再次输入密码</span></td>
+        </tr>
+                <tr>
+          <td height="46" align="right" valign="middle">验证码:</td>
+          <td valign="middle"><input type="text" size="8" name="captcha" id="captcha" onBlur="chk_captcha()"/>
+            <img src="captcha.php?" alt="captcha" style="vertical-align: middle;cursor: pointer;height:22px;" onClick="this.src='captcha.php?'+Math.random()" /></td>
+          <td valign="middle"><span id="captcha_txt">请输入验证码</span></td>
+        </tr>
+                <tr>
+          <td height="30" align="right" valign="middle">&nbsp;</td>
+          <td valign="middle"><input id="agreement_input" name="agreement" type="checkbox" value="1" checked="checked" />
+            <a href="/article.php?id=22" target="_blank">我已看过并接受《给力百货用户协议》</a></td>
+          <td valign="middle">&nbsp;</td>
+        </tr>
+        <tr>
+          <td height="56" align="right" valign="middle">&nbsp;</td>
+          <td colspan="2" valign="middle"><input type="image" src="/themes/default/imgs/ucenter/reg_btn.gif" id="sub">
+            <span style="padding-left:10px; color:#ff0000;">注册即送5元优惠券(消费50元可使用)</span></td>
+        </tr>
+      </table>
+      <input name="act" type="hidden" value="signup"/>
+      <input type="hidden" name="back_act" value="integral.php?act=view_shop" />
+    </form>
+  </div>
+</div>
+
+<% end%>
+<%content_for :outhtml do%>
+<script type="text/javascript">
+  /* 加入购物车、登录、注册弹出层 */
+  $(document).ready(function(){
+
+  $(".close").live("click", function(){
+	$("#popbg").fadeOut();
+	$(this).parent().parent().parent().fadeOut();
+	});
+    /*$('.dh_btn').click(function(){
+      popdiv("#login_pop","471","auto",0.4);
+    });*/
+    $('#regpop_btn').click(function(){
+      $(".pop_out").hide();
+      popdiv("#reg_pop","471","auto",0.4);
+    });
+
+    stepUserCenterAction('view_shop');//设置活动menu
+    setHeadFlowNum();//购物车数量
+
+     /*静态页面调用该函数*/
+        setHeadUserStatus();
+});
+
+
+</script>
+<%end%>
+

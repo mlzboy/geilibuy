@@ -1,0 +1,70 @@
+   	  <div class="right_top">
+        	<span class="welcome lipinka"></span>
+            <span class="goon_btn"><a style="color:#fff;" href="/" title="首页">继续购物</a></span>             
+        </div>
+		<form name="addBouns" action="/usercenter/coupons" method="post" onSubmit="return addBonus()">        
+                 <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+      <div class="right_line">
+        <table width="100%"  border="0" cellpadding="0" cellspacing="0" class="table">
+          <tr>
+            <td align="left" valign="middle" class="td_form">&nbsp;</td>
+            <td colspan="3" align="left" valign="middle" class="td_form">&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="4%" height="40" align="left" valign="middle" class="td_form">&nbsp;</td>
+            <td colspan="3" align="left" valign="middle" class="td_form"><strong style="font-size:14px; color:#000;">输入验证码，在帐户中充入新的优惠卡/礼品卡</strong></td>
+          </tr>
+          <tr>
+            <td height="40" align="left" valign="middle" class="td_form">&nbsp;</td>
+            <td colspan="3" align="left" valign="middle" class="td_form" id="global_insert_input">验证码：
+              <input name="bonus_sn" type="text" id="bonus_sn" size="20" /><input type="hidden" name="act" value="act_add_bonus" />
+            <span>请输入您的优惠券/礼品卡的验证码</span></td>
+          </tr>         
+          <tr>
+            <td height="40" align="left" valign="middle" class="td_form">&nbsp;</td>
+            <td width="7%" align="left" valign="middle" class="td_form">&nbsp;</td>
+            <td width="14%" align="left" valign="middle" class="td_form"><input class="band_btn" style="border:none;" type="submit" value="绑定" /></td>
+            <td width="75%" align="left" valign="middle" class="td_form"><a href="http://www.geilibuy.com/article.php?id=133" target="_blank">点击查看详细说明&gt;&gt;</a></td>
+          </tr>
+          <tr>
+            <td align="left" valign="middle" class="td">&nbsp;</td>
+            <td colspan="3" align="left" valign="middle" class="td">&nbsp;</td>
+          </tr>
+        </table>
+      </div>
+	  </form>
+      <div class="right_line">
+        <%sum=0
+        @coupons.each do |coupon|
+          sum+=coupon.money
+        end
+        %>
+        <p style="line-height:30px;"><strong style="font-size:14px; color:#000;">[优惠券/礼品卡]</strong>（共 <%=@coupons.size%> 张可用，合计面值 <%=price(sum)%>元）<font style="color:#F00; font-size:12px; padding-left:10px;">*过期的优惠券将被删除，请及时使用！</font></p>
+        <table width="100%"  border="0" cellpadding="0" cellspacing="0" class="table">
+          <tr>
+            <td width="23%" height="30" align="center" valign="middle" class="td_top">验证码</td>
+            <td width="13%" align="center" valign="middle" class="td_top">面值</td>
+            <td width="16%" align="center" valign="middle" class="td_top">最小订单金额</td>
+            <td width="33%" align="center" valign="middle" class="td_top">有效期</td>
+            <td width="15%" align="center" valign="middle" class="td_top">状态</td>
+          </tr>
+          <%@coupons.each do |coupon|%>
+		            <tr>
+            <td align="center" valign="middle" class="td"><div style="color:#006600;"><%=coupon.from%></div></td>
+            <td align="center" valign="middle" class="td"><%=price(coupon.money)%></td>
+            <td align="center" valign="middle" class="td"><%=price(coupon.min_money)%></td>
+            <td align="center" valign="middle" class="td"><%=coupon.start_time.strftime("%Y-%m-%d")%>&nbsp;至&nbsp;<%=coupon.end_time.strftime("%Y-%m-%d")%></td>
+            <td align="center" valign="middle" class="td"><%=coupon.status%></td>
+          </tr>
+          <%end%>
+		          <tr></tr>
+        </table>
+      </div>
+  </div>
+<form name="selectPageForm" id='page_list_sort_form' action="/user.php" method="get">
+<input type="hidden" id='page_list_order' name="order" value="" />
+<input type="hidden" id='page_list_sort' name="sort" value="" />
+<input type="hidden" name="act" value="bonus" />
+</form>
+       
+<div class="page_box"><span><font>&laquo;首页</font></span><span><font>&#173;上一页</font></span><span id="page_on"><font>1</font></span><span><font>&#173;下一页</font></span><span><font>&#173;尾页&raquo;</font></span><span><font>1/共1页</font></span></div>

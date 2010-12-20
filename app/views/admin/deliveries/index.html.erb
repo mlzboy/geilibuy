@@ -1,0 +1,30 @@
+
+<h1>Listing deliveries</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Memo</th>
+    <th>Position</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @deliveries.each do |delivery| %>
+  <tr>
+    <td><%= delivery.id %></td>
+    <td><%= delivery.name %></td>
+    <td><%= delivery.memo %></td>
+    <td><%= delivery.position %></td>
+    <td><%= link_to 'Show', admin_delivery_path(delivery) %></td>
+    <td><%= link_to 'Edit', edit_admin_delivery_path(delivery) %></td>
+    <td><%= link_to 'Destroy', admin_delivery_path(delivery), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Delivery', new_admin_delivery_path %>

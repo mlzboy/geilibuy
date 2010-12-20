@@ -1,0 +1,51 @@
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @order.user_id %>
+</p>
+
+<p>
+  <b>Sn:</b>
+  <%= @order.sn %>
+</p>
+
+<p>
+  <b>Real money:</b>
+  <%= @order.real_money %>
+</p>
+
+<p>
+  <b>Cost scores:</b>
+  <%= @order.cost_scores %>
+</p>
+
+<p>
+  <b>Tuan:</b>
+  <%= @order.tuan_id %>
+</p>
+
+<p>
+  <b>Delivery:</b>
+  <%= @order.delivery_id %>
+</p>
+
+<p>
+  <b>Total price:</b>
+  <%= @order.total_price %>
+</p>
+
+<p>
+  <b>Delivery price:</b>
+  <%= @order.delivery_price %>
+</p>
+
+<p>
+  <b>Products num:</b>
+  <%= @order.products_num %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_order_path(@order) %> |
+<%= link_to 'Back', admin_orders_path %>

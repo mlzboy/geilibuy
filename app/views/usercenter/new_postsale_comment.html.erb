@@ -1,0 +1,108 @@
+<div class="right_top">
+        	<span class="welcome pinglun"></span>
+            <span class="goon_btn"><a style="color:#fff;" href="./" title="首页">继续购物</a></span>             
+        </div>        
+            <div class="right_line">
+       <form action="<%=request.fullpath%>" method="POST" onsubmit="return yz()">      	
+                   <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+<table width="100%"  border="0" cellpadding="0" cellspacing="0" class="table">
+          <tr>
+            <td height="30" colspan="2" align="left" valign="middle" class="td_top"><span style="padding-left:10px; font-weight:bold; color:#000;">我要评论<a href="goods.php?id=8563" target="_blank" style="color:#0066cc;"><%=@product.name%></a></span>&nbsp;&nbsp;已有<font> <%=@product.postsale_comments_count%> </font>人对此发表评论</td>
+          </tr>
+          <tr>
+            <td width="68" align="left" valign="middle">&nbsp;</td>
+            <td width="699" height="10" align="left" valign="middle" >&nbsp;</td>
+          </tr>
+          <tr>
+            <td height="40" align="right" valign="middle" class="td_form"><span style="color:#652f00; padding-right:10px;">创意设计</span></td>
+            <td align="left" valign="middle" class="td_form">
+            <input type="radio" name="comment_rank" id="radio" value="1" />
+            <span class="star s5" style="width:14px;margin-right:2px; top: 3px;*top:0px !important; *top:0px;"></span> 很差&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="comment_rank" id="radio" value="2" />
+            <span class="star s5" style="width:30px;margin-right:2px; top: 3px;*top:0px !important; *top:0px;"></span> 差&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="comment_rank" id="radio" value="3" />
+            <span class="star s5" style="width:46px;margin-right:2px; top: 3px;*top:0px !important; *top:0px;"></span> 一般&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="comment_rank" id="radio" value="4" />
+            <span class="star s5" style="width:62px;margin-right:2px; top: 3px;*top:0px !important; *top:0px;"></span> 满意&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="comment_rank" id="radio" value="5" checked="checked" />
+            <span class="star s5" style="width:77px;margin-right:2px; top: 3px;*top:0px !important; *top:0px;"></span> 很满意 </td>
+          </tr>
+          <tr>
+            <td height="40" align="right" valign="middle" class="td_form"><span style="color:#652f00; padding-right:10px;">功能实用</span></td>
+            <td align="left" valign="middle" class="td_form">
+            <input type="radio" name="comment_rank_1" id="radio" value="1" />
+            <span class="star s5" style="width:14px;margin-right:2px; top: 3px;*top:0px !important; *top:0px;"></span> 很差&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="comment_rank_1" id="radio" value="2" />
+            <span class="star s5" style="width:30px;margin-right:2px; top: 3px;*top:0px !important; *top:0px;"></span> 差&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="comment_rank_1" id="radio" value="3" />
+            <span class="star s5" style="width:46px;margin-right:2px; top: 3px;*top:0px !important; *top:0px;"></span> 一般&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="comment_rank_1" id="radio" value="4" />
+            <span class="star s5" style="width:62px;margin-right:2px; top: 3px;*top:0px !important; *top:0px;"></span> 满意&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="comment_rank_1" id="radio" value="5" checked="checked" />
+            <span class="star s5" style="width:77px;margin-right:2px; top: 3px;*top:0px !important; *top:0px;"></span> 很满意 </td>
+          </tr>
+          <tr>
+            <td height="40" align="right" valign="middle" class="td_form"><span style="color:#652f00; padding-right:10px;">做工质量</span></td>
+            <td align="left" valign="middle" class="td_form">
+            <input type="radio" name="comment_rank_2" id="radio" value="1" />
+            <span class="star s5" style="width:14px;margin-right:2px; top: 3px;*top:0px !important; *top:0px;"></span> 很差&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="comment_rank_2" id="radio" value="2" />
+            <span class="star s5" style="width:30px;margin-right:2px; top: 3px;*top:0px !important; *top:0px;"></span> 差&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="comment_rank_2" id="radio" value="3" />
+            <span class="star s5" style="width:46px;margin-right:2px; top: 3px;*top:0px !important; *top:0px;"></span> 一般&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="comment_rank_2" id="radio" value="4" />
+            <span class="star s5" style="width:62px;margin-right:2px; top: 3px;*top:0px !important; *top:0px;"></span> 满意&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="comment_rank_2" id="radio" value="5" checked="checked" />
+            <span class="star s5" style="width:77px;margin-right:2px; top: 3px;*top:0px !important; *top:0px;"></span> 很满意 </td>
+          </tr>
+          <!--隐藏标题<tr>
+            <td height="40" align="right" valign="middle" class="td_form"><span style="color:#652f00; padding-right:10px;">标题：</span></td>
+            <td align="left" valign="middle" class="td_form">
+              <input name="title" type="text" id="textfield" size="60" />
+            </td>
+          </tr>-->
+          <tr>
+            <td height="40" align="right" valign="middle" class="td_form"><span style="color:#652f00; padding-right:10px;">正文：</span></td>
+            <td align="left" valign="middle" class="td_form"><label>
+              <textarea name="content" cols="60" rows="10"  id="textarea"  onkeyup="lentxt(0,200,'#textarea');" onclick="lentxt(1,200,'#textarea');" style="font-size:12px;color:#666">评论不能超过200个字</textarea>
+            </label>              </td>
+          </tr>
+          <tr>
+            <td height="40" align="right" valign="middle" class="td_form"></td>
+            <td align="left" valign="middle" class="td_form"><p>* 发表评论您将获得<font> 20 积分</font>，评论被设置精华将额外获得50积分，发表评论前请仔细阅读并同意<a href="http://www.geilibuy.com/article.php?id=22" target="_blank" style="color:#0066cc;">相关条款</a>。<br />* 咨询问题请在<a href="<%=product_url(@product.id)%>" target="_blank" style="color:#0066cc">购买咨询区</a>发表。</p>
+            </td>
+          </tr>
+          <tr>
+            <td height="40" align="left" valign="middle" class="td_form">&nbsp;</td>
+            <td align="left" valign="middle" class="td_form"><span class="goon_btn" style="float:left; margin-left:0;">
+              <input class="u_btn" type="submit" value="提交评论" /></span></td>
+          </tr>
+          <tr>
+            <td align="left" valign="middle" class="td">&nbsp;</td>
+            <td align="left" valign="middle" class="td">&nbsp;</td>
+          </tr>
+        </table>
+        <input type="hidden" value="2" name="cmt_type"/>
+            <input type="hidden" value="8563" name="id"/>
+            <input type="hidden" value="frederick.mao@gmail.com" name="email"/>
+            <input type="hidden" value="家用门窗报警器" name="goods_name" />
+            <input type="hidden" value="pinglun" name="act"/>
+        </form>
+      </div>
+    <script>
+    function yz () {
+        if ($("#title").val() == '')
+        {
+            alert('标题为空!');
+            return false;
+        }
+        if ($("#textarea").val() == '' || $("#textarea").val() == '评论不能超过200个字')
+        {
+            alert('内容为空!');
+            return false;
+        }
+        //alert('您的评论稍后将发布，谢谢。');
+		alert('您的评论已发布，谢谢。');
+        return true;
+    }
+</script>     

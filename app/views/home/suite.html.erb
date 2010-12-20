@@ -1,0 +1,197 @@
+<% content_for :headmeta do %>
+<meta name="Generator" content="趣玩网 quwan.com " />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="pragma" content="no-cache"/>
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/>
+<meta http-equiv="expires" content=""/>
+<meta name="Keywords" content="暖冬必备-帽子/手套/围巾 89元选3件" />
+<meta name="Description" content="暖冬必备-帽子/手套/围巾 89元选3件" />
+<%end%>
+<%content_for :headtitle do%>
+<title>暖冬必备-帽子/手套/围巾 89元选3件_趣玩网 - 创意生活零售平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品</title>
+<%end%>
+<% content_for :headstyle do %>
+<link href="/themes/default/css/header.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/freeselect.css" rel="stylesheet" type="text/css" />
+<%end%>
+<% content_for :headjs do %>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/js-clib.js" charset="UTF-8"></script>
+
+<script type="text/javascript" src="/themes/default/js/header.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/floatDiv.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/free-select.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/divpop.js" charset="UTF-8"></script>
+<SCRIPT type=text/javascript>
+$(document).ready(function(){
+$(function(){
+	$("#right").scrollFollow({speed: 400, offset: 0, delay:100});
+});
+$(".close").live("click", function(){
+	$("#popbg").fadeOut();
+	$(this).parent().parent().parent().fadeOut();
+	});	
+	var gstyle_max=211;
+	$('.gstyle').hover(function(){	
+		$(this).addClass('gstyle_on');
+		if($('.gstyle_pop').width()<211)
+		{
+			$('.gstyle_pop').width(211);
+			$('.gstyle_pop').find('a').width(211);
+		}
+		$('.gstyle_pop').show();	
+		
+	if(gstyle_max==211)	
+	{ 　	$('.gstyle_pop').find('li').each(function(index) {       
+		  if ($('.gstyle_pop').find('li').eq(index).width()>=gstyle_max) 
+		  {
+			 
+		   gstyle_max=$(this).width();
+		  }
+      });
+	 $('.gstyle_pop').find('li').each(function(index) {       
+		 $('.gstyle_pop').find('li').eq(index).width(gstyle_max);		  
+      });
+	}
+		
+		$('.gstyle').find('.gstyle_pop').find('li').eq(parseInt($(this).attr('select'))).addClass('gpop_on').siblings().removeClass('gpop_on');
+	},function(){
+	    $('.gstyle_pop').hide();
+		$(this).removeClass('gstyle_on');
+	});
+	
+	$('.gstyle_pop').find('li').hover(function(){
+		$(this).addClass('gpop_on').siblings().removeClass('gpop_on');
+		$('.gstyle').removeClass('gstyle_on');
+	}, function(){		
+	});
+	setHeadFlowNum();//购物车数量
+});
+	
+</script>
+
+<%end%>
+<% content_for :headother do%>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" />
+<% end%>
+<div id="main">
+  
+  <div class="top_nav"><a href="/">首页</a><code>&gt;&gt;</code><font color="#cc2b21" id="act_name"><%=@product_show.suite_name%></font>
+    <div class="gstyle garrow" select="4" style="z-index:2;">
+      <p><%=@product_show.suite_name%></p>
+
+      <ul class="gstyle_pop" style="display:none;">
+	<%ProductShow.where(:suite_on=>true).where(:suite=>true).each do |product_show|%>
+                <li 
+                class="gpop_on"
+                ><a title="<%=product_show.suite_name%>" href="/suite/<%=product_show.id%>"><%=product_show.suite_name%></a>
+        </li>
+	<%end%>
+              </ul>
+    </div>
+  </div>
+  
+  <div class="banner"><img src="<%=@product_show.suite_pic%>">
+    <p><strong>选购说明: </strong> <br />
+
+      在可选商品列表中挑选您心仪的商品;<br />
+      点击商品下方的"选择此商品"按钮,将商品放入已选商品列表;<br />
+      点击"放入购物车"按钮,将套件加入到购物车;<br />
+      套件放入购物车后,您可以再选购其它商品或直接结算</p>
+  </div>
+  
+  <input name="totle_select_max" type="hidden" id="totle_select_max" value="<%=@product_show.suite_num%>" />
+  <div class="right" id="right" style="position: relative; z-index:1;">
+
+    
+    <input name="totle_select_max" type="hidden" id="totle_select_max" value="<%=@product_show.suite_num%>" />
+    <div class="right_top"></div>
+    <div class="select_tip">已选<span id="yixuan">0</span>件，还能再选<span id="zaixuan">0</span>件<br />
+      优惠价:<span id="total_price"><%=price(@product_show.suite_price)%>元</span></div>
+    <a class="buy_btn" id="buy" act_id="<%=@product_show.id%>"></a>
+
+    <div id="selected_box">
+	<%(1..@product_show.suite_num).each do |index|%>
+            <ul class="selected_ul" id="selected_<%=index%>" status="empty">
+        <li class="selected_name"><a class="name_a" href=""></a><a class="del_a" style="cursor:pointer;">移除</a>
+          <div class="clear"></div>
+        </li>
+        <li><a class="selected_img" num="<%=index%>"><%=index%></a><span></span><span>请从左侧选</span><span></span><span></span>
+          <div class="clear"></div>
+
+        </li>
+      </ul>
+      <%end%>
+          </div>
+    <div style="width: 303px; padding-bottom: 5px; left: -135px; top: -1px;" id="cat_pop" class="pop_out">
+      <div style="width: 281px;" class="pop_in">
+        <div style="border-bottom: medium none; margin-bottom: 0pt;" class="pop_top">
+          <div style="line-height: 13px;" class="close">关闭</div>
+
+        </div>
+        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+          <tbody>
+            <tr>
+              <td height="50" align="center" valign="middle" colspan="2"><span style="color: rgb(0, 0, 0); font-size: 14px;" class="pop_inf">商品已成功添加到购物车</span></td>
+            </tr>
+            <tr>
+              <td height="30" align="right" width="70%" valign="middle"><a href="/shopping/cart" class="pop_btn">去购物车结算</a></td>
+
+              <td align="left" width="30%" valign="middle"><a onclick="$('.close').click();" class="info_a" style="cursor: pointer; color:#1F71CB;">继续逛&gt;&gt;</a></td>
+            </tr>
+            <tr>
+              <td height="20" align="center" valign="middle" colspan="2"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+  <div class="list">
+    <div class="list_top"><%=@product_show.suite_name%></div>
+    
+    <%@product_show.products.each_with_index do |product,index|%>
+        <ul class="list_ul" id="list_<%=index+1%>" status="off" amount="0">
+      <li class="list_img"><a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank" ><img src="<%=product.i1.url(:medium)%>" alt="<%=product.name%>"  /></a><span class="duihao"></span></li>
+      
+      <li><font><a href="http://www.quwan.com/search.php?brand=401">[&nbsp;Easyliving&nbsp;]</a></font></li>
+
+      
+      <li><a goodsid="<%=product.id%>" title="<%=product.name%>" href="<%=product_url(product.id)%>" target="_blank"><%=truncate product.name,:length=>12%></a></li>
+      <li>原价:<span><%=price(product.p1)%></span></li>
+      <li class="xuan"><a class="list_btn" href="javascript:void(0);"></a></li>
+    </ul>
+    <%end%>
+
+      </div>
+  <div id="clear"></div>
+</div>
+<br/>
+
+<br/>
+<%content_for :bodyfoot do%>
+<!--[if IE 6]><script type="text/javascript">try {document.execCommand('BackgroundImageCache', false, true);} catch(e) {}</script><![endif]-->
+<!--<script src='http://w.cnzz.com/c.php?id=30035654' language='JavaScript' charset='gb2312'></script>-->
+<!--<div class="pop_out" id="cat_pop">
+  <div class="pop_in">
+    <div class="pop_top"><span  class="pop_top1"></span><a class="close">关闭</a></div>
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td height="70" colspan="2" align="center" valign="middle"><span class="pop_inf"></span></td>
+      </tr>
+      <tr>
+        <td width="50%" height="50" align="right" valign="middle"><a class="pop_btn close" style="padding-left: 0pt;">继续逛</a></td>
+        <td width="50%" align="left" valign="middle"><a class="pop_btn" href="http://www.quwan.com/flow.php">查看购物车</a></td>
+      </tr>
+      <tr>
+        <td height="20" colspan="2" align="center" valign="middle"></td>
+      </tr>
+    </table>
+  </div>
+</div>-->
+</div>
+
+<%end%>

@@ -1,0 +1,65 @@
+<%
+def remove_module_name(str)
+  a=file_path.split("/")
+  if a.size==1
+    r=str
+  else
+    a.pop
+    pre=""
+    pre2=""
+    for e in a
+      pre+=e+"_"
+      pre2+=e.capitalize+"::"
+    end
+    if str.index(pre)==0
+      r=str[pre.size,str.size]
+    elsif str.index(pre2)==0
+      r=str[pre2.size,str.size]
+    else
+      r=str
+    end
+  end
+  r
+end
+
+def gen_path
+  a=file_path.split("/")
+  if a.size==1
+    r="@"+remove_module_name(singular_table_name)
+  else
+    a.pop
+    a=a.map{|e| ":"+e}<<"@"+remove_module_name(singular_table_name)
+    r=a.join(',')
+  end
+  "[#{r}]"
+end
+%>
+<h1>Listing <%=remove_module_name plural_table_name %></h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+<% for attribute in attributes -%>
+    <th><%= attribute.human_name %></th>
+<% end -%>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<%% @<%=remove_module_name plural_table_name %>.each do |<%=remove_module_name singular_table_name %>| %>
+  <tr>
+    <td><%%= <%=remove_module_name singular_table_name %>.<%= "id" %> %></td>
+<% for attribute in attributes -%>
+    <td><%%= <%=remove_module_name singular_table_name %>.<%= attribute.name %> %></td>
+<% end -%>
+    <td><%%= link_to 'Show', <%= singular_table_name %>_path(<%=remove_module_name singular_table_name %>) %></td>
+    <td><%%= link_to 'Edit', edit_<%= singular_table_name %>_path(<%=remove_module_name singular_table_name %>) %></td>
+    <td><%%= link_to 'Destroy', <%= singular_table_name %>_path(<%=remove_module_name singular_table_name %>), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<%% end %>
+</table>
+
+<br />
+
+<%%= link_to 'New <%= human_name %>', new_<%= singular_table_name %>_path %>

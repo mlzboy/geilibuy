@@ -1,0 +1,41 @@
+
+<!--QUWAN 继续购物-->
+<div class="right_top"> <span class="welcome album"></span> <span class="goon_btn"><a style="color: rgb(255, 255, 255);" href="./" title="首页">继续购物</a></span> </div>
+
+<div class="right_line">      	
+        <table class="table" width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tbody><tr>
+                <td class="td_top" height="30" valign="middle" width="70%" align="left"><span class="up_t"><%=@up.product.name%>的相册</span>(共<%=@up.specific_product_count%>张图片)</td>
+            <td class="td_top" valign="middle" width="30%" align="right"><a href="/usercenter/upload_photos/<%=@up.product.id%>">&lt;&lt;返回该商品相册</a>&nbsp;&nbsp;</td>
+              </tr>
+          
+  <!--QUWAN 上传成功-->
+  
+      <tr>
+        <td>
+  <table class="table" width="100%" border="0" cellpadding="0" cellspacing="0">
+          
+          <tbody><tr>
+            <td colspan="2" class="td" height="30" valign="middle" align="left"><span class="up_t">上传成功！</span></td>
+          </tr>
+          
+          <tr>
+            <td colspan="2" class="td" valign="middle" align="left">
+            	<ul class="uppic">
+                                          <li><img style="padding: 4px; border: 1px solid rgb(204, 204, 204);" src="<%=@up.i1.url%>"></li>
+                                         <li>成功上传了 1张图片!</li>
+                </ul>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" class="td" height="30" valign="middle" align="left">
+              <input name="" style="margin: 10px;" class="u_btn" value="继续上传" onclick="location.href='/usercenter/upload_photos/<%=@up.product_id%>/new'" type="button">
+              <input name="" style="margin: 10px;" class="u_btn" value="返回相册" onclick="location.href='/usercenter/upload_photos'" type="button"></td>
+          </tr>
+        </tbody></table>
+  <!--QUWAN 上传成功-->
+              </td>
+          </tr>
+        </tbody></table>
+      </div>
+

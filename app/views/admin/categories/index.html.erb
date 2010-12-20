@@ -1,0 +1,35 @@
+<h1><%=top?(@parent)%> 下的分类</h1>
+<table>
+  <tr>
+    <th>Id</th>
+    <th>ParentId</th>
+    <th>Position</th>
+    <th>Name</th>
+    <th>Uuid</th>
+    <th>Memo</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th>special</th>
+  </tr>
+
+<% @categories.each do |category| %>
+  <tr>
+    <td><%= category.id %></td>
+    <td><%= category.parent_id %></td>
+    <td><%= category.position %></td>
+    <td><%= link_to category.name,sub_admin_category_path(category) %></td>
+    <td><%= category.uuid %></td>
+    <td><%= category.memo %></td>
+    <td><%= link_to 'Show', admin_category_path(category) %></td>
+    <td><%= link_to 'Edit', edit_admin_category_path(category) %></td>
+    <td><%= link_to 'Destroy', admin_category_path(category), :confirm => 'Are you sure?', :method => :delete %></td>
+    <th><%= category.special%></th>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Category', my_new_admin_category_path(@parent) %>
+<%gen_parent%>

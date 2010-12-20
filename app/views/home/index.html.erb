@@ -1,0 +1,665 @@
+<%
+location="首页"
+topad=ad_materials("顶部",location,"")
+ad0=ad_materials("轮询位",location,"")
+ad1=ad_materials("左1",location,"")[0]
+ad2=ad_materials("左2",location,"")[0]
+ad3=ad_materials("左3",location,"")[0]
+ad4=ad_materials("左4",location,"")[0]
+ad5=ad_materials("左5",location,"")[0]
+ad6=ad_materials("右小1",location,"")[0]
+ad7=ad_materials("右公告",location,"")
+
+category1=Category.find_by_name("家居")
+c11=ad_materials("文字链",location,"家居")
+c12=ad_materials("方形",location,"家居")[0]
+c13=ad_materials("条形",location,"家居")
+
+category2=Category.find_by_name("装饰")
+c21=ad_materials("文字链",location,"装饰")
+c22=ad_materials("方形",location,"装饰")[0]
+c23=ad_materials("条形",location,"装饰")
+
+category3=Category.find_by_name("厨浴")
+c31=ad_materials("文字链",location,"厨浴")
+c32=ad_materials("方形",location,"厨浴")[0]
+c33=ad_materials("条形",location,"厨浴")
+
+category4=Category.find_by_name("办公")
+c41=ad_materials("文字链",location,"办公")
+c42=ad_materials("方形",location,"办公")[0]
+c43=ad_materials("条形",location,"办公")
+
+category5=Category.find_by_name("休闲")
+c51=ad_materials("文字链",location,"休闲")
+c52=ad_materials("方形",location,"休闲")[0]
+c53=ad_materials("条形",location,"休闲")
+
+category6=Category.find_by_name("潮流")
+c61=ad_materials("文字链",location,"潮流")
+c62=ad_materials("方形",location,"潮流")[0]
+c63=ad_materials("条形",location,"潮流")
+
+category7=Category.find_by_name("礼品")
+c71=ad_materials("文字链",location,"礼品")
+c72=ad_materials("方形",location,"礼品")[0]
+c73=ad_materials("条形",location,"礼品")
+
+category8=Category.find_by_name("原创品牌")
+c81=ad_materials("文字链",location,"原创品牌")
+c82=ad_materials("方形",location,"原创品牌")[0]
+c83=ad_materials("条形",location,"原创品牌")
+
+ps11=ps_products("新品推荐1",location,"")
+ps12=ps_products("新品推荐2",location,"")
+ps13=ps_products("新品推荐3",location,"")
+ps2=ps_products("每周热销榜",location,"")
+psc1=ps_products("厨窗",location,"家居")
+psc2=ps_products("厨窗",location,"装饰")
+psc3=ps_products("厨窗",location,"厨浴")
+psc4=ps_products("厨窗",location,"办公")
+psc5=ps_products("厨窗",location,"休闲")
+psc6=ps_products("厨窗",location,"潮流")
+psc7=ps_products("厨窗",location,"礼品")
+psc8=ps_products("厨窗",location,"原创品牌")
+
+brands=get_brands
+
+cs=cs_products("买家评论产品",location,"")
+%>
+<div id="main">     
+  
+<%
+if !topad.nil? and topad.size>0
+material=topad[0]
+%>
+ <div class="top_ad">
+<table cellpadding="0" cellspacing="0">
+<tr><td><a href='<%=material.hyperlink%>'
+                target='_blank'><img src='<%=material.image_url.url%>' width='960' height='104'
+                border='0' /></a></td></tr>
+</table>
+</div> 
+<%end%>    
+			
+      		<div class="left" id="flashleft"> 
+  
+  <div class="flash">
+
+    <ul id="fbox">
+      <%ad0.each do |material|%>
+            <li class="switch_item"><a href="<%=material.hyperlink%>" target="_blank" title="<%=material.title%>"><img src="<%=material.image_url.url%>" width="690" height="374" alt="<%=material.alt%>" /></a></li> 
+      <%end%>
+    </ul> 
+    <ul id="fbar"> 
+      <%(1..ad0.size).each do |index|%>
+            <li class="fbar <%= index==1 ? "fbar_on":""%>">0<%=(index).to_s%></li> 
+          <%end%>
+          </ul> 
+  </div> 
+  
+  <div class="f_ad f_ad1"><a href="<%=ad1.hyperlink%>" target="_blank" title="<%=ad1.title%>"><img src="<%=ad1.image_url.url%>"   width="340" height="129"  alt="<%=ad1.alt%>" /></a></div> 
+  <div class="f_ad"><a href="<%=ad2.hyperlink%>" target="_blank" title="<%=ad2.title%>"><img src="<%=ad2.image_url.url%>" width="340" height="129" alt="<%=ad2.alt%>"/></a></div> 
+  <div class="clear"></div> 
+</div> 
+<div class="right" id="flashright"> 
+  <dl class="rush"> 
+        	<dt ><a href="/article/5" target="_blank">给力团服务全国开通啦！</a></dt> 
+            <dd class="t_name"><a href="/tuan" title="<%=@tuan.title%>" target="_blank"><b><%=truncate @tuan.title,:length=>40%></b></a></dd>            
+            <dd class="rush_img"> 
+            	<a href="/tuan" title="<%=@tuan.title%>" target="_blank" class="new_tip q1" id="rush_tipa"></a> 
+            	<a href="/tuan" target="_blank"><img alt="<%=@tuan.title%>" src="<%=@tuan.i1.url(:medium)%>"   height="139" width="231"/></a>                
+		<%if @tuan.selling?%>
+	        <span  class="new_tip q1"  id="rush_tip"></span>
+		<%else%>
+	        <span  class="new_tip q2"  id="rush_tip"></span>
+		<%end%>
+			</dd> 
+            <dd class="t_price"><b>团购价:&nbsp;</b><font>¥<%=@tuan.pp2%></font><div class="clear"></div></dd> 
+            <dd class="t_jia">原&nbsp;&nbsp;价:&nbsp;<del><b>¥<%=@tuan.pp1%></b></del>&nbsp;&nbsp;&nbsp;&nbsp;折&nbsp;&nbsp;扣:&nbsp;<span><%=show_tuan_discount(@tuan)%>折</span></dd> 
+                        <dd class="t_jia"><span><%=@tuan.current_num%></span>人已团购&nbsp;&nbsp;剩余时间:&nbsp;
+			<!--<font id="update_time"><font class="overtime"><b style="border-right:none;">&nbsp;&nbsp;</b></font><font class="overtime"><b>&nbsp;&nbsp;</b></font><strong>:</strong><font class="overtime"><b style="border-right:none;">&nbsp;&nbsp;</b></font><font class="overtime"><b>&nbsp;&nbsp;</b></font><strong>:</strong><font class="overtime"><b style="border-right:none;">&nbsp;&nbsp;</b></font><font class="overtime"><b>&nbsp;&nbsp;</b></font></font>-->
+			<font id="update_time"><font class="overtime"><b style="border-right: medium none;">0</b></font><font class="overtime"><b>0</b></font><strong>:</strong><font class="overtime"><b style="border-right: medium none;">0</b></font><font class="overtime"><b>0</b></font><strong>:</strong><font class="overtime"><b style="border-right: medium none;">0</b></font><font class="overtime"><b>0</b></font></font>
+			</dd> 
+                        <dd class="t_btn"><a href="/tuan" target="_blank"><img src="/themes/default/imgs/global/tuan_btn.gif"  height="38" width="136"/></a></dd> 
+      </dl> 
+  <dl class="notice"> 
+    <dt></dt>
+    <%ad7.each_with_index do |material,index|%>
+            <dd <%= raw 'style="border:none;"' if index==0%> ><b>›</b> <a href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"> 
+            <%=truncate material.text,:length=>16%></a> </dd>
+            <%end%>
+                          </dl> 
+</div> 
+<div class="clear"></div> 
+			
+      		<div class="left"> 
+  
+        <div class="new"> 
+            <div class="ntop"> 
+                <ul id="nbar"> 
+                    <li class="nbar nbar_on"></li> 
+                    <li class="nbar"></li> 
+                    <li class="nbar"></li> 
+                </ul> 
+                <div class="clear"></div> 
+            </div>     
+            <div id="nbox"> 
+                <div class="switch_item">
+                  <%ps11.each do |product|%>
+                                    <ul class="new_ul"> 
+                        <li class="new_img"> 
+                        	<a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" /></a> 
+				<%if product.promotion%>
+				<span class="new_tip"><div style="" class="tip_num"><%=raw show_promotion_num(product)%></div></span>
+				<%end%>
+                        	                    </li> 
+                        <li><a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=product.name%></a></li> 
+                        <li><span><%=product.p2%>元</span></li>                        
+                    </ul>
+                  <%end%>
+
+                                            <ul id="clear"></ul> 
+                    </div> 
+                    <div  class="switch_item" style="display:none;"> 
+                                       
+                  <%ps12.each do |product|%>
+                                    <ul class="new_ul"> 
+                        <li class="new_img"> 
+                        	<a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" /></a>
+				<%if product.promotion%>
+				<span class="new_tip"><div style="" class="tip_num"><%=raw show_promotion_num(product)%></div></span>
+				<%end%>
+                        	                    </li> 
+                        <li><a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=product.name%></a></li> 
+                        <li><span><%=product.p2%>元</span></li>                        
+                    </ul>
+                  <%end%>
+                                            <ul id="clear"></ul> 
+                    </div> 
+                    <div  class="switch_item" style="display:none;"> 
+                                       
+                   <%ps13.each do |product|%>
+                                    <ul class="new_ul"> 
+                        <li class="new_img"> 
+                        	<a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" /></a> 
+				<%if product.promotion%>
+				<span class="new_tip"><div style="" class="tip_num"><%=raw show_promotion_num(product)%></div></span>
+				<%end%>
+                        	                    </li> 
+                        <li><a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=product.name%></a></li> 
+                        <li><span><%=product.p2%>元</span></li>                        
+                    </ul>
+                  <%end%>
+                                     
+                               <ul id="clear"></ul> 
+              </div> 
+            </div>            
+        </div> 
+        
+        <div class="ad ad2"><a href="<%=ad3.hyperlink%>" target="_blank" title="<%=ad3.title%>"><img src="<%=ad3.image_url.url%>"  width="160" height="211" alt="<%=ad3.alt%>" /></a></a></div> 
+        <div class="ad ad3"><a href="<%=ad4.hyperlink%>" target="_blank" title="<%=ad4.title%>"><img src="<%=ad4.image_url.url%>"  width="160" height="186" alt="<%=ad4.alt%>" /></a></div> 
+        <div class="clear"></div> 
+    </div> 
+	
+	
+    <div class="right"> 
+    	<dl class="rank"> 
+        	<dt class="boxtop"></dt>
+                <%ps2.each_with_index do |product,index|%>
+        	        	              <dd> 
+                <ul class="rank_on" <%= raw index==0 ? 'style="display:block;"' : ""%>>                
+                    <li class="rank_img"><span class="rank_span"><%=index+1%></span> 
+                      <a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"> 
+           <img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>"  /> 
+                      </a> 
+                    </li> 
+                    <li class="rankon_name"><a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=product.name%></a></li> 
+                    <li><font>￥<%=product.p2%></font></li> 
+                </ul>                    
+                <ul class="rank_off  <%="rank_odd" if index%2!=0%>" <%= raw index==0 ? 'style="display:none;"' : ""%>> 
+                    <li class="rank_name"><span class="rank_span"><%=index+1%></span><a href="<%=product_url(product.id)%>"  title="<%=product.name%>" target="_blank"><%= truncate product.name,:length=>14%></a></li> 
+                   
+                </ul>  
+            </dd>
+              <%end%>
+                            	             
+                            </dl> 
+    </div> 
+	<div class="clear"></div> 
+	
+ 
+<div class="left ad4"><a href="<%=ad5.hyperlink%>" title="<%=ad5.title%>" target="_blank"><img src="<%=ad5.image_url.url%>" width="752" height="100" alt="<%=ad5.alt%>"  /></a></div> 
+    <div class="right" id="ad4"><a href="<%=ad6.hyperlink%>" title="<%=ad6.title%>" target="_blank"><img src="<%=ad6.image_url.url%>" width="196" height="100" alt="<%=ad6.alt%>"  /></a></div> 
+    <div class="clear"></div>      
+      		
+<div class="top"> 
+       	<div class="cattop ct0 fl"> 
+       	  <dl> 
+            	<dt> 
+        			<a class="top_a" href="<%=category_url(category1.id)%>" title="家居" target="_blank"><span>家居</span></a> 
+                </dt> 
+                <dd class="pt"> 
+                                        <%c11.each do |material|%>
+                	                	<a class="top_a" href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><%=material.text%></a> 
+                                        <%end%>                	  
+                	<a class="more" href="<%=category_url(category1.id)%>" title="家居" target="_blank">更多...</a> 
+                </dd> 
+          </dl> 
+      </div> 
+        	<div class="cattop ct1 fr"> 
+       	  <dl> 
+            	<dt> 
+        			<a class="top_a" href="<%=category_url(category2.id)%>" title="装饰" target="_blank"><span>装饰</span></a> 
+                </dt> 
+                <dd class="pt"> 
+                                        <%c21.each do |material|%>
+                	                	<a class="top_a" href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><%=material.text%></a> 
+                                        <%end%> 
+                	  
+                	<a class="more" href="<%=category_url(category2.id)%>" title="装饰" target="_blank">更多...</a> 
+                </dd> 
+          </dl> 
+      </div> 
+       
+        <div class="clear"></div> 
+  </div> 
+  
+    <div class="box"> 
+          	<div class="catbox fl"> 
+        	<dl> 
+            	<dt><a href="<%=c12.hyperlink%>" title="<%=c12.title%>" target="_blank"><img src="<%=c12.image_url.url%>" alt="<%=c12.alt%>" /></a></dt> 
+                <%c13.each do |material|%>
+                <dd><a href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><img src="<%=material.image_url.url%>" alt="<%=material.alt%>" /></a></dd> 
+                <%end%>
+            </dl>
+                <%psc1.each do |product|%>
+                	<ul> 
+            	<li class="cat_img"> 
+                	<a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" /></a> 
+                	                    </li> 
+                <li><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>10%></a></li> 
+                <li><span>￥<%=number_with_precision product.p2,:precision=>2%></span></li> 
+            </ul>
+                <%end%>
+        </div> 
+        	<div class="catbox fr"> 
+        	<dl> 
+            	<dt><a href="<%=c22.hyperlink%>" title="<%=c22.title%>" target="_blank"><img src="<%=c22.image_url.url%>" alt="<%=c22.alt%>" /></a></dt> 
+                <%c23.each do |material|%>
+                <dd><a href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><img src="<%=material.image_url.url%>" alt="<%=material.alt%>" /></a></dd> 
+                <%end%>
+            </dl> 
+                	                <%psc2.each do |product|%>
+                	<ul> 
+            	<li class="cat_img"> 
+                	<a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" /></a> 
+                	                    </li> 
+                <li><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>10%></a></li> 
+                <li><span>￥<%=number_with_precision product.p2,:precision=>2%></span></li> 
+            </ul>
+                <%end%>
+           
+        </div> 
+            <div class="clear"></div> 
+    </div> 
+<div class="top"> 
+       	<div class="cattop ct2 fl"> 
+       	  <dl> 
+            	<dt> 
+        			<a class="top_a" href="<%=category_url(category3.id)%>" title="厨浴" target="_blank"><span>厨浴</span></a> 
+                </dt> 
+                <dd class="pt"> 
+                                        <%c31.each do |material|%>
+                	                	<a class="top_a" href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><%=material.text%></a> 
+                                        <%end%>   
+                	  
+                	<a class="more" href="<%=category_url(category3.id)%>" title="厨浴" target="_blank">更多...</a> 
+                </dd> 
+          </dl> 
+      </div> 
+        	<div class="cattop ct3 fr"> 
+       	  <dl> 
+            	<dt> 
+        			<a class="top_a" href="<%=category_url(category4.id)%>" title="办公" target="_blank"><span>办公</span></a> 
+                </dt> 
+                <dd class="pt"> 
+                                        <%c41.each do |material|%>
+                	                	<a class="top_a" href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><%=material.text%></a> 
+                                        <%end%>   
+                	  
+                	<a class="more" href="<%=category_url(category4.id)%>" title="办公" target="_blank">更多...</a> 
+                </dd> 
+          </dl> 
+      </div> 
+       
+        <div class="clear"></div> 
+  </div> 
+  
+    <div class="box"> 
+          	<div class="catbox fl"> 
+        	<dl> 
+            	<dt><a href="<%=c32.hyperlink%>" title="<%=c32.title%>" target="_blank"><img src="<%=c32.image_url.url%>" alt="<%=c32.alt%>" /></a></dt> 
+                <%c33.each do |material|%>
+                <dd><a href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><img src="<%=material.image_url.url%>" alt="<%=material.alt%>" /></a></dd> 
+                <%end%>
+            </dl> 
+                	                <%psc3.each do |product|%>
+                	<ul> 
+            	<li class="cat_img"> 
+                	<a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" /></a> 
+                	                    </li> 
+                <li><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>10%></a></li> 
+                <li><span>￥<%=number_with_precision product.p2,:precision=>2%></span></li> 
+            </ul>
+                <%end%>
+           
+        </div> 
+        	<div class="catbox fr"> 
+        	<dl> 
+            	<dt><a href="<%=c42.hyperlink%>" title="<%=c42.title%>" target="_blank"><img src="<%=c42.image_url.url%>" alt="<%=c42.alt%>" /></a></dt> 
+                <%c43.each do |material|%>
+                <dd><a href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><img src="<%=material.image_url.url%>" alt="<%=material.alt%>" /></a></dd> 
+                <%end%>
+            </dl> 
+                	                <%psc4.each do |product|%>
+                	<ul> 
+            	<li class="cat_img"> 
+                	<a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" /></a> 
+                	                    </li> 
+                <li><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>10%></a></li> 
+                <li><span>￥<%=number_with_precision product.p2,:precision=>2%></span></li> 
+            </ul>
+                <%end%>
+           
+        </div> 
+            <div class="clear"></div> 
+    </div> 
+<div class="top"> 
+       	<div class="cattop ct4 fl"> 
+       	  <dl> 
+            	<dt> 
+        			<a class="top_a" href="<%=category_url(category5.id)%>" title="休闲" target="_blank"><span>休闲</span></a> 
+                </dt> 
+                <dd class="pt"> 
+                                        <%c51.each do |material|%>
+                	                	<a class="top_a" href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><%=material.text%></a> 
+                                        <%end%>   
+                	  
+                	<a class="more" href="<%=category_url(category5.id)%>" title="休闲" target="_blank">更多...</a> 
+                </dd> 
+          </dl> 
+      </div> 
+        	<div class="cattop ct5 fr"> 
+       	  <dl> 
+            	<dt> 
+        			<a class="top_a" href="<%=category_url(category6.id)%>" title="潮流" target="_blank"><span>潮流</span></a> 
+                </dt> 
+                <dd class="pt"> 
+                                        <%c61.each do |material|%>
+                	                	<a class="top_a" href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><%=material.text%></a> 
+                                        <%end%>   
+                	  
+                	<a class="more" href="<%=category_url(category6.id)%>" title="潮流" target="_blank">更多...</a> 
+                </dd> 
+          </dl> 
+      </div> 
+       
+        <div class="clear"></div> 
+  </div> 
+  
+    <div class="box"> 
+          	<div class="catbox fl"> 
+        	<dl> 
+            	<dt><a href="<%=c52.hyperlink%>" title="<%=c52.title%>" target="_blank"><img src="<%=c52.image_url.url%>" alt="<%=c52.alt%>" /></a></dt> 
+                <%c53.each do |material|%>
+                <dd><a href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><img src="<%=material.image_url.url%>" alt="<%=material.alt%>" /></a></dd> 
+                <%end%>
+            </dl> 
+                	                <%psc5.each do |product|%>
+                	<ul> 
+            	<li class="cat_img"> 
+                	<a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" /></a> 
+                	                    </li> 
+                <li><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>10%></a></li> 
+                <li><span>￥<%=number_with_precision product.p2,:precision=>2%></span></li> 
+            </ul>
+                <%end%>
+           
+        </div> 
+        	<div class="catbox fr"> 
+        	<dl> 
+            	<dt><a href="<%=c62.hyperlink%>" title="<%=c62.title%>" target="_blank"><img src="<%=c62.image_url.url%>" alt="<%=c62.alt%>" /></a></dt> 
+                <%c63.each do |material|%>
+                <dd><a href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><img src="<%=material.image_url.url%>" alt="<%=material.alt%>" /></a></dd> 
+                <%end%>
+            </dl> 
+                	                <%psc6.each do |product|%>
+                	<ul> 
+            	<li class="cat_img"> 
+                	<a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" /></a> 
+                	                    </li> 
+                <li><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>10%></a></li> 
+                <li><span>￥<%=number_with_precision product.p2,:precision=>2%></span></li> 
+            </ul>
+                <%end%>
+           
+        </div> 
+            <div class="clear"></div> 
+    </div> 
+<div class="top"> 
+       	<div class="cattop ct6 fl"> 
+       	  <dl> 
+            	<dt> 
+        			<a class="top_a" href="<%=category_url(category7.id)%>" title="礼物" target="_blank"><span>礼物</span></a> 
+                </dt> 
+                <dd class="pt1"> 
+                                        <%c71.each do |material|%>
+                	                	<a class="top_a" href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><%=material.text%></a> 
+                                        <%end%>   
+                	  
+                	<a class="more" href="<%=category_url(category7.id)%>" title="礼物" target="_blank">更多...</a> 
+                </dd> 
+          </dl> 
+      </div> 
+        	<div class="cattop ct7 fr"> 
+       	  <dl> 
+            	<dt> 
+        			<a class="top_a" href="<%=category_url(category8.id)%>" title="原创" target="_blank"><span>原创</span></a> 
+                </dt> 
+                <dd class="pt1"> 
+                                        <%c81.each do |material|%>
+                	                	<a class="top_a" href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><%=material.text%></a> 
+                                        <%end%>   
+                	  
+                	<a class="more" href="<%=category_url(category8.id)%>" title="原创" target="_blank">更多...</a> 
+                </dd> 
+          </dl> 
+      </div> 
+       
+        <div class="clear"></div> 
+  </div> 
+  
+    <div class="box"> 
+          	<div class="catbox fl"> 
+        	<dl> 
+            	<dt><a href="<%=c72.hyperlink%>" title="<%=c72.title%>" target="_blank"><img src="<%=c72.image_url.url%>" alt="<%=c72.alt%>" /></a></dt> 
+                <%c73.each do |material|%>
+                <dd><a href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><img src="<%=material.image_url.url%>" alt="<%=material.alt%>" /></a></dd> 
+                <%end%>
+            </dl> 
+                	                <%psc7.each do |product|%>
+                	<ul> 
+            	<li class="cat_img"> 
+                	<a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" /></a> 
+                	                    </li> 
+                <li><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>10%></a></li> 
+                <li><span>￥<%=number_with_precision product.p2,:precision=>2%></span></li> 
+            </ul>
+                <%end%>
+           
+        </div> 
+        	<div class="catbox fr"> 
+        	<dl> 
+            	<dt><a href="<%=c82.hyperlink%>" title="<%=c82.title%>" target="_blank"><img src="<%=c82.image_url.url%>" alt="<%=c82.alt%>" /></a></dt> 
+                <%c83.each do |material|%>
+                <dd><a href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><img src="<%=material.image_url.url%>" alt="<%=material.alt%>" /></a></dd> 
+                <%end%>
+            </dl> 
+                	                <%psc8.each do |product|%>
+                	<ul> 
+            	<li class="cat_img"> 
+                	<a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" /></a> 
+                	                    </li> 
+                <li><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>10%></a></li> 
+                <li><span>￥<%=number_with_precision product.p2,:precision=>2%></span></li> 
+            </ul>
+                <%end%> 
+           
+        </div> 
+            <div class="clear"></div> 
+    </div> 
+      
+      		
+ <div class="top"> 
+    	<div class="cattop ct8"> 
+        	<dl> 
+            	<dt> 
+        			<a class="top_a" href="/brand" target="_blank"></a> 
+                </dt> 
+                <dd> 
+                	 <a class="more" href="/brand" target="_blank">更多...</a> 
+                </dd> 
+            </dl>       
+      </div> 
+    </div> 
+    <div class="box"> 
+    	<div class="brandbox fl"> 
+        	<span class="brand_left" title="向左滚动"></span> 
+        	<div class="brandlist"> 
+                <ul id="brandlist">
+                  <%brands.each do |brand|%>
+                                      <li><a href="<%=brand_url(brand.id)%>" title="<%=brand.name%>"><img src="<%=brand.i2.url%>" alt="<%=brand.name%>" /></a></li> 
+                <%end%>                  
+                                    </ul> 
+        	</div> 
+        	<span class="brand_right" title="向右滚动"></span> 
+        </div>    
+        <div class="clear"></div>        
+    </div> 
+	
+    <div class="commentop"> 
+        <ul id="commentop">        
+            <li class="comment_down" title="下一屏" style="display:none"></li> 
+            <li class="comment_up" title="上一屏" style="display:none"></li> 
+            <div class="clear"></div>      
+        </ul> 
+    </div> 
+    <div class="comment"> 
+        <ul class="comment_ul">
+        	<li> 
+          <%cs.each do |comment|%>
+        	  	                <dl class="comment_dl"> 
+                    <dd><a href="<%=product_url(comment.product.id)%>" title="<%=comment.product.name%>" target="_blank" ><img src="<%=comment.product.i1.url(:medium)%>" alt="<%=comment.product.name%>" /></a></dd> 
+                    <dd class="comment_dd"><a style="height: 33px; display: block;" href="<%=product_url(comment.product.id)%>" title="<%=comment.content%>" target="_blank"><%=comment.content%></a><span>拉拉/<%=comment.created_at.strftime("%Y-%m-%d")%></span></dd>            
+                </dl> 
+          <%end%>
+                               <div class="clear"></div> 
+            </li> 
+           
+        </ul> 
+    </div> 
+      
+      		
+    <dl class="voice"> 
+    	<dt class="boxtop"></dt> 
+         <dd> 
+        <a href="http://t.sina.com.cn/quwan" title="给力百货新浪微博" target="_blank"><img style="margin:0 10px 10px 0" src="/themes/default/imgs/global/link_logo1.gif" /></a> 
+        <a href="http://t.163.com/quwanwang" title="给力百货网易微博" target="_blank"><img style="margin:0 10px 10px 0" src="/themes/default/imgs/global/link_logo2.gif" /></a> 
+        <a href="http://t.qq.com/quwan" title="给力百货腾讯微博" target="_blank"><img style="margin:0 0 10px 0" src="/themes/default/imgs/global/link_logo3.gif" /></a>            
+        <a href="http://tieba.baidu.com/i/29899092" title="给力百货百度i贴吧" target="_blank"><img style="margin:0 10px 10px 0" src="/themes/default/imgs/global/link_logo4.gif" /></a> 
+        <a href="http://www.douban.com/group/quwan/" title="给力百货豆瓣" target="_blank"><img style="margin:0 10px 10px 0" src="/themes/default/imgs/global/link_logo5.gif" /></a> 
+        <a href="http://www.renren.com/profile.do?id=317750052&_visitor_id=12" title="给力百货人人网" target="_blank"><img style="margin:0 0 10px 0" src="/themes/default/imgs/global/link_logo6.gif" /></a> 
+        <a href="http://www.kaixin001.com/home/?uid=74094779" title="给力百货开心网" target="_blank"><img style="margin:0 10px 10px 0" src="/themes/default/imgs/global/link_logo7.gif" /></a>        
+        <a href="http://t.sohu.com/quwan" title="给力百货搜狐微博" target="_blank"><img style="margin:0 0 10px 0" src="/themes/default/imgs/global/link_logo8.gif" /></a><div class="clear"></div> 
+        <a href="http://blog.geilibuy.com/" title="给力百货博客" target="_blank"><img  style="float:none;"src="/themes/default/imgs/global/blog_logo.gif" /></a> 
+        </dd>      
+    </dl> 
+	 
+    <dl class="media"> 
+    	<dt class="boxtop"></dt> 
+        <dd> 
+        	<ul> 
+            	<li><a href="article-424.html" title="给力团不插电颁奖见面会" target="_blank"><img src="/images/mrd3/index_model03_img01.jpg" alt="给力团不插电颁奖见面会" width="163" height="100" /></a></li> 
+            	            	<li class="libar"><a href="article-434.html" title="给力百货注重用户体验 开通全国给力团服务">给力百货注重用户体验 开通全国给力团服务</a></li> 
+                          	<li class="libar"><a href="article-423.html" title="[中华网]给力百货首推给力团  创意百货加入千团大战">[中华网]给力百货首推给力团  创意百货加入千团大战</a></li> 
+                          	<li class="libar"><a href="article-422.html" title="[Donews]国货当自强   给力百货推原创">[Donews]国货当自强   给力百货推原创</a></li> 
+                            <li><span style=" margin:0; padding:0;"><a target="_blank" href="http://www.geilibuy.com/article_cat.php?id=28">[更多媒体报道]</a></span></li> 
+            </ul> 
+        </dd> 
+        <dd> 
+        	<ul> 
+            	<li><a class="bignews" href="article-424.html" title="给力团不插电颁奖见面会">给力团不插电颁奖见面会</a></li> 
+            	<li> 
+                <p>2010年10月28日，“给力百货首次不插电见面会之给力团领大奖” 活动举行了。...                </p><span style="margin:0;"><a href="article-424.html">[查看详情]</a></span> 
+                </li> 
+                          	<li class="libar"><a href="article-432.html" title="[昕薇]给力百货携手昕薇“星梦奇缘”引燃双城high潮">[昕薇]给力百货携手昕薇“星梦奇缘”引燃双城high潮</a></li> 
+                          	<li class="libar"><a href="article-386.html" title="[昕薇]给力百货携手昕薇 引领2010秋冬潮流发布">[昕薇]给力百货携手昕薇 引领2010秋冬潮流发布</a></li> 
+                          	<li class="libar"><a href="article-387.html" title="[昕薇]昕薇星梦奇缘比赛 给力百货再度发力嘉茂">[昕薇]昕薇星梦奇缘比赛 给力百货再度发力嘉茂</a></li> 
+                            <li><span style=" margin:0; padding:0;"><a target="_blank" href="http://www.geilibuy.com/article_cat.php?id=30">[更多给力百货活动]</a></span></li> 
+            </ul> 
+        </dd> 
+    </dl> 
+	
+    <dl class="vote"> 
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+  
+    <div id="ECS_VOTE"> 
+  <form id="formvote" name="ECS_VOTEFORM" method="post" action="javascript:submit_vote()"> 
+      <dt class="boxtop"></dt> 
+                  <dd><strong><%=@vote.name%></strong></dd> 
+                <%@vote.children.each do |vote|%>
+<dd class="vote_item"><input type="radio" name="option_id" value="<%=vote.id%>" /> <%=vote.name%></dd> 
+<%end%>
+                              <input type="hidden" name="vote_type" id="vote_type" value="0" /> 
+                    <input type="hidden" name="vote_id" id="vote_id"  value="38" /> 
+        <dd><input name="" type="submit" class="vote_btn" value="" /></dd> 
+  </form> 
+  </div> 
+      </dl> 
+
+    <div id="clear"></div> 
+  </div>
+
+<%content_for :bodyfoot do%>
+<!--tongji-->
+<!--<script src='http://w.cnzz.com/c.php?id=30035654' language='JavaScript' charset='gb2312'></script> -->
+<script type="text/javascript" src="/themes/default/js/js-clib.js" charset="UTF-8"></script> 
+<script type="text/javascript" src="/themes/default/js/photo-switch.js" charset="UTF-8"></script> 
+<script type="text/javascript" src="/themes/default/js/photo-move.js" charset="UTF-8"></script> 
+<script type="text/javascript"> 
+$(document).ready(function(){  
+   setHeadUserStatus();// 检测是否登录
+   setHeadFlowNum();//购物车数量
+});
+</script> 
+<script type="text/javascript" src="/themes/default/js/index.js" charset="UTF-8"></script> 
+<script type="text/javascript" charset="utf-8"> 
+$(document).ready(function(){
+$('.rank').find('dd').hover(function(){				  
+	$('.rank').find('.rank_on').hide();
+	$('.rank').find('.rank_off').show();		
+	$(this).find('.rank_on').show();		  
+	$(this).find('.rank_off').hide();	
+	}, function(){											  
+	});
+$('#fbox').switchboxaction({Time:5000,SwitchTime:3000,switchindex:'#fbar',onclass:'fbar_on',SwitchMode:'Hover',AutoStart:true,SwitchEffect:'fadeOut'});
+$('#nbox').switchboxaction({Time:5000,SwitchTime:3000,switchindex:'#nbar',onclass:'nbar_on',SwitchMode:'Hover',AutoStart:true,SwitchEffect:'fadeOut'});
+$(".brandlist").Slider({prevId:'.brand_left',nextId:'.brand_right',shownum:4,offbtn:'off_btn',offline:4});
+$(".comment").Slider({prevId:'.comment_down',nextId:'.comment_up',shownum:0,vertical:true,offbtn:'off_btn',offline:1});
+<%if @tuan.selling?%>
+  IndexgetTuanGouCountDown();//团购倒计时
+<%end%>
+});
+</script>
+<%end%>

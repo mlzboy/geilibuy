@@ -1,0 +1,26 @@
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Start time:</b>
+  <%= @free_shipping_rule.start_time %>
+</p>
+
+<p>
+  <b>End time:</b>
+  <%= @free_shipping_rule.end_time %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @free_shipping_rule.name %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @free_shipping_rule.money %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_free_shipping_rule_path(@free_shipping_rule) %> |
+<%= link_to 'Back', admin_free_shipping_rules_path %>

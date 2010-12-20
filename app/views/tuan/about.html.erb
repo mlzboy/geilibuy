@@ -1,0 +1,38 @@
+<%content_for :headtitle do%>
+<title><%=@article.title%>- 给力团文章 - 给力团 创意百货天天团 - 给力百货</title> 
+<%end%>
+<% content_for :headstyle do %>
+<link href="/themes/default/css/tuan_public.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_others.css" rel="stylesheet" type="text/css" />
+<%end%>
+<% content_for :headother do%>
+<link rel="shortcut icon" href="/favicon.ico" /> 
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" /> 
+<link rel="alternate" type="application/rss+xml" title="RSS|<%=@article.title%>- 给力团文章 - 给力团 创意百货天天团 - 给力百货" href="" /> 
+<% end%>
+<div class="navtip"></div>
+
+<div id="main">
+        
+<div id="left">
+  <div class="zone">
+  <div class="leftbar">给力团公告</div>
+    <dl class="article">
+      <dt><span><%=@article.title%></span><span id="news_time"><%=@article.updated_at.strftime("%Y-%m-%d %H:%M:%S")%></span></dt>
+      <dd><%=raw @article.content%>
+      </dd>
+    </dl>
+  </div>
+</div>
+      <div id="right">
+    
+    
+<div class="ad_box">  <img src="/data/tuan/1288668277387229017.jpg" alt="给力团全国华丽上线" />  </div>
+     
+    
+<%=render 'post'%>
+ </div>
+  <div class="clear"></div>
+</div>
+<div id="gotop"><span><a href="#">↑回顶部</a></span><div class="clear"></div></div>
+

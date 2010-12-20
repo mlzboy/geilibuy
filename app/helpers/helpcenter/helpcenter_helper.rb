@@ -1,0 +1,2 @@
+module Helpcenter::HelpcenterHelper
+end

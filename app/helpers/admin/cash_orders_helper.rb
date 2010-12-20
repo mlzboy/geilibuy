@@ -1,0 +1,2 @@
+module Admin::CashOrdersHelper
+end

@@ -1,0 +1,21 @@
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @delivery_company.name %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= @delivery_company.url %>
+</p>
+
+<p>
+  <b>Memo:</b>
+  <%= @delivery_company.memo %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_delivery_company_path(@delivery_company) %> |
+<%= link_to 'Back', admin_delivery_companies_path %>

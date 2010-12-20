@@ -1,0 +1,2 @@
+module UsercenterHelper
+end

@@ -1,0 +1,21 @@
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @delivery.name %>
+</p>
+
+<p>
+  <b>Memo:</b>
+  <%= @delivery.memo %>
+</p>
+
+<p>
+  <b>Position:</b>
+  <%= @delivery.position %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_delivery_path(@delivery) %> |
+<%= link_to 'Back', admin_deliveries_path %>

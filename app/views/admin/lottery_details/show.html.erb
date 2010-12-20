@@ -1,0 +1,31 @@
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @lottery_detail.user_id %>
+</p>
+
+<p>
+  <b>Say:</b>
+  <%= @lottery_detail.say %>
+</p>
+
+<p>
+  <b>Big:</b>
+  <%= @lottery_detail.big %>
+</p>
+
+<p>
+  <b>Ip:</b>
+  <%= @lottery_detail.ip %>
+</p>
+
+<p>
+  <b>Product:</b>
+  <%= @lottery_detail.product_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_lottery_detail_path(@lottery_detail) %> |
+<%= link_to 'Back', admin_lottery_details_path %>

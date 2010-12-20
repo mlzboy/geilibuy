@@ -1,0 +1,293 @@
+  <style type="text/css">
+#left{float:left;width:500px;height:1000px;}
+#right{float:left;width:400px;}
+</style>
+    <%= javascript_include_tag :defaults %>
+
+  <%=kindeditor_javacript_include_tag%>
+<%
+def show_details()
+  return if @tuan.new_record?
+  @tuan.details.each_with_index do |detail,index|
+  n="kindeditor#{index+1}"
+%>
+    <detail><input type="text" name="tuan_titles[]" value="<%=detail.title%>"/><a class="detail_del">del</a>&nbsp;&nbsp;<a class="detail_up" data="<%=index+1%>">up</a>&nbsp;&nbsp;<a class="detail_down" data="<%=index+1%>">down</a><br><textarea cols="40" id="<%=n%>" name="tuan_contents[]" rows="20" style="width:530px;height:300px;visibility:hidden;"><%=raw detail.content%></textarea></detail>
+
+<%
+  end
+end
+%>
+<%
+def show_tips
+  return if @tuan.new_record?
+  @tuan.tips.each do |tip|
+    %>
+    <tip><input type="text" name="tuan_tips[]" value="<%=tip.title%>" /><a class="tip_del">del</a>&nbsp;&nbsp;<a class="tip_up">up</a>&nbsp;&nbsp;<a class="tip_down">down</a></tip>
+    <%
+  end
+  end
+  %><%
+def show_features
+  return if @tuan.new_record?
+  @tuan.features.each do |feature|
+    %>
+    <feature><input type="text" name="tuan_features[]" value="<%=feature.title%>" /><a class="feature_del">del</a>&nbsp;&nbsp;<a class="feature_up">up</a>&nbsp;&nbsp;<a class="feature_down">down</a></feature>
+    <%
+  end
+end
+%>
+<!--xiao mao generator QQ:hi@15-1688.com-->
+<%= form_for([:admin,@tuan],:html=>{:multipart=>true}) do |f| %>
+  <% if @tuan.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tuan.errors.count, "error") %> prohibited this tuan from being saved:</h2>
+
+      <ul>
+      <% @tuan.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div id="main">
+  <div id="left">
+  <div class="field">
+    <%= f.label :product_id %>
+    <%= f.text_field :product_id %>
+  </div>
+  <div class="field">
+    <%= f.label :status %>
+    <%= f.text_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :pp1 %>
+    <%= f.text_field :pp1,:size=>4%>
+
+    <%= f.label :pp2 %>
+    <%= f.text_field :pp2,:size=>4%>
+  </div>
+  <div class="field">
+    <%= f.label :dp1 %>
+    <%= f.text_field :dp1,:size=>4%>
+
+    <%= f.label :dp1_num %>
+    <%= f.text_field :dp1_num,:size=>4 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :dp2 %>
+    <%= f.text_field :dp2,:size=>4%>
+
+    <%= f.label :dp2_num %>
+    <%= f.text_field :dp2_num,:size=>4%>
+  </div>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :sub_title %>
+    <%= f.text_field :sub_title %>
+  </div>
+    <div class="field">
+    <%= f.label :edm_title %>
+    <%= f.text_field :edm_title %>
+  </div>
+  <div class="field">
+  <%= f.label :i1%>
+  <%= f.file_field :i1%>
+  </div>
+  <div class="field">
+    <%= f.label :start_time %><br />
+    <%= f.datetime_select :start_time %>
+  </div>
+  <div class="field">
+    <%= f.label :end_time %><br />
+    <%= f.datetime_select :end_time %>
+  </div>
+  <div class="field">
+    <%= f.label :min_time %><br />
+    <%= f.datetime_select :min_time %>
+  </div>
+  <div class="field">
+    <%= f.label :min_num %>
+    <%= f.text_field :min_num %>
+  </div>
+  <div class="field">
+    <%= f.label :max_time %><br />
+    <%= f.datetime_select :max_time %>
+  </div>
+  <div class="field">
+    <%= f.label :max_num %>
+    <%= f.text_field :max_num %>
+  </div>
+  <div class="field">
+    <%= f.label :current_num %>
+    <%= f.text_field :current_num %>
+  </div>
+  <div class="field">
+    <%= f.label :everyone_max_num %>
+    <%= f.text_field :everyone_max_num %>
+  </div>
+  <div class="field">
+    <%= f.label :on %><br />
+    <%= f.check_box :on %>
+  </div>
+  <div class="field">
+    <%= f.label :ts1 %><br />
+    <%= f.text_area :ts1,:rows=>4,:cols=>40%>
+  </div>
+  <div class="field">
+    <%= f.label :ts1_name %>
+    <%= f.text_field :ts1_name%>
+  </div>
+  <div class="field">
+    <%= f.label :ts2 %><br />
+    <%= f.text_area :ts2,:rows=>4,:cols=>40%>
+  </div>
+  <div class="field">
+    <%= f.label :ts2_name %>
+    <%= f.text_field :ts2_name%>
+  </div>
+  <div class="field">
+    <%= f.label :ts3 %><br />
+    <%= f.text_area :ts3,:rows=>4,:cols=>40%>
+  </div>
+  <div class="field">
+    <%= f.label :ts3_name %>
+    <%= f.text_field :ts3_name%>
+  </div>
+  <div class="field">
+    <%= f.label :ws1 %><br />
+    <%= f.text_area :ws1,:rows=>4,:cols=>40,:id=>"kindeditor",:style=>"width:530px;height:300px;visibility:hidden;"%>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+    <input type="button" name="add_tips" value="添加提示" />
+    <input type="button" name="add_features" value="添加亮点" />
+    <input type="button" name="add_details" value="添加本单详情" />
+  </div>
+  </div>
+  <div id="right">
+    <div id="tips">提示<br>
+    <%show_tips()%>
+    </div>
+    <div id="features">亮点<br>
+    <%show_features()%>
+    </div>
+    <div id="details">本单详情<br>
+    <%show_details()%>
+    </div>
+  </div>
+</div>
+<% end %>
+<script type="text/javascript">
+  function del()
+  {
+    //$(this).parents("tip").remove();
+    if (confirm("确定删除?")){
+    $(this).parent().remove();
+    }
+  }
+  function detail_up()
+  {
+    var num=$(this).attr("data");
+    var parent = $(this).parent();
+    //alert(num);
+    parent.insertBefore(parent.prev());
+    var n='kindeditor'+num
+      KE.remove(n);
+      KE.show({
+    id : n,
+    allowFileManager : true,
+    imageUploadJson:'/kindeditor/upload'
+});
+      KE.create(n);
+
+  }
+  function detail_down()
+  {
+    var num=$(this).attr("data");
+    var parent = $(this).parent();
+    parent.insertAfter(parent.next());
+    var n='kindeditor'+num
+      KE.remove(n);
+      KE.show({
+    id : n,
+    allowFileManager : true,
+    imageUploadJson:'/kindeditor/upload'
+});
+      KE.create(n);
+
+  }
+  function up()
+  {
+    var parent = $(this).parent();
+    parent.insertBefore(parent.prev());
+  }
+  function down()
+  {
+    var parent = $(this).parent();
+    parent.insertAfter(parent.next());
+  }
+  
+  $(function(){
+    
+    $("input[name='add_tips']").click(function(){
+      $('<tip><input type="text" name="tuan_tips[]" /><a class="tip_del">del</a>&nbsp;&nbsp;<a class="tip_up">up</a>&nbsp;&nbsp;<a class="tip_down">down</a></tip>').find(".tip_del").click(del).end().find(".tip_up").click(up).end().find(".tip_down").click(down).end().appendTo("#tips");
+      })
+    $("input[name='add_features']").click(function(){
+      $('<feature><input type="text" name="tuan_features[]" /><a class="feature_del">del</a>&nbsp;&nbsp;<a class="feature_up">up</a>&nbsp;&nbsp;<a class="feature_down">down</a></feature>').find(".feature_del").click(del).end().find(".tip_up").click(up).end().find(".tip_down").click(down).end().appendTo("#features");
+      })
+    $("input[name='add_details']").click(function(){
+      var num=$("detail").length+1;
+      var n='kindeditor'+num
+      //KE.init({
+      //  id : n,
+      //  afterCreate : function(id) {
+      //          KE.util.focus(id);
+      //  }
+      //});
+      KE.show({
+          id : n,
+          allowFileManager : true,
+          imageUploadJson:'/kindeditor/upload'
+      });
+
+      
+      $('<detail><input type="text" name="tuan_titles[]" /><a class="detail_del">del</a>&nbsp;&nbsp;<a class="detail_up" data="'+num+'">up</a>&nbsp;&nbsp;<a class="detail_down" data="'+num+'">down</a><br><textarea cols="40" id="'+n+'" name="tuan_contents[]" rows="20" style="width:530px;height:300px;visibility:hidden;"></textarea></detail>').find(".detail_del").click(del).end().find(".detail_up").click(detail_up).end().find(".detail_down").click(detail_down).end().appendTo("#details");
+
+      KE.create(n);
+
+      })
+    
+    })
+  <%
+  unless @tuan.new_record?
+    %>
+    $(".feature_del").click(del);
+    $(".tip_del").click(del);
+    $(".detail_del").click(del);
+    $(".feature_up").click(up);
+    $(".tip_up").click(up);
+    $(".detail_up").click(detail_up);
+    $(".feature_down").click(down);
+    $(".tip_down").click(down);
+    $(".detail_down").click(detail_down);
+    <%
+  @tuan.details.each_with_index do |detail,index|
+  n="kindeditor#{index+1}"
+%>
+        KE.show({
+          id : "<%=n%>",
+          allowFileManager : true,
+          imageUploadJson:'/kindeditor/upload'
+      });
+            KE.create("<%=n%>");
+<%
+  end%>
+    <%
+  end
+  %>
+</script>

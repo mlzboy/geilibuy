@@ -1,0 +1,76 @@
+<div id="global_body">
+    
+      
+
+<div class="step_box" id="step_3"><img src="/themes/default/imgs/flow/step-3.gif"/></div>
+    
+    <div class="cart_title">
+  <p>有问题？请查看<a href="http://www.geilibuy.com/helpcenter/11" target="_blank">帮助中心</a>，或联系客服 400-88-16016</p>
+</div>
+<div class="cart_box order_item">
+  <div class="ok_title">感谢您的订购！</div>
+  <div class="ok_line">您的订单号是&nbsp;<a class="item_opt" href="/usercenter/order_detail/<%=@order.sn%>" target="_blank"><%=@order.sn%></a>&nbsp;,需支付金额&nbsp;<span><%=price(@order.total_price)%>元</span></div>
+  <%if @order.payment.name=="货到付款"%>
+    <div class="endway_line">您选择的付款方式为：<!--<a href='' target="_blank">--><img src="<%=@order.payment.i1.url%>" alt="<%=@order.payment_name%>"/><!--</a>-->&nbsp;&nbsp;
+    订单被确认后，我们将在承诺的时间内发货，感谢您的惠顾！
+    </div>
+  <%else%>
+    <div class="endway_line">您选择的付款方式为：<a href='<%=raw gen_pay_link(@order,request.remote_ip)%>' target="_blank"><img src="<%=@order.payment.i1.url%>" alt="<%=@order.payment_name%>"/></a>&nbsp;&nbsp;
+    付款方式，确认付款后，我们将在承诺的时间内发货。<br>未付款订单将被保留24个小时，请在24个小时内完成支付。感谢您的惠顾！
+    </div>
+  <%end%>
+    <div class="tip_line"></div>
+    
+</div>
+  <div class="tipline">您将获得<font style="color:#cc0000;font-size:12px;"><%=@order.new_scores%>积分</font>，可在<a class="item_opt" href="http://www.geilibuy.com/score">积分商城</a>换购商品，也可<a class="item_opt" href="http://www.geilibuy.com/exchange">兑换</a>幸运点参与抽奖。<br />
+    由于给力百货承诺“30天上门退换货”，因此<font style="color:#cc0000;font-size:12px;"><%=@order.new_scores%>积分</font>将在30天后发送。<a class="item_opt" href="http://www.geilibuy.com/helpcenter/11">查看积分详情&gt;&gt;</a>
+  </div>
+  <%unless @order.payment.name=="货到付款"%>
+    <div class="cart_btn">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td height="78" align="center" valign="middle">
+                    <div style="text-align:center">
+                        <a href="<%=raw gen_pay_link(@order,request.remote_ip)%>"><img src="/themes/default/imgs/global/flow/pay.jpg"/></a>
+                    </div></br>
+        </td>
+      </tr>
+    </table>
+  </div>
+    <%else%>
+    <div class="cart_btn">    	     
+     <table width="100%" border="0" cellpadding="0" cellspacing="0">
+       <tr>
+         <td height="78" align="center" valign="middle">再逛逛？　<a href="/"><img style=" margin-top:0px;" src="/themes/default/imgs/flow/toindex_btn.gif" width="142" height="36" /></a></td>
+       </tr>
+     </table>
+    </div>
+  <%end%>
+  <dl class="wenxin">
+  <dt>温馨提示</dt>
+    <dd><span>1. 您的订单将在您付款成功后进行配货处理，由于某些热销商品的销量较大，尽快付款会加快您订单的处理进度，减小您订购商品的缺货几率。</span></dd>
+    <dd>2. 每天16：00以前的订单将在当天发货，16:00-0：00的订单将在第二天发货。</dd>
+    <dd>3. 给力百货支持30天内无条件上门退换货，收到货后有任何问题请随时拨打我们的24小时客服电话：4008816016。<a href="http://www.geilibuy.com/helpcenter/20" target="_blank">退换货政策</a></dd>
+  </dl>
+  <!-- <div id="payok_pop" class="pop_out">
+  <div class="pop_in">
+    <div class="pop_top"><span></span><div style="position: absolute; top: 0pt; right: 0pt;" onclick="window.location.reload();" id="close" class="close">关闭</div></div>
+        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+          <tbody><tr>
+            <td height="50" colspan="2" align="center" valign="middle"><span style="line-height:18px;">请您在所选择的支付平台页面完成付款操作。<br />付款完成前请不要关闭此窗口<br />付款完成后请根据付款情况点击下面的按钮</span></td>
+          </tr>
+          <tr>
+            <td height="20" colspan="2" align="center" valign="top"><span id="bargain_info2"></span></td>
+          </tr>
+           <tr>            
+            <td align="right" width="50%" valign="middle"><a href="flow.php" style="cursor: pointer; display: inline-block;" class="pop_btn " id="bargain_btn">遇到问题</a></td>
+            <td align="left" valign="middle"><a href="javascript:doOk();" style="cursor: pointer; display: inline-block;" class="pop_btn " id="bargain_btn">付款已完成</a></td>
+           </tr>
+          <tr>
+            <td height="10" colspan="2" align="center" valign="middle"></td>
+          </tr>
+        </tbody></table>  
+    </div>
+  </div> -->
+
+  </div>

@@ -1,0 +1,68 @@
+<% content_for :head do %>
+<%= javascript_include_tag "jquery.optionTree.js" %>
+<script type="text/javascript">
+$(function() {
+
+    var options = {
+	    set_value_on_last_no_empty_value:true,
+            empty_value: '',
+            indexed: true,  // the data in tree is indexed by values (ids), not by labels
+            on_each_change: '/admin/categories/ajax_sub/', // this file will be called with 'id' parameter, JSON data must be returned
+            set_value_on: 'each', // we will change input value when every select box changes
+            choose: function(level) {
+                return 'Choose level ' + level;
+            }//,
+            //preselect: {'demo6': ['220','226']},
+            //preselect_only_once: true // prevent auto selecting whole branch when user maniputales one of branch levels
+        };
+
+        var displayParents = function() {
+            var labels = []; // initialize array
+            $(this).siblings('select') // find all select
+                           .find(':selected') // and their current options
+                             .each(function() { labels.push($(this).text()); }); // and add option text to array
+            $('<div>').text(this.value + ':' + labels.join(' > ')).appendTo('#demo6-result');  // and display the labels
+            }
+
+
+	    $("#add").click(function(){
+
+		var num		= $("input[name='category_id[]']").length;	// how many "duplicatable" input fields 
+		var newNum	= new Number(num + 1);		// the numeric ID of the new input field being added
+
+		var template="<div class='field' id='c${newnum}'><input type='text' id='category_id${newnum}' name='category_id[]' /><input type='button' id='del_category_id${newnum}' value='del' /><br/></div>";
+		
+		var html=template.replace("${newnum}",newNum+"");
+		while(html.indexOf("${newnum}")>-1)  
+		{
+		html=html.replace("${newnum}",newNum+"");
+		}
+		
+		//alert(html);
+		$(html).insertAfter($('#c' + num));
+		$("#del_category_id"+newNum).click(function(){
+			$("#c"+newNum).remove();
+		});
+		
+	        $.getJSON('/admin/categories/ajax_sub', function(tree) { 
+		    $("#category_id"+newNum).optionTree(tree, options);//.change(displayParents);
+	        });
+	    });
+
+
+
+    $.getJSON('/admin/categories/ajax_sub', function(tree) { // initialize the tree by loading the file first
+        $('#category_id1').optionTree(tree, options);//.change(displayParents);
+    });
+    
+    
+});
+</script>
+<%end%>
+	<input id="add" name="add" type="button" value="add" />
+	<div class="field" id="c1">
+	<input type="text" id="category_id1" name="category_id[]" /><br/>
+	</div>
+
+	<div class="results" id="demo6-result"></div>
+</div>

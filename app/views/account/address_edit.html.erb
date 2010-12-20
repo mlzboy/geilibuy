@@ -1,0 +1,116 @@
+<%content_for :headmeta do%>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta http-equiv="pragma" content="no-cache"/>
+<meta name="pagename" content="tuan" />
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/>
+<%end%>
+<%content_for :headtitle do%>
+<title>给力团 - 给力团 创意百货天天团 - 给力百货</title>
+<%end%>
+<% content_for :headstyle do %>
+<!--style>
+html {filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity: 0.5; opacity: 0.5;}
+html {filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);}
+</style-->
+<link href="/themes/default/css/tuan_public.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_ucener.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_others.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_reglogin.css" rel="stylesheet" type="text/css" />
+<%end%>
+<%content_for :headother do%>
+<link rel="shortcut icon" href="http://www.geilibuy.com/favicon.ico" />
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" />
+<link rel="alternate" type="application/rss+xml" title="RSS|给力团 - 给力团 创意百货天天团 - 给力百货" href="" />
+<%end%>
+<%content_for :headjs do%>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/hotkeys.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_divpop.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_user.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_account.js" charset="UTF-8"></script>
+<script>
+$(document).ready(function(){
+  
+  	// 检测是否登录
+	setTuanHeadUserStatus();
+  
+});	
+</script>
+<%end%>
+<div class="navtip ">
+</div>
+
+<div id="main">
+								
+		
+	
+<div class="zone">
+      <div class="leftbar">更新配送信息</div>  
+<dl class="flow_addr">
+      	<dt></dt>
+        <dd>
+                  <form action="/usercenter/address?back_url=/tuan/order" method="post" name="theForm" id="theForm" >
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+            <table width="100%" border="0">
+  <tr>
+                <td align="right">收货人姓名：</td>
+                <td>
+                  <input type="text" class="inputs" name="consignee" id="consignee_" value="<%=@address.consignee%>" />
+      &nbsp;<span class="consignee_table_notice" style="color:#FF0000"></span>
+                  </td>
+              </tr>
+              <tr>
+                <td width="14%" align="right">省市区：</td>
+                <td width="86%">
+                  
+      <select name="country" id="selCountries_" onChange="region.changed(this, 1, 'selProvinces_')" style='display:none;'>
+                <option value="1" selected>中国</option>
+              </select>
+      <select name="province" id="selProvinces_" onChange="region.changed(this, 2, 'selCities_')">
+         <option value="0">请选择省</option>
+ <%=show_province_options(@address.province_id)%>
+              </select>
+      <select name="city" id="selCities_" onChange="region.changed(this, 3, 'selDistricts_')">
+       <option value="0">请选择市</option>
+<%=show_city_options(@address.city_id)%>
+              </select>
+      <select name="district" id="selDistricts_">
+<%=show_district_options(@address.district_id)%>
+              </select>
+      <span id="table_notice">&nbsp;<span class="country_table_notice" style="color:#FF0000"></span></span>
+                  
+                </td>
+              </tr>
+              <tr>
+                <td align="right">详细地址：</td>
+                <td>
+                  <input name="address" type="text" size="75"  class="inputs" style="width:400px;" id="address_" value="<%=@address.address%>"  />
+      <span id="table_notice">&nbsp;<span class="address_table_notice" style="color:#FF0000"></span></span> 
+                  </td>
+              </tr>
+              
+              <tr>
+                <td align="right">电话号码：</td>
+                <td>
+                  <input name="mobile" class="inputs" type="text" size="20" id="mobile_" value="<%=@address.mobile%>" />
+                   <input name="tel" class="info_input" size="20" type="hidden" id="tel_" value="<%=@address.tel%>" />
+                  <span class="tel_table_notice  " style="color:#FF0000"><font style="color:#666">建议填写手机号码</font></span>
+                  </td>
+              </tr>
+              <tr>
+                <td align="right">&nbsp;</td>
+                <td><input type="button" id="CheckGroupBuy" value="配送到这个地址" class="dbtn com_btn" style="width:130px;" />&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="addresscancle" value="取消" class="dbtn com_btn" style="display:none;" onclick="location.href='http://www.geilibuy.com/tuan/account/address'" /></td>
+              </tr>
+            </table>                        <input name="email" type="hidden" id="email_new" value="<%=current_user.email%>" />
+                        <input name="address_id" type="hidden" value="<%=@address.id%>" />
+           <!--<input  name="back_act" type="hidden" value="http://www.geilibuy.com/tuan/account/address" />-->
+         </form>
+                  </dd>
+      </dl>   
+</div>
+<div class="clear"></div>     
+</div>

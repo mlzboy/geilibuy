@@ -1,0 +1,36 @@
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>First num:</b>
+  <%= @lottery.first_num %>
+</p>
+
+<p>
+  <b>Second num:</b>
+  <%= @lottery.second_num %>
+</p>
+
+<p>
+  <b>Third num:</b>
+  <%= @lottery.third_num %>
+</p>
+
+<p>
+  <b>First rate:</b>
+  <%= @lottery.first_rate %>
+</p>
+
+<p>
+  <b>Second rate:</b>
+  <%= @lottery.second_rate %>
+</p>
+
+<p>
+  <b>Third rate:</b>
+  <%= @lottery.third_rate %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_lottery_path(@lottery) %> |
+<%= link_to 'Back', admin_lotteries_path %>

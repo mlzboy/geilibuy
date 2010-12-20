@@ -1,0 +1,106 @@
+<%u=current_user
+ud=u.user_detail
+%>
+<div class="right_top">
+        	<span class="welcome info"></span>
+            <span class="goon_btn"><a style="color:#fff;"  href="./" title="首页">继续购物</a></span>
+        </div>
+		<form name="formEdit" action="/usercenter/profile" method="post" onSubmit="return userCenterInfoEditAction();">
+				<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+      <div class="right_line">
+        <table width="100%"  border="0" cellpadding="0" cellspacing="0" class="table">
+          <tr>
+            <td width="20" align="left" valign="middle">&nbsp;</td>
+            <td align="left" valign="middle">&nbsp;</td>
+            <td height="30" align="left" valign="middle" >&nbsp;</td>
+          </tr>
+          <tr>
+            <td align="left" valign="middle" class="td_form">&nbsp;</td>
+            <td height="40" align="right" valign="middle" class="td_form"><span style="color:#652f00; padding-right:10px;">昵称：</span></td>
+            <td align="left" valign="middle" class="td_form"><input name="other[nickname]"  type="text" value="<%=u.nick%>" id="info_input" onblur = "returnMaxLength(this)"  />
+            <span style="color:#652f00; padding-right:10px;">希望我们怎么称呼您？(10个中文字符以内)</span></td>
+          </tr>
+          <tr>
+            <td align="left" valign="middle" class="td_form">&nbsp;</td>
+            <td height="40" align="right" valign="middle" class="td_form"><span style="color:#652f00; padding-right:10px;">E-Mail：</span></td>
+            <td align="left" valign="middle" class="td_form"><input name="email-text" type="text" value="<%=u.email%>" style="border:transparent;background:white;border:0px;"  disabled="disabled"/>
+        <input name="email" type="hidden" value="frederick.mao@gmail.com"/></td>
+          </tr>
+          <tr>
+            <td align="left" valign="middle" class="td_form">&nbsp;</td>
+            <td height="40" align="right" valign="middle" class="td_form"><span style="color:#652f00; padding-right:10px;">性别：</span></td>
+            <td align="left" valign="middle" class="td_form">
+		<%g=ud.gender%>
+		<input type="radio" name="sex" value="1" <%=raw 'checked="checked"' if g%> />
+                    男&nbsp;&nbsp;
+        <input type="radio" name="sex" value="0"  <%=raw 'checked="checked"' unless g%>/>
+                    女&nbsp;&nbsp;
+</td>
+          </tr>
+          <tr>
+            <td align="left" valign="middle" class="td_form">&nbsp;</td>
+            <td height="40" align="right" valign="middle" class="td_form"><span style="color:#652f00; padding-right:10px;">当前职业：</span></td>
+            <td align="left" valign="middle" class="td_form">
+			<select id="industry" name="other[industry]">
+<%Job.all.each do |job|%>
+    <option label="<%=job.name%>" value="<%=job.id%>" <%='selected' if job.id==ud.job_id%> ><%=job.name%></option>
+<%end%>
+              </select>
+			</td>
+          </tr>
+          <tr>
+            <td width="20" align="left" valign="middle" class="td_form">&nbsp;</td>
+            <td width="14%" height="40" align="right" valign="middle" class="td_form"><span style="color:#652f00; padding-right:10px;">教育程度：</span></td>
+            <td align="left" valign="middle" class="td_form">
+			<select name="other[education]" id="education">
+<%Education.all.each do |education|%>
+    <option label="<%=education.name%>" value="<%=education.id%>" <%='selected' if education.id==ud.education_id%> ><%=education.name%></option>
+<%end%>
+           </select>
+		   </td>
+          </tr>
+          <tr>
+            <td align="left" valign="middle" class="td_form">&nbsp;</td>
+            <td height="40" align="right" valign="middle" class="td_form"><span style="color:#652f00; padding-right:10px;">生日：</span></td>
+            <td align="left" valign="middle" class="td_form">
+            <div><select name="birthdayYear">
+	    <%(1950..2011).each do |year|%>
+	    <option value="<%=year%>" <%=raw 'selected' if year==ud.birthday.year%>><%=year%></option>
+	    <%end%>
+</select>
+&nbsp;<select name="birthdayMonth">
+	    <%(1..12).each do |year|%>
+	    <option value="<%=year%>" <%=raw 'selected' if year==ud.birthday.month%>><%=year%></option>
+	    <%end%>
+</select>
+		
+		&nbsp;<select name="birthdayDay">
+	    <%(1..31).each do |year|%>
+	    <option value="<%=year%>" <%=raw 'selected' if year==ud.birthday.day%>><%=year%></option>
+	    <%end%>
+</select></div>
+            </td>
+          </tr>
+          <tr>
+            <td align="left" valign="middle" class="td_form" style="height:auto;">&nbsp;</td>
+            <td height="40" align="right" valign="middle" class="td_form" style="height:auto;"><span style="color:#652f00; padding-right:10px;">个人简介：</span></td>
+            <td align="left" valign="middle" class="td_form" style="height:auto;">
+			 <textarea name="other[introduce]" rows="10" cols="60" style="overflow-y:auto;" onpropertychange="if(value.length>1024) value=value.substr(0,1024)" ><%=ud.introduce%></textarea>
+			</td>
+          </tr>
+          <tr>
+            <td align="left" valign="middle" class="td_form">&nbsp;</td>
+            <td height="40" align="left" valign="middle" class="td_form">&nbsp;</td>
+            <td align="left" valign="middle" class="td_form"><span class="goon_btn" style="float:left; margin-left:0;"><input class="u_btn" type="submit" value="保存修改" /></span></td>
+          </tr>
+          <tr>
+            <td align="left" valign="middle" class="td">&nbsp;</td>
+            <td align="left" valign="middle" class="td">&nbsp;</td>
+            <td align="left" valign="middle" class="td">&nbsp;</td>
+          </tr>
+        </table>
+      </div>
+<input name="act" type="hidden" value="act_edit_profile" />
+</form>
+</div>
+

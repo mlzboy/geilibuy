@@ -1,0 +1,100 @@
+/*页面除去头尾部分全局css*/	
+.top_nav { border-bottom:1px solid #cb3f3f; line-height:30px; margin-bottom:14px;}
+	.top_nav a { padding:0 2px;}
+	.top_nav span { color:#999; padding-left:2px;}
+	
+#left_box { float:left; width:177px; border:1px solid #e2e2e2; height:auto;}
+	#left_title { display:block; overflow:hidden; height:36px; margin:10px; background:url(/themes/default/imgs/ucenter/jifen_bg.gif) no-repeat left top;}
+	.left_ul { border-top:1px solid #e2e2e2; line-height:30px; margin-left:10px; width:157px; display:block; margin-bottom:10px; padding-top:10px;}
+	#left_ul_on {background:url(/themes/default/imgs/ucenter/jifen_bg.gif) no-repeat 150px -82px;}
+	#left_ul_on a { font-weight:bold; color:#000;}
+	/* 积分商城菜单样式 fuxing 20100519  */
+	.left_ul_on {background:url(/themes/default/imgs/ucenter/jifen_bg.gif) no-repeat 150px -82px;}
+	.left_ul_on a { font-weight:bold; color:#000;}
+	
+#right_box { float:right; width:769px;}
+	.right_top { height:32px; line-height:32px; border-bottom:1px dashed #e2e2e2; margin-bottom:15px;}
+		.right_top span {  display:block; float:left; font-size:14px; font-weight:bold; color:#000;}
+		.right_top p { display:block; float:right; color:#666;}
+		.right_top p strong { color:#ff6600; padding-right:5px;}
+		.blue_a { color:#0670c6; padding-left:5px;}
+			a.blue_a:link { color:#0670c6;}
+			a.blue_a:visited { color:#0670c6;}
+			a.blue_a:hover { color:#0670c6;}
+			
+	.tipbox { height:auto; border:1px solid #ff8e46; background-color:#feffd0; color:#ff3300; padding:12px; margin-bottom:15px; text-align:center; }
+	.tip1 { text-align:left; color:#000; font-weight:bold; background:url(/themes/default/imgs/ucenter/jifen_bg.gif) no-repeat -80px -36px;background-color:#feffd0; padding-left:37px;}
+		.tipbox span { display:block; font-weight:bold; color:#000; margin-bottom:10px;}
+		.tipbox p { line-height:24px;}
+		.tipbox table td {line-height:20px; color:#666666;}
+		
+	duihuan { color:#000;}
+		.dh_line { padding:15px 0; font-size:14px; font-weight:bold; color:#000;}
+		.duihuan span { color:#ff6600;}
+		.dh_input { height:28px; line-height:28px; width:180px; border:1px solid #ccc; text-align:center; margin:0 10px; font-family:Georgia,"Times New Roman",Times,serif; font-size:24px; font-weight:bold;}
+		.dh_btn { display:inline-block; border:none; height:24px; width:80px; background:url(/themes/default/imgs/ucenter/jifen_bg.gif) no-repeat 0 -58px; margin-right:10px;}
+	.tip_line { border-top:1px solid #e2e2e2; padding:15px 0;margin-top:50px;}
+	
+	.list { display:block; width:192px; height:auto; float:left; line-height:20px; margin-top:10px; margin-bottom:10px;}
+	.li_c { text-align:center;}
+	.list li { padding:0 16px;}
+	.list img { margin:5px 0;}
+	.list b { font-weight:normal; color:#999;}
+	.list font { font-size:12px;color:#ff6600;}
+	.list span{ color:#cc0000; font-weight:bold;}
+	.list_btn { display:inline-block; width:80px; height:22px;background:url(/themes/default/imgs/ucenter/jifen_bg.gif) no-repeat 0 -36px; margin-top:15px;}
+	.btn_on { background-position:0 -100px;}
+		
+	.cat_empty {text-align:center; padding:30px 0; font-size:14px;}
+	
+	#popbg {BACKGROUND: #000; FILTER: alpha(opacity=50); LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; opacity: 0.5; z-index:9999998;display:none;}
+.pop_out {margin:0 auto; POSITION: absolute; z-index:9999999;padding:5px; background-color:#ccc; height:auto; display:none;}
+	.pop_in {border:1px solid #a7a7a7;width:337px; height:auto; background-color:#FFF; padding:10px;}
+	.pop_top { height:14px; border-bottom:1px dashed #ccc; padding-bottom:10px; margin-bottom:10px;position:relative;}
+		.pop_top span { float:left;height:14px; width:70px;margin-left:136px; }
+		.pop_top1 {background:url(/themes/default/imgs/global/bg.gif) no-repeat -483px -337px;}
+		.pop_top2 {background:url(/themes/default/imgs/goods/bg.gif)no-repeat 0 -362px;}
+		.close { float:right; margin-top:2px; display:block; padding-left:14px;background:url(/themes/default/imgs/global/bg.gif) no-repeat -363px -40px; line-height:11px; *line-height:14px !important; *line-height:11px; height:11px; cursor:pointer;}
+	.pop_inf { display:inline-block; color:#000; font-weight:bold; font-size:14px; margin:0 15px; line-height:25px;background:url(/themes/default/imgs/global/bg.gif) no-repeat -528px -150px; padding-left:30px; }
+	.pop_btn {display:inline-block; text-align:center; margin:0 10px; color:#fff;font-weight:bold; height:24px;line-height:24px; *line-height:26px !important; *line-height:22px;  width:108px;background:url(/themes/default/imgs/global/bg.gif) no-repeat -165px -313px; }
+
+		a.pop_btn:link {color:#fff;}
+		a.pop_btn:visited {color:#fff;}
+		a.pop_btn:hover {color:#fff;text-decoration:none;}
+		
+		.visited_dl {padding:0 10px;  display:block; margin-bottom:10px;}
+	.visited_dl dt { line-height:24px; border-bottom:1px solid #e2e2e2; border-top:1px solid #e2e2e2;font-weight:bold; color:#000; margin-bottom:10px;}
+	.visited_dl dd {float:left;margin-bottom:4px; width:52px; text-align:center;}
+	.visited_dl dd img { border:1px solid #ABABAA;height:40px;padding:1px;width:40px;}
+	
+	a.item_opt {color:#3f8cd9; }
+		a.item_opt:link{color:#3f8cd9;}
+		a.item_opt:visited{color:#3f8cd9;}
+		a.item_opt:hover{color:#3f8cd9;}
+
+/*reg-login-css*/
+.do_box { border:1px solid #e2e2e2; padding:15px 18px;width:433px; height:358px; background-color:#fff;}
+	.do_top { height:44px; padding-bottom:8px; border-bottom:1px solid #e2e2e2; line-height:20px; color:#999; margin-bottom:15px; position:relative; }
+	.do_top img { margin-right:25px;}
+	.do_list { color:#000;}
+	.do_list td { padding-right:10px;}
+	.do_list td span { color:#ff6600;}
+	.do_list td b { color:#999; font-weight:normal;}
+	.do_input { border:1px solid #999; color:#333; height:24px; width:233px; padding-left:4px; line-height:24px;background:url(/themes/default/imgs/ucenter/input_bg.gif) no-repeat top left;}
+	.yzm_input { width:109px; margin-right:12px;}
+	a.forget { color:#336699; margin:0 15px;}
+		a.forget:link {color:#336699;}
+		a.forget:visited {color:#336699;}
+		a.forget:hover {color:#336699;}
+	a.do_other { color:#ff0000; font-weight:bold;}
+		a.do_other:link {color:#ff0000;}
+		a.do_other:visited {color:#ff0000;}
+		a.do_other:hover {color:#ff0000;}
+
+.reg { float:right;}
+.login { float:left;}	
+#close { right:4px;}
+
+.goods_attr span {display:inline-block;height:13px;margin:0 2px;}
+.new_goods {cursor:pointer;width:40px; background:url(/themes/default/imgs/catogry/channel_bg.gif) no-repeat 0px -266px;}					
+.no_goods { cursor:pointer;width:40px;background:url(/themes/default/imgs/catogry/channel_bg.gif) no-repeat -40px -266px;}

@@ -1,0 +1,27 @@
+
+<!--xiao mao generator QQ:hi@15-1688.com-->
+<%= form_for([@presale_consulting]) do |f| %>
+  <% if @presale_consulting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@presale_consulting.errors.count, "error") %> prohibited this presale_consulting from being saved:</h2>
+
+      <ul>
+      <% @presale_consulting.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :content %><br />
+    <%= f.text_area :content fffffffffffddd %>
+  </div>
+  <div class="field">
+    <%= f.label :ip %><br />
+    <%= f.text_field :ip fffffffffffddd %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

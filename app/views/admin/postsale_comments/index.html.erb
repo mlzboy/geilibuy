@@ -1,0 +1,42 @@
+
+<h1>Listing postsale_comments</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Content</th>
+    <th>Value</th>
+    <th>Reply</th>
+    <th>Ip</th>
+    <th>Creative</th>
+    <th>Feature</th>
+    <th>Quality</th>
+    <th>Product</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @postsale_comments.each do |postsale_comment| %>
+  <tr>
+    <td><%= postsale_comment.id %></td>
+    <td><%= postsale_comment.content %></td>
+    <td><%= postsale_comment.value %></td>
+    <td><%= postsale_comment.reply %></td>
+    <td><%= postsale_comment.ip %></td>
+    <td><%= postsale_comment.creative %></td>
+    <td><%= postsale_comment.feature %></td>
+    <td><%= postsale_comment.quality %></td>
+    <td><%= postsale_comment.product_id %></td>
+    <td><%= postsale_comment.user_id %></td>
+    <td><%= link_to 'Show', admin_postsale_comment_path(postsale_comment) %></td>
+    <td><%= link_to 'Edit', edit_admin_postsale_comment_path(postsale_comment) %></td>
+    <td><%= link_to 'Destroy', admin_postsale_comment_path(postsale_comment), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Postsale comment', new_admin_postsale_comment_path %>

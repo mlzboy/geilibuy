@@ -1,0 +1,28 @@
+
+<h1>Listing delivery_times</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Position</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @delivery_times.each do |delivery_time| %>
+  <tr>
+    <td><%= delivery_time.id %></td>
+    <td><%= delivery_time.name %></td>
+    <td><%= delivery_time.position %></td>
+    <td><%= link_to 'Show', admin_delivery_time_path(delivery_time) %></td>
+    <td><%= link_to 'Edit', edit_admin_delivery_time_path(delivery_time) %></td>
+    <td><%= link_to 'Destroy', admin_delivery_time_path(delivery_time), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Delivery time', new_admin_delivery_time_path %>

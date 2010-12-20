@@ -1,0 +1,21 @@
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @qa.user_id %>
+</p>
+
+<p>
+  <b>Question:</b>
+  <%= @qa.question %>
+</p>
+
+<p>
+  <b>Answer:</b>
+  <%= @qa.answer %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_qa_path(@qa) %> |
+<%= link_to 'Back', admin_qas_path %>

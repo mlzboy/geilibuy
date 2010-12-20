@@ -1,0 +1,176 @@
+<%content_for :headmeta do%>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta http-equiv="pragma" content="no-cache"/>
+<meta name="pagename" content="tuan" />
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/>
+<%end%>
+<%content_for :headtitle do%>
+<title>订单详情 - 给力团 创意百货天天团 - 给力百货</title>
+<%end%>
+<% content_for :headstyle do %>
+<!--style>
+html {filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity: 0.5; opacity: 0.5;}
+html {filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);}
+</style-->
+<link href="/themes/default/css/tuan_public.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_ucener.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_others.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_reglogin.css" rel="stylesheet" type="text/css" />
+<%end%>
+<%content_for :headother do%>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" />
+<link rel="alternate" type="application/rss+xml" title="RSS|订单详情 - 给力团 创意百货天天团 - 给力百货" href="" />
+<%end%>
+<%content_for :headjs do%>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/hotkeys.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_divpop.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_user.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_account.js" charset="UTF-8"></script>
+<script>
+$(document).ready(function(){
+  
+  	// 检测是否登录
+	setTuanHeadUserStatus();
+  
+});	
+</script>
+<%end%>
+<div class="navtip ">
+</div>
+
+<div id="main">
+							
+
+<div id="left" class="uc_left"> 
+<div class="ucoption">
+  <ul class="ucnav">
+    <li class="ucnav_off "><a href="/tuan/account/orders">我的订单</a></li>
+    <li class="ucnav_off "><a href="/tuan/account/invites">我的邀请</a></li>
+    <li class="ucnav_off "><a href="/tuan/account/points">我的积分</a></li>
+    <li class="ucnav_off "><a href="/tuan/account/credit">现金账户</a></li>
+    <li class="ucnav_off "><a href="/tuan/account/settings">账户设置</a></li>
+  </ul>
+</div>
+  <div class="zone">
+    <div class="leftbar">订单详情</div>
+    <ul class="orderdetail">
+      <li><b>订单编号：</b><a class="red">T<%=@tuan_order.sn%></a></li>
+            <li><b>订单状态：</b><span><%=@tuan_order.current_order_status.name%></span></li>
+            <%
+            #@tuan_order.order_statuses.each do |order_status|
+	    OrderStatus.where(:order_id=>@tuan_order.id).group(:value).all.each do |order_status|
+	    %>
+            <li><b><%=show_order_status(order_status.value)%>时间：</b><%=order_status.created_at.strftime("%Y-%m-%d %H:%M:%S")%></li>
+            <%end%>
+      <%unless @tuan_order.delivery_company_name.blank?%>
+      <li><b>快递公司：</b><%=@tuan_order.delivery_company_name%></li>
+      <%end%>
+      <%unless @tuan_order.delivery_no.blank?%>
+      <li><b>快递单号：</b>
+                                    <span class="send_order_span"><%=@tuan_order.delivery_no%><!--<a href="javascript:document.trackForm.submit();">0000145595394</a>--> </span>
+<!--      <form style="margin:0px" name="trackForm" method="post" onSubmit="return checkSubmitForm();" action="http://www.htky365.com/track.do" target="_blank">
+        <input name="inputNumber" type="hidden" value="0000145595394"/>
+      </form>-->
+
+      </li>
+      <%end%>
+            <li><b>配送信息：</b></li>
+      <li><%=@tuan_order.consignee%></li>
+      <li><%=@tuan_order.address%></li>
+      <li>电话：<%=@tuan_order.mobile||@tuan_order.tel%></li>
+    </ul>
+	<ul class="orderdetail">
+      <li><b>付款方式：</b><%=@tuan_order.payment_name%></li>
+      <li><b>商品金额：</b>¥<%=price(@tuan_order.products_price)%></li>
+      <li><b>配送费用：</b>¥<%=price(@tuan_order.delivery_price)%></li>
+      <li><b>应付总额：</b>¥<%=price(@tuan_order.total_price)%></li>
+    </ul>
+    <ul class="orderdetail">
+      <li>
+        <table width="100%" border="0" cellpadding="0" cellspacing="0" class="goodslist">
+          <tr class="oltd_odd">
+            <th width="170" align="left"> 团购商品</th>
+            <th width="170" align="center">商品数量</th>
+            <th width="100" align="center"> 商品单价</th>
+            <th width="100" align="center"> 商品总价 </th>
+          </tr>
+                    <tr>
+            <td align="left"><a class="blue" style="line-height: 18px;" href="<%=mytuan_url(@tuan_order.tuan)%>"><%=@tuan_order.tuan.sub_title%></a></td>
+            <td align="center"><%=@tuan_order.products_num%></td>
+            <td align="center">¥<%=price(@tuan_order.tuan.pp2)%></td>
+            <td align="center">¥<%=price(@tuan_order.products_price)%></td>
+          </tr>
+                  </table>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div style="height: 40px;"> </div>
+<div id="right">
+  <div class="zone">
+    <h4>什么是已过期订单？</h4>
+    <p>如果某个订单未及时付款，那么等团购结束时就无法再付款了，这种订单就是过期订单。</p>
+    <h4>哪种订单可以评价？</h4>
+    <p> 只有已付款并发货的订单才可以评价，参与评价可以获得积分奖励哦！</p>
+  </div>
+</div>
+ 								
+		
+	
+<div class="clear"></div>     
+</div>
+<%content_for :bodyfoot do%>
+<dl class="pop_dl" id="pol_dl_mail">
+  <dt><span>关闭</span></dt>
+  <dd>
+    <ul class="bmail_ok">
+      <li>
+        <h4>邮件订阅成功！</h4>
+        <span>给力团的优惠信息将每天及时发送到您的邮箱。</span></li>
+      <li>• 收不到邮件？有可能被误判为垃圾邮件了，请到垃圾邮件文件夹找找。</li>
+      <li>• 如不想继续收给力团每日提醒邮件，您可以在邮件中随时取消订阅。</li>
+    </ul>
+  </dd>
+</dl>
+<div id="popbg"></div>
+
+<div style="display:none"><!--<script src='http://w.cnzz.com/c.php?id=30035654' language='JavaScript' charset='gb2312'></script>--></div>
+
+<dl class="pop_dl">
+    <dt><b><strong>我要评价</strong></b><span id="pingclose">关闭</span></dt>
+    <dd>
+        <ul class="uc_plbox">
+            <li>给本商品打分<br />
+              <span class="stars" id="stars">
+            	<a></a>
+                <a></a>
+                <a></a>
+                <a></a>
+                <a></a>
+                <font id="pingarr"></font><input type="hidden" name="pingvar" id="pingvar" value="-1">
+            </span>
+
+              </li>
+            <li>评论<br />
+              <label>
+                <textarea name="textarea" id="pingcontent" cols="40" rows="5" onkeyup="lentxt(0,200,'#pingcontent');" onclick="lentxt(1,200,'#pingcontent');">评论不能超过200个字</textarea>
+              </label>
+            </li>
+            <li>
+              <input type="hidden" name="pingorderid" id="pingorderid" value="">
+              <input type="hidden" name="pinggroupbuyid" id="pinggroupbuyid" value="">
+              <input type="hidden" name="pinggoodsid" id="pinggoodsid" value="">
+              <input type="hidden" name="pingcommentid" id="pingcommentid" value="">
+              <input type="submit" value="提交" class="dbtn com_btn" id="pingsubmit" /></li>
+            <li><span>评价即可获赠20积分<br />您可以去给力百货使用所得积分，<a class="blue" href="/points.php" target="_blank">查看详情</a></span></li>
+        </ul>
+    </dd>
+</dl>
+<%end%>

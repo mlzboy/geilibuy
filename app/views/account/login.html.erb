@@ -1,0 +1,117 @@
+<%content_for :headmeta do%>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="pragma" content="no-cache"/>
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/>
+<meta http-equiv="expires" content=""/>
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+<meta name="pagename" content="tuan" />
+<%end%>
+<%content_for :headtitle do%>
+<title>登录 - 给力团 创意百货天天团 - 给力百货</title>
+<%end%>
+<% content_for :headstyle do %>
+<!--style>
+html {filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity: 0.5; opacity: 0.5;}
+html {filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);}
+</style-->
+<link href="/themes/default/css/tuan_public.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_reglogin.css" rel="stylesheet" type="text/css" />
+
+<%end%>
+<%content_for :headjs do%>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/hotkeys.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_divpop.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_user.js" charset="UTF-8"></script>
+<%end%>
+<div class="navtip"></div>
+
+<div id="main">
+		
+<div id="left">
+    <div class="zone">
+      <div class="leftbar">登录<font>或者</font><font><a href="register" class="red">注册</a></font>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#848484;font-size:12px;font-weight:normal;">您可以用给力百货账号直接登录</span></div>
+      <div class="reglogin_box">
+    <form id="loginForm" name="loginForm" action="/usercenter/login<%=show_tuan_login_back_url%>" method="post">
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+        <!--<form id="loginForm" name="loginForm" action="actlogin" method="post">-->
+      	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="18%" height="48" align="right" valign="middle"><h4>Email：</h4></td>
+          <td width="41%" valign="middle">
+          <div class="mailline">
+          <input type="text"  class="inputs rlinput uemail" autocomplete="off" name="username" value="" id="login_user" />
+          <dl class="maillist">
+
+            <dt>请选择邮箱类型</dt>
+            <dd class="inputmail"></dd>
+            <dd addr="163.com">@163.com</dd>
+            <dd addr="126.com">@126.com</dd>
+            <dd addr="263.com">@263.com</dd>            
+            <dd addr="qq.com">@qq.com</dd>
+            <dd addr="hotmail.com">@hotmail.com</dd>
+
+            <dd addr="gmail.com">@gmail.com</dd>
+            <dd addr="sohu.com">@sohu.com</dd>
+            <dd addr="chinaren.com">@chinaren.com</dd>
+            <dd addr="yahoo.com.cn">@yahoo.com.cn</dd>
+          </dl>
+          <input type="hidden" name="prevIndex" class="prevIndex" value="-1" /> 
+        </div>
+
+          </td>
+          <td width="41%" valign="middle"><span></span></td>
+        </tr>
+        <tr>
+          <td height="48" align="right" valign="middle"><h4>密码：</h4></td>
+          <td valign="middle"><input type="password" autocomplete="off" class="inputs rlinput psd_input" value=""   name="password" id="login_psword" /></td>
+          <td valign="middle"><span></span><a tabindex="-1" href="getpassword" class="red">忘记密码？</a></td>
+        </tr>
+
+        <tr>
+          <td align="right" valign="middle">&nbsp;</td>
+          <td valign="middle">
+            <input type="checkbox" checked="checked"  name="remember"  class="checkbox" id="remember" />
+          <label for="autologin">下次自动登录</label></td>
+          <td valign="middle">&nbsp;</td>
+        </tr>
+        <tr>
+
+          <td height="48" align="right" valign="middle">&nbsp;</td>
+          <td valign="middle"><input  type="button" onclick="checkLoginForm($('#loginForm'));" value="登录" class="dbtn reg_btn" /><span></span></td>
+          <td valign="middle"></td>
+        </tr>
+        <tr>
+          <td height="48" align="right" valign="middle">&nbsp;</td>
+          <td valign="middle"><a href="javascript:void(0)" onclick="window.open('http://api.t.sina.com.cn/oauth/authorize?display=popup&oauth_token=783fd52cc59fb0f9fd3ea1cfac7945fc&oauth_callback=http%3A%2F%2Fwww.geilibuy.com%2Fuser_combine_respond.php');" style="text-decoration:none;" ><input type="button" value="" class="dbtn sina_btn" /></a><span style="color:#848484;">您也可以用新浪微博账号登录给力团</span></td>
+          <td valign="middle">&nbsp;&nbsp;</td>
+
+        </tr>
+      </table>
+    <input type="hidden" name="back_act" value="" id="back_act" />
+  </form>
+      </div>
+    </div>
+  </div>   
+  <div id="right">
+    <div class="zone">
+
+        <h5>还没有给力团或给力百货账号？</h5><br />
+        <span style="font-size:14px;">立即<a class="blue" href="http://www.geilibuy.com/tuan/account/register">注册</a>，仅需10秒！</span>
+    </div>
+    </div>
+  
+    <form id="sinaweibologinForm" name="sinaweibologinForm" action="combine" method="post">
+      <input type="hidden" name="wbid" value="" id="wbid" />
+      <input type="hidden" name="wbcode" value="" id="wbcode" />
+
+      <input type="hidden" name="wbname" value="" id="wbname" />
+      <input type="hidden" name="back_act" value="" id="back_act" />
+    </form>							
+<div class="clear"></div>     
+</div>

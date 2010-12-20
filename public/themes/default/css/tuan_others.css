@@ -1,0 +1,100 @@
+/*订阅，注册相关css*/
+.invate { padding:0 10px; font-size:14px; line-height:22px;}
+.invate dd { font-weight:bold; margin:20px 0;}
+
+.invate_way { font-size:14px; }
+.invate_way dt { border:1px solid #ffe0b0; background-color:#fff2d5; padding:10px 15px; line-height:22px; PADDING-RIGHT: 5px;}
+.invate_way dd { border-bottom:1px solid #ffe0b0; margin-left:40px;padding:40px 0; padding-left:70px; }
+	.invate_way b { color:#C90809;}
+	#inv_way1 {background:url(/themes/default/imgs/tuan/invateway_bg1.gif) no-repeat 0 40px; line-height:24px;}
+		
+	#inv_way2 {background:url(/themes/default/imgs/tuan/invateway_bg2.gif) no-repeat 0 40px; padding-bottom:10px; border-bottom:none;}
+	#inv_way2 table { line-height:24px; }	
+	#inv_way2 table img { border:1px solid #d5b787;}
+		.share { margin-bottom:0;width:460px; margin-left:110px;padding:10px; height:16px;line-height:16px; overflow:hidden;border:1px solid #ffe0b0;}
+		.share_on { height:73px;}
+		.share dt {  float:left;color:#333; font-size:12px; padding-left:5px;}
+		.share dd {  float:left; }
+		.share dd a { float:left;background-image:url(/themes/default/imgs/tuan/share-logo.gif); background-repeat:no-repeat; color:#333;}
+		.share dd a:link {color:#333;}
+		.share dd a:visited {color:#333;}
+		.share dd a:hover {color:#333;}
+			.im { background-position:0 0;padding-left:25px;margin-right:10px; cursor:pointer;}
+			.renren { background-position:0 -25px; padding-left:30px;margin-right:10px;}
+			.kaixin {background-position:0 -46px;padding-left:22px;margin-right:10px; }
+			.sina {background-position:0 -70px; padding-left:23px;margin-right:10px;}
+			.douban {background-position:0 -93px; padding-left:22px;margin-right:10px;}
+			.shuoke {background-position:0 -116px; padding-left:20px;margin-right:10px; }
+			.fuzhi {background-position:200px 0; padding-left:0; margin-left:10px; margin-right:0;cursor:pointer;}
+		#copylink { clear:left; width:400px; padding-top:5px;}
+			.copybtn { height:23px; width:78px; font-weight:normal; display:block; padding-top:0px;*padding-top:2px !important;*padding-top:2px; }
+			#copylink b{color:#333; text-align:left; font-size:14px; padding:6px 0; display:block;}
+			
+
+
+.predeal {  float:left;  border-bottom:1px dotted #e2e2e2; padding-bottom:35px; }
+	.pd_left {border-right:1px dotted #fff;width:335px;}
+	.pd_right {border-left:1px dotted #e2e2e2;width:320px; padding-left:15px;}
+	.predeal dt { padding-bottom:5px;font-size:14px;line-height:22px;padding-top:20px; padding-right:15px; height:65px;word-wrap:break-word; overflow:hidden;}
+	.predeal dt a { color:#333;}
+	.predeal dt a:link { color:#333;}
+	.predeal dt a:visited { color:#333;}
+	.predeal dt a:hover { color:#cd2a23;}
+	.predeal dd {line-height:24px;}
+	.predeal dd span {font-family:arial,sans-serif; font-weight:bold; font-size:14px;}
+	.predeal_img { float:left; width:199px; height:121px; margin-right:15px; position:relative; z-index:1;}
+		.predeal_img img {border:1px solid #d5b787; z-index:1; margin-bottom:1px;}
+		
+		.doing_tipa {position:absolute; width:78px; height:81px; right:-3px;*right:0 !important;*right:0; top:0; z-index:3; display:block;}
+		.doing_tip { position:absolute; width:78px; height:81px; right:-3px;*right:0 !important;*right:0; top:0; z-index:2;}
+
+    .q1 { background:url(/themes/default/imgs/tuan/doing.png) no-repeat 0 0;} 
+    * html .q1 { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src="/themes/default/imgs/tuan/doing.png"); background:none; } 
+    .q2 { background:url(/themes/default/imgs/tuan/over.png) no-repeat 0 0;} 
+    * html .q2 { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale, src="/themes/default/imgs/tuan/over.png"); background:none; } 
+	.predeal_num {}
+		.predeal_num span { font-size:22px; color:#C90809; }	
+	.predeal_dis span {color:#C90809;font-size:14px; }
+	.predeal_price span { font-size:14px; }
+	
+
+.newsbar {list-style:disc; list-style-position:outside; list-style-type:disc;padding-left:15px; line-height:22px; }	
+
+
+
+.wenti { margin:40px 0;margin-left:30px; list-style:decimal; list-style-position:outside; list-style-type:decimal;padding-left:15px;color:#C90809; font-size:24px;font-family:arial,sans-serif; line-height:30px;}
+	.wenti li { margin-bottom:30px;}
+	.wenti h4{ font-size:14px;}
+	.wenti p { font-size:14px; line-height:22px; font-weight:normal; color:#333;font-family:arial,sans-serif; margin-bottom:15px;}
+
+
+.cite_do { margin-left:15px; font-size:14px;}
+	.cite_do dt { padding:40px 0;  border-bottom:1px solid #ffefd2;}
+	.cite_do dd {margin-top:30px;}
+	.cite_do table { line-height:18px;}
+
+.citelist {}
+	.citelist li{ padding:15px 15px;}
+	.clist_odd { border:1px solid #ffefd2; background-color:#fff2d5;}
+	.cite_by { clear:both; line-height:24px;  color:#939393; padding-bottom:15px; font-size:12px}
+		.cite_by dt { float:left;font-size:12px;}
+		.cite_by dd { float:right;}
+	.citelist table td { font-size:14px; line-height:24px; }	
+	.cite_q {}		
+	.cite_a {color:#C90809;}
+
+.gonglue {list-style:decimal; list-style-position:inside; list-style-type:decimal; margin:30px;}
+	.gonglue dt {background:url(/themes/default/imgs/tuan/t1.gif) no-repeat 0 30px; height:65px;padding-left:22px; margin-bottom:15px; border-top:1px dotted #e2e2e2; padding-top:30px;}
+	.gonglue dt b { display:block; float:left;color:#fff; font-size:30px; font-family:Georgia, "Times New Roman", Times, serif; padding-right:35px; padding-top:10px; line-height:30px; }
+	.gonglue dt span { float:left;color:#C90809; font-size:30px; line-height:30px;font-family:microsoft yahei,simhei,arial,sans-serif;padding-top:10px; *padding-top:10px !important;*padding-top:14px;}
+	.gonglue dd { line-height:24px; margin-bottom:30px; margin-left:72px;}
+	.gonglue p {line-height:24px;font-size:14px;}
+	.gonglue p b { color:#C90809;}
+	.gonglue p font {font-size:14px; color:#C90809;}
+	.gonglue dd span { border:1px solid #ffe0b0; background-color:#fff2d5; font-weight:bold; font-size:14px; padding:10px; margin-bottom:15px; display:block;}
+	.gonglue dd span b { color:#C90809;}
+
+.helpbar {background:url(/themes/default/imgs/tuan/help_bg.gif) no-repeat 0 0; background-color:#fff9ee; padding-top:65px; font-size:14px;}
+	.helpbar {line-height:22px;}
+
+	

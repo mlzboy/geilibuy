@@ -1,0 +1,72 @@
+<%content_for :headmeta do%>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta http-equiv="pragma" content="no-cache"/>
+<meta name="pagename" content="tuan" />
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/>
+<%end%>
+<%content_for :headtitle do%>
+<title>团购订单支付成功 - 给力团 创意百货天天团 - 给力百货</title>
+<%end%>
+<% content_for :headstyle do %>
+<!--style>
+html {filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity: 0.5; opacity: 0.5;}
+html {filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);}
+</style-->
+<link href="/themes/default/css/tuan_public.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_ucener.css" rel="stylesheet" type="text/css" />
+<%end%>
+<%content_for :headother do%>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" />
+<link rel="alternate" type="application/rss+xml" title="RSS|购物车 - 给力团 创意百货天天团 - 给力百货" href="" />
+<%end%>
+<%content_for :headjs do%>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/hotkeys.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_divpop.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_user.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_buy.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/flow.js" charset="UTF-8"></script>
+<script type="text/javascript">
+$(function(){
+            // 检测是否登录
+            setTuanHeadUserStatus();
+})
+</script>
+<%end%>
+<div class="navtip" id="MetionDivNum">
+<dl class="navtip_dl" style="display:none;" >
+    	<dt>关闭</dt>
+        <dd>抱歉，数量有限，您最多只能购买2件。</dd>
+    </dl>
+</div>
+
+<div id="main">
+					    <div class="zone">      
+      <dl class="pay_succ">
+        <dt><img src="/themes/default/imgs/tuan/ok_bg.gif" width="58" height="40" />抱歉，支付失败！</dt>
+        <dd><span><a href="/tuan/order_detail/<%=@tuan_order.sn%>" style="font-weight:bold;" class="red"><%=@tuan_order.tuan.sub_title%></a></span> <b>已有 <%=@tuan_order.tuan.saled_num%> 人购买。</b></dd>
+                <dd>感谢您参加给力团团购,查看<a class="blue" href="/tuan/order_detail/<%=@tuan_order.sn%>">订单详情</a></dd>
+                <dd>
+        	<ul>
+                        <li><b>邀请有奖</b></li>
+			<li>这是您的专用邀请链接，邀请朋友一起来团购，还能得到<b>5元返利哦～</b></li>
+                        <li>
+        <!--[if IE]>
+        <input type="text" autocomplete="off" name="qqmsnurl2" id="qqmsnurl2" class="inputs" value="http://www.geilibuy.com/tuan/r<%=current_user.id%>" onfocus="this.select()">
+        <input type="submit" value="复制链接" class="dbtn com_btn" onClick="copy2(document.getElementById('qqmsnurl2').value)">
+        <!--[else]>
+        <input type="text" autocomplete="off" style="width:350px;" name="qqmsnurl2" id="qqmsnurl2" class="inputs" value="http://www.geilibuy.com/tuan/r<%=current_user.id%>" onfocus="this.select()">
+        <![endif]-->
+          </li>
+            </ul>	
+        </dd>    
+      </dl>
+    </div> 
+		
+	<div class="clear"></div>     
+</div>

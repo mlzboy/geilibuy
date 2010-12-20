@@ -1,0 +1,269 @@
+/*²É¹ºÒ³Ãæcss*/
+#global_wish_body { margin:0 auto; width:960px;}
+	.wish_share_update_box { height:38px; margin:10px 0; line-height:38px; background:url(/themes/default/imgs/wish/wish_share_update_bg.gif) repeat-x left center; color:#ff0000; font-size:16px; font-weight:bold;font-family: Microsoft YaHei ! important; border:1px solid #ff9901;}
+		.wish_share_update_left a { font-size:12px; color:#0099cc; font-weight:normal; margin-left:15px;}
+		.wish_share_update_right {font-size:16px; color:#e80000; padding-left:170px;}
+		#update_time { color:#000;}
+		#update_time font { font-size:16px; color:#fff; background:#000; padding:0 3px; margin:0 3px;}
+		#update_time2 { color:#000;}
+		#update_time2 font { font-size:16px; color:#fff; background:#000; padding:0 3px; margin:0 3px;}
+	#wish_top_tip_box { height:36px; text-align:center; line-height:36px; background-color:#f9fcb6; border:1px solid #ff6701; color:#cc0000; font-size:14px; font-weight:bold;}
+#wish_banner { height:328px;  margin-top:10px; }
+#get_more_banner {  height:auto;}
+	#wish_banner_img { float:left; width:710px; height:326px; position:relative; border:1px solid #e2e2e2;}
+		#wish_banner_img_in {width:710px;height:124px;}
+			#wish_banner_img_in font {font-family:Georgia, "Times New Roman", Times, serif;
+font-size:34px; color:#bc0505; font-weight:bold; padding-left:30px;}
+			#wish_banner_img_in span {font-size:18px; color:#000; font-family: Microsoft YaHei ! important; }
+			#wish_banner_img_in span a { display:inline-block; margin-left:18px; width:151px; height:37px; line-height:37px; font-size:15px; font-weight:bold; color:#fff; text-align:center; background:url(/themes/default/imgs/wish/btn_bg_1.gif) no-repeat top center; margin-bottom:5px;}
+			#wish_forever_txt {font-size:14px; color:#666666; font-family: Microsoft YaHei ! important;line-height:16px;}
+			#wish_forever_txt a { color:#0670c6; font-size:12px;}
+	#wish_banner_func { float:right; width:245px; height:328px; }
+		#wish_login_box_out {  height:322px;}
+		#wish_login_box { margin-left:12px; width:233px;height:210px;border:1px solid #e2e2e2; text-align:center;}
+			#wish_login_info { font-weight:bold; color:#ff0000; font-size:14px; line-height:18px;}
+			#wish_login_box a { display:block; width:102px; height:30px; line-height:30px; font-size:14px; font-weight:bold; color:#fff; text-align:center; background:url(/themes/default/imgs/wish/login_reg_btn_bg.gif) no-repeat top center;}
+			#email_btn a{display:block; width:199px; height:38px; line-height:38px; background:url(/themes/default/imgs/wish/btn_bg_2.gif) no-repeat top center;}
+			#getmore_btn a {display:block;width:199px; height:38px; line-height:38px;background:url(/themes/default/imgs/wish/btn_bg_3.gif) no-repeat top center;}
+			#getgift_btn a {display:block;width:199px; height:38px; line-height:38px;background:url(/themes/default/imgs/wish/btn_bg_4.gif) no-repeat top center;}
+
+
+			#wish_role_box {margin-left:12px;margin-top:18px;*margin-top:18px !important; *margin-top:18px;  height:34px; line-height:37px;*line-height:37px !important; *line-height:40px; color:#cccccc; font-size:14px; text-align:center; margin-bottom:15px; background:url(/themes/default/imgs/wish/wish_show_bg1.gif) no-repeat 0px 3px;}
+			#wish_role_box span { padding:0 20px;}
+			#wish_role_box a { color:#fff; font-weight:bold;font-family: Microsoft YaHei ! important; }
+			#wish_role_box a:link { color:#fff;}
+			#wish_role_box a:visited { color:#fff;}
+			#wish_role_box a:hover { color:#fff;}
+
+			#wish_show_box { background:url(/themes/default/imgs/wish/wish_show_bg.gif) no-repeat top left;margin-left:12px; height:51px; line-height:51px; color:#cccccc; font-size:14px; text-align:center; margin-bottom:5px; font-size:15px;}
+			#wish_show_box a { color:#fff; font-weight:bold;font-family: Microsoft YaHei ! important; }
+			#wish_show_box a:link { color:#fff;}
+			#wish_show_box a:visited { color:#fff;}
+			#wish_show_box a:hover { color:#fff;}
+
+			.wish_look_more_list { line-height:20px; text-align:center; padding-top:15px; }
+			.wish_look_more_list a { display:inline-block; color:#0670c6; font-size:14px; width:182px; height:30px; line-height:30px;color:#fff; text-align:center; background:url(/themes/default/imgs/wish/btn_bg_5.gif) no-repeat top center;font-family: Microsoft YaHei ! important;font-weight:bold;}
+			.wish_look_more_list a:link { color:#fff;}
+			.wish_look_more_list a:visited { color:#fff;}
+			.wish_look_more_list a:hover { color:#fff;}
+
+
+.wish_winlist_box { border:1px solid #e2e2e2; height:auto; padding:16px;  margin-bottom:15px; margin-top:10px;padding-top:45px;background:url(/themes/default/imgs/wish/win_list_box_bg.gif) no-repeat 15px 15px;}
+.wish_winlist_box table td { height:auto; padding-bottom:6px; color:#999999; border-bottom:1px dotted #cccccc; padding-top:6px;}
+.wish_winlist_box table td img { border:1px solid #;cccccc height:48px; width:48px; }
+.wish_winlist_box table td span { color:#ff6600;}
+.wish_winlist_box table td a { color:#0670c6;}
+.wish_winlist_box table td a:link { color:#0670c6;}
+.wish_winlist_box table td a:visited { color:#0670c6;}
+.wish_winlist_box table td a:hover { color:#0670c6;}
+.wish_gift_box_title { height:auto;}
+.wish_gift_box { height:auto; line-height:normal; padding-bottom:15px;background-color: #FFFFFF; border:1px solid #e2e2e2;padding-top:45px;background:url(/themes/default/imgs/wish/wish_list_top_bg.gif) no-repeat 15px 15px; }
+	.wish_gift_zone_title { height:45px; text-align:center; padding:20px; padding-top:45px;}
+	.wish_gift_zone1 { height:auto;}
+	.wish_gift_zone2 { height:auto; }
+	.wish_gift_zone3 { height:auto;}
+
+	.wish_gift_block_1 {float:left; width:319px; display:block;text-align:center; height:auto; color:#666666; margin:0; padding:0; padding-bottom:0px;}
+		.wish_gift_block_1 li { display:block;}
+	.wish_gift_block_2 {float:left; width:191px; display:block;text-align:center; height:auto; color:#666666; margin:0; padding:0; padding-bottom:10px;}
+		.wish_gift_block_2 li { display:block;}
+	.wish_gift_block_3 {float:left; width:191px; display:block;text-align:center; height:auto; color:#666666; margin:0; padding:0; padding-bottom:10px;}
+		.wish_gift_block_3 li { display:block;}
+
+	.wish_gift_block_img1 { padding-bottom:4px;}
+	.wish_gift_block_img1 img {width:260px;height:260px;}
+
+
+	.wish_gift_block_img2 { padding-bottom:4px;}
+	.wish_gift_block_img2 img {width:160px;height:160px; }
+
+
+	.wish_gift_block_img3 { padding-bottom:4px;}
+	.wish_gift_block_img3 img {width:160px;height:160px; }
+
+	.wish_gift_block_name { line-height:18px; text-align:center;}
+	.wish_gift_block_name a { color:#666666;}
+	.wish_gift_block_name a:link{ color:#666666;}
+	.wish_gift_block_name a:visited{color:#666666;}
+	.wish_gift_block_name a:hover{color:#000;}
+	.wish_gift_block_price { color:#cc0000; line-height:18px; text-align:center;}
+	.wish_gift_block_btn { line-height:18px; text-align:center;}
+	.wish_gift_block_point { line-height:18px; text-align:center; color:#ff6600; font-weight:bold;}
+
+
+	.wish_gift_ul_1 { float:left; width:310px; text-align:center; display:block;margin-bottom:10px;}
+	.wish_gift_li_1_img { background-color:#ece9d8; width:284px; height:284px; position:relative; margin-left:27px; margin-top:17px;}
+	.wish_gift_li_1_img img { width:282px; height:282px; border:1px solid #cccccc; position:absolute; left:-7px; top:-7px;}
+
+	.wish_gift_ul_2 { float:left; width:239px; text-align:center; display:block;margin-bottom:10px;}
+	.wish_gift_li_2_img {}
+	.wish_gift_li_2_img img { width:208px; height:208px; border:1px solid #cccccc;}
+
+	.wish_gift_ul_3 { float:left; width:191px; text-align:center; display:block;margin-bottom:30px;}
+	.wish_gift_li_3_img {}
+	.wish_gift_li_3_img img { width:160px; height:160px; border:1px solid #cccccc;}
+
+	.wish_gift_li_brand { line-height:24px; color:#8d8183; padding:4px 0;}
+	.wish_gift_li_name { line-height:16px;}
+		.wish_gift_li_name a { color:#472000;}
+		.wish_gift_li_name a:link { color:#472000;}
+		.wish_gift_li_name a:visited { color:#472000;}
+		.wish_gift_li_name a:hover { color:#472000;}
+	.wish_gift_li_pirce { line-height:20px; color:#c73408; font-weight:bold; padding:4px 0;}
+	.wish_gift_li_btn { line-height:30px; text-align:center;}
+	.wish_gift_li_btn a { display:block; width:152px; height:24px; line-height:24px; font-size:14px; font-weight:bold; color:#5e0000; text-align:center; background:url(/themes/default/imgs/wish/btn_bg.gif) no-repeat top center;}
+.wish_gift_box_top { height:7px; line-height:0; font-size:0;margin:0 10px; }
+	.wish_gift_li_btn a:link {color:#5e0000;}
+	.wish_gift_li_btn a:visited {color:#5e0000;}
+	.wish_gift_li_btn a:hover {color:#5e0000;}
+
+.wish_gift_box_bottom { margin:0 10px;height:7px; line-height:0; font-size:0; margin-bottom:15px;}
+
+.wish_cash_box { margin-top:15px;height:249px;background-color: #FFFFFF; border:1px solid #e2e2e2; padding-top:45px;background:url(/themes/default/imgs/wish/wish_cash_box_bg.gif) no-repeat 15px 15px;  }
+.wish_cash_list { list-style-type:decimal; color:#000;line-height:28px; font-size:16px; margin-top:0; margin-bottom:0; margin-right:30px;font-family: Microsoft YaHei ! important;}
+.wish_cash_list li { list-style:decimal;}
+
+.wish_cash_in_box {  padding-left:30px; line-height:18px; color:#ff6600; font-weight:bold; height:auto; padding-top:10px;}
+.wish_cash_in_box ul { float:left; width:161px; height:116px; margin-right:20px; text-align:center; display:block;background:url(/themes/default/imgs/wish/wish_cash_bg.gif) no-repeat top left;}
+.wish_cash_in_box ul li { height:auto; display:block;}
+.wish_cash_nums {font-size:22px; height:48px; padding-left:50px; margin-bottom:10px; text-align:left; line-height:48px; color:#fff; font-weight:bold; font-family: Microsoft YaHei ! important; }
+.wish_role_box {  border:1px solid #e2e2e2;margin-top:15px;height:auto; margin-bottom:15px;padding-bottom:20px;
+background-color: #FFFFFF; background:url(/themes/default/imgs/wish/wish_role_box_bg.gif) no-repeat 15px 15px; padding-top:55px; padding-left:45px;}
+.wish_other_box {border:1px solid #e2e2e2;height:auto;background-color: #FFFFFF; padding-top:4px;*padding-top:14px !important; *padding-top:14px; padding-left:15px; padding-right:15px; margin-top:15px; margin-bottom:15px;}
+.wish_role_title {  height:auto; padding-bottom:10px;padding-top:12px;*padding-top:0px !important; *padding-top:0px;}
+.wish_role_title img {}
+.wish_role_list { list-style-type:decimal; line-height:24px; margin-top:0; margin-bottom:0; margin-right:30px;}
+.wish_role_list li { list-style:decimal;}
+
+#pop_box { height:auto; width:356px;}
+	#pop_title { height:26px; background:url(/themes/default/imgs/wish/pop_title_bg.gif) repeat-x left center;line-height:26px;color:#fff;}
+		#pop_title_txt { float:left; width:300px;height:26px; font-weight:bold; padding-left:8px;}
+		#pop_tilte_close { float:right; width:48px;height:26px;}
+		#pop_tilte_close a { color:#fff; background:url(/themes/default/imgs/wish/pop_close_btn.gif) no-repeat left top; padding-left:14px; display:block; height:14px; line-height:14px; margin-top:8px;}
+	#pop_body { height:auto;background:url(/themes/default/imgs/wish/pop_body_bg.gif) no-repeat center bottom; }
+		#pop_body_txt_line { height:auto; line-height:16px; text-align:center; font-size:14px; font-weight:bold; padding-top:20px;}
+		#pop_body_goods_line { height:auto;text-align:center;}
+		#pop_body_goods_line a { color:#333333;}
+		#pop_body_btn_line { height:auto; line-height:50px; text-align:center; display:block; padding:15px 0;}
+		#pop_body_btn_line li { width:178px; text-align:center; float:left;}
+			#pop_body_btn_line table a { display:block; width:152px; height:24px; line-height:24px; font-size:14px; font-weight:bold; color:#5e0000; text-align:center; background:url(/themes/default/imgs/wish/btn_bg.gif) no-repeat top center;}
+
+
+#wish_postion_box { background:url(/themes/default/imgs/wish/wish_position_img.gif) no-repeat left  center; margin:0 10px; height:30px; padding-left:25px; line-height:30px; color:#000; font-weight:bold; font-size:16px;font-family: Microsoft YaHei ! important;letter-spacing:1px;}
+#wish_postion_box span { float:left;margin-right:10px;}
+#wish_postion_box img {  margin-top:3px;}
+
+#wish_banner_box { height:auto; margin:5px 0 0 0;border:1px solid #e2e2e2; }
+#wish_share_txt_box {position:relative; height:10px;}
+	#wish_share_role_txt{ font-size:14px; line-height:22px; position:absolute; width:860px; height:50px; left:18px; top:-40px;}
+	#wish_share_role_txt span { color:#ff6600;}
+.msn_input { width:312px;}
+.msn_you_name { width:200px;}
+.win_list_td_title { height:26px; background-color:#f0f0f0; line-height:26px; padding-left:15px;}
+.win_list_td { height:39px; line-height:39px; border-bottom:1px dotted #cccccc; padding-left:15px;}
+.win_list_td font { color:#F00; font-size:14px; font-weight:bold;}
+#big_gift_a { color:#F00;font-weight:bold;}
+#big_gift_a:link { color:#F00;}
+#big_gift_a:visited { color:#F00;}
+#big_gift_a:hover { color:#F00;}
+
+.wish_big_gift_box {border:1px solid #e2e2e2; height:248px; margin-bottom:15px; background:url(/themes/default/imgs/wish/big_gift_box_bg.gif) no-repeat 332px 10px; padding-top:70px; padding-left:41px; padding-right:33px;}
+	.wish_big_gift_box_in { border:1px solid #cc0000; height:206px; overflow:hidden;}
+	wish_big_gift_index_tab { width:303px; height:207px; display:block; float:left; display:block;margin:0; padding:0;}
+	.wish_big_gift_index_ul { width:303px; height:207px; display:block; float:left;}
+		.wish_big_gift_index_li { float:left; width:302px; height:68px; display:block;border-bottom:1px solid #cc0000; border-right:1px solid #cc0000; background:none;}
+		.wish_big_gift_index_li_on {float:left;width:302px;  height:68px; display:block; border-bottom:1px solid #cc0000; border-right:1px solid #ffffff; background:url(/themes/default/imgs/wish/wish_index_bar_bg.gif) repeat-y top left;}
+
+		.wish_big_gift_own {display:block; line-height:66px; width:72px; float:left; text-align:center;color:#ff6600; }
+		.wish_big_gift_goods { display:block; width:110px; float:left; margin-top:20px; height:46px; line-height:16px;}
+		.wish_big_gift_date { display:block; line-height:66px;float:left;color:#999999;}
+
+		.wish_big_gift_index_ul a { color:#0670c6;}
+		.wish_big_gift_index_ul a:link { color:#0670c6;}
+		.wish_big_gift_index_ul a:visited { color:#0670c6;}
+		.wish_big_gift_index_ul a:hover { color:#0670c6;}
+
+
+		#big_gift_trangle { position:absolute; left:1px; top:1px;}
+		#big_gift_trangle img { width:54px; height:54px; border:none; }
+
+	.wish_big_gift_right { float:right; width:540px; height:170px; padding:18px; text-align:left; }
+	.wish_big_gift_right table{ color:#666666; font-size:14px;}
+	.wish_big_gift_right table a { color:#0670c6;}
+		.wish_big_gift_right table a:link { color:#0670c6;}
+		.wish_big_gift_right table a:visited { color:#0670c6;}
+		.wish_big_gift_right table a:hover { color:#0670c6;}
+	.wish_big_gift_right table td { line-height:18px; padding:5px 0;}
+	.wish_big_gift_right table td span{ color:#ff9900;}
+	.wish_big_gift_right table img { border:1px solid #cccccc; width:188px; height:168px; margin-right:20px;}
+	#big_gift_right1 { display:block;}
+	#big_gift_right2 { display:none;}
+	#big_gift_right3 { display:none;}
+.win_get_btn {width:152px; height:37px; border:none; cursor:pointer; line-height:24px; font-size:14px; font-weight:bold; color:#fff; text-align:center; background:url(/themes/default/imgs/wish/btn_bg_1.gif) no-repeat top center;}
+.win_list_td_addr { border-top:1px dotted #cccccc; height:45px; padding-top:15px;}
+.win_list_td_addr a { display:block; width:152px; height:37px; line-height:37px; font-size:14px; font-weight:bold; color:#fff; text-align:center; background:url(/themes/default/imgs/wish/btn_bg_1.gif) no-repeat top center;}
+	.win_list_td_addr a:link {color:fff;}
+	.win_list_td_addr a:visited {color:#fff;}
+	.win_list_td_addr a:hover {color:#fff;}
+
+.win_list_td span { color:#ff0000;}
+.win_list_td a { color:#006699;}
+.win_list_td a:link { color:#006699;}
+.win_list_td a:visited { color:#006699;}
+.win_list_td a:hover { color:#006699;}
+.win_list_page { padding:10px 0; text-align:center; margin-bottom:20px; color:#de0074;}
+.win_list_page font { font-size:9pt; padding:4px; margin-left:2px; margin-right:2px;}
+.win_list_page span { border:1px solid #e0e0e0; padding:4px; margin-left:2px; margin-right:2px;}
+.win_list_page a { padding-left:3px; padding-right:3px; color:#666666;}
+
+.wish_get_gifts_ul{ float:left; display:block; margin-top:15px 0; width:185px; text-align:center; line-height:22px; height:215px;}
+.wish_get_gifts_ul img { width:160px; height:160px; border:1px solid #cccccc;}
+.wish_get_gifts_ul a { color:#333333;}
+.winner_input {height:22px; line-height:22px;border:1px solid #cccccc;}
+.winner_name { background-color:#e8faff; border:1px solid #0099cc; width:120px; }
+.winner_city {width:120px;height:22px; margin-right:9px;}
+.winner_addr {width:380px;}
+.winner_mob { width:120px; }
+.winner_tel_distr { width:36px;}
+.winner_tel { width:68px;}
+
+.got_gifts_info_line { height:auto; padding:30px 0; text-align:center; line-height:30px; font-size:14px; color:#000;}
+.got_gifts_info_line span { color:#ff0000;}
+.got_gifts_info_line a { color:#006699;}
+.got_gifts_info_line a:link { color:#006699;}
+.got_gifts_info_line a:visited { color:#006699;}
+.got_gifts_info_line a:hover { color:#006699;}
+#gotgift_ok_info_box { border:1px solid #ff9901; background-color:#feffc1; padding:30px; margin:20px 200px 20px 200px; display:block; line-height:18px; text-align:left; font-size:12px; color:#000;}
+#gotgift_ok_info_box a { margin-left:160px;}
+.wish_share_top {border:1px solid #e2e2e2;background:url(/themes/default/imgs/wish/wish_share_top_bg.gif) no-repeat top right; height:258px;}
+.wish_share_top ul { display:block; margin:5px; padding:15px 0; line-height:34px; border-bottom:1px dashed #cccccc;border-top:1px dashed #cccccc;font-size:14px; color:#333333; font-family: Microsoft YaHei ! important; margin-bottom:15px;}
+.wish_share_top ul li { padding-left:5px;}
+.wish_share_top ul span { color:#ff6600;}
+.wish_share_top a { padding-left:5px; color:#0670c6;}
+.wish_share_top a:link { padding-left:5px; color:#0670c6;}
+.wish_share_top a:hover { padding-left:5px; color:#0670c6;}
+.wish_share_top a:visited { padding-left:5px; color:#0670c6;}
+.wish_share_ok_tip { font-size:14px; margin:10px 0; font-weight:bold; color:#000; background:url(/themes/default/imgs/wish/share_mail_ok_img.gif) no-repeat 10px 12px; background-color:#fdf9e1; border:1px solid #e6d08c; padding-left:40px; height:46px; line-height:46px;}
+#wish_share_link_info {border:1px solid #ff9901; background-color:#feffc1; display:block; height:30px; line-height:30px; margin:0 50px;}
+.emial_ok_list { border:1px solid #cccccc; margin-bottom:20px;}
+.emial_ok_list td { height:26px; line-height:26px; padding-left:10px; color:#666666;}
+.emial_box { border:1px solid #cccccc; margin-bottom:15px;}
+.emial_box td {  padding-left:15px; color:#666666;}
+#msn_list_box { padding:0; height:400px; overflow:scroll; border:1px solid #cccccc; width:926px;}
+#msn_list_box table { width:900px;}
+.msn_list_td {height:26px; line-height:26px; border-bottom:1px dotted #cccccc; padding-left:10px;}
+
+.wish_way_ul { display:block; margin:5px; margin-top:15px; padding:15px 0 15px 195px; line-height:34px; border-bottom:1px dashed #cccccc;font-size:14px; color:#333333; font-family: Microsoft YaHei ! important; margin-bottom:15px; background:url(/themes/default/imgs/wish/wish_way_1.gif) no-repeat left center;}
+.wish_way_ul li { background:url(/themes/default/imgs/wish/wish_way_red_btn.gif) no-repeat 0 2px; padding-left:18px; line-height:16px; margin:25px 0;}
+.wish_way_ul_2 {background:url(/themes/default/imgs/wish/wish_way_2.gif) no-repeat left center;}
+.wish_way_ul_3 {background:url(/themes/default/imgs/wish/wish_way_3.gif) no-repeat left center; border-bottom:none;}
+.wish_way_a { text-align:center; margin-bottom:20px;}
+.wish_way_a a { display:inline-block; margin-left:18px; width:151px; height:37px; line-height:37px; font-size:15px; font-weight:bold; color:#fff; text-align:center; background:url(/themes/default/imgs/wish/btn_bg_1.gif) no-repeat top center; margin-bottom:5px;}
+.wish_way_a a:hover { color:#fff;}
+
+.mb_tip { display:block;}
+	.mb_tip li { float:left;}
+	.tip_mb { display:block; width:263px; height:22px;background:url(/themes/default/imgs/wish/tip_bg.gif) no-repeat 5px 3px; border:1px solid #ff6600; background-color:#ffffcc; color:#ff0000; line-height:22px; padding-left:45px; margin-left:10px;}
+	.tip_ok {border:1px solid #009933;color:#009933; width:175px; background-image:none; margin-left:0;}
+
+.winwords_tip {border:1px solid #ccc;  color:#ff0000; line-height:20px; padding:10px 15px; width:510px; text-align:left; padding-bottom:5px; margin-bottom:15px;background:url(/themes/default/imgs/wish/winwords_tip_bg.gif) no-repeat 20px 10px;background-color:#ffffcc; padding-left:76px; }

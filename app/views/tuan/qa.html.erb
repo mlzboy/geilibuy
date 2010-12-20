@@ -1,0 +1,132 @@
+<%content_for :headmeta do%>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="pragma" content="no-cache"/>
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/>
+<meta http-equiv="expires" content=""/>
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+<meta name="pagename" content="tuan" />
+<%end%>
+<%content_for :headtitle do%>
+<title>给力团答疑 - 给力团 创意百货天天团 - 给力百货</title>
+<%end%>
+<% content_for :headstyle do %>
+<!--style>
+html {filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity: 0.5; opacity: 0.5;}
+html {filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);}
+</style-->
+<link href="/themes/default/css/tuan_public.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_others.css" rel="stylesheet" type="text/css" />
+<%end%>
+<%content_for :headother do%>
+<link rel="shortcut icon" href="http://www.geilibuy.com/favicon.ico" />
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" />
+<link rel="alternate" type="application/rss+xml" title="RSS|给力团答疑 - 给力团 创意百货天天团 - 给力百货" href="" />
+<%end%>
+<%content_for :headjs do%>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/hotkeys.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_divpop.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_user.js" charset="UTF-8"></script>
+    <script>
+    $(document).ready(function(){
+            
+            // 检测是否登录
+            setTuanHeadUserStatus();
+            //获取邀请链接
+            //getTuanShareUrl();
+            
+            //获取首页的评论列表
+            //tuan_getDealsCommentList(1,193,1);
+    
+    });	
+    </script>
+<%end%>
+<div class="navtip"></div>
+
+<div id="main">
+  
+  <div id="left">
+  <div class="zone">
+    <div class="leftbar">给力团答疑</div>
+        <dl class="invate_way">
+      <dt>
+        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+          <tbody><tr>
+            <td width="122" valign="top"><a class="blue" target="_blank" href="http://www.geilibuy.com/tuan/">» 返回今日团购：</a></td>
+            <td width="540" valign="top"><a target="_blank" href="/tuan"><b><%=@tuan.sub_title%></b></a></td>
+          </tr>
+        </tbody></table>
+      </dt>
+    </dl>
+        <%if has_login?%>
+        <dl class="cite_do">
+                  <dt style="display: none;" id="submit_comment_ok">您的问题已成功提交，给力团会尽快回复并邮件通知您，稍等一会儿吧。<a class="blue" href="/tuan/qa/">还有其他问题？</a></dt>
+      <dd id="comment_content">
+        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+          <tbody><tr>
+            <td height="30">有问题请留言，给力团会尽快为您解答</td>
+          </tr>
+          <tr>
+            <td><textarea style="font-size: 12px; padding: 5px; color: rgb(102, 102, 102);" onclick="lentxt(1,200,'#content');" onkeyup="lentxt(0,200,'#content');" rows="8" cols="55" id="content" name="content">咨询不能超过200个字</textarea></td>
+          </tr>
+          <tr>
+            <td height="58"><input type="hidden" value="<%=@tuan.id%>" id="tuan_id" name="tuan_id">
+              <input type="hidden" value="6" id="cmt_type" name="cmt_type">
+              <input type="hidden" value="0" id="isall" name="isall">
+              <input type="submit" onclick="return tuan_add_comment();" class="dbtn com_btn" value="提交问题"></td>
+          </tr>
+        </tbody></table>
+      </dd>
+          </dl>
+        <%else%>
+        <dl class="cite_do">
+                          <dt>
+        <form id="gotoLoginForm" name="gotoLoginForm" method="post" action="http://www.geilibuy.com/tuan/account/login">
+          请先<a style="cursor: pointer;" onclick="document.gotoLoginForm.submit();" class="blue">登录</a>或<a class="blue" href="http://www.geilibuy.com/tuan/account/register">注册</a>再提问
+          <input type="hidden" name="back_act" value="http://www.geilibuy.com/tuan/deals/qa/i-20101126a">
+        </form>
+      </dt>
+        </dl>
+        <%end%>
+        
+    <div id="comment_list">
+      <ul class="citelist">
+<%@qas.each do |qa|%>
+  <li<%=raw cycle("",' class="clist_odd"')%>>
+    <table cellspacing="0" cellpadding="0" border="0" width="100%" style="white-space: normal; overflow: hidden;">
+      <tbody><tr>
+        <td align="left" valign="top" colspan="2"><dl class="cite_by">
+            <dt><%=qa.user.nick%></dt>
+            <dd><%=show_human_time(qa.created_at)%></dd>
+          </dl></td>
+      </tr>
+      <tr>
+        <td align="left" valign="top" class="cite_q"><div style="word-wrap: break-word; width: 45px;"><b>提问：</b></div></td>
+        <td align="left" valign="top" class="cite_q"><div style="word-wrap: break-word; width: 600px;"><%=qa.question%></div></td>
+      </tr>
+      <tr>
+        <td align="left" valign="top" class="cite_a"><div style="word-wrap: break-word; width: 45px;"><b>回复：</b></div></td>
+        <td align="left" valign="top" class="cite_a"><div style="word-wrap: break-word; width: 600px;"><%=qa.answer%></div></td>
+      </tr>
+    </tbody></table>
+  </li>
+<%end%>
+  </ul>
+<div class="clear"></div>
+<!--<div class="page_box">  <span><a onclick="tuan_getCommentList(1 ,195,1)" href="#comment_list">首页</a></span>  <span><a onclick="tuan_getCommentList(1,195,1)" href="#comment_list">上一页</a></span>  <span><a onclick="tuan_getCommentList(1,195,1)" href="#comment_list">1</a></span>  <span id="page_on">2</span>  <span><a onclick="tuan_getCommentList(3,195,1)" href="#comment_list">3</a></span>  <span><a onclick="tuan_getCommentList(4,195,1)" href="#comment_list">4</a></span>  <span><a onclick="tuan_getCommentList(5,195,1)" href="#comment_list">5</a></span>  <span><a onclick="tuan_getCommentList(6,195,1)" href="#comment_list">6</a></span>  <span><a onclick="tuan_getCommentList(7,195,1)" href="#comment_list">7</a></span>  <span><a onclick="tuan_getCommentList(3,195,1)" href="#comment_list">下一页</a></span>  </div>-->
+<%=raw @page%>
+</div>
+  </div>
+</div>  <div id="right">
+    <!--<div class="ad_box">广告图片位</div>-->
+    
+    <div class="zone helpbar"> <a target="_blank" class="blue" href="http://www.geilibuy.com/tuan/help/faq">» 查看常见问题</a><br>
+  可能有你想要的答案哦。 </div> </div>
+  <div class="clear"></div>
+</div>
+<div id="gotop"><span><a href="#">↑回顶部</a></span><div class="clear"></div></div>

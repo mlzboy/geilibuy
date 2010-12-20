@@ -1,0 +1,38 @@
+
+<h1>Listing product_shows</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Category</th>
+    <th>Name</th>
+    <th>Location</th>
+    <th>Type</th>
+    <th>Memo</th>
+    <th>Position</th>
+    <th>内置产品数量</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @product_shows.each do |product_show| %>
+  <tr>
+    <td><%= product_show.id %></td>
+    <td><%= show_category_name(product_show.category_id) %></td>
+    <td><%= product_show.name %></td>
+    <td><%= product_show.location %></td>
+    <td><%= product_show.kind %></td>
+    <td><%= product_show.memo %></td>
+    <td><%= product_show.position %></td>
+    <td><%= product_show.products.size %></td>
+    <td><%= link_to 'Show', admin_product_show_path(product_show) %></td>
+    <td><%= link_to 'Edit', edit_admin_product_show_path(product_show) %></td>
+    <td><%= link_to 'Destroy', admin_product_show_path(product_show), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Product show', new_admin_product_show_path %>

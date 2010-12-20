@@ -1,0 +1,49 @@
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @material.name %>
+</p>
+
+<p>
+  <b>Kind:</b>
+  <%= @material.kind %>
+</p>
+
+<p>
+  <b>Hyperlink:</b>
+  <%= @material.hyperlink %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @material.title %>
+</p>
+
+<p>
+  <b>Image url:</b>
+  <%= image_tag @material.image_url.url %>
+</p>
+<p>
+  <b>Size:</b>
+  <%= @material.size %>
+</p>
+<p>
+  <b>Alt:</b>
+  <%= @material.alt %>
+</p>
+
+<p>
+  <b>Text:</b>
+  <%= @material.text %>
+</p>
+
+<p>
+  <b>Memo:</b>
+  <%= @material.memo %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_material_path(@material) %> |
+<%= link_to 'Back', admin_materials_path %>

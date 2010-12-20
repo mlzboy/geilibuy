@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<%if content_for?(:headmeta) %>
+<%= yield(:headmeta) %>
+<%else%>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta http-equiv="pragma" content="no-cache"/>
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/>
+<meta http-equiv="expires" content=""/>
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+<meta name="pagename" content="tuan" />
+<% end %>
+<%if content_for?(:headtitle) %>
+<%= yield(:headtitle) %>
+<%else%>
+<title>今日团购 - 给力团 创意百货天天团 - 给力百货</title>
+<%end%>
+<%if content_for?(:headother) %>
+<%= yield(:headother) %>
+<%else%>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" />
+<link rel="alternate" type="application/rss+xml" title="RSS|今日团购 - 给力团 创意百货天天团 - 给力百货" href="" />
+<%end%>
+<%if content_for?(:headstyle) %>
+<%= yield(:headstyle) %>
+<%else%>
+<!--style>
+html {filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity: 0.5; opacity: 0.5;}
+html {filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);}
+</style-->
+<link href="/themes/default/css/tuan_public.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_index.css" rel="stylesheet" type="text/css" />
+<%end%>
+<%if content_for?(:headjs) %>
+<%= yield(:headjs) %>
+<%else%>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/hotkeys.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_divpop.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_user.js" charset="UTF-8"></script>
+<script>
+$(document).ready(function(){
+	
+	// 检测是否登录
+	setTuanHeadUserStatus();
+	//获取邀请链接
+	//getTuanShareUrl();
+	
+	//获取首页的评论列表
+	//tuan_getDealsCommentList(1,193,1);
+
+});	
+</script>
+<script>
+$(document).ready(function(){
+	//团购倒计时
+	getTuanGouCountDown('i');
+});	
+</script>
+<%end%>
+
+
+</head>
+<body>
+
+
+
+<div id="headbox"> 
+    <div id="head">    	
+		<div id="logo"><a title="给力团 每天团件新鲜玩意儿" href="/tuan"><img src="/themes/default/imgs/tuan/logo.gif" /></a></div> 
+
+        
+        <div id="head_right"> 
+       	  <div id="tohome"><a title="给力百货首页" href="/"><img src="/themes/default/imgs/tuan/tohome.gif" /></a></div>   
+          <div id="bookemail">      
+            <form id="theFormTop1" name="theFormTop1" action="" method="post">
+                <span>想知道给力团下期团购的优惠信息吗？</span>
+                <div class="mailline" id="emailline">
+          <input type="text"  class="inputs rlinput uemail bookinput" autocomplete="off" name="t_book_email" value="输入Email，订阅每日团购信息" id="bookinput"/>          
+          <dl class="maillist"  id="maillist">
+        	<dt>请选择邮箱类型</dt>
+            <dd class="inputmail"></dd>
+             <dd addr="163.com">@163.com</dd>
+            <dd addr="126.com">@126.com</dd>
+            <dd addr="263.com">@263.com</dd>            
+            <dd addr="qq.com">@qq.com</dd>
+            <dd addr="hotmail.com">@hotmail.com</dd>
+            <dd addr="gmail.com">@gmail.com</dd>
+            <dd addr="sohu.com">@sohu.com</dd>
+            <dd addr="chinaren.com">@chinaren.com</dd>
+            <dd addr="yahoo.com.cn">@yahoo.com.cn</dd>
+        </dl><input type="hidden" name="prevIndex" class="prevIndex" value="-1" />  
+        <input type="hidden" name="cityid" value="1" id="t_book_city_id">
+        <input type="button" value=" " class="bookbtn" id="bookmailtop1">       
+        </div>
+           </form>   
+           </div>    
+   	  </div>
+        <div class="clear"></div>
+    </div>
+</div>  
+
+<div id="navbox">
+    <div id="nav">   
+    	<ul class="nav_item">
+        	<li class="nav_li" style="border-left:none;"><a class="nav_a" href="/tuan"  title="" >今日团购</a></li>
+            <li class="nav_li">
+            	<a class="nav_a" href="/tuan/deals">往期团购</a>                
+            </li>
+            <li class="nav_li">
+            	<a class="nav_a" href="/tuan/guide">给力团攻略</a>                
+          </li>
+            <li class="nav_li">
+            	<a class="nav_a" href="/tuan/faq">常见问题</a>                
+          </li>            
+        </ul>
+		<ul id="nav_user" >
+        <li class="nav_act" style="display:none;"><a href="/tuan/share">邀请好友购买返 5 元 </a></li>
+        <li class="nav_wel" style="display:none;"></li>
+        <li id="mypop" style="display:none;">
+            <a class="mytuan" href="/tuan/account/orders">我的给力团</a>
+            <div id="my_pop">
+            </div>
+            <div id="my_popin">
+                <p><a href="/tuan/account/orders">我的订单</a></p>
+                <p><a href="/tuan/account/invites">我的邀请</a></p>
+                <p><a href="/tuan/account/points">我的积分</a></p>
+                <p><a href="/tuan/account/credit">现金账户</a></p>
+                <p style="border:none;"><a href="/tuan/account/settings">账户设置</a></p>
+                <div class="pop_off" id="pop_off1"></div>
+            	<div class="pop_off" id="pop_off2"></div>
+            	</div>  
+      </li>  
+        <li class="nav_do" style="display:none;"><a href="/usercenter/logout?back_url=/tuan">退出</a></li>
+        <li class="nav_do" style="display:none;"><a href="/tuan/account/login">登录</a></li>
+        <li class="nav_do" style="display:none;"><a href="/tuan/account/register">注册</a></li>     
+	</ul>
+    </div>
+    <!--<div id="nav_off"></div>-->
+</div>  
+
+<%=yield%>
+
+
+<div id="foot">
+  <div id="footer">
+    <div id="report"> <a target="_blank" href="/tuan/qa/" title="问题反馈">问题反馈</a></div>
+    <div id="help_box">
+      <dl class="help" style="border-left:none; padding-left:32px;">
+        <dt>给力团帮助</dt>
+        <dd><a target="_blank" href="/tuan/guide">给力团攻略</a></dd>
+        <dd><a target="_blank" href="/tuan/faq">常见问题</a></dd>
+        <dd><a target="_blank" href="/tuan/deals/qa/">给力团答疑</a></dd>
+        <dd><a target="_blank" href="/tuan/article/8">服务承诺</a></dd>
+      </dl>
+      <dl class="help">
+        <dt>获取更新</dt>
+        <dd><a target="_blank" href="/tuan/subscribe">邮件订阅</a></dd>
+        <dd><a target="_blank" href="http://t.sina.com.cn/quwan">给力百货新浪微博</a></dd>
+      </dl>
+      <dl class="help">
+        <dt>商务合作</dt>
+        <dd><a target="_blank" href="/tuan/article/6">供应商合作</a></dd>
+        <dd><a target="_blank" href="/tuan/article/7">大宗购买</a></dd>
+        <dd><a target="_blank" href="/tuan/api">开放API</a></dd>
+      </dl>
+      <dl class="help">
+        <dt>关于我们</dt>
+        <dd><a target="_blank" href="/tuan/article/3">关于给力团</a></dd>
+        <dd><a target="_blank" href="/tuan/article/4">关于给力百货</a></dd>
+        <dd><a target="_blank" href="/tuan/article/5">用户协议</a></dd>
+      </dl>
+      <dl class="help" style="border-right:none;">
+        <dt id="flogo"><a title="给力团" href="/tuan"><img src="/themes/default/imgs/tuan/flogo.gif" /></a></dt>
+      </dl>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+    <div id="copyright">©给力百货 2008-2010 北京玩者天下网络技术有限公司 版权所有<br/>
+      北京市公安局海淀分局备案编号 1101032138 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;京ICP备09017905号<br/>
+    </div>
+  </div>
+</div>
+<%if content_for?(:bodyfoot) %>
+<%= yield(:bodyfoot) %>
+<%else%>
+<dl class="pop_dl" id="pol_dl_mail">
+  <dt><span>关闭</span></dt>
+  <dd>
+    <ul class="bmail_ok">
+      <li>
+        <h4>邮件订阅成功！</h4>
+        <span>给力团的优惠信息将每天及时发送到您的邮箱。</span></li>
+      <li>• 收不到邮件？有可能被误判为垃圾邮件了，请到垃圾邮件文件夹找找。</li>
+      <li>• 如不想继续收给力团每日提醒邮件，您可以在邮件中随时取消订阅。</li>
+    </ul>
+  </dd>
+</dl>
+<div id="popbg"></div>
+
+
+<!--tongji-->
+<div style="display:none">
+  <!--<script src='http://w.cnzz.com/c.php?id=30035654' language='JavaScript' charset='gb2312'></script>-->
+</div>
+<%end%>
+</body>
+</html>

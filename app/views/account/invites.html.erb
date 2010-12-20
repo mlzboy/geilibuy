@@ -1,0 +1,111 @@
+<%content_for :headmeta do%>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta http-equiv="pragma" content="no-cache"/>
+<meta name="pagename" content="tuan" />
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/>
+<%end%>
+<%content_for :headtitle do%>
+<title>我的订单 - 给力团 创意百货天天团 - 给力百货</title>
+<%end%>
+<% content_for :headstyle do %>
+<!--style>
+html {filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity: 0.5; opacity: 0.5;}
+html {filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);}
+</style-->
+<link href="/themes/default/css/tuan_public.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_ucener.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_others.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/tuan_reglogin.css" rel="stylesheet" type="text/css" />
+<%end%>
+<%content_for :headother do%>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" />
+<link rel="alternate" type="application/rss+xml" title="RSS|我的订单 - 给力团 创意百货天天团 - 给力百货" href="" />
+<%end%>
+<%content_for :headjs do%>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/hotkeys.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_divpop.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_user.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/tuan_account.js" charset="UTF-8"></script>
+<script>
+$(document).ready(function(){
+  
+  	// 检测是否登录
+	setTuanHeadUserStatus();
+  
+});	
+</script>
+<%end%>
+
+<div class="navtip ">
+</div>
+
+<div id="main">
+			<div id="left" class="uc_left"> <div class="ucoption">
+  <ul class="ucnav">
+    <li class="ucnav_off "><a href="/tuan/account/orders">我的订单</a></li>
+    <li class="ucnav_off ucnav_on"><a href="/tuan/account/invites">我的邀请</a></li>
+    <li class="ucnav_off "><a href="/tuan/account/points">我的积分</a></li>
+    <li class="ucnav_off "><a href="/tuan/account/credit">现金账户</a></li>
+    <li class="ucnav_off "><a href="/tuan/account/settings">账户设置</a></li>
+  </ul>
+</div>
+<%u=current_user%>
+<div class="zone">
+    <div class="leftbar">我的邀请</div>
+    <dl class="myinvate">
+      <dt><b>这是您的专用邀请链接：</b>
+        <input type="text" name="bookinput" class="inputs" id="bookinput" value="http://www.geilibuy.com/tuan/r<%=current_user.id%>" style="float:none; width:300px;" autocomplete="off" onFocus="this.select();" />
+        <br />
+        <b>得到的返利金额是&nbsp;&nbsp;<font><%=price(u.return_money)%></font>&nbsp;&nbsp;元&nbsp;&nbsp;</b><a class="blue" href="/tuan/account/credit">» 查看现金账户</a></dt>
+      <dd id="share_list">
+       <table width="100%" border="0" cellpadding="0" cellspacing="0" class="goodslist">
+  <tbody><tr class="oltd_even">
+    <th width="200" align="center">用户昵称</th>
+    <th width="300" align="center">邀请时间</th>
+    <th width="100" align="center">状态</th>
+  </tr>
+<%if u.invites.size==0%>
+    <tr>
+    <td align="center" colspan="6"><span style="font-size:12px">暂时没有邀请记录</span></td>
+  </tr>
+<%else%>
+<%u.invites.each do |invite|%>
+    <tr<%= raw cycle("",' class="oltd_odd"')%>
+    <td width="200" align="center"><%=invite.user.nick%></td>
+    <td width="300" align="center"><%=invite.created_at.strftime("%Y-%m-%d %H-%M")%></td>
+    <td width="100" align="center"><%=invite.current_status.name%></td>
+  </tr>
+<%end%>
+<%end%>
+  </tbody></table>
+       
+      </dd>
+    </dl>
+  </div>
+</div>
+<div style="height: 40px;"> </div>
+<div id="right">
+  <div class="zone">
+    <h4>不同的状态都是什么意思？</h4>
+    <ul class="newsbar">
+      <li style="line-height:20px;">未购买：您已邀请好友注册，但好友尚未参加过团购，或其参加的团购不返利</li>
+      <li style="line-height:20px;">已返利：已经给您返利 5 元</li>
+      <li style="line-height:20px;">待返利：好友已团购，将在 24 小时内返利</li>
+      <li style="line-height:20px;">审核未通过：因手机号重复等原因被判为无效邀请</li>
+    </ul>
+    <p></p>
+    <h4>自己邀请自己也能获得返利吗？</h4>
+    <p>不可以。给力团会人工核查，对于查实的作弊行为不返利，并标记为“审核未通过”。</p>
+  </div>
+</div>
+							
+		
+	
+<div class="clear"></div>     
+</div>

@@ -1,0 +1,5 @@
+<form method="post" action="/convert" name="ddd">
+             <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+<%=text_area_tag "content",@content,:cols=>50,:rows=>10%>
+<%=submit_tag "submit"%>
+</form>

@@ -1,0 +1,51 @@
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Content:</b>
+  <%= @postsale_comment.content %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= @postsale_comment.value %>
+</p>
+
+<p>
+  <b>Reply:</b>
+  <%= @postsale_comment.reply %>
+</p>
+
+<p>
+  <b>Ip:</b>
+  <%= @postsale_comment.ip %>
+</p>
+
+<p>
+  <b>Creative:</b>
+  <%= @postsale_comment.creative %>
+</p>
+
+<p>
+  <b>Feature:</b>
+  <%= @postsale_comment.feature %>
+</p>
+
+<p>
+  <b>Quality:</b>
+  <%= @postsale_comment.quality %>
+</p>
+
+<p>
+  <b>Product:</b>
+  <%= @postsale_comment.product_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @postsale_comment.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_postsale_comment_path(@postsale_comment) %> |
+<%= link_to 'Back', admin_postsale_comments_path %>

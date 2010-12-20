@@ -1,0 +1,16 @@
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/**/*
+public/system/
+html/
+sql/
+doc/
+test/
+nbproject/
+*.komodoproject
+*.bak
+*.bak2
+config/database.yml
+config/smtp_gmail.yml
+config/deploy.rb

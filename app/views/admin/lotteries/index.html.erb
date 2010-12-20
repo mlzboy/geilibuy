@@ -1,0 +1,36 @@
+
+<h1>Listing lotteries</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>First num</th>
+    <th>Second num</th>
+    <th>Third num</th>
+    <th>First rate</th>
+    <th>Second rate</th>
+    <th>Third rate</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @lotteries.each do |lottery| %>
+  <tr>
+    <td><%= lottery.id %></td>
+    <td><%= lottery.first_num %></td>
+    <td><%= lottery.second_num %></td>
+    <td><%= lottery.third_num %></td>
+    <td><%= lottery.first_rate %></td>
+    <td><%= lottery.second_rate %></td>
+    <td><%= lottery.third_rate %></td>
+    <td><%= link_to 'Show', admin_lottery_path(lottery) %></td>
+    <td><%= link_to 'Edit', edit_admin_lottery_path(lottery) %></td>
+    <td><%= link_to 'Destroy', admin_lottery_path(lottery), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Lottery', new_admin_lottery_path %>
