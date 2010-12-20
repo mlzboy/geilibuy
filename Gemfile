@@ -1,6 +1,10 @@
 source 'http://rubygems.org'
 
-
+#gem 'capsum'
+gem 'capistrano'
+#gem "capistrano-ext"
+#gem "capistrano-helpers"
+#gem "capistrano_colors"
 gem 'rails', '3.0.1'
 gem 'ar_mailer_rails3'
 gem "annotate"
@@ -35,10 +39,6 @@ gem "will_paginate", "~> 3.0.pre2"
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
-  gem 'capistrano'
-  gem "capistrano-ext"
-  gem "capistrano-helpers"
-  gem "capistrano_colors"
   #gem "nifty-generators"
   #gem 'webrat'
   #gem 'wirble'
