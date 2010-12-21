@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 #gem 'capsum'
+gem 'whenever', :require => false
 gem 'capistrano'
 #gem "capistrano-ext"
 #gem "capistrano-helpers"

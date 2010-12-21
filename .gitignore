@@ -12,6 +12,10 @@ nbproject/
 *.komodoproject
 *.bak
 *.bak2
+*.zip
+*.tgz
+*.bz2
+*.gz
 config/database.yml
 config/smtp_gmail.yml
 config/deploy.rb
