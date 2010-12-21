@@ -19,3 +19,5 @@ nbproject/
 config/database.yml
 config/smtp_gmail.yml
 config/deploy.rb
+shared/
+*.sql
