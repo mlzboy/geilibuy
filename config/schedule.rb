@@ -5,7 +5,8 @@
 
 # Example:
 #
- set :output, "/home/mlzboy/my/b2c2/log/cron_log.log"
+ #set :output, "/home/mlzboy/my/b2c2/log/cron_log.log"
+ set :output, "/home/mlzboy/b2c2/current/log/cron_log.log"
 
  every 1.minute do
    #command "/usr/bin/some_great_command"
