@@ -10,7 +10,7 @@
 <meta name="pagename" content="detail" />
 <%end%>
 <%content_for :headtitle do%>
-<title>[爱屋格林彩色印花餐巾-悠闲的高尔夫球] 爱屋格林 【30天免费退换】_厨浴专卖_给力百货 - 创意生活零售平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品</title>
+<title>[爱屋格林彩色印花餐巾-悠闲的高尔夫球] 爱屋格林 【30天免费退换】_厨浴专卖_给力百货 - 日用百货量贩平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品</title>
 <%end%>
 <% content_for :headstyle do %>
 <link href="/themes/default/css/header.css" rel="stylesheet" type="text/css" />
@@ -205,17 +205,27 @@
                         <li class="pic_li " turnXml = '3' cGXML = "10849" iMXML ="17448"><img src="<%=@product.i4.url(:thumb)%>" title="<%=@product.name%>[4]" /></li>
               </ul>
   <div class="do_some" style="position:relative;"> <a class="share"> </a> <a class="collect" href="javascript:collectGoodsAction('<%=@product.id%>')"> </a>
+<%
+share_url=url_encode("http://www.geilibuy.com#{product_url(@product.id)}")
+share_title="分享个创意东东，#{url_encode(@product.name)}，来自给力百货"
+xiaonei=%Q{http://share.xiaonei.com/share/buttonshare.do?link=#{share_url}&title=#{share_title}}
+kaixin=%Q{http://www.kaixin001.com/repaste/share.php?title=#{share_title}&rurl=#{share_url}}
+douban=%Q{http://www.douban.com/recommend/?url=#{share_url}&title=#{share_title}}
+qq=%Q{http://v.t.qq.com/share/share.php?title=#{share_title}&url=#{share_url}}
+sohu=%Q{http://bai.sohu.com/share/blank/add.do?link=#{share_url}}
+baidu=%Q{http://cang.baidu.com/do/add?it=#{share_title}&tn=#{share_url}}
+%>
   <div class="pop_out" id="share_pop"  style="left:20px; top:-167px;">
     <div class="pop_in">
       <div class="pop_top"><span class="pop_top2"></span><div class="close">关闭</div></div>
-      <div class="share_box"><a href="http://www.geilibuy.com/share.php?goods_id=10849&share_sign=sinablog" title="分享到新浪微博" target="_blank"><img src="/themes/default/imgs/goods/xinlang.jpg" alt="分享到新浪微博"/></a></div>
-      <div class="share_box"><a href="http://www.geilibuy.com/share.php?goods_id=10849&share_sign=kaixin001" title="分享到开心网" target="_blank"><img src="/themes/default/imgs/goods/kaixin.jpg" alt="分享到开心网"/></a></div>
-      <div class="share_box"><a href="http://www.geilibuy.com/share.php?goods_id=10849&share_sign=xiaonei" title="分享到校内网" target="_blank"><img src="/themes/default/imgs/goods/xiaonei.jpg" alt="分享到校内网"/></a></div>
-      <div class="share_box"><a href="http://www.geilibuy.com/share.php?goods_id=10849&share_sign=163blog" title="分享到网易微博" target="_blank"><img src="/themes/default/imgs/goods/wangyi.jpg" alt="分享到网易微博"/></a></div>
-      <div class="share_box"><a href="http://www.geilibuy.com/share.php?goods_id=10849&share_sign=baidublog" title="分享到百度i贴吧" target="_blank"><img src="/themes/default/imgs/goods/baidu.jpg" alt="分享到百度i贴吧"/></a></div>
+      <!--<div class="share_box"><a href="http://www.geilibuy.com/share.php?goods_id=10849&share_sign=sinablog" title="分享到新浪微博" target="_blank"><img src="/themes/default/imgs/goods/xinlang.jpg" alt="分享到新浪微博"/></a></div>-->
+      <div class="share_box"><a href="<%=raw kaixin%>" title="分享到开心网" target="_blank"><img src="/themes/default/imgs/goods/kaixin.jpg" alt="分享到开心网"/></a></div>
+      <div class="share_box"><a href="<%=raw xiaonei%>" title="分享到校内网" target="_blank"><img src="/themes/default/imgs/goods/xiaonei.jpg" alt="分享到校内网"/></a></div>
+      <!--<div class="share_box"><a href="http://www.geilibuy.com/share.php?goods_id=10849&share_sign=163blog" title="分享到网易微博" target="_blank"><img src="/themes/default/imgs/goods/wangyi.jpg" alt="分享到网易微博"/></a></div>-->
+      <div class="share_box"><a href="<%=raw baidu%>" title="分享到百度i贴吧" target="_blank"><img src="/themes/default/imgs/goods/baidu.jpg" alt="分享到百度i贴吧"/></a></div>
 <!--      <div class="share_box"><a href="http://www.geilibuy.com/share.php?goods_id=10849&share_sign=qqblog" title="分享到腾讯微薄" target="_blank"><img src="/themes/default/imgs/goods/qq.jpg" alt="分享到腾讯微薄"/></a></div>
--->      <div class="share_box"><a href="javascript:void((function(s,d,e,r,l,p,t,z,c){var f='http://t.sohu.com/third/post.jsp?',u=z||d.location,p=['&url=',e(u),'&title=',e(t||d.title),'&content=',c||'gb2312','&pic=',e(p||'')].join('');function%20a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=660,height=470,left=',(s.width-660)/2,',top=',(s.height-470)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,'','','','您是否厌倦了一成不变的白色餐巾纸呢？让您的餐巾纸穿上时尚的外衣，给餐桌添一抹亮色，给家庭用餐换一种别样的心情吧。给力百货创意居家馆为您提供爱屋格林彩色印花餐巾-悠闲的高尔夫球，货到付款拆包验货30天退换货，为您提供愉悦网购体验！，来自给力百货','http%3A%2F%2Fwww.geilibuy.com%2Fgoods.php%3Fid%3D10849%26quwanlianmeng%3Dsohut%26argv2%3Ddetail%26u%3D698313','utf-8'));" title="分享到搜狐微博"><img src="/themes/default/imgs/goods/sohu.jpg" alt="分享到搜狐微博"/></a></div>
-      <div class="share_box"><a href="http://www.geilibuy.com/share.php?goods_id=10849&share_sign=doubanblog" title="分享到豆瓣网" target="_blank"><img src="/themes/default/imgs/goods/douban.jpg" alt="分享到豆瓣网"/></a></div>
+-->      <div class="share_box"><a href="javascript:void((function(s,d,e,r,l,p,t,z,c){var f='http://t.sohu.com/third/post.jsp?',u=z||d.location,p=['&url=',e(u),'&title=',e(t||d.title),'&content=',c||'gb2312','&pic=',e(p||'')].join('');function%20a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=660,height=470,left=',(s.width-660)/2,',top=',(s.height-470)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,'','','','<%=@product.name%>','<%=raw sohu%>','utf-8'));" title="分享到搜狐微博"><img src="/themes/default/imgs/goods/sohu.jpg" alt="分享到搜狐微博"/></a></div>
+      <div class="share_box"><a href="<%=raw douban%>" title="分享到豆瓣网" target="_blank"><img src="/themes/default/imgs/goods/douban.jpg" alt="分享到豆瓣网"/></a></div>
       <div class="clear"></div>
       &nbsp;&nbsp;成功邀请好友注册，将获得抽奖幸运点　<a style="color:#0066cc;" href="http://www.geilibuy.com/lottery.php" target="_blank">查看详情>></a> </div>
   </div>
@@ -381,7 +391,7 @@
     </ul>
     <div class="do_pl">购买过该商品的用户才能发表评论，<br />
       发布评论赠送<span>20积分</span> 评论被选为精华再赠送<span>50积分</span><br />
-      <a href="http://www.geilibuy.com/article-57.html">积分是什么？</a><a class="pl_btn" href="http://www.geilibuy.com/user.php?act=comment_list_new&goods_id=10849"></a></div>
+      <a href="http://www.geilibuy.com/helpercenter/11">积分是什么？</a><a class="pl_btn" href="http://www.geilibuy.com/user.php?act=comment_list_new&goods_id=10849"></a></div>
     <div class="clear"></div>
   </div>
   <div id="goods_comments_list_box_body">

@@ -46,6 +46,8 @@ GEM
       activesupport (= 3.0.1)
       arel (~> 1.0.0)
       tzinfo (~> 0.3.23)
+    activerecord-import (0.2.3)
+      activerecord (~> 3.0.0)
     activeresource (3.0.1)
       activemodel (= 3.0.1)
       activesupport (= 3.0.1)
@@ -116,6 +118,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-import (>= 0.2.0)
   acts_as_tree!
   annotate
   ar_mailer_rails3

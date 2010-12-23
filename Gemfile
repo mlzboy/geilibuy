@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 #gem 'capsum'
+gem "activerecord-import", ">= 0.2.0"
 gem 'whenever', :require => false
 gem 'capistrano'
 #gem "capistrano-ext"

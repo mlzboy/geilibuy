@@ -55,16 +55,20 @@
 share_url=url_encode("http://www.geilibuy.com#{mytuan_url(@tuan)}")
 #share_url=url_encode("http://www.15-1688.com")
 share_title=url_encode(@tuan.edm_title)
+xiaonei=%Q{http://share.xiaonei.com/share/buttonshare.do?link=#{share_url}&title=#{share_title}}
+kaixin=%Q{http://www.kaixin001.com/repaste/share.php?title=#{share_title}&rurl=#{share_url}}
+douban=%Q{http://www.douban.com/recommend/?url=#{share_url}&title=#{share_title}}
+qq=%Q{http://v.t.qq.com/share/share.php?title=#{share_title}&url=#{share_url}}
 %>
   
  <div id="left">
 <dl id="tuanshare" class="zone share">
 <dt>分享到：</dt>
-<dd> <a target="_blank" class="im">MSN/QQ</a> <a target="_blank" href="http://share.xiaonei.com/share/buttonshare.do?link=<%=raw share_url%>&title=<%=raw share_title%>" class="renren">人人</a>
-<a target="_blank" href="http://www.kaixin001.com/repaste/share.php?title=<%=raw share_title%>&rurl=<%=raw share_url%>" class="kaixin">开心</a>
-<a target="_blank" href="nhttp://v.t.sina.com.cn/share/share.php?url=<%=raw share_url%>&title=<%=raw share_title%>" class="sina">新浪微博</a>
-<a target="_blank" href="http://9.douban.com/recommend/widget?src=<%=raw share_url%>&title=<%=raw share_title%>" class="douban">豆瓣</a>
-<a target="_blank" href="http://v.t.qq.com/share/share.php?title=<%=raw share_title%>&url=<%=raw share_url%>" class="my_qq">腾讯微博</a>
+<dd> <a target="_blank" class="im">MSN/QQ</a> <a target="_blank" href="<%=raw xiaonei%>" class="renren">人人</a>
+<a target="_blank" href="<%=raw kaixin%>" class="kaixin">开心</a>
+<!--<a target="_blank" href="http://v.t.sina.com.cn/share/share.php?url=<%=raw share_url%>&title=<%=raw share_title%>" class="sina">新浪微博</a>-->
+<a target="_blank" href="<%=raw douban%>" class="douban">豆瓣</a>
+<a target="_blank" href="<%=raw qq%>" class="my_qq">腾讯微博</a>
   
 </dd>
 <dd id="copylink"> <b id="urldoc">把下面的链接通过 MSN 或 QQ 发送给好友：</b>
