@@ -1182,7 +1182,47 @@ function addBonus()
 
   return true;
 }
+/* 会员修改密码 */
+function editPassword2()
+{
+  var frm              = document.forms['formPassword'];
+  var old_password     = $F('old_password');
+  var new_password     = $F('new_password');
+  var confirm_password = $F('comfirm_password');
 
+  var msg = '';
+  var reg = null;
+
+  if (old_password.length == 0)
+  {
+	$("div.resset_pass_notice").eq(0).text(old_password_empty).css({"color":"#cc3333"});return false;
+  }
+
+  if (new_password.length == 0)
+  {
+	$("div.resset_pass_notice").eq(1).text(new_password_empty).css({"color":"#cc3333"});return false;
+  }
+
+  if (confirm_password.length == 0)
+  {
+	$("div.resset_pass_notice").eq(2).text(confirm_password_empty).css({"color":"#cc3333"});return false;
+  }
+
+  if (new_password.length > 5 && confirm_password.length > 5)
+  {
+    if (new_password != confirm_password)
+    {
+		$("div.resset_pass_notice").eq(2).text(both_password_error).css({"color":"#cc3333"});return false;
+    }
+  }else{
+	 if(new_password.length < 6){
+		$("div.resset_pass_notice").eq(1).text(password_shorter).css({"color":"#cc3333"});return false;
+	 }else if(confirm_password.length < 6){
+	    $("div.resset_pass_notice").eq(2).text(password_shorter).css({"color":"#cc3333"});return false;
+	 }
+  }
+    return true;
+}
 /* 会员修改密码 */
 function editPassword()
 {

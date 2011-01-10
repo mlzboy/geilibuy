@@ -47,15 +47,8 @@ $(".close").live("click", function(){
 
 	    <br/>
       
-<dl class="visited_dl">
-      	<dt>浏览历史记录</dt>
-                           <dd><a target='_blank' href="goods-9071.html?fm=history" title="街头霸王扫把头创意杯盖"><img src="/images/201008/1281987045225849998-55.jpg" /></a></dd>
-                             <dd><a target='_blank' href="goods-8675.html?fm=history" title="乐擎Keying共振音箱 让你的桌子会唱歌"><img src="/images/201008/1281402031097966089-55.jpg" /></a></dd>
-                             <dd><a target='_blank' href="goods-13248.html?fm=history" title="优剩女变色杯--升职 "><img src="/images/201011/1289264774170663148-55.jpg" /></a></dd>
-                             <dd><a target='_blank' href="goods-13154.html?fm=history" title="风王车用打气/吸尘/胎压三用机"><img src="/images/201011/1288738493182270960-55.jpg" /></a></dd>
-                             <dd><a target='_blank' href="goods-9956.html?fm=history" title="维康竹炭冰箱多功能除味包"><img src="/images/201009/1283976165534537123-55.JPG" /></a></dd>
-                    <div class="clear"></div>    
-      </dl>
+
+<%=render 'usercenter/history'%>
         <div class="clear"></div>
   </div>
   <div id="right_box">
@@ -67,16 +60,22 @@ $(".close").live("click", function(){
             
         </div>
         <div class="tipbox">请注意！积分可以兑换为抽奖幸运点，但是幸运点不能兑换为积分。</div>
-        <div class="tipbox tip1" id="NUM_DIV" style="display:none;">你已经成功的兑换了<font id="NUM"></font>幸运点！<a class="blue_a" style="font-weight:normal;" href="lottery.php" >[立即去抽奖]</a></div>
+        <div class="tipbox tip1" id="NUM_DIV" style="display:none;">你已经成功的兑换了<font id="NUM"></font>幸运点！<a class="blue_a" style="font-weight:normal;" href="/lottery" >[立即去抽奖]</a></div>
         
     <ul class="duihuan">
-              <li>您总共拥有<span><strong id="INTEGRAL"> 2 </strong></span>积分，最多可以兑换<span><strong id="EXCHAGE_NUM"> 0 </strong></span>幸运点！(3 积分=1幸运点)</li>
-                   <li class="dh_line">希望兑换<input class="dh_input" onkeyup="exchangeIntegral(1);" id="exchange_integral" name="" value="" type="text" />幸运点</li>
+	<%unless has_login?%>
+	<li><a class="item_opt" href="/usercenter/login?back_url=/score_exchange">[登录]</a> 后显示你的积分。(3 积分=1幸运点)</li>
+	<%else%>
+	<%u=current_user%>
+
+              <li>您总共拥有<span><strong id="INTEGRAL"> <%=u.score%> </strong></span>积分，最多可以兑换<span><strong id="EXCHAGE_NUM"> <%=u.score/3%> </strong></span>幸运点！(3 积分=1幸运点)</li>
+        <%end%>
+	           <li class="dh_line">希望兑换<input class="dh_input" onkeyup="exchangeIntegral(1);" id="exchange_integral" name="" value="" type="text" />幸运点</li>
             <li style="padding-left:70px;"><input class="dh_btn"   onclick="exchangeIntegral();" value="" type="button" />
               <span style="color:#ff0000;">请注意！积分可以兑换为抽奖幸运点，但是幸运点不能兑换为积分。</span></li>
         </ul>
         
-        <div class="tip_line">“抽奖总动员”是给力百货常设活动，不设置活动结束时间，用户积累的抽奖幸运点长期有效。<a class="blue_a" href="lottery.php" >[去抽奖总动员]</a></div>
+        <div class="tip_line">“抽奖总动员”是给力百货常设活动，不设置活动结束时间，用户积累的抽奖幸运点长期有效。<a class="blue_a" href="/lottery" >[去抽奖总动员]</a></div>
 	</div>
 
 	          
@@ -183,7 +182,7 @@ $(".close").live("click", function(){
                 <tr>
           <td height="46" align="right" valign="middle">验证码:</td>
           <td valign="middle"><input type="text" size="8" name="captcha" id="captcha" onBlur="chk_captcha()"/>
-            <img src="captcha.php?" alt="captcha" style="vertical-align: middle;cursor: pointer;height:22px;" onClick="this.src='captcha.php?'+Math.random()" /></td>
+            <!--<img src="captcha.php?" alt="captcha" style="vertical-align: middle;cursor: pointer;height:22px;" onClick="this.src='captcha.php?'+Math.random()" /></td>-->
           <td valign="middle"><span id="captcha_txt">请输入验证码</span></td>
         </tr>
                 <tr>
@@ -225,6 +224,10 @@ $(".close").live("click", function(){
     stepUserCenterAction('exchange');//设置活动menu
 
     setHeadFlowNum();//购物车数量
+        setHeadFlowNum();//购物车数量
+
+     /*静态页面调用该函数*/
+        setHeadUserStatus();
 
 });
 

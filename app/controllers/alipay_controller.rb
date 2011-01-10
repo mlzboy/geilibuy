@@ -1,7 +1,7 @@
 #coding:utf-8
 class AlipayController < ApplicationController
   protect_from_forgery :except => [:notify_url_process,:tuan_notify_url_process,:tuan_cash_notify_url_process]
-#http://www.15-1688.com:3000/alipay/respond?trade_status=TRADE_FINISHED&is_success=T&out_trade_no=201012091228153828&trade_no=1111&total_fee=2020&fee_type=1&attach=&sign=1f2e78e07186879d1c91264185452c3f
+#http://www.geilibuy.com/alipay/respond?trade_status=TRADE_FINISHED&is_success=T&out_trade_no=201012091228153828&trade_no=1111&total_fee=2020&fee_type=1&attach=&sign=1f2e78e07186879d1c91264185452c3f
   def return_url_process
     dict={}
     params.each do |k,v|
@@ -49,7 +49,7 @@ class AlipayController < ApplicationController
       redirect_to "/pay_failure"
     end
   end
-#http://www.15-1688.com:3000/alipay/notify?trade_status=TRADE_FINISHED&is_success=T&out_trade_no=201012091228153828&trade_no=1111&total_fee=2020&fee_type=1&attach=&sign=3cc3b8c94797a5f4d060a1fdb95a0301
+#http://www.geilibuy.com/alipay/notify?trade_status=TRADE_FINISHED&is_success=T&out_trade_no=201012091228153828&trade_no=1111&total_fee=2020&fee_type=1&attach=&sign=3cc3b8c94797a5f4d060a1fdb95a0301
   def notify_url_process
     dict={}
     params.each do |k,v|
@@ -100,7 +100,7 @@ class AlipayController < ApplicationController
   
   
   
- #http://www.15-1688.com:3000/tuan/alipay/respond?trade_status=TRADE_FINISHED&is_success=T&out_trade_no=201012091154465983&trade_no=1111&total_fee=2020&fee_type=1&attach=&sign=4b1e49b81fb9863afa847e7473595183
+ #http://www.geilibuy.com/tuan/alipay/respond?trade_status=TRADE_FINISHED&is_success=T&out_trade_no=201012091154465983&trade_no=1111&total_fee=2020&fee_type=1&attach=&sign=4b1e49b81fb9863afa847e7473595183
   def tuan_return_url_process
     dict={}
     params.each do |k,v|
@@ -157,7 +157,7 @@ class AlipayController < ApplicationController
   end
   
 
-#http://www.15-1688.com:3000/tuan/alipay/notify?trade_status=TRADE_FINISHED&is_success=T&out_trade_no=201012091154465983&trade_no=1111&total_fee=2020&fee_type=1&attach=&sign=3cc3b8c94797a5f4d060a1fdb95a0301
+#http://www.geilibuy.com/tuan/alipay/notify?trade_status=TRADE_FINISHED&is_success=T&out_trade_no=201012091154465983&trade_no=1111&total_fee=2020&fee_type=1&attach=&sign=3cc3b8c94797a5f4d060a1fdb95a0301
   def tuan_notify_url_process
     dict={}
     params.each do |k,v|
@@ -222,7 +222,7 @@ class AlipayController < ApplicationController
 
 
 
-#http://www.15-1688.com:3000/tuan/account/alipay/respond?trade_status=TRADE_FINISHED&is_success=T&out_trade_no=201012091136235045&trade_no=1111&total_fee=2020&fee_type=1&attach=&sign=77277fc5793cc8d0ca5867cbe47ca0b5
+#http://www.geilibuy.com/tuan/account/alipay/respond?trade_status=TRADE_FINISHED&is_success=T&out_trade_no=201012091136235045&trade_no=1111&total_fee=2020&fee_type=1&attach=&sign=77277fc5793cc8d0ca5867cbe47ca0b5
   def tuan_cash_return_url_process
     dict={}
     params.each do |k,v|
@@ -286,7 +286,7 @@ class AlipayController < ApplicationController
     
   end
   
-#http://www.15-1688.com:3000/tuan/account/alipay/notify?trade_status=TRADE_FINISHED&is_success=T&out_trade_no=201012091136235045&trade_no=1111&total_fee=2020&fee_type=1&attach=&sign=3cc3b8c94797a5f4d060a1fdb95a0301
+#http://www.geilibuy.com/tuan/account/alipay/notify?trade_status=TRADE_FINISHED&is_success=T&out_trade_no=201012091136235045&trade_no=1111&total_fee=2020&fee_type=1&attach=&sign=3cc3b8c94797a5f4d060a1fdb95a0301
   def tuan_cash_notify_url_process
     dict={}
     params.each do |k,v|

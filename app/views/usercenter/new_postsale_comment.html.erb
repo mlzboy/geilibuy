@@ -1,6 +1,6 @@
 <div class="right_top">
         	<span class="welcome pinglun"></span>
-            <span class="goon_btn"><a style="color:#fff;" href="./" title="首页">继续购物</a></span>             
+            <span class="goon_btn"><a style="color:#fff;" href="/shopping/cart" title="购物篮">继续购物</a></span>             
         </div>        
             <div class="right_line">
        <form action="<%=request.fullpath%>" method="POST" onsubmit="return yz()">      	
@@ -69,7 +69,7 @@
           </tr>
           <tr>
             <td height="40" align="right" valign="middle" class="td_form"></td>
-            <td align="left" valign="middle" class="td_form"><p>* 发表评论您将获得<font> 20 积分</font>，评论被设置精华将额外获得50积分，发表评论前请仔细阅读并同意<a href="http://www.geilibuy.com/article.php?id=22" target="_blank" style="color:#0066cc;">相关条款</a>。<br />* 咨询问题请在<a href="<%=product_url(@product.id)%>" target="_blank" style="color:#0066cc">购买咨询区</a>发表。</p>
+            <td align="left" valign="middle" class="td_form"><p>* 发表评论您将获得<font> 20 积分</font>，评论被设置精华将额外获得50积分，发表评论前请仔细阅读并同意<a href="http://www.geilibuy.com/article.php?id=22" target="_blank" style="color:#0066cc;">相关条款</a>。<br />* 咨询问题请在<a href="<%=myproduct_url(@product.id)%>" target="_blank" style="color:#0066cc">购买咨询区</a>发表。</p>
             </td>
           </tr>
           <tr>

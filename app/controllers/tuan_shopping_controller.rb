@@ -2,7 +2,7 @@
 #require "./lib/tuan_lib.rb"
 #include TuanLib
 class TuanShoppingController < ApplicationController
-  before_filter :tuan_login?,:only=>[:checkout.:payment]
+  before_filter :tuan_login?,:only=>[:checkout,:payment]
   layout 'tuan'
   def order
     @tuan=Tuan.today
@@ -147,7 +147,7 @@ class TuanShoppingController < ApplicationController
       payment_id=params[:payment]
       payment=Payment.find(payment_id)
       if payment
-        cookies["tuan_payment_id"]=payment_id
+        cookies["tuan_payment_id"]={:value=>payment_id,:expires=>1.year.from_now,:domain=>".geilibuy.com"}
         redirect_to "/tuan/payment"
       end
     end

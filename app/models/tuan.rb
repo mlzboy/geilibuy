@@ -1,6 +1,6 @@
 #coding:utf-8
 class Tuan < ActiveRecord::Base
-  has_attached_file :i1,:styles=>{:index=>"231x139",:small=>"100x100#",:medium=>"200x131#",:big=>"439x265#",:process=>"800x800>"}
+  has_attached_file :i1,:styles=>{:index=>"231x139",:small=>"100x100#",:medium=>"200x131#",:big=>"439x265#",:process=>"800x800>"},:url => "/system/:class/:id_partition/:style/:filename",:path => ":rails_root/public/system/:class/:id_partition/:style/:filename"
   belongs_to:product
   has_many:tuan_details,:dependent => :destroy
   #attr_accessor:tuan_num

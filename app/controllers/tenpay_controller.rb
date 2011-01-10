@@ -1,6 +1,6 @@
 #coding:utf-8
 class TenpayController < ApplicationController
-  #http://www.15-1688.com:3000/tenpay/respond?pay_result=0&sp_billno=201012111559552960&transaction_id=1111&total_fee=2020&fee_type=1&attach=&sign=16CE21ED3865F310DE11E280297C2E0B
+  #http://www.geilibuy.com/tenpay/respond?pay_result=0&sp_billno=201012111559552960&transaction_id=1111&total_fee=2020&fee_type=1&attach=&sign=16CE21ED3865F310DE11E280297C2E0B
   def return_url_process
     dict={}
     dict["cmdno"]="1"
@@ -17,7 +17,7 @@ class TenpayController < ApplicationController
     gen_sign=TenpayLib::gen_sign2(dict)
     logger.debug("gen_sign")
     logger.debug(gen_sign.upcase)
-    @show_url="http://www.15-1688.com:3000/pay_failure"
+    @show_url="http://www.geilibuy.com/pay_failure"
     ps=PaymentStatus.new
     ps.url=request.request_uri
     ps.ip=request.remote_ip
@@ -37,7 +37,7 @@ class TenpayController < ApplicationController
         ps.name="付款成功"
         ps.success=true
         order.order_statuses<<OrderStatus.create(:name=>"订单确认",:value=>2,:from=>"财付通",:url=>request.url,:ip=>request.remote_ip,:sn=>sn,:memo=>ps.memo)
-        @show_url="http://www.15-1688.com:3000/pay_success"
+        @show_url="http://www.geilibuy.com/pay_success"
       else
         ps.name="付款未成功"
       end
@@ -50,7 +50,7 @@ class TenpayController < ApplicationController
     render "return_url"
   end
 #/tuan/tenpay/respond?attach=&bargainor_id=1208746801&cmdno=1&date=20101211&fee_type=1&pay_info=OK&pay_result=0&pay_time=1292001601&sign=E5BDFA02EAEE38C850945FED355FB780&sp_billno=201012110117513531&total_fee=1&transaction_id=1208746801201012110117513531&ver=1
-  #http://www.15-1688.com:3000/tuan/tenpay/respond?pay_result=0&sp_billno=201012111645448600&transaction_id=1111&total_fee=2020&fee_type=1&attach=&sign=DA4645B2794B4B5B6D2C74B7A512F3A9
+  #http://www.geilibuy.com/tuan/tenpay/respond?pay_result=0&sp_billno=201012111645448600&transaction_id=1111&total_fee=2020&fee_type=1&attach=&sign=DA4645B2794B4B5B6D2C74B7A512F3A9
   def tuan_return_url_process
     dict={}
     #dict["bargainor_id"]="1208746801"
@@ -68,7 +68,7 @@ class TenpayController < ApplicationController
     gen_sign=TenpayLib::gen_sign2(dict)
     logger.debug("gen_sign")
     logger.debug(gen_sign.upcase)
-    @show_url="http://www.15-1688.com:3000/tuan/pay_failure/"+dict["sp_billno"]
+    @show_url="http://www.geilibuy.com/tuan/pay_failure/"+dict["sp_billno"]
     ps=PaymentStatus.new
     ps.url=request.request_uri
     ps.ip=request.remote_ip
@@ -91,7 +91,7 @@ class TenpayController < ApplicationController
         tuan=order.tuan
         tuan.current_num+=1
         tuan.save
-        @show_url="http://www.15-1688.com:3000/tuan/pay_success/"+sn
+        @show_url="http://www.geilibuy.com/tuan/pay_success/"+sn
       else
         ps.name="付款未成功"
       end
@@ -105,7 +105,7 @@ class TenpayController < ApplicationController
   end
 
 
-  #http://www.15-1688.com:3000/tuan/account/tenpay/respond?pay_result=0&sp_billno=201012111703201571&transaction_id=1111&total_fee=2020&fee_type=1&attach=&sign=7C4672A3542779FBD899F3A296EA77DC
+  #http://www.geilibuy.com/tuan/account/tenpay/respond?pay_result=0&sp_billno=201012111703201571&transaction_id=1111&total_fee=2020&fee_type=1&attach=&sign=7C4672A3542779FBD899F3A296EA77DC
   def tuan_cash_return_url_process
     dict={}
     dict["cmdno"]="1"
@@ -122,7 +122,7 @@ class TenpayController < ApplicationController
     gen_sign=TenpayLib::gen_sign2(dict)
     logger.debug("gen_sign")
     logger.debug(gen_sign.upcase)
-    @show_url="http://www.15-1688.com:3000/tuan/cash_pay_failure/"+dict["sp_billno"]
+    @show_url="http://www.geilibuy.com/tuan/cash_pay_failure/"+dict["sp_billno"]
     ps=PaymentStatus.new
     ps.url=request.request_uri
     ps.ip=request.remote_ip
@@ -154,7 +154,7 @@ class TenpayController < ApplicationController
         else
           logger.debug("不加钱")
         end
-        @show_url="http://www.15-1688.com:3000/tuan/cash_pay_success/"+sn
+        @show_url="http://www.geilibuy.com/tuan/cash_pay_success/"+sn
       else
         ps.name="付款未成功"
       end

@@ -20,7 +20,7 @@ class TuanController < ApplicationController
   end
   
   def share
-    
+    @tuan=Tuan.today
   end
   #/tuan/unsubscribe?id=1&code=13133dfadfee
   def unsubscribe
@@ -81,7 +81,7 @@ class TuanController < ApplicationController
         content["num"]=buy_num
         content["goods_amount"]=@tuan.pp2.to_f
         content["total_amount"]=@tuan.total_price(buy_num).to_f
-        cookies["tuan_num"]=buy_num
+        cookies["tuan_num"]={:value=>buy_num,:domain=>".geilibuy.com"}
         r["content"]=content
       elsif has_login? ==false
         r["error"]=2
@@ -96,7 +96,7 @@ class TuanController < ApplicationController
       #idinfo=parsed_json["idinfo"]
       num=parsed_json["num"]
       buy_num=@tuan.check_buy_num(num)
-      cookies["tuan_num"]=buy_num
+      cookies["tuan_num"]={:value=>buy_num,:domain=>".geilibuy.com"}
       content={}
       content["freeshippingfee"]=@tuan.free_shipping?(buy_num) ? 1 : 0
       content["shipping_fee"]=@tuan.shipping_fee(buy_num)

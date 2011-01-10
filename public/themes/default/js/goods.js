@@ -756,6 +756,9 @@ function formatnumber(value,num)
     }
     return a
 }
+
+
+
 /* 检测 并 生成组合商品
 @ 20100522A 王瑀峰 组合商品销售需求 fuxing 20100628 
 */
@@ -776,14 +779,16 @@ function checkPackaginggoods(A,B){
     var act_name = document.forms['packaging_'+A].elements['packaging_act_name'+A].value;
     $.ajax({
       type: "GET",
-      url:  "choseinx.php?act=check_packaging_goods&" + Math.random(),
+      url:  "/shopping/check?step=check_packaging_goods&" + Math.random(),
       data: 'id=' + id + '&goods_id=' + goods_id+ '&packaging_type=5',
       success:function(msg){
 
         var re = eval("(" + msg + ")");
           if (0 == re.err_msg)
           {
-            inTooCartAction(re.result, act_name, 1, 0, 0,B);
+            //inTooCartAction(re.result, act_name, 1, 0, 0,B);
+            inTooCartAction2(goods_id, act_name, 1, 0, 0,B,id);
+	    //inTooCartAction2(goods_id, act_name, 1,"0",id);
           }
           else if (1 == re.err_msg)
           {

@@ -155,12 +155,12 @@ $(".close").live("click", function(){
     
     <%@product_show.products.each_with_index do |product,index|%>
         <ul class="list_ul" id="list_<%=index+1%>" status="off" amount="0">
-      <li class="list_img"><a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank" ><img src="<%=product.i1.url(:medium)%>" alt="<%=product.name%>"  /></a><span class="duihao"></span></li>
+      <li class="list_img"><a href="<%=myproduct_url(product.id)%>" title="<%=product.name%>" target="_blank" ><img src="<%=product.i1.url(:medium)%>" alt="<%=product.name%>"  /></a><span class="duihao"></span></li>
       
-      <li><font><a href="http://www.quwan.com/search.php?brand=401">[&nbsp;Easyliving&nbsp;]</a></font></li>
+      <li><font><a href="http://www.geilibuy.com/search.php?brand=401">[&nbsp;Easyliving&nbsp;]</a></font></li>
 
       
-      <li><a goodsid="<%=product.id%>" title="<%=product.name%>" href="<%=product_url(product.id)%>" target="_blank"><%=truncate product.name,:length=>12%></a></li>
+      <li><a goodsid="<%=product.id%>" title="<%=product.name%>" href="<%=myproduct_url(product.id)%>" target="_blank"><%=truncate product.name,:length=>12%></a></li>
       <li>原价:<span><%=price(product.p1)%></span></li>
       <li class="xuan"><a class="list_btn" href="javascript:void(0);"></a></li>
     </ul>
@@ -184,7 +184,7 @@ $(".close").live("click", function(){
       </tr>
       <tr>
         <td width="50%" height="50" align="right" valign="middle"><a class="pop_btn close" style="padding-left: 0pt;">继续逛</a></td>
-        <td width="50%" align="left" valign="middle"><a class="pop_btn" href="http://www.quwan.com/flow.php">查看购物车</a></td>
+        <td width="50%" align="left" valign="middle"><a class="pop_btn" href="http://www.geilibuy.com/flow.php">查看购物车</a></td>
       </tr>
       <tr>
         <td height="20" colspan="2" align="center" valign="middle"></td>

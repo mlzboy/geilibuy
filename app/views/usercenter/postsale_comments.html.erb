@@ -12,7 +12,7 @@
           <tr>
             <td colspan="7" align="left" valign="middle" class="td">
               <div class="zixun_p" style="padding-bottom:0;" >
-                评&nbsp;&nbsp;<a href='<%=product_url(postsale_comment.product.id)%>' target="_blank"><%=postsale_comment.product.name%></a>
+                评&nbsp;&nbsp;<a href='<%=myproduct_url(postsale_comment.product.id)%>' target="_blank"><%=postsale_comment.product.name%></a>
                 <span class="star s<%=((postsale_comment.creative+postsale_comment.feature+postsale_comment.quality)/3).to_i%>">
                     <dl class="star_pop">
                         <dd>
@@ -65,8 +65,12 @@
 	$("#popbg").fadeOut();
 	$(this).parent().parent().parent().fadeOut();
 	});	
-  stepUserCenterAction('collection_list');//设置活动menu
+  stepUserCenterAction('comment_list_new');//设置活动menu
   setHeadFlowNum();//购物车数量
+       /*静态页面调用该函数*/
+        setHeadUserStatus();
+	$(".top_nav span").eq(0).text("商品评论");
+
 });
 </script>
 <%end%>

@@ -3,8 +3,8 @@ class Brand < ActiveRecord::Base
   include Paperclip
   has_many :products
   has_and_belongs_to_many :categories
-  has_attached_file :i1,:processors => [:jcropper],:styles=>{:show=>"179x123#",:process=>"800x800>"}
-  has_attached_file :i2,:processors => [:jcropper],:styles=>{:show=>"260x338#",:process=>"800x800>"}
+  has_attached_file :i1,:processors => [:jcropper],:styles=>{:show=>"179x123#",:process=>"800x800>"},:url => "/system/:class/:id_partition/:style/:filename",:path => ":rails_root/public/system/:class/:id_partition/:style/:filename"
+  has_attached_file :i2,:processors => [:jcropper],:styles=>{:show=>"260x338#",:process=>"800x800>"},:url => "/system/:class/:id_partition/:style/:filename",:path => ":rails_root/public/system/:class/:id_partition/:style/:filename"
   after_update :reprocess_avatar,:if => :cropping?
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h, :crop_f
   def cropping?

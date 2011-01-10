@@ -130,7 +130,7 @@ url="http://www."+email[email.index("@")+1,email.size]
               <tr>
                 <td height="50" align="center" valign="bottom">
                   <span id="wish_login_info"><font color="#000">欢迎你，<%=current_user.email%>!</font><br />
-                    你还有 <%=current_user.lucky%> 个幸运点</span><span onclick="location.href='user.php?act=invite'" style="cursor:pointer;color:#0670c6;"> [查看详情] </span>
+                    你还有 <%=current_user.lucky%> 个幸运点</span><span onclick="location.href='/usercenter/invites'" style="cursor:pointer;color:#0670c6;"> [查看详情] </span>
                     </td>
               </tr>
               <tr>
@@ -186,11 +186,11 @@ url="http://www."+email[email.index("@")+1,email.size]
             <td align="center" valign="middle" class="win_list_td">&nbsp;</td>
 
                         <td align="center" valign="middle" class="win_list_td">
-              <a href="<%=product_url(lottery_detail.product_id)%>" target="_blank" title="<%=lottery_detail.product.name%>" >
+              <a href="<%=myproduct_url(lottery_detail.product_id)%>" target="_blank" title="<%=lottery_detail.product.name%>" >
             <img style="border:1px solid #cccccc; margin:5px;" src="<%=lottery_detail.product.i1.url(:small)%>" width="48" height="48"/></a>
             </td>
             <td class="win_list_td" style="line-height:14px;">
-              <a  href="<%=product_url(lottery_detail.product_id)%>" target="_blank" title="<%=lottery_detail.product.name%>"><%=lottery_detail.product.name%></a>
+              <a  href="<%=myproduct_url(lottery_detail.product_id)%>" target="_blank" title="<%=lottery_detail.product.name%>"><%=lottery_detail.product.name%></a>
               <br />￥<%=price(lottery_detail.product.p2)%></td>
 
              <td class="win_list_td"  style="line-height:14px; padding:3px;"><div style="display: block; width: 400px; word-wrap: break-word;"><%=lottery_detail.say%></div></td>
@@ -232,10 +232,10 @@ end
           <div class="wish_gift_zone1">
             <%ps1.each do |product|%>
                   	<ul class="wish_gift_block_1">
-            	<li class="wish_gift_block_img1"><a href="<%=product_url(product.id)%>" target="_blank">
+            	<li class="wish_gift_block_img1"><a href="<%=myproduct_url(product.id)%>" target="_blank">
                   <img src="<%=product.i1.url(:big)%>" />
             	  </a></li>
-                <li class="wish_gift_block_name"><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>14%></a></li>
+                <li class="wish_gift_block_name"><a href="<%=myproduct_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>14%></a></li>
 				<li class="wish_gift_block_price">价值：￥<%=price(product.p2)%></li>
                 <li class="wish_gift_block_btn"><a href="<%=raw show_js_status(product,1)%>"><img src="/themes/default/imgs/wish/wish_btn.gif" /></a></li>
                 <li class="wish_gift_block_point">需<%=product.lucky%>个幸运点</li>
@@ -248,10 +248,10 @@ end
           <div class="wish_gift_zone2">
     <%ps2.each do |product|%>
                   	<ul class="wish_gift_block_2">
-            	<li class="wish_gift_block_img2"><a href="<%=product_url(product.id)%>" target="_blank">
+            	<li class="wish_gift_block_img2"><a href="<%=myproduct_url(product.id)%>" target="_blank">
                   <img src="<%=product.i1.url(:medium)%>" />
             	  </a></li>
-                <li class="wish_gift_block_name"><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>14%></a></li>
+                <li class="wish_gift_block_name"><a href="<%=myproduct_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>14%></a></li>
 				<li class="wish_gift_block_price">价值：￥<%=price(product.p2)%></li>
                 <li class="wish_gift_block_btn"><a href="<%=raw show_js_status(product,2)%>"><img src="/themes/default/imgs/wish/wish_btn.gif" /></a></li>
                 <li class="wish_gift_block_point">需<%=product.lucky%>个幸运点</li>
@@ -264,10 +264,10 @@ end
           <div class="wish_gift_zone3">
     <%ps3.each do |product|%>
                   	<ul class="wish_gift_block_3">
-            	<li class="wish_gift_block_img3"><a href="<%=product_url(product.id)%>" target="_blank">
+            	<li class="wish_gift_block_img3"><a href="<%=myproduct_url(product.id)%>" target="_blank">
                   <img src="<%=product.i1.url(:medium)%>" />
             	  </a></li>
-                <li class="wish_gift_block_name"><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>14%></a></li>
+                <li class="wish_gift_block_name"><a href="<%=myproduct_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>14%></a></li>
 				<li class="wish_gift_block_price">价值：￥<%=price(product.p2)%></li>
                 <li class="wish_gift_block_btn"><a href="<%=raw show_js_status(product,3)%>"><img src="/themes/default/imgs/wish/wish_btn.gif" /></a></li>
                 <li class="wish_gift_block_point">需<%=product.lucky%>个幸运点</li>
@@ -284,7 +284,7 @@ end
     	<div class="wish_role_title"><img src="/themes/default/imgs/wish/choujiang_tips.gif" /></div>
         <ol class="wish_role_list" style="margin-left:30px;">
    	    <li>奖品价值越高，中奖概率越低哦；</li>
-        <li>幸运点太少？可以用积分换，也可以试着<a style="color:#0066cc" href="http://www.geilibuy.com/lottery.php?act=share" target="_blank">邀请好友参加</a>哦；</li>
+        <li>幸运点太少？可以用积分换，也可以试着<a style="color:#0066cc" href="http://www.geilibuy.com/share" target="_blank">邀请好友参加</a>哦；</li>
         <li>试着攒些幸运点，等到概率翻倍的时间试试手气；</li>
         <li>注册马甲抽奖会有损人品哦，独乐乐不如众乐乐，大家好才是真的好^_^</li>
         <li>用户不需为奖品支付任何费用（包括运费），请人民群众放心！</li>
@@ -340,7 +340,7 @@ end
 <script type="text/javascript">
 $(function(){
      
-        setHeadUserStatus();// 检测是否登录
+        setHeadUserStatus2('<%=request.fullpath%>');// 检测是否登录
    setHeadFlowNum();//购物车数量
 
      });

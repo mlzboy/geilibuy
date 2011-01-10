@@ -57,23 +57,29 @@ class ShoppingController < ApplicationController
       suite_id=params[:id]
       product_ids=params[:goods_id]
       product_show=ProductShow.find_by_id(suite_id)
-      if product_show.nil? or product_ids.blank? or product_ids.split(",").size!=product_show.suite_num
-        logger("----------------------ddddddddddddddddddddddeeeeee")
-        is_err=true
-      else
-        product_ids=product_ids.split(",")
-        logger.debug(product_ids)
-        big_product_ids=product_show.products.collect{|p| p.id.to_s}
-        logger.debug(big_product_ids)
-        unless product_ids.to_set.subset?(big_product_ids.to_set)
-          logger.debug("---------------------------&&&&&&&&&&&&&&&&&&&")
-          is_err=true        
+      #type=params[:packing_type]
+      #if type=="5"
+      #  
+      #else
+        if product_show.nil? or product_ids.blank? or product_ids.split(",").size!=product_show.suite_num
+          logger("----------------------ddddddddddddddddddddddeeeeee")
+          is_err=true
+        else
+          product_ids=product_ids.split(",")
+          logger.debug(product_ids)
+          big_product_ids=product_show.products.collect{|p| p.id.to_s}
+          logger.debug(big_product_ids)
+          unless product_ids.to_set.subset?(big_product_ids.to_set)
+            logger.debug("---------------------------&&&&&&&&&&&&&&&&&&&")
+            is_err=true        
+          end
         end
-      end
-      if is_err
-        r["content"]="不正确的组合套装!"
-        r["err_msg"]="1"
-      end
+        if is_err
+          r["content"]="不正确的组合套装!"
+          r["err_msg"]="1"
+        end
+      #end
+      logger.debug("GGGGGGDDDDDDDDDDD")
       render :json=>r
     when "change_moneyaccount"#这个可以不要用
       u=current_user

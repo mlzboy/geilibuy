@@ -18,8 +18,8 @@
     <td><%= brand.id %></td>
     <td><%= brand.name %></td>
     <td><%= brand.story %></td>
-    <td><%= brand.i1 %></td>
-    <td><%= brand.i2 %></td>
+    <td><%= image_tag brand.i1.url %></td>
+    <td><%= image_tag brand.i2.url %></td>
     <td><%= link_to 'Show', admin_brand_path(brand) %></td>
     <td><%= link_to 'Edit', edit_admin_brand_path(brand) %></td>
     <td><%= link_to 'Destroy', admin_brand_path(brand), :confirm => 'Are you sure?', :method => :delete %></td>

@@ -1,6 +1,6 @@
 class Material < ActiveRecord::Base
   has_and_belongs_to_many :slots
-  has_attached_file :image_url,:styles=>{:show=>"150x150>"}
+  has_attached_file :image_url,:styles=>{:show=>"150x150>"}#,:url => "/system/:class/:id_partition/:style/:filename",:path => ":rails_root/public/system/:class/:id_partition/:style/:filename"
 end
 
 # == Schema Information

@@ -1,0 +1,76 @@
+<% content_for :headmeta do %>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+<%end%>
+<%content_for :headtitle do%>
+<title>找回密码_用户中心_给力百货 - 日用百货量贩平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品</title>
+<%end%>
+<% content_for :headstyle do %>
+<link href="/themes/default/css/header.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/reglogin.css" rel="stylesheet" type="text/css" />
+<link href="/themes/default/css/error.css" rel="stylesheet" type="text/css" />
+<%end%>
+<% content_for :headjs do %>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/js-clib.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/header.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/user.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/hotkeys.js"></script> 
+<script type="text/javascript">
+  $(document).ready(function(){
+  setHeadFlowNum();//购物车数量
+});
+</script>
+
+<%end%>
+<% content_for :headother do%>
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link rel="alternate" type="application/rss+xml" title="RSS|用户中心_给力百货 - 日用百货量贩平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品" href="" />
+<% end%>
+<div id='main'>
+    
+    
+  
+  
+      <div class="out_box">
+   <form action="/usercenter/forgot" method="post" name="getPassword" onsubmit="return submitPwdInfo();">
+           <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr>            
+            <td width="43%" height="35" align="right" valign="middle"><span class="error_tip" style="float:right;">忘记密码？不要着急...</span></td>
+            <td colspan="2" align="left" valign="middle"></td>
+          </tr>
+          <tr>
+            <td width="36%" height="35" align="right" valign="middle"><strong>请输入注册邮箱，可重置您的登录密码：</strong></td>
+            <td width="20%" align="left" valign="middle"><input name="email" type="text"/></td>
+
+            <td width="44%" align="left" valign="middle"><div id="get_password_input_notice"></div></td>
+          </tr>
+          <tr>
+            <td height="35" align="left" valign="middle">&nbsp;</td>
+            <td colspan="2" align="left" valign="middle"><input name="确认提交" value="点击完成" type="submit" class="pop_btn" /></td>
+          </tr>
+        </table>
+  <input type="hidden" name="act" value="send_pwd_email" />
+</form>
+
+         <br/>
+        <span><a href="/">返回首页</a></span>
+  </div>  
+  
+    
+  
+
+    <div id='clear'></div>
+
+</div>
+<%content_for :bodyfoot do%>
+<!--[if IE 6]><script type="text/javascript">try {document.execCommand('BackgroundImageCache', false, true);} catch(e) {}</script><![endif]-->
+<div id="global_foot_white"></div>
+<%end%>

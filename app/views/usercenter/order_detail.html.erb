@@ -47,7 +47,7 @@ end%>
     </tr>
     <%@order.order_products.each do |order_product|%>
             <tr>
-      <td align="center" valign="middle" class="td">        <a href="<%=product_url(order_product.product_id)%>" target="_blank" title="<%=order_product.name%>"><%=truncate order_product.name,:length=>16%></a>
+      <td align="center" valign="middle" class="td">        <a href="<%=myproduct_url(order_product.product_id)%>" target="_blank" title="<%=order_product.name%>"><%=truncate order_product.name,:length=>16%></a>
         </td>
       <td align="center" valign="middle" class="td"><%=price(order_product.p1)%>元</td>
       <td align="center" valign="middle" class="td"><%=price(order_product.p2)%>元(省<%=price(order_product.p1-order_product.p2)%>元)</td>

@@ -144,14 +144,14 @@ end
 
               <li class="goods_pic">
 
-              <a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><img src="<%=product.i1.url(:medium)%>" width="160" height="160" alt="<%=product.name%>" /></a>
+              <a href="<%=myproduct_url(product.id)%>" target="_blank" title="<%=product.name%>"><img src="<%=product.i1.url(:medium)%>" width="160" height="160" alt="<%=product.name%>" /></a>
                        	              	  <%if product.promotion%>
 					  <span class="dis_tip"><span class="dis_num"><%=raw show_promotion_num(product)%></span></span>
 					  <%end%>
             	                            </li>
                            <li class="goods_brand"><a href="http://www.geilibuy.com/search.php?brand=428">[&nbsp;<%=product.brand.name if product.brand%>&nbsp;]</a></li>
                            <li class="goods_name">
-                  <a id="list_name_a" href="<%=product_url(product.id)%>" style="color:#000;" title="<%=product.name%>" target="_blank"><%=product.name%></a>
+                  <a id="list_name_a" href="<%=myproduct_url(product.id)%>" style="color:#000;" title="<%=product.name%>" target="_blank"><%=product.name%></a>
                                           <%unless product.sub_title.blank?%>
                                           <span><%=product.sub_title%></span>
                                           <%end%>

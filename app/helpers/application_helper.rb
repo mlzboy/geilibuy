@@ -113,12 +113,12 @@ module ApplicationHelper
     r=case tuan_order.payment.name.strip
     when "支付宝"
       logger.debug("hhhhhhh")
-      AlipayLib::gen_url("团购订单"+tuan_order.sn,tuan_order.sn,tuan_order.real_money,"http://www.15-1688.com:3000/tuan/","bankPay",tuan_order.tuan.sub_title,"http://www.15-1688.com:3000/tuan/alipay/respond","http://www.15-1688.com:3000/tuan/alipay/notify")
+      AlipayLib::gen_url("团购订单"+tuan_order.sn,tuan_order.sn,tuan_order.real_money,"http://www.geilibuy.com/tuan/","bankPay",tuan_order.tuan.sub_title,"http://www.geilibuy.com/tuan/alipay/respond","http://www.geilibuy.com/tuan/alipay/notify")
     when "财富通"
-      TenpayLib::gen_url("团购订单"+tuan_order.sn,tuan_order.sn,tuan_order.real_money,tuan_order.payment.code,ip,"http://www.15-1688.com:3000/tuan/tenpay/respond")
+      TenpayLib::gen_url("团购订单"+tuan_order.sn,tuan_order.sn,tuan_order.real_money,tuan_order.payment.code,ip,"http://www.geilibuy.com/tuan/tenpay/respond")
     else#要排除一些货到付款,现金账户等
       logger.debug("ddddddddddddd")
-      TenpayLib::gen_url("团购订单"+tuan_order.sn,tuan_order.sn,tuan_order.real_money,tuan_order.payment.code,ip,"http://www.15-1688.com:3000/tuan/tenpay/respond")
+      TenpayLib::gen_url("团购订单"+tuan_order.sn,tuan_order.sn,tuan_order.real_money,tuan_order.payment.code,ip,"http://www.geilibuy.com/tuan/tenpay/respond")
     end
     logger.debug("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
     logger.debug(r)
@@ -137,12 +137,12 @@ module ApplicationHelper
       logger.debug("hhhhhhh")
       logger.debug(cash_order.class)
       logger.debug(cash_order.money)
-      AlipayLib::gen_url(cash_order.name,cash_order.sn,cash_order.money,"http://www.15-1688.com:3000/tuan/account/credit","bankPay",cash_order.description,"http://www.15-1688.com:3000/tuan/account/alipay/respond","http://www.15-1688.com:3000/tuan/account/alipay/notify")
+      AlipayLib::gen_url(cash_order.name,cash_order.sn,cash_order.money,"http://www.geilibuy.com/tuan/account/credit","bankPay",cash_order.description,"http://www.geilibuy.com/tuan/account/alipay/respond","http://www.geilibuy.com/tuan/account/alipay/notify")
     when "财富通"
-      TenpayLib::gen_url(cash_order.name,cash_order.sn,cash_order.money,cash_order.payment.code,ip,"http://www.15-1688.com:3000/tuan/account/tenpay/respond")
+      TenpayLib::gen_url(cash_order.name,cash_order.sn,cash_order.money,cash_order.payment.code,ip,"http://www.geilibuy.com/tuan/account/tenpay/respond")
     else#要排除一些货到付款,
       logger.debug("ddddddddddddd")
-      TenpayLib::gen_url(cash_order.name,cash_order.sn,cash_order.money,cash_order.payment.code,ip,"http://www.15-1688.com:3000/tuan/account/tenpay/respond")
+      TenpayLib::gen_url(cash_order.name,cash_order.sn,cash_order.money,cash_order.payment.code,ip,"http://www.geilibuy.com/tuan/account/tenpay/respond")
     end
     logger.debug("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
     logger.debug(r)
@@ -156,12 +156,12 @@ module ApplicationHelper
     r=case order.payment.name.strip
     when "支付宝"
       logger.debug("hhhhhhh")
-      AlipayLib::gen_url("给力百货订单#{order.sn}",order.sn,order.real_money,"http://www.15-1688.com:3000/usercenter/order_detail/"+order.sn,"bankPay","","http://www.15-1688.com:3000/alipay/respond","http://www.15-1688.com:3000/alipay/notify")
+      AlipayLib::gen_url("给力百货订单#{order.sn}",order.sn,order.real_money,"http://www.geilibuy.com/usercenter/order_detail/"+order.sn,"bankPay","","http://www.geilibuy.com/alipay/respond","http://www.geilibuy.com/alipay/notify")
     when "财富通"
-      TenpayLib::gen_url("给力百货订单#{order.sn}",order.sn,order.real_money,order.payment.code,ip,"http://www.15-1688.com:3000/tenpay/respond")
+      TenpayLib::gen_url("给力百货订单#{order.sn}",order.sn,order.real_money,order.payment.code,ip,"http://www.geilibuy.com/tenpay/respond")
     else
       logger.debug("ddddddddddddd")
-      TenpayLib::gen_url("#{order.sn}",order.sn,order.real_money,order.payment.code,ip,"http://www.15-1688.com:3000/tenpay/respond")
+      TenpayLib::gen_url("#{order.sn}",order.sn,order.real_money,order.payment.code,ip,"http://www.geilibuy.com/tenpay/respond")
     end
     logger.debug("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
     logger.debug(r)
@@ -387,8 +387,11 @@ CODE
     logger.debug("===========")
     products=Product.find_by_sql(["select * from (select * from product_shows_products where product_show_id=?) psp inner join products p on psp.product_id=p.id order by psp.position",product_show_id])
   end
-
+  #此方法自动生成，所以使用
   def product_url(product_id)
+    "/product/#{product_id}"
+  end
+  def myproduct_url(product_id)
     "/product/#{product_id}"
   end
 
@@ -475,6 +478,9 @@ CODE
     "/brands/#{brand_id}"
   end
   def category_url(category_id)
+    "/category/#{category_id}"
+  end
+  def mycategory_url(category_id)
     "/category/#{category_id}"
   end
   def mygift_url(gift_id)

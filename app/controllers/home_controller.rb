@@ -8,6 +8,18 @@ include MyLib2
 include MyLib3
 class HomeController < ApplicationController
   layout "front"
+  def topic
+    topic_id=params[:topic_id]
+    @topic=Topic.find_by_id(topic_id)
+    unless @topic.kind.blank?
+      render "topic_full" and return
+    end
+  end
+  def map
+    render :layout=>nil
+  end
+  def share
+  end
   def cod_area
     
   end
@@ -19,7 +31,7 @@ class HomeController < ApplicationController
     @content=nil
     if request.post?
       unless params[:content].blank?
-        @content=params[:content].gsub("http://www.geilibuy.com","http://i2.quwan.com")
+        @content=params[:content].gsub("http://www.geilibuy.com","http://i2.geilibuy.com")
         logger.debug(@content)
         logger.debug("=====")
       end
@@ -384,6 +396,15 @@ class HomeController < ApplicationController
     #end
     #@whole_categories=@whole_categories.reverse
     @whole_categories=@product.whole_categories
+    #sql=%Q{select ps.* from product_shows ps right join product_shows_products psp on ps.id=psp.product_show_id where suite_on=1 and suite_num=2 and name="关联推荐" and location="产品详细页" and product_id<>#{product_id} limit 0,1}
+    #product_shows=ProductShow.find_by_sql(sql)
+    product_shows=@product.product_shows.select{|ps| ps.location=="产品详细页" and ps.name=="关联推荐" and ps.suite_num==2 and ps.suite_on==true}
+    @product_show=nil
+    if product_shows.size>0
+      @product_show=product_shows.first
+    end
+    
+    
   end
 
   def gen_comments(productid,value,page)

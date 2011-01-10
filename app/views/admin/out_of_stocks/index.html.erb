@@ -1,0 +1,36 @@
+
+<h1>Listing out_of_stocks</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Product</th>
+    <th>User</th>
+    <th>Contact</th>
+    <th>Mobile</th>
+    <th>Email</th>
+    <th>Message</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @out_of_stocks.each do |out_of_stock| %>
+  <tr>
+    <td><%= out_of_stock.id %></td>
+    <td><%= out_of_stock.product_id %></td>
+    <td><%= out_of_stock.user_id %></td>
+    <td><%= out_of_stock.contact %></td>
+    <td><%= out_of_stock.mobile %></td>
+    <td><%= out_of_stock.email %></td>
+    <td><%= out_of_stock.message %></td>
+    <td><%= link_to 'Show', admin_out_of_stock_path(out_of_stock) %></td>
+    <td><%= link_to 'Edit', edit_admin_out_of_stock_path(out_of_stock) %></td>
+    <td><%= link_to 'Destroy', admin_out_of_stock_path(out_of_stock), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Out of stock', new_admin_out_of_stock_path %>

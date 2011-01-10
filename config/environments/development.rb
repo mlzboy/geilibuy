@@ -23,14 +23,23 @@ B2c2::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
   
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    :address              => "smtp.126.com",
-    :port                 => 25,
-    :domain               => '126.com',
-    :user_name            => 'mlzboy@126.com',
-    :password             => '198465',
-    :authentication       => 'plain',
-    :enable_starttls_auto => true  }
+  #production.rb
+  #if config.action_controller.session
+  #  config.action_controller.session[:domain]='.geilibuy.com'
+  #else
+  #  config.action_controller.session={:domain=>'.geilibuy.com'}
+  #end
+ActionController::Base.asset_host = "i%d.geilibuy.com"
+
+  #config.action_mailer.delivery_method = :smtp
+  #config.action_mailer.smtp_settings = {
+  #  :address              => "smtp.126.com",
+  #  :port                 => 25,
+  #  :domain               => '126.com',
+  #  :user_name            => 'mlzboy@126.com',
+  #  :password             => '198465',
+  #  :authentication       => 'plain',
+  #  :enable_starttls_auto => true  }
 end
+
 

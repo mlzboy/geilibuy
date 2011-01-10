@@ -1,0 +1,164 @@
+  <%=kindeditor_javacript_include_tag%>
+
+
+<%
+def show_details()
+  return if @topic.new_record?
+  @topic.details.each_with_index do |detail,index|
+  n="kindeditor#{index+1}"
+%>
+    <detail>product_show_id:<input type="text" name="topic_product_show_ids[]" value="<%=detail.product_show_id%>"/><a class="detail_del">del</a>&nbsp;&nbsp;<a class="detail_up" data="<%=index+1%>">up</a>&nbsp;&nbsp;<a class="detail_down" data="<%=index+1%>">down</a><br><textarea cols="40" id="<%=n%>" name="topic_contents[]" rows="20" style="width:530px;height:300px;visibility:hidden;"><%=raw detail.content%></textarea></detail>
+
+<%
+  end
+end
+%>
+<!--xiao mao generator QQ:hi@15-1688.com-->
+<%= form_for([:admin,@topic]) do |f| %>
+  <% if @topic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
+
+      <ul>
+      <% @topic.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :kind %><br />
+    <%= f.text_field :kind %>
+  </div>
+    <div class="field">
+    <%= f.label :on %><br />
+    <%= f.check_box :on %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+        <input type="button" name="add_details" value="添加本单详情" />
+
+  </div>
+      <div id="details"><br>
+    <%show_details()%>
+    <br>
+    </div>
+<% end %>
+<script type="text/javascript">
+  function del()
+  {
+    //$(this).parents("tip").remove();
+    if (confirm("确定删除?")){
+    $(this).parent().remove();
+    }
+  }
+  function detail_up()
+  {
+    var num=$(this).attr("data");
+    var parent = $(this).parent();
+    //console.info(parent);
+    //console.info(parent.prev());
+    //alert(num);
+    if ($(parent.prev()).get(0).tagName==$("<br>").get(0).tagName)
+    {
+      alert("到顶了！");
+      return;
+    }
+    parent.insertBefore(parent.prev());
+    var n='kindeditor'+num
+      KE.remove(n);
+      KE.show({
+    id : n,
+    allowFileManager : true,
+    imageUploadJson:'/kindeditor/upload'
+});
+      KE.create(n);
+
+  }
+  function detail_down()
+  {
+    var num=$(this).attr("data");
+    var parent = $(this).parent();
+        //console.info(3parent);
+    //console.info(parent.next());
+    if ($(parent.next()).get(0).tagName==$("<br>").get(0).tagName)
+    {
+      alert("到底了！");
+      return;
+    }
+    parent.insertAfter(parent.next());
+  
+    var n='kindeditor'+num
+      KE.remove(n);
+      KE.show({
+    id : n,
+    allowFileManager : true,
+    imageUploadJson:'/kindeditor/upload'
+});
+      KE.create(n);
+
+  }
+  function up()
+  {
+    var parent = $(this).parent();
+    parent.insertBefore(parent.prev());
+  }
+  function down()
+  {
+    var parent = $(this).parent();
+    parent.insertAfter(parent.next());
+  }
+  
+  $(function(){
+    
+
+    $("input[name='add_details']").click(function(){
+      var num=$("detail").length+1;
+      var n='kindeditor'+num
+      //KE.init({
+      //  id : n,
+      //  afterCreate : function(id) {
+      //          KE.util.focus(id);
+      //  }
+      //});
+      KE.show({
+          id : n,
+          allowFileManager : true,
+          imageUploadJson:'/kindeditor/upload'
+      });
+
+      //alert("dd");
+      $('<detail><input type="text" name="topic_product_show_ids[]" /><a class="detail_del">del</a>&nbsp;&nbsp;<a class="detail_up" data="'+num+'">up</a>&nbsp;&nbsp;<a class="detail_down" data="'+num+'">down</a><br><textarea cols="40" id="'+n+'" name="topic_contents[]" rows="20" style="width:530px;height:300px;visibility:hidden;"></textarea></detail>').find(".detail_del").click(del).end().find(".detail_up").click(detail_up).end().find(".detail_down").click(detail_down).end().appendTo("#details");
+
+      KE.create(n);
+
+      })
+    
+    })
+  <%
+  unless @topic.new_record?
+    %>
+    $(".detail_del").click(del);
+    $(".detail_up").click(detail_up);
+    $(".detail_down").click(detail_down);
+    <%
+  @topic.details.each_with_index do |detail,index|
+  n="kindeditor#{index+1}"
+%>
+        KE.show({
+          id : "<%=n%>",
+          allowFileManager : true,
+          imageUploadJson:'/kindeditor/upload'
+      });
+            KE.create("<%=n%>");
+<%
+  end%>
+    <%
+  end
+  %>
+</script>

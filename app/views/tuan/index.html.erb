@@ -46,7 +46,7 @@
 <%if @tuan.end?%>
 <div class="tip_box">抱歉，这期团购已结束
 <%unless @tuan.product_id.nil?%>
-                  	  ，<a class="blue" href="<%=product_url(@tuan.product_id)%>">点此查看</a>该商品详情。
+                  	  ，<a class="blue" href="<%=myproduct_url(@tuan.product_id)%>">点此查看</a>该商品详情。
 <%end%>        	  
 </div>
 <%end%>
@@ -246,19 +246,19 @@ ts_container.each do |ts|
 <div class="zone">
   <h4>关注我们</h4>
   <ul class="about_ul">
-    <li><a class="boke boke1 fl" href="http://t.sina.com.cn/quwan" target="_blank">给力百货的新浪微博</a>
+    <li><a class="boke boke1 fl" href="http://t.sina.com.cn/geilibuy" target="_blank">给力百货的新浪微博</a>
       <div class="clear"></div>
     </li>
-    <li><a class="boke boke2 fl" href="http://t.163.com/quwanwang" target="_blank">给力百货的网易微博</a>
+    <li><a class="boke boke2 fl" href="http://t.163.com/geilibuy" target="_blank">给力百货的网易微博</a>
       <div class="clear"></div>
     </li>
-    <li><a class="boke boke3 fl" href="http://t.qq.com/quwan" target="_blank">给力百货的腾讯微博</a>
+    <li><a class="boke boke3 fl" href="http://t.qq.com/geilibuy" target="_blank">给力百货的腾讯微博</a>
       <div class="clear"></div>
     </li>
     <li><a class="boke boke5 fl" href="http://tieba.baidu.com/i/29899092" target="_blank">给力百货的百度<b style=" font-weight:normal; padding:0 3px 0 0;">i</b>贴吧</a>
       <div class="clear"></div>
     </li>
-    <li><a class="boke boke4 fl" href="http://www.douban.com/group/quwan/" target="_blank">给力百货的豆瓣小组</a>
+    <li><a class="boke boke4 fl" href="http://www.douban.com/group/geilibuy/" target="_blank">给力百货的豆瓣小组</a>
       <div class="clear"></div>
     </li>
     <li><a class="boke boke6 fl" href="http://blog.geilibuy.com/" target="_blank">给力百货博客</a>

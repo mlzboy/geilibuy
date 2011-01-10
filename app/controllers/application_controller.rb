@@ -33,7 +33,11 @@ class ApplicationController < ActionController::Base
       logger.debug("admin login-------------")
     else
       logger.debug("didn't  admin login ---------------------")
-      redirect_to "/usercenter/login?back_url=#{request.request_uri}"
+      unless request.request_uri.count("logout")>0
+        redirect_to "/usercenter/login?back_url=#{request.request_uri}"
+      else
+        redirect_to "/usercenter/login"
+      end
       return
     end
   end

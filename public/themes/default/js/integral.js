@@ -21,7 +21,7 @@ function exchangeIntegral(A)
     
         $.ajax({
           type: "POST",
-          url:  "points.php?act=do_exchange",
+          url:  "/usercenter/check?act=do_exchange",
           data: "num=" + num + "&m=" + Math.random(),
           success: function(msg){
             var result = eval("(" + msg + ")");
@@ -32,7 +32,7 @@ function exchangeIntegral(A)
               $('#NUM')[0].innerHTML = result.content['num'];
               $('#NUM_DIV')[0].style.display= 'block';
             }else if(result.error == -1){
-				window.location="user.php?act=login&back_act=points.php?act=exchange";
+				window.location="/usercenter/login?back_url=/score_exchange";
               //popdiv("#login_pop","471","auto",0.4);
               //document.getElementById('exchange_integral').value = '';
             }else{

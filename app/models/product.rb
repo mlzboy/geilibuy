@@ -9,15 +9,57 @@ class Product < ActiveRecord::Base
   has_many:postsale_comments
   has_and_belongs_to_many:gifts
   has_and_belongs_to_many :product_shows
-  has_attached_file :i1,:processors => [:jcropper],:styles=>{:mini=>"40x40#",:thumb=>"55x55#",:small=>"100x100#",:medium=>"160x160#",:big=>"400x400#",:process=>"800x800>"}
-  has_attached_file :i2,:processors => [:jcropper],:styles=>{:mini=>"40x40#",:thumb=>"55x55#",:small=>"100x100#",:medium=>"160x160#",:big=>"400x400#",:process=>"800x800>"}
-  has_attached_file :i3,:processors => [:jcropper],:styles=>{:mini=>"40x40#",:thumb=>"55x55#",:small=>"100x100#",:medium=>"160x160#",:big=>"400x400#",:process=>"800x800>"}
-  has_attached_file :i4,:processors => [:jcropper],:styles=>{:mini=>"40x40#",:thumb=>"55x55#",:small=>"100x100#",:medium=>"160x160#",:big=>"400x400#",:process=>"800x800>"}
+  has_attached_file :i1,
+    :processors => [:jcropper],
+    :styles=>{:mini=>"40x40#",:thumb=>"55x55#",:small=>"100x100#",:medium=>"160x160#",:big=>"400x400#",:process=>"800x800>"},
+    #:path => ":rails_root/public/system/:class/:id/:style/:random_filename.:extension",
+    :url => "/system/:class/:id_partition/:style/:filename",
+    :path => ":rails_root/public/system/:class/:id_partition/:style/:filename"
+    #:path => ":rails_root/public/system/:class/:id/:normalized_video_file_name",
+    #:url => "/system/:class/:id/:filename" 
+
+  has_attached_file :i2,
+    :processors => [:jcropper],
+    :styles=>{:mini=>"40x40#",:thumb=>"55x55#",:small=>"100x100#",:medium=>"160x160#",:big=>"400x400#",:process=>"800x800>"},
+    :url => "/system/:class/:id_partition/:style/:filename",
+    :path => ":rails_root/public/system/:class/:id_partition/:style/:filename"
+  has_attached_file :i3,
+    :processors => [:jcropper],
+    :styles=>{:mini=>"40x40#",:thumb=>"55x55#",:small=>"100x100#",:medium=>"160x160#",:big=>"400x400#",:process=>"800x800>"},
+    :url => "/system/:class/:id_partition/:style/:filename",
+    :path => ":rails_root/public/system/:class/:id_partition/:style/:filename"
+  has_attached_file :i4,
+    :processors => [:jcropper],
+    :styles=>{:mini=>"40x40#",:thumb=>"55x55#",:small=>"100x100#",:medium=>"160x160#",:big=>"400x400#",:process=>"800x800>"},
+    :url => "/system/:class/:id_partition/:style/:filename",
+    :path => ":rails_root/public/system/:class/:id_partition/:style/:filename"
+    
   after_update :reprocess_avatar,:if => :cropping?
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h, :crop_f
   attr_accessor:category_ids
   #validates :category_ids,  :presence => true
   validate :belongs_to_some_category?
+  #before_create :randomize_file_name
+  #Paperclip.interpolates :random_filename do |attachment, style|
+  #  "#{Time.now.strftime("%Y%m%d%H%M%S")}#{rand(1000)}"
+  #end
+  #Paperclip.interpolates :normalized_i1_file_name do |attachment, style|
+  #  attachment.instance.normalized_i1_file_name(style)
+  #end
+  #
+  #def normalized_i1_file_name(style)
+  #   extension = File.extname(i1_file_name).downcase
+  #
+  #    self.i1.instance_write(:file_name, "#{Time.now.strftime("%Y%m%d%H%M%S")}#{rand(1000)}#{extension}")
+  #
+  #   #"#{self.id}-#{self.video_file_name.gsub( /[^a-zA-Z0-9_\.]/, '_')}"
+  #   "#{Time.now.strftime("%Y%m%d%H%M%S")}_#{rand(1000)}#{extension}"
+  #
+  #end
+
+
+ 
+
   def belongs_to_some_category?
     if category_ids.blank?
       self.errors[:base]<<"产品至少属于一个分类"
@@ -81,7 +123,17 @@ class Product < ActiveRecord::Base
     PostsaleComment.where(:product_id=>self.id).where(:hide=>false).count
   end
   private
-
+  #def randomize_file_name
+  #  #archives 就是你在 has_attached_file :archives 使用的名字
+  #  unless self.i1.file?
+  #    extension = File.extname(i1_file_name).downcase
+  #   #你可以改成你想要的文件名，把下面这个方法的第二个参数随便改了就可以了。
+  #    self.i1.instance_write(:file_name, "#{Time.now.strftime("%Y%m%d%H%M%S")}#{rand(1000)}#{extension}")
+  #  end
+  #
+  #
+  #end
+  
   def reprocess_avatar
     eval("#{crop_f}.reprocess!")
   end

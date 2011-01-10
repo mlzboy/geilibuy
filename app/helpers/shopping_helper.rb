@@ -85,8 +85,8 @@ HTML
       
       html+=<<HTML
 <tr class="goods_tr">
-      <td width="78" align="left" valign="middle" class="goods_td"><a href="#{product_url(productid)}" target="_blank"><img src="#{product.i1.url(:thumb)}" width="55" height="55" alt="#{product.name}"/></a></td>
-      <td width="265" valign="middle" class="goods_td"><a href="#{product_url(productid)}" target="_blank">#{product.name}</a></td>
+      <td width="78" align="left" valign="middle" class="goods_td"><a href="#{myproduct_url(productid)}" target="_blank"><img src="#{product.i1.url(:thumb)}" width="55" height="55" alt="#{product.name}"/></a></td>
+      <td width="265" valign="middle" class="goods_td"><a href="#{myproduct_url(productid)}" target="_blank">#{product.name}</a></td>
       <td width="72" valign="middle" class="goods_td">#{score=="1" ? product.p3 : product.p2  }元</td>
       <td width="84" valign="middle" class="goods_td">
                             <span class="#{'have_trade1' if score=="1"}"></span>
@@ -123,9 +123,9 @@ HTML
           html+=%Q{
                                 <td style="border-bottom: medium none;">
                     <ul class="packed_ul">
-                      <li style="height: 60px;"><a target="_blank" href="#{product_url(product.id)}"><img alt="#{product.name}" src="#{product.i1.url(:small)}"></a></li>
+                      <li style="height: 60px;"><a target="_blank" href="#{myproduct_url(product.id)}"><img alt="#{product.name}" src="#{product.i1.url(:small)}"></a></li>
                       <li style="height: 18px; display: none;"><font color="#ff0000">1</font>件</li>
-                      <li style="height: 20px;"><a target="_blank" href="#{product_url(product.id)}">#{product.name}</a><br cearl="all"></li>
+                      <li style="height: 20px;"><a target="_blank" href="#{myproduct_url(product.id)}">#{product.name}</a><br cearl="all"></li>
                     </ul>
                   </td>}
         end
@@ -206,8 +206,8 @@ HTML
       #score=product_score(product,1)*get_specific_product_num(productid,1)
       html+=<<HTML
 <tr class="goods_tr">
-      <td width="78" align="left" valign="middle" class="goods_td"><a href="#{product_url(productid)}" target="_blank"><img src="#{product.i1.url(:thumb)}" width="55" height="55" alt="#{product.name}"/></a></td>
-      <td width="265" valign="middle" class="goods_td"><a href="#{product_url(productid)}" target="_blank">#{product.name}</a></td>
+      <td width="78" align="left" valign="middle" class="goods_td"><a href="#{myproduct_url(productid)}" target="_blank"><img src="#{product.i1.url(:thumb)}" width="55" height="55" alt="#{product.name}"/></a></td>
+      <td width="265" valign="middle" class="goods_td"><a href="#{myproduct_url(productid)}" target="_blank">#{product.name}</a></td>
       <td width="72" valign="middle" class="goods_td">#{product.p2}元</td>
       <td width="84" valign="middle" class="goods_td">
                             <span class=""></span>
@@ -266,7 +266,7 @@ HTML
       html+=<<HTML
             <tr>
       <td width="142" align="center" valign="middle" class="bought_td">
-                <a href="#{product_url(productid)}" target="_blank">
+                <a href="#{myproduct_url(productid)}" target="_blank">
           <img src="#{product.i1.url(:thumb)}" width="50" height="50" />
         </a>
                 </td>

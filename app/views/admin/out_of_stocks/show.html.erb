@@ -1,0 +1,36 @@
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Product:</b>
+  <%= @out_of_stock.product_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @out_of_stock.user_id %>
+</p>
+
+<p>
+  <b>Contact:</b>
+  <%= @out_of_stock.contact %>
+</p>
+
+<p>
+  <b>Mobile:</b>
+  <%= @out_of_stock.mobile %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @out_of_stock.email %>
+</p>
+
+<p>
+  <b>Message:</b>
+  <%= @out_of_stock.message %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_out_of_stock_path(@out_of_stock) %> |
+<%= link_to 'Back', admin_out_of_stocks_path %>

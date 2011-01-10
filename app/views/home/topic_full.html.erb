@@ -1,0 +1,99 @@
+<% content_for :headmeta do %>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+<meta name="pagename" content="search" />
+<%end%>
+<%content_for :headtitle do%>
+<title><%=@topic.name%> - 趣玩网 - 日用百货量贩平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品</title>
+<%end%>
+<% content_for :headstyle do %>
+<style type="text/css">
+<!--
+#zhuanti_body {margin:0 auto; width:960px;}
+.zhuanti_zone {height:auto; padding:0; margin:0; line-height:0px; font-size:0;}
+-->
+</style>
+<link href="/themes/default/css/header.css" rel="stylesheet" type="text/css" />
+<%end%>
+<% content_for :headjs do %>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+
+<script type="text/javascript" src="/themes/default/js/js-clib.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/header.js" charset="UTF-8"></script>
+<script type="text/javascript">
+function inTooCartAction(goodsId, goodsName) {
+    var goods = new Object();
+    var select = "";
+    var number = 1;
+    goods = '{"spec": "","select": "' + select + '", "goods_id":"' + goodsId + '", "number": "' + number + '","parent": "0"}';
+    $.ajax({
+        type: "POST",
+        url: "flow.php?step=add_to_cart",
+        data: "goods=" + goods,
+        success: function(){
+			 $.ajax({
+					type: "POST",
+					url: "/flow.php?step=ajaxcartnum",
+					data: "step=ajaxcartnum",
+					success: function(A) {
+						var re = eval("(" + A + ")");
+						$("#ECS_CARTINFO").html(re.num);
+						$(".cart_pop").html(re.content);
+					}
+				})
+		},
+        complete: function(XMLHttpRequest, status) {
+            result = eval("(" + XMLHttpRequest.responseText + ")");
+            if (!result.error) {
+                    window.location="flow.php";
+            } else {
+                if (result.error == 2) {
+                    if (confirm(result.message)) {
+                        location.href = "user.php?act=add_booking&id=" + result.goods_id
+                    }
+                } else {
+                    if (result.error == 6) {
+                        if (confirm(result.message)) {
+                            location.href = "goods.php?id=" + result.goods_id
+                        }
+                    } else {
+                        alert(result.message)
+                    }
+                }
+            }
+        }
+    })
+}
+</script>
+
+
+<%end%>
+<% content_for :headother do%>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" />
+<% end%>
+<div id="zhuanti_body">
+  <%@topic.details.each do |topic_detail|%>
+    <%unless topic_detail.content.blank?%>
+	<div class="zhuanti_zone"><%=raw topic_detail.content%></div>
+    <%end%>
+  <%end%>
+  <br>
+  <br>
+  <br>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	setHeadUserStatus();// 检测是否登录
+	setHeadFlowNum();//购物车数量
+	$('#zhuanti_body').hover(function(){
+ $('.nav_pop').hide();
+ $('.nav_a').removeClass('on');
+ }, function(){
+ });
+});
+</script>
+<div id='clear'></div>

@@ -32,4 +32,17 @@
             <td colspan="3" align="left" valign="middle" class="td">&nbsp;</td>
           </tr>
         </table>
-	      </div>  
+	      </div>
+      
+      
+      
+      <% content_for :outhtml do %>
+<script type="text/javascript">
+  stepUserCenterAction('vipcart');//设置活动menu
+  setHeadFlowNum();//购物车数量
+       /*静态页面调用该函数*/
+        setHeadUserStatus();
+	$(".top_nav span").eq(0).text("我的打折卡");
+
+</script>
+<%end%>

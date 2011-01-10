@@ -1,7 +1,7 @@
          <div id="right_box">
    	  <div class="right_top">
         	<span class="welcome lottory"></span>
-            <span class="goon_btn"><a style="color:#fff;" href="lottery.php" >去抽奖</a></span>             
+            <span class="goon_btn"><a style="color:#fff;" href="/lottery" >去抽奖</a></span>             
         </div>
       <div class="right_line">      
         <p class="point_t">当前幸运点<font style="color:#F00; font-size:12px; font-weight:bold; padding:0 2px;">6</font> | 我邀请到的朋友数量：<font style="color:#F00; font-size:12px;font-weight:bold; padding:0 2px;">0</font> | 我的朋友邀请的好友总数：<font style="color:#F00; font-weight:bold;font-size:12px; padding:0 2px;">0</font></p>
@@ -13,9 +13,19 @@
             <td width="26%" align="center" valign="middle" class="td_top">TA是否已经验证邮箱</td>
           </tr>
 		           <tr>
-              <td align="left" valign="middle" colspan="4" class="td">&nbsp;&nbsp;&nbsp;&nbsp;您暂时还没有好友参加这个活动，<a href="lottery.php?act=share">快去邀请他们来参加吧</a></td>
+              <td align="left" valign="middle" colspan="4" class="td">&nbsp;&nbsp;&nbsp;&nbsp;您暂时还没有好友参加这个活动，<a href="/share">快去邀请他们来参加吧</a></td>
             </tr>
                  </table>
       </div>
   </div>        
 <div class="page_box"></div>
+<% content_for :outhtml do %>
+<script type="text/javascript">
+  stepUserCenterAction('invite');//设置活动menu
+  setHeadFlowNum();//购物车数量
+       /*静态页面调用该函数*/
+        setHeadUserStatus();
+	$(".top_nav span").eq(0).text("抽奖总动员");
+
+</script>
+<%end%>

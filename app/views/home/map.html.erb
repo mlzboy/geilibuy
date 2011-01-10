@@ -1,0 +1,119 @@
+<%
+categories=header()
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta   HTTP-EQUIV="pragma"   CONTENT="no-cache"/>   
+<meta   HTTP-EQUIV="Cache-Control"   CONTENT="no-cache,   must-revalidate"/>   
+<meta   HTTP-EQUIV="expires"   CONTENT="Mon, 21 Sep 2009 09:43:49 GMT"/>
+<meta name="Keywords" content="创意家居 居家 设计 办公用品 时尚办公 个人时尚 个性用品 新奇特 玩具 创意杂货 创意礼品 Propaganda Mr.P HumanTouch Luft Zakka 礼品 精品店 动漫 Takara 马克杯 饰品" />
+<meta name="Description" content="给力百货，最有创意的生活、办公、个人时尚产品网上购物商城，数千种时尚设计商品直销，通过便捷，诚信的服务，为您提供愉悦的网上购物经历，带来高品质的生活体验！" />
+<title>给力百货网站地图 - 非常创意生活百货 做最好的家居、办公、个人时尚商品量贩平台</title>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" />
+<link href="/themes/default/css/map.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<div id="main">
+  <div id="map_title">给力百货－站点地图</div>
+    <div class="big_cat_title">按商品分类</div>
+    <%categories.each do |category|%>
+    <div class="small_cat_title"><a target="_blank" href="<%=mycategory_url(category.id)%>"><%=category.name%></a></div>
+    <div class="small_cat_box">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <%category.children.each do |sub_category|%>
+      <tr>
+          
+        <td width="13%" valign="middle"><span><a target="_blank" href="<%=mycategory_url(sub_category.id)%>"><%=sub_category.name%></a></span></td>
+          <%sub_category.children.each do |sub_sub_category|%>
+          <td valign="middle"><a target="_blank" href="<%=mycategory_url(sub_sub_category.id)%>"><%=sub_sub_category.name%></a></td>
+          <%end%>
+
+      </tr>
+              <%end%>
+
+     
+    </table>
+    </div>
+              <%end%>
+ 
+ 
+ 
+ <%price={
+  "0-10元"=>"http://www.geilibuy.com/search?min=0&max=10",
+  "10-20元"=>"http://www.geilibuy.com/search?min=10&max=20",
+  "20-40元"=>"http://www.geilibuy.com/search?min=20&max=40",
+  "40-60元"=>"http://www.geilibuy.com/search?min=40&max=60",
+  "60-80元"=>"http://www.geilibuy.com/search?min=60&max=80",
+  "80-100元"=>"http://www.geilibuy.com/search?min=80&max=100",
+  "100元以上"=>"http://www.geilibuy.com/search?min=100",
+  }%>
+    <div class="big_cat_title">按价格分类</div>   
+    <div class="small_cat_box">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+<%price.each do |k,v|%>
+        <td width="13%" valign="middle"><span><a target="_blank" href="<%=raw v%>">·<%=k%></a></span></td>
+<%end%>
+      </tr>
+    </table>
+  </div>
+     <div class="big_cat_title">按品牌分类</div>   
+  <div class="small_cat_box">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <%Brand.all.each_slice(8).each do |brands|%>
+      <tr>
+        <%brands.each do |brand|%>
+        <td width="11%" valign="middle"><a href="/brands/<%=brand.id%>"><%=brand.name%></a></td>
+        <%end%>
+      </tr>
+      <%end%>
+     
+    </table>
+  </div>
+
+    
+<%
+  category=Category.find_by_name("礼品")
+  %>
+
+<div class="big_cat_title">按礼品分类</div>
+
+    <div class="small_cat_box">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <%category.children.each do |sub_category|%>
+      <tr>
+          
+        <td width="13%" valign="middle"><span><a target="_blank" href="<%=mygift_url(sub_category.id)%>"><%=sub_category.name%></a></span></td>
+          <%sub_category.children.each do |sub_sub_category|%>
+          <td valign="middle"><a target="_blank" href="<%=mygift_url(sub_sub_category.id)%>"><%=sub_sub_category.name%></a></td>
+          <%end%>
+
+      </tr>
+              <%end%>
+
+     
+    </table>
+    </div>
+</div>
+   <div class="big_cat_title">其他</div>   
+    <div class="small_cat_box">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+
+        <td valign="middle"><a target="_blank" href="/new">新品推荐</a></td>
+        <td valign="middle"><a target="_blank" href="/promotion">促销优惠</a></td>
+        <td valign="middle"><a target="_blank" href="/brands">精选品牌</a></td>
+      </tr>
+    </table>
+    </div>
+</div>
+
+
+
+</body>
+</html>

@@ -66,10 +66,10 @@ $(".close").live("click", function(){
       <div>
         <%@products.each_with_index do |product,index|%>
           	<ul class="list" style="position:relative;">
-        	<li class="list_img"><a href="<%=product_url(product.id)%>" target="_blank"><img src="<%=product.i1.url(:medium)%>" width="160" height="160" alt="<%=product.name%>" /></a><span class="duihao"></span></li>
+        	<li class="list_img"><a href="<%=myproduct_url(product.id)%>" target="_blank"><img src="<%=product.i1.url(:medium)%>" width="160" height="160" alt="<%=product.name%>" /></a><span class="duihao"></span></li>
         	               <li class="li_c"><b><a href="/brands/<%=product.brand_id%>">[&nbsp;<%=product.brand.name%>&nbsp;]</a></b></li>
 
-            <li><a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=product.name%></a></li>
+            <li><a href="<%=myproduct_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=product.name%></a></li>
             <li>现金价:<span>￥<%=price(product.p2)%></span></li>
             <li>换购价:<span>￥<%=price(product.p3)%></span><font> + <%=product.s1%>积分</font></li>
             <li class="goods_attr">

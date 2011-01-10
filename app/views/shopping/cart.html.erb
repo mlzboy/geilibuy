@@ -145,10 +145,10 @@ var new_val = $('#num_input_' + goods_id + '_' + rec_id).val();
         <td colspan="2" valign="middle">
           <input name="button" value="登&nbsp;录"  type="button"onclick="checkLoginForm($('#loginForm'));" class="submit_btn reglogin_btn" /><span style="margin-left:10px;"></span><a id="forget" class="forget" href="/user.php?act=get_password">忘记密码？</a></td>
       </tr>
-      <tr>
-        <td height="56" align="right" valign="middle">&nbsp;</td>
-        <td colspan="2" valign="middle"><a href="javascript:void(0)" onclick="window.open('http://api.t.sina.com.cn/oauth/authorize?display=popup&oauth_token=1edb9f3cb6274a5f6f09e68e2650058d&oauth_callback=http%3A%2F%2Fwww.geilibuy.com%2Fuser_combine_respond.php');"><img src="/themes/default/imgs/ucenter/sina_btn.gif" width="68" height="24" /></a>&nbsp;&nbsp;&nbsp;&nbsp;<b>您也可以用新浪微博账号登录给力百货</b></td>
-      </tr>
+      <!--<tr>-->
+      <!--  <td height="56" align="right" valign="middle">&nbsp;</td>-->
+      <!--  <td colspan="2" valign="middle"><a href="javascript:void(0)" onclick="window.open('http://api.t.sina.com.cn/oauth/authorize?display=popup&oauth_token=1edb9f3cb6274a5f6f09e68e2650058d&oauth_callback=http%3A%2F%2Fwww.geilibuy.com%2Fuser_combine_respond.php');"><img src="/themes/default/imgs/ucenter/sina_btn.gif" width="68" height="24" /></a>&nbsp;&nbsp;&nbsp;&nbsp;<b>您也可以用新浪微博账号登录给力百货</b></td>-->
+      <!--</tr>-->
       <tr>
 
         <td height="56" align="right" valign="middle">&nbsp;</td>
@@ -943,8 +943,8 @@ function inTooCartAction(goodsId, goodsName, isRefesh, parentId) {
   <div class="switch_item" >
 <%Product.below_10.each do |product|%>
       <ul>
-      <li><a href="<%=product_url(product.id)%>" target="_blank"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" /></a></li>
-      <li><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>12%></a></li>
+      <li><a href="<%=myproduct_url(product.id)%>" target="_blank"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" /></a></li>
+      <li><a href="<%=myproduct_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>12%></a></li>
       <li><span>￥<%=price(product.p2)%></span></li>
 
       <li><a href="javascript:inToCartAction('<%=product.id%>','<%=product.name%>')"><img src="/themes/default/imgs/flow/putin_btn.gif" width="100" height="22" /></a></li>
@@ -955,8 +955,8 @@ function inTooCartAction(goodsId, goodsName, isRefesh, parentId) {
   <div class="switch_item" style="display:none;">
 <%Product.between_10_and_30.each do |product|%>
       <ul>
-      <li><a href="<%=product_url(product.id)%>" target="_blank"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" /></a></li>
-      <li><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=product.name%></a></li>
+      <li><a href="<%=myproduct_url(product.id)%>" target="_blank"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" /></a></li>
+      <li><a href="<%=myproduct_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=product.name%></a></li>
       <li><span>￥<%=price(product.p2)%></span></li>
 
       <li><a href="javascript:inToCartAction('<%=product.id%>','<%=product.name%>')"><img src="/themes/default/imgs/flow/putin_btn.gif" width="100" height="22" /></a></li>
@@ -968,8 +968,8 @@ function inTooCartAction(goodsId, goodsName, isRefesh, parentId) {
   <div class="switch_item" style="display:none;">
 <%Product.above_50.each do |product|%>
       <ul>
-      <li><a href="<%=product_url(product.id)%>" target="_blank"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" /></a></li>
-      <li><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=product.name%></a></li>
+      <li><a href="<%=myproduct_url(product.id)%>" target="_blank"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" /></a></li>
+      <li><a href="<%=myproduct_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=product.name%></a></li>
       <li><span>￥<%=price(product.p2)%></span></li>
 
       <li><a href="javascript:inToCartAction('<%=product.id%>','<%=product.name%>')"><img src="/themes/default/imgs/flow/putin_btn.gif" width="100" height="22" /></a></li>

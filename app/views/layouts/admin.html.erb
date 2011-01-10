@@ -3,19 +3,11 @@
 <html>
 <head>
   <title>管理后台</title>
-  <%= stylesheet_link_tag :all %>
+<%if content_for?(:headjs) %>
+<%= yield(:headjs) %>
+<%else%>
   <%= javascript_include_tag :all %>
-  <%= csrf_meta_tag %>
-  <style type="text/css">
-#menu{float:left;width:200px;height:768px;}
-#right{float:right;}
-</style>
-
-<!-- jstree start -->
-<link rel="stylesheet" href="/jquery-treeview/jquery.treeview.css" />
-<!--<link rel="stylesheet" href="/jquery-treeview/red-treeview.css" />-->
-<link rel="stylesheet" href="/jquery-treeview/demo/screen.css" />
-<!--<script src="/jquery-treeview/lib/jquery.cookie.js" type="text/javascript"></script>-->
+  <!--<script src="/jquery-treeview/lib/jquery.cookie.js" type="text/javascript"></script>-->
 <script src="/jquery-treeview/jquery.treeview.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -27,6 +19,21 @@ $(document).ready(function(){
 });
 </script>
 <!--jstree end-->
+<%end%>
+  <%= csrf_meta_tag %>
+<%if content_for? (:headcss)%>
+  <%=yield(:headcss)%>
+<%else%>
+  <style type="text/css">
+#menu{float:left;width:200px;height:768px;}
+#right{float:right;}
+</style>
+    <%= stylesheet_link_tag :all %>
+<link rel="stylesheet" href="/jquery-treeview/jquery.treeview.css" />
+<!--<link rel="stylesheet" href="/jquery-treeview/red-treeview.css" />-->
+<link rel="stylesheet" href="/jquery-treeview/demo/screen.css" />
+<%end%>
+
     <%= yield :head%>
 </head>
 <body>
@@ -38,6 +45,7 @@ $(document).ready(function(){
     <li><span class="folder">订单管理</span>
       <ul>
 	  <li><span class="file"><a href="/admin/orders">订单列表</a></span></li>
+	  <li><span class="file"><a href="/admin/out_of_stocks">缺货管理</a></span></li>
 	  <li><span class="file"><a href="/admin/orders/has_pay">已付款订单</a></span></li>
 	  <li><span class="file"><a href="/admin/orders/cod">货到付款订单</a></span></li>
       </ul>
@@ -58,6 +66,8 @@ $(document).ready(function(){
     </li>
     <li><span class="folder">系统设置</span>
       <ul>
+					<li><span class="file"><a href="/admin/coupons">优惠券/礼品卡管理</a></span></li>
+	<li><span class="file"><a href="/admin/delivery_companies">快递公司管理</a></span></li>
 	<li><span class="file"><a href="/admin/free_shipping_rules">免邮费管理</a></span></li>
 	<li><span class="file"><a href="/admin/deliveries">送货方式管理</a></span></li>
 	<li><span class="file"><a href="/admin/delivery_times">送货时间管理</a></span></li>
@@ -70,6 +80,7 @@ $(document).ready(function(){
     <li><span class="folder">产品管理</span>
       <ul>
 	<li><span class="file"><a href="/admin/products">产品列表</a></span></li>
+	<li><span class="file"><a href="/admin/tuans">团购产品管理</a></span></li>
 	<li><span class="file"><a href="/admin/products/new">新品添加</a></span></li>
 	<li><span class="file"><a href="/admin/categories">类别管理</a></span></li>
 	<!--<li><span class="file"><a href="/admin/gifts">礼品类别管理</a></span></li>-->
@@ -81,11 +92,9 @@ $(document).ready(function(){
 				<li><span class="file"><a href="/admin/lotteries">抽奖设置</a></span></li>
 				<li><span class="file"><a href="/admin/lottery_details">中奖详细列表</a></span></li>
 				<li><span class="file"><a href="/admin/score_details">积分管理</a></span></li>
+				<li><span class="file"><a href="/admin/topics">专题管理</a></span></li>
 				<li><span class="file"><a href="/admin/articles">文章管理</a></span></li>
 				<li><span class="file"><a href="/admin/article_categories">文章分类管理</a></span></li>
-				<li><span class="file"><a href="/admin/tuans">团购管理</a></span></li>
-				<li><span class="file"><a href="/admin/coupons">优惠券/礼品卡管理</a></span></li>
-				<li><span class="file"><a href="/admin/delivery_companies">快递公司管理</a></span></li>
 				<li><span class="folder">Folder 2</span>
 					<ul>
 						<li><span class="folder">Subfolder 2.1</span>

@@ -1,6 +1,6 @@
  <div class="right_top">
         	<span class="welcome zixun"></span>
-            <span class="goon_btn"><a style="color:#fff;" href="./" title="首页">继续购物</a></span>             
+            <span class="goon_btn"><a style="color:#fff;" href="/shopping/cart" title="购物篮">继续购物</a></span>             
         </div>        
       <div class="right_line">
       <p style="line-height:24px;">您一共有<font> <%=@presale_consultings.total_entries%> </font>条交流信息，其中<font> <%=count_replied_presale_consulting%> </font>条已经得到回复</p>
@@ -59,6 +59,10 @@
   $(document).ready(function(){
   stepUserCenterAction('comment_list');//设置活动menu
   setHeadFlowNum();//购物车数量
+          setHeadUserStatus();
+	  $(".top_nav span").eq(0).text("购买咨询");
+
+
 });
 </script>
 <%end%>

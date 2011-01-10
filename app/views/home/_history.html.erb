@@ -6,12 +6,15 @@ if product_ids.size>0
     <div id="history_title"></div> 
     <div id="history_box">
           <%
-          products=Product.find(product_ids)
+          #products=Product.find(product_ids)
+          products=Product.find_all_by_id(product_ids)
           content=""
           products.each do |product|
           %>
           <a title="<%=product.name%>" href="/product/<%=product.id%>" target="_blank">
-          <img alt="<%=product.name%>" src="<%=product.i1.url(:thumb)%>" height="55" width="55"></a>
+          <%=image_tag product.i1.url(:thumb),:height=>55,:width=>55%>
+          <!--<img alt="<%=product.name%>" src="<%=product.i1.url(:thumb)%>" height="55" width="55">-->
+          </a>
           <%end%>
           <div id="clear"></div>
     </div> 

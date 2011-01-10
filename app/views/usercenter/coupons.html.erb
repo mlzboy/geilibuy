@@ -68,3 +68,13 @@
 </form>
        
 <div class="page_box"><span><font>&laquo;首页</font></span><span><font>&#173;上一页</font></span><span id="page_on"><font>1</font></span><span><font>&#173;下一页</font></span><span><font>&#173;尾页&raquo;</font></span><span><font>1/共1页</font></span></div>
+<% content_for :outhtml do %>
+<script type="text/javascript">
+  stepUserCenterAction('bonus');//设置活动menu
+  setHeadFlowNum();//购物车数量
+       /*静态页面调用该函数*/
+        setHeadUserStatus();
+	$(".top_nav span").eq(0).text("购物优惠券/礼品卡");
+
+</script>
+<%end%>

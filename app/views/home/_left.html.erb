@@ -1,4 +1,5 @@
 
+
 <%
 current_category=Category.find_by_id(params[:categoryid])
 whole_categories=current_category.whole_categories
@@ -76,17 +77,18 @@ ad42=ad_materials("热门关键词2",location,category_name)
           <%ad41.each_with_index do |material,index|%>
               	<ul class="keyword_ul"> 
             	<li><span><%=index+1%></span></li> 
-                <li><a href="<%=material.hyperlink%>" target="_blank"><img src="<%=material.image_url.url%>" alt="<%=material.alt%>" width="55" height="55" /></a></li> 
+                <li><a href="<%=material.hyperlink%>" target="_blank"><%=image_tag material.image_url.url,:alt=>material.alt,:width=>55,:height=>55%><!--<img src="<%=material.image_url.url%>" alt="<%=material.alt%>" width="55" height="55" />--></a></li> 
                 <li><a href="<%=material.hyperlink%>" target="_blank"><%=material.text%></a></li> 
             </ul>
           <%end%>
                   <div id="clear"></div> 
             <ul class="keyword_ul keyword_ul_1">
               <%ad42.each_with_index do |material,index|%>
-                <li><span><%=index+3%>.</span><a href="<%=material.hyperlink%>" target="_blank"><%=material.text%></a></li> 
+                <li><span><%=index+4%>.</span><a href="<%=material.hyperlink%>" target="_blank"><%=material.text%></a></li> 
               <%end%>
             </ul> 
-        </div> 
+        </div>
+<!--	TODO-->
        	<div id="electbrand_title"></div> 
         
                         <ul id="electbrand_ul"> 

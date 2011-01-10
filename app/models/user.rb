@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_one:user_detail
   has_many:cash_details
   has_many:invites
+  has_many:out_of_stocks
   
   def tuan_orders
     Order.where(:user_id=>self.id).where("tuan_id is not null").order("id desc").all
@@ -59,6 +60,26 @@ class User < ActiveRecord::Base
     Order.where(:user_id=>self.id).where(:tuangou=>true).where(:tuan_id=>tuan.id).all.each do |tuan_order|
       if tuan_order.current_order_status.value==1
 	r=true
+      end
+    end
+    r
+  end
+  def bought_products
+    products=[]
+    self.orders.each do |order|
+      if order.current_order_status.value==16
+        products.concat order.products
+      end
+    end
+    products
+  end
+  
+  def bought_product?(product2)
+    r=false
+    self.bought_products.each do |product|
+      if product.id==product2.id
+	r=true
+	return r
       end
     end
     r

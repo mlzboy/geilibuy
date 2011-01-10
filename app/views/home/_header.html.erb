@@ -4,15 +4,15 @@ categories=header()
 <%search_ad1=ad_materials("文字","搜索框","")%>
 <%search_ad2=ad_materials("文字链","搜索框右侧","")%>
 <div id="head" onmouseover="$('.nav_pop').hide();$('.nav_a').removeClass('on');">    	
-    <div id="logo"><a title="给力百货" href="/"><img src="/themes/default/imgs/global/logo.gif" /></a></div> 
-    <div id="slogan"><a title="给力百货" href="http://www.geilibuy.com/article-18.html"><img src="/themes/default/imgs/global/bg.gif" /></a></div> 
+    <div id="logo"><a title="给力百货" href="/"><%=image_tag "/themes/default/imgs/global/logo.gif"%><!--<img src="/themes/default/imgs/global/logo.gif" />--></a></div> 
+    <div id="slogan"><a title="给力百货" href="http://www.geilibuy.com/helpcenter/20"><%=image_tag "/themes/default/imgs/global/bg.gif"%><!--<img src="/themes/default/imgs/global/bg.gif" />--></a></div> 
     <!--<div id="head_right"> -->
     <!--       <ul class="head_user" style="display:none;"> -->
     <!--      <li id="login"><a href="http://www.geilibuy.com/user.php?act=login&100000">登录</a></li> -->
     <!--        <li>|</li> -->
     <!--        <li id="register"><a href="http://www.geilibuy.com/user.php?act=register&100000">注册</a></li> -->
     <!--        <li>|</li> -->
-    <!--        <li><a class="fav_a" href="javascript:myAddBookmark('给力百货 - 创意生活第一品牌：在线销售创意家居生活用品','http://www.geilibuy.com')">收藏本站</a></li> -->
+    <!--        <li><a class="fav_a" href="javascript:myAddBookmark('给力百货 - 网上量贩第一品牌：在线销售创意家居生活用品','http://www.geilibuy.com')">收藏本站</a></li> -->
     <!--</ul> -->
     <!--<ul class="head_user" style="display:none;"> -->
     <!--        <li><span><strong><span id="nickname"></span>,</strong>欢迎光临给力百货!</span> -->
@@ -33,7 +33,7 @@ categories=header()
     <!--        <li>|</li> -->
     <!--        <li><a href="http://www.geilibuy.com/user.php?act=logout">退出</a></li> -->
     <!--        <li>|</li> -->
-    <!--        <li><a class="fav_a" href="javascript:myAddBookmark('给力百货 - 创意生活第一品牌：在线销售创意家居生活用品','http://www.geilibuy.com')">收藏本站</a></li>            -->
+    <!--        <li><a class="fav_a" href="javascript:myAddBookmark('给力百货 - 网上量贩第一品牌：在线销售创意家居生活用品','http://www.geilibuy.com')">收藏本站</a></li>            -->
     <!--    </ul> -->
     <!--<ul class="head_user"></ul> -->
     <!--       <div id="head_other"> -->
@@ -47,14 +47,14 @@ categories=header()
     
   <div id="head_right"> 
             <ul class="head_user" style="display:none;"> 
-      <li id="login"><a href="/usercenter/login">登录</a></li> 
+      <li id="login"><a href="/usercenter/login?back_url=<%=request.fullpath%>">登录</a></li> 
       <li>|</li> 
       <li id="register"><a href="/usercenter/register">注册</a></li> 
       <li>|</li> 
-      <li><a class="fav_a" href="javascript:myAddBookmark('给力百货 - 创意生活第一品牌：在线销售创意家居生活用品','http://www.geilibuy.com')">收藏本站</a></li> 
+      <li><a class="fav_a" href="javascript:myAddBookmark('给力百货 - 网上量贩第一品牌：在线销售创意家居生活用品','http://www.geilibuy.com')">收藏本站</a></li> 
     </ul> 
     <ul class="head_user" style="display:none;"> 
-      <li><span><strong><span id="nickname"></span>,</strong>欢迎光临给力百货!</span> <a id="msg_a" href="http://www.geilibuy.com/user.php">&nbsp;</a> </li> 
+      <li><span><strong><span id="nickname"></span>,</strong>欢迎光临给力百货!</span> <a id="msg_a" href="http://www.geilibuy.com/usercenter">&nbsp;</a> </li> 
       <li>|</li> 
       <li id="mypop"> <a id="myquwan" href="/usercenter">我的给力</a> 
         <div id="my_pop"> <a href="/usercenter/order_list"">我的订单</a> <a href="/usercenter/scores"">我的积分</a> <a href="/usercenter/favorites">我的收藏夹</a> <a href="/usercenter/account"">现金账户</a> </div> 
@@ -62,13 +62,16 @@ categories=header()
       <li>|</li> 
       <li><a href="/usercenter/order_list">订单管理</a></li> 
       <li>|</li> 
-      <li><a href="/usercenter/logout">退出</a></li> 
+      <li><a href="/usercenter/logout?back_url=<%=request.fullpath%>">退出</a></li> 
       <li>|</li> 
-      <li><a class="fav_a" href="javascript:myAddBookmark('给力百货 - 创意生活第一品牌：在线销售创意家居生活用品','http://www.geilibuy.com')">收藏本站</a></li> 
+      <li><a class="fav_a" href="javascript:myAddBookmark('给力百货 - 网上量贩第一品牌：在线销售创意家居生活用品','http://www.geilibuy.com')">收藏本站</a></li> 
     </ul> 
     <ul class="head_user"> 
     </ul> 
-        <div id="head_other"> <a href="http://www.geilibuy.com/zhuanti/campus-agent.html" target="_blank" title="校园代理"><img height="32" width="100" src="/themes/default/imgs/global/head_campus.gif"></a> <a href="/score" target="_blank" title="积分商城"><img height="32" width="100" src="/themes/default/imgs/global/head_points.gif"></a> <a href="/lottery" target="_blank" title="免费抽奖"><img height="32" width="100" src="/themes/default/imgs/global/head_lottery.gif"></a> <a href="/tuan" target="_blank" title="给力百货团购"><img height="32" width="100" src="/themes/default/imgs/global/head_tuan.gif"></a> 
+        <div id="head_other"> <a href="http://www.geilibuy.com/topic/6" target="_blank" title="校园代理"><%=image_tag "/themes/default/imgs/global/head_campus.gif",:height=>32,:width=>100%><!--<img height="32" width="100" src="/themes/default/imgs/global/head_campus.gif">--></a>
+	<a href="/score" target="_blank" title="积分商城"><%=image_tag "/themes/default/imgs/global/head_points.gif",:height=>32,:width=>100%><!--<img height="32" width="100" src="/themes/default/imgs/global/head_points.gif">--></a>
+	<a href="/lottery" target="_blank" title="免费抽奖"><%=image_tag "/themes/default/imgs/global/head_lottery.gif",:height=>32,:width=>100%><!--<img height="32" width="100" src="/themes/default/imgs/global/head_lottery.gif">--></a>
+	<a href="/tuan" target="_blank" title="给力百货团购"><%=image_tag "/themes/default/imgs/global/head_tuan.gif",:height=>32,:width=>100%><!--<img height="32" width="100" src="/themes/default/imgs/global/head_tuan.gif">--></a> 
       <div class="clear"></div> 
       <!--<span class="tel_btn"></span>--> 
     </div> 

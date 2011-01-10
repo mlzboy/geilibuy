@@ -3,11 +3,12 @@ B2c2::Application.routes.draw do
   match "alipay/respond"=>"alipay#return_url_process"
   match "alipay/notify"=>"alipay#notify_url_process"
   match "tenpay/respond"=>"tenpay#return_url_process"
-
+  get "topic/:topic_id"=>"home#topic"
+  get "map"=>"home#map"
   get "score"=>"home#score"
   get "point"=>"home#score"
   get "points"=>"home#score"
-
+  
   get "score_exchange"=>"home#score_exchange"
   get 'vote' =>"home#vote"
 
@@ -25,6 +26,7 @@ B2c2::Application.routes.draw do
   match "convert"=>"home#convert"
   match "suite/:suite_id"=>"home#suite"
   match "cod_area"=>"home#cod_area"
+  match "share"=>"home#share"
 scope "tuan" do
   match "alipay/respond"=>"alipay#tuan_return_url_process"
   match "alipay/notify"=>"alipay#tuan_notify_url_process"
@@ -60,6 +62,7 @@ scope "tuan" do
       match "alipay/respond"=>"alipay#tuan_cash_return_url_process"
       match "alipay/notify"=>"alipay#tuan_cash_notify_url_process"
       match "tenpay/respond"=>"tenpay#tuan_cash_return_url_process"
+      match "share"=>"tuan#share"
     end
   end
 end
@@ -120,13 +123,13 @@ resources :shopping do
     match 'order_success/:sn' =>'shopping#order_success'
   end
 end
-scope :module => "helpcenter" do
-  resources :test do
-    collection do
-      get 'go'
-    end
-  end
-end
+#scope :module => "helpcenter" do
+#  resources :test do
+#    collection do
+#      get 'go'
+#    end
+#  end
+#end
 
 #scope "helpcenter" do
 #  get "hh/logout"
@@ -187,6 +190,11 @@ end
       match :coupons
       match :scores
       match :invites
+      match :forgot
+      match :change_password_by_email
+      match :out_of_stock
+      match "out_of_stock/:product_id/new" => "usercenter#new_out_of_stock"
+      match "out_of_stock/:out_of_stock_id/new" => "usercenter#del_out_of_stock"
 
     end
   end
@@ -269,6 +277,8 @@ end
     resources :lottery_details
     resources :advices
     resources :free_shipping_rules
+    resources :topics
+    resources :out_of_stocks
   end
 
   #namespace :usercenter do

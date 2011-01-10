@@ -1,0 +1,43 @@
+
+<!--xiao mao generator QQ:hi@15-1688.com-->
+<%= form_for([:admin,@out_of_stock]) do |f| %>
+  <% if @out_of_stock.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@out_of_stock.errors.count, "error") %> prohibited this out_of_stock from being saved:</h2>
+
+      <ul>
+      <% @out_of_stock.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :product_id %><br />
+    <%= f.text_field :product_id %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :contact %><br />
+    <%= f.text_field :contact %>
+  </div>
+  <div class="field">
+    <%= f.label :mobile %><br />
+    <%= f.text_field :mobile %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :message %><br />
+    <%= f.text_area :message,:cols=>40,:rows=>4 %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

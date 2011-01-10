@@ -4,6 +4,11 @@ log/*.log
 log/
 tmp/**/*
 public/system/
+public/replace2
+public/replace3
+public/finished
+public/finished2
+public/给力2
 html/
 sql/
 doc/

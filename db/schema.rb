@@ -1,4 +1,3 @@
-#coding:utf-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110916123057) do
+ActiveRecord::Schema.define(:version => 20110916123061) do
 
   create_table "addresses", :force => true do |t|
     t.string   "consignee"
@@ -424,6 +423,17 @@ ActiveRecord::Schema.define(:version => 20110916123057) do
     t.boolean  "free_shipping",                                        :default => false
   end
 
+  create_table "out_of_stocks", :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "user_id"
+    t.string   "contact"
+    t.string   "mobile"
+    t.string   "email"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "payment_statuses", :force => true do |t|
     t.integer  "order_id"
     t.string   "name"
@@ -620,6 +630,23 @@ ActiveRecord::Schema.define(:version => 20110916123057) do
     t.boolean  "tuan",       :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "topic_details", :force => true do |t|
+    t.text     "content"
+    t.integer  "topic_id"
+    t.integer  "product_show_id"
+    t.integer  "position",        :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "topics", :force => true do |t|
+    t.string   "name"
+    t.string   "kind"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "on",         :default => true
   end
 
   create_table "tuan_details", :force => true do |t|

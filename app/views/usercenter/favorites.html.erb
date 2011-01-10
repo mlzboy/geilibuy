@@ -16,10 +16,10 @@
 			<div><input type="checkbox" name="colect_goods_list" dXml = '<%=favorite.id%>' value="<%=favorite.product_id%>" onclick="mathPriceAction(this)" /></div>
 			</td>
             <td width="14%" align="center" valign="middle" class="td_fav">
-			<a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><img src='<%=product.i1.url(:small)%>' alt='<%=product.name%>' width='55' height='55'/></a>
+			<a href="<%=myproduct_url(product.id)%>" target="_blank" title="<%=product.name%>"><img src='<%=product.i1.url(:small)%>' alt='<%=product.name%>' width='55' height='55'/></a>
 			</td>
             <td width="21%" align="center" valign="middle" class="td_fav">
-			<a  style="color:#653000;" href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank" ><%=truncate product.name,:length=>14%></a>
+			<a  style="color:#653000;" href="<%=myproduct_url(product.id)%>" title="<%=product.name%>" target="_blank" ><%=truncate product.name,:length=>14%></a>
 			</td>
             <td width="30%" align="center" valign="middle" class="td_fav">
                             给力百货价：<span id="THIS_PRICE_<%=product.id%>" style="color:#653000;"><%=price(product.p2)%>元</span>
@@ -62,10 +62,14 @@ $('.user_colloction_tab').find('tr').hover(function(){
 <% content_for :outhtml do %>
 <script type="text/javascript">
   $(document).ready(function(){
-    
-	
+    $(".top_nav span").eq(0).text("我的收藏夹");
+	          setHeadUserStatus();
+
   stepUserCenterAction('collection_list');//设置活动menu
   setHeadFlowNum();//购物车数量
 });
 </script>
 <%end%>
+
+
+

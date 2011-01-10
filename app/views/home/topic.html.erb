@@ -1,0 +1,150 @@
+<% content_for :headmeta do %>
+<meta name="Generator" content="给力百货 geilibuy.com " />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+<meta name="pagename" content="search" />
+<%end%>
+<%content_for :headtitle do%>
+<title><%=@topic.name%> - 趣玩网 - 日用百货量贩平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品</title>
+<%end%>
+<% content_for :headstyle do %>
+<style type="text/css">
+.list_line {
+    border-bottom: 1px solid #EAEAEA;
+    margin-bottom: 15px;
+}
+</style>
+<link href="/themes/default/css/header.css" rel="stylesheet" type="text/css" />
+<!--<link href="/themes/default/css/catogry_new.css" rel="stylesheet" type="text/css" />-->
+<link href="/themes/default/css/catogry.css" rel="stylesheet" type="text/css" />
+<%end%>
+<% content_for :headjs do %>
+<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/js-clib.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/themes/default/js/header.js" charset="UTF-8"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+   setHeadUserStatus();//检测用户登录状态
+
+  	/* 专题页下拉列表 */
+  	var gstyle_max=211;
+	$('.gstyle').hover(function(){	
+		$(this).addClass('gstyle_on');
+		if($('.gstyle_pop').width()<211)
+		{
+			$('.gstyle_pop').width(211);
+			$('.gstyle_pop').find('a').width(211);
+		}
+		$('.gstyle_pop').show();			
+		if(gstyle_max==211)	
+		{ 　
+			$('.gstyle_pop').find('li').each(function(index) {       
+			  if ($('.gstyle_pop').find('li').eq(index).width()>=gstyle_max) 
+			  {
+				 
+			   gstyle_max=$(this).width();
+			  }
+		  });
+		 $('.gstyle_pop').find('li').each(function(index) {       
+			 $('.gstyle_pop').find('li').eq(index).width(gstyle_max);		  
+		  });
+		}		
+		$('.gstyle').find('.gstyle_pop').find('li').eq(parseInt($(this).attr('select'))).addClass('gpop_on').siblings().removeClass('gpop_on');
+	},function(){
+	    $('.gstyle_pop').hide();
+		$(this).removeClass('gstyle_on');
+	});	
+	$('.gstyle_pop').find('li').hover(function(){
+		$(this).addClass('gpop_on').siblings().removeClass('gpop_on');
+		$('.gstyle').removeClass('gstyle_on');
+	}, function(){		
+	});					   
+	setHeadFlowNum();//购物车数量
+	setSearchAicon('','');
+});
+</script>
+
+<%end%>
+<% content_for :headother do%>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" href="/animated_favicon.gif" type="image/gif" />
+<% end%>
+<div id="main">
+    
+     
+	 
+	
+    
+<%categories=header()%>
+   <div id="left">
+	 
+<div class="listbox_top cat_11"></div>
+<div class="listbox">
+  <%categories.each do |category|%>
+       <dl class="list list_off" style="border-top:none;">
+        <dt><a href="<%=mycategory_url(category.id)%>" title=""><b><%=category.name%></b></a><div id="clear"></div></dt>
+
+      </dl>
+  <%end%>
+
+  </div>   </div>
+
+<div id="right">
+ 
+  <div class="top_nav"><a href="/" title="首页">首页</a>&gt;  	<span><%=@topic.name%></span>
+
+    <div class="gstyle garrow" select="4">
+      <p><%=@topic.name%></p>
+      <ul class="gstyle_pop" style="display:none;">
+        <%Topic.where(:on=>true).where("id<>#{@topic.id}").all.each do |topic|%>
+                 <li ><a title="<%=topic.name%>" href="/topic/<%=topic.id%>"><%=topic.name%></a></li>
+        <%end%>
+              </ul>
+      </div>      
+      </div>
+        <%@topic.details.each do |topic_detail|%>
+         <div class="zhuanti_top"><%=raw topic_detail.content%></div>
+                       <div class="zhuanti_split"></div>
+        <%
+        unless topic_detail.product_show_id.nil?
+          topic_detail.product_show.products.each_slice(4).each do |products|
+        %>
+                    <div class="list_line">
+              <%products.each do |product|%>
+                    <ul class="goods_list">
+              <li class="goods_pic">
+              <a href="<%=myproduct_url(product.id)%>" target="_blank"><%=image_tag product.i1.url(:medium),:alt=>product.name%></a>
+                       	              	  <span class="dis_tip"><font class="dis_num"><%=raw show_promotion_num(product)%></font></span>
+            	                            </li>
+
+                           <li class="goods_brand"><a href="/brands/<%=product.brand_id%>">[&nbsp;<%=product.brand.name if product.brand%>&nbsp;]</a></li>
+                           <li class="goods_name">
+                  <a  href="<%=myproduct_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=product.name%></a>
+                                 </li>
+                  <li class="goods_dprice">￥<%=price(product.p1)%>元</li>
+                <li class="goods_price">￥<%=price(product.p2)%>元</li>
+                                        <li class="goods_attr">
+                                          <%if product.new%>
+                            	<span class="new_goods" title="新品"></span>
+                                <!--<span title="进行缺货登记，到货后短信通知(免费)" style="color: rgb(255, 255, 255);" onclick="window.open('http://www.geilibuy.com/user.php?act=add_booking&amp;id=6152')" class="no_goods"></span>-->
+                                          <%end%>                      </li>
+					<%c=product.postsale_comments.size
+					if c>0%>
+                            <li class="goods_pinglun"><a href="<%=myproduct_url(product.id)%>" target="_blank"><span><%=c%>条评论</span></a></li>
+			    <%end%>
+                        </ul>
+              <%end%>
+                   
+                        <div id="clear"></div></div>
+          <%end%>
+        <%end%>
+        <%end%>
+                        
+                        <div id="clear"></div></div>
+                      
+</div>
+<div id='clear'></div>
+</div>

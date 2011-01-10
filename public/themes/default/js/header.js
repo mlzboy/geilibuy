@@ -121,7 +121,32 @@ function myAddBookmark(B, A) {
         window.external.AddFavorite(A, B)
     }
 }
+/* ajax检测用户登录状态 */
+function setHeadUserStatus2(back_url) {
 
+    $.ajax({
+        type: "POST",
+        url: "/usercenter/check?act=check_login",
+        data: "act=check_login",
+        success: function(A) {
+            var re = eval("(" + A + ")");
+            var U = $("#head_right").find('ul');
+            if(re.error == 1){
+                U[1].style.display = 'block';
+                U[2].style.display = 'none';
+                $("#head_right").find('ul').eq(1).find('#nickname').html(re.content['nickname']);//显示用户名
+                if(!re.content['have_msg']){
+                $("#head_right").find('ul').eq(1).find('#msg_a').css({'display':"none"});//显示提示图标
+                }
+            }else{
+                $("#login").html('<a href="/usercenter/login?back_url='+back_url+'">登录</a>');//显示登录
+                 $("#register").html('<a href="/usercenter/register?'+Math.round(Math.random()*(100000-1))+'">注册</a>');//显示注册
+                U[0].style.display = 'block';
+                U[2].style.display = 'none';
+            }
+        }
+    })
+}
 /* ajax检测用户登录状态 */
 function setHeadUserStatus() {
 

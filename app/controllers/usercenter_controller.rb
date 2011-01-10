@@ -10,15 +10,72 @@ include MyLib4
 class UsercenterController < ApplicationController
   layout 'front'
   #before_filter :login?,:only=>[:invites,:index,:address,:order_list,:order_detail,:coupons]
-  before_filter :login?,:except=>[:check,:login,:register]
+  before_filter :login?,:except=>[:check,:login,:register,:forgot]
+  def del_out_of_stock
+    out_of_stock_id=params[:out_of_stock_id]
+    OutOfStock.destroy(out_of_stock_id)
+    redirect_to "/usercenter/out_of_stock" and return
+  end
+  def new_out_of_stock
+    product_id=params[:product_id]
+    @product=Product.find_by_id(product_id)
+    unless @product
+      redirect_to "/usercenter/out_of_stock" and return
+    end
+    if request.get?
+      render :layout=>"usercenter" and return
+    else
+        
+        oos=OutOfStock.new
+        oos.user_id=current_user.id
+        oos.product_id=@product.id
+        oos.mobile=params[:tel]
+        oos.message=params[:desc]
+        oos.email=params[:email]
+        oos.save
+        logger.debug("TTTTTTTTTSSSSSSSSSSSSSSFFFFFFFFFFFFF")
+        redirect_to "/usercenter/out_of_stock" and return
+    end
+
+  end
+  def out_of_stock
+    @out_of_stocks=current_user.out_of_stocks
+    logger.debug("OOOOOOTTTTTTTOFFFFFF")
+    logger.debug(@out_of_stocks)
+    render :layout=>"usercenter"
+  end
+  def change_password_by_email
+    if request.post?
+      pass=params[:new_password]
+      u=current_user
+      u.password=pass
+      u.save
+      @error_info="重新设置密码成功！  "
+      render "error" and return
+    end
+  end
+  def forgot
+    if request.post?
+      email=params[:email]
+      if email.blank? ==false and User.find_by_email(email)
+        CoreMail.find_password(email).deliver
+         @error_info="重置密码的邮件已经发到您的邮箱：#{email}  "
+      else
+         @error_info="不存在该用户  "
+      end
+      render "error" and return
+    end
+  end
+  
   def invites
     render :layout=>"usercenter"
   end
   def scores
     #@score_details=current_user.score_details
+    u=current_user
     page=params[:page]
     page=1 if page.blank?    
-    @score_details=ScoreDetail.paginate :order=>"id desc",:per_page=>20,:page=>page
+    @score_details=ScoreDetail.paginate :conditions=>["user_id=?",u.id],:order=>"id desc",:per_page=>20,:page=>page
     @total_cost=ScoreDetail.where(:user_id=>current_user.id).where("score<0").sum(:score)
     @total_get=ScoreDetail.where(:user_id=>current_user.id).where("score>0").sum(:score)
     @page=MyLib3::gen_page_html3(@score_details)
@@ -172,7 +229,7 @@ window.location.href='/usercenter/mod_password'},2000);
         products.concat order.products
       end
     end
-    logger.debug("==================")
+    logger.debug("=======ZZZZZZZZZZZZZZZZZZZZZZZZZzzzzzzzzz===========")
     logger.debug(products.size)
     logger.debug(products)
     @products,@page = MyLib4::gen_page_html4(products,10,page)
@@ -299,10 +356,11 @@ window.location.href='/usercenter/mod_password'},2000);
       end
       u=User.find_by_email_and_password(email,password)
       if u
-        session["user"]={"email"=>u.email,"nick"=>u.nick,"id"=>u.id}
-        cookies["user"]={:value=>u.email,:expires=>1.year.from_now}
+        session["user"]={"email"=>u.email,"nick"=>u.nick,"id"=>u.id,:domain=>".geilibuy.com"}
+        cookies["user"]={:value=>u.email,:expires=>1.year.from_now,:domain=>".geilibuy.com"}
         if remember
-          cookies["remember"]={:value=>true,:expires=>1.year.from_now}
+          cookies["remember"]={:value=>true,:expires=>1.year.from_now,:domain=>".geilibuy.com"}
+          cookies["hash"]={:value=>u.active_code,:expires=>1.year.from_now,:domain=>".geilibuy.com"}
         end
         #设置cookie
         if back_url.blank?
@@ -319,6 +377,8 @@ window.location.href='/usercenter/mod_password'},2000);
 
   def logout
     session.clear
+    #cookies.permanent["remember"]=false
+    cookies["remember"]={:value=>false,:expires=>1.year.from_now,:domain=>".geilibuy.com"}
     back_url=params[:back_url]
     if back_url.blank?
       redirect_to "/usercenter/login"
@@ -370,13 +430,14 @@ window.location.href='/usercenter/mod_password'},2000);
         end
         
         
-        ActiveMailer.registration_confirmation(u).deliver
+        #ActiveMailer.registration_confirmation(u).deliver
+        CoreMail.registration_confirmation(u).deliver
         session[:email]=email
         session[:active]=false
         session[:url]="http://www."+email[email.index("@")+1,email.size]
           #以下两行要extract method
           session["user"]={"email"=>u.email,"nick"=>u.nick,"id"=>u.id}
-          cookies["user"]="frederick.mao@gmail.com"
+          cookies["user"]={:value=>u.email,:expires=>1.year.from_now,:domain=>".geilibuy.com"}
           
         if !back_url.blank?
           u.active=true
@@ -449,6 +510,49 @@ window.location.href='/usercenter/mod_password'},2000);
   def check
     act=request.params[:act]
     case act
+    when "do_exchange"
+      r={}
+      lucky=params[:num]
+      unless has_login?
+        r["content"]=""
+        r["error"]=-1
+        r["message"]="未登录不可使用该功能"
+      else
+        u=current_user
+        content={}
+        if lucky.blank? ==false
+          lucky=lucky.to_i
+          if lucky*3 <= u.score
+            r["message"]=""
+            r["error"]=0
+            #u.score-=lucky*3
+            u.lucky+=lucky
+            u.save
+            u.minus_scores(lucky*3,"兑换幸运点")
+            content["integral"]=u.score
+            content["num"]=lucky
+            content["exchange_num"]=u.score/3
+            r["content"]=content
+          else
+            r["message"]="您的积分不足"
+            r["error"]=1
+            r["content"]=""
+          end
+        end
+
+      end
+      render :json=>r
+    when "find_password"
+      user_id=params[:id]
+      active_code=params[:hash]
+      u=User.find_by_id_and_active_code(user_id,active_code)
+      if u
+        session["user"]={"email"=>u.email,"nick"=>u.nick,"id"=>u.id,:domain=>".geilibuy.com"}
+        render "change_forgot_password"
+      else
+        @error_info="非法的参数"
+        render "error"
+      end
     when "act_add_message_nologin"
       Advice.create(:content=>content=params[:msg_content],:ip=>request.remote_ip)
       r={}
@@ -551,9 +655,10 @@ r["content"]=content
           render "error"
         else
           u.active=true
+          u.lucky=30
           u.save
           
-          u.plus_scores(30,"邮箱注册激活")
+          #u.plus_scores(30,"邮箱注册激活")
           @user=u
           render "active_success"
         end

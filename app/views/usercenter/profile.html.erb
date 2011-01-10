@@ -3,7 +3,7 @@ ud=u.user_detail
 %>
 <div class="right_top">
         	<span class="welcome info"></span>
-            <span class="goon_btn"><a style="color:#fff;"  href="./" title="首页">继续购物</a></span>
+            <span class="goon_btn"><a style="color:#fff;"  href="/shopping/cart" title="购物篮">继续购物</a></span>
         </div>
 		<form name="formEdit" action="/usercenter/profile" method="post" onSubmit="return userCenterInfoEditAction();">
 				<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
@@ -104,3 +104,13 @@ ud=u.user_detail
 </form>
 </div>
 
+<% content_for :outhtml do %>
+<script type="text/javascript">
+  stepUserCenterAction('profile');//设置活动menu
+  setHeadFlowNum();//购物车数量
+       /*静态页面调用该函数*/
+        setHeadUserStatus();
+	$(".top_nav span").eq(0).text("编辑个人档案");
+
+</script>
+<%end%>

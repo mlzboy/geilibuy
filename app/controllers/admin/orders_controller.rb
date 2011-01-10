@@ -86,6 +86,9 @@ class Admin::OrdersController < AdminController
         mail=TuanMail.order_send(@order,email,title)
         mail.deliver        
         logger.debug("TTTTTTTTTTTTREEEEEEEEEEEEEEEEEEEEE")
+      elsif order_status_id==16 and @order.tuangou==false
+        CoreMail.order_send(@order).deliver
+        logger.debug("发送已发货邮件")
       end
     end
     respond_to do |format|

@@ -11,7 +11,7 @@ class Category < ActiveRecord::Base
   before_create:add_uuid
   has_and_belongs_to_many:products
   has_and_belongs_to_many:brands
-  has_attached_file :i1,:processors => [:jcropper],:styles=>{:show=>"55x55#",:process=>"800x800>"}
+  has_attached_file :i1,:processors => [:jcropper],:styles=>{:show=>"55x55#",:process=>"800x800>"},:url => "/system/:class/:id_partition/:style/:filename",:path => ":rails_root/public/system/:class/:id_partition/:style/:filename"
   after_update :reprocess_avatar,:if => :cropping?
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h, :crop_f
   validates :name,  :presence => true

@@ -25,6 +25,7 @@
 			.sina {background-position:0 -70px; padding-left:23px;margin-right:10px;}
 			.douban {background-position:0 -93px; padding-left:22px;margin-right:10px;}
 			.shuoke {background-position:0 -116px; padding-left:20px;margin-right:10px; }
+                        .my_qq {background-position:0 -165px; padding-left:20px;margin-right:10px; }
 			.fuzhi {background-position:200px 0; padding-left:0; margin-left:10px; margin-right:0;cursor:pointer;}
 		#copylink { clear:left; width:400px; padding-top:5px;}
 			.copybtn { height:23px; width:78px; font-weight:normal; display:block; padding-top:0px;*padding-top:2px !important;*padding-top:2px; }

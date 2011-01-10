@@ -13,16 +13,16 @@
 <title>[爱屋格林彩色印花餐巾-悠闲的高尔夫球] 爱屋格林 【30天免费退换】_厨浴专卖_给力百货 - 日用百货量贩平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品</title>
 <%end%>
 <% content_for :headstyle do %>
-<link href="/themes/default/css/header.css" rel="stylesheet" type="text/css" />
-<link href="/themes/default/css/goods.css" rel="stylesheet" type="text/css" />
+<%=stylesheet_link_tag "/themes/default/css/header.css"%>
+<%=stylesheet_link_tag "/themes/default/css/goods.css"%>
 <%end%>
 <% content_for :headjs do %>
-<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
-<script type="text/javascript" src="/themes/default/js/header.js" charset="UTF-8"></script>
-<script type="text/javascript" src="/themes/default/js/js-clib.js" charset="UTF-8"></script>
-<script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
-<script type="text/javascript" src="/themes/default/js/divpop.js" charset="UTF-8"></script>
-<script type="text/javascript" src="/themes/default/js/goods.js" charset="UTF-8"></script>
+<%=javascript_include_tag "/themes/default/js/quwan.js",:charset=>"UTF-8"%>
+<%=javascript_include_tag "/themes/default/js/header.js",:charset=>"UTF-8"%>
+<%=javascript_include_tag "/themes/default/js/js-clib.js",:charset=>"UTF-8"%>
+<%=javascript_include_tag "/themes/default/js/global.js",:charset=>"UTF-8"%>
+<%=javascript_include_tag "/themes/default/js/divpop.js",:charset=>"UTF-8"%>
+<%=javascript_include_tag "/themes/default/js/goods.js",:charset=>"UTF-8"%>
 
 <script type="text/javascript">
   $(document).ready(function(){
@@ -50,7 +50,7 @@
   <li><strong class="name"><%=@product.name%></strong></li>
   <li>
         商品品牌：
-        <a title="点击查看本品牌所有商品" href="http://www.geilibuy.com/search.php?brand=382"  class="info_a" ><strong>evergreen</strong></a>
+        <a title="点击查看本品牌所有商品" href="/brands/<%=@product.brand_id%>"  class="info_a" ><strong>evergreen</strong></a>
         &nbsp;&nbsp;
         商品编号：<b><span id="goods_id"><%=@product.id%></span></b></li>
     <li>市 场 价：<b class="price"><%=price(@product.p1)%>元</b></li>
@@ -79,7 +79,7 @@
     </div>
   </li>
   <%end%>
-      <li class="score">商品评分：<span class="star s0"></span> <a class="info_a" id="topshowall" href="#comments">(已有0条买家评论)</a> </li>
+      <li class="score">商品评分：<span class="star s0"></span> <a class="info_a" id="topshowall" href="#comments">(已有<%=@product.postsale_comments.size%>条买家评论)</a> </li>
   <li>累计销售：<%=@product.sale%>件</li>
   <li> 至 <span id="addr_do"> <span id="addr" name="2">北京</span><span id="toaddr">：</span>
     <div class="pop_out" id="addr_pop">
@@ -135,7 +135,7 @@
           实际运费金额以订单确认页面的金额为准！</div>
       </div>
     </div>
-    </span> <span id="kuaidi"></span>　<a class="info_a" href="http://www.geilibuy.com/article-15.html" target="_blank">运费说明</a> </li>
+    </span> <span id="kuaidi"></span>　<a class="info_a" href="/helpcenter/17" target="_blank">运费说明</a> </li>
   <li class="paymethods">
     <ul>
       <li><a class="pay1">满99元免运费</a></li>
@@ -156,7 +156,7 @@
         <p><%=@product.name%></p>
         <ul class="gstyle_pop">
           <%style_products.each_with_index do |product,index|%>
-          <li<%=raw ' class="gpop_on"' if index==0%><a title="<%=product.name%>" href="<%=product_url(product.id)%>"><%=product.name%></a></li>
+          <li<%=raw ' class="gpop_on"' if index==0%><a title="<%=product.name%>" href="<%=myproduct_url(product.id)%>"><%=product.name%></a></li>
           <%end%>
                   </ul>
         </span> </dd>
@@ -170,6 +170,7 @@
       </dd>
       <dd style="padding-left:5px;padding-top:2px;*padding-top:1px !important;*padding-top:1px;">件</dd>
     </dl>
+      <%if @product.stock>0%>
             <div><a class="buy_btn" href="javascript:inToCartAction('<%=@product.id%>','<%=@product.name%>',1,0,1)"></a> </div>
     <input type="hidden" value="12" id="gs">
     <div class="pop_out" id="cat_pop1" style="left:5px;*left:5px !important;*left:-15px; top:6px; width:303px; padding-bottom:5px;">
@@ -191,22 +192,57 @@
         </table>
       </div>
     </div>
+      <%else%>
+      <dl>
+      <dt style="line-height: 35px;" class="kt1">该商品暂时缺货：</dt>
+      <dd><a target="_blank" href="/usercenter/out_of_stock/<%=@product.id%>/new" class="buy_btn empty_btn"></a></dd>
+    </dl>
+    <!--  <dl style="height: 22px;">-->
+    <!--  <dt class="kt1">&nbsp;</dt>-->
+    <!--  <dd><span class="empty">到货后手机短信通知（免费）</span></dd>-->
+    <!--</dl>-->
+      <%end%>
+      
       </li>
   </ul>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <div class="pic">
   <div id="pic_box">
-         <img class="switch_item" src="<%=@product.i1.url(:big)%>" width="400" height="400" alt="<%=@product.name%>" title="<%=@product.name%>" turnXml = '0'/>          <img class="switch_item" src="<%=@product.i2.url(:big)%>" width="400" height="400" alt="<%=@product.name%>" title="<%=@product.name%>" turnXml = '1'/>          <img class="switch_item" src="<%=@product.i3.url(:big)%>" width="400" height="400" alt="<%=@product.name%>" title="<%=@product.name%>" turnXml = '2'/>          <img class="switch_item" src="<%=@product.i4.url(:big)%>" width="400" height="400" alt="<%=@product.name%>" title="<%=@product.name%>" turnXml = '3'/>       </div>
+        <%if @product.i1?%>
+        <%=image_tag @product.i1.url(:big),:class=>"switch_item",:width=>400,:height=>400,:alt=>@product.name,:title=>@product.name,:turnXml=>0%>
+         <!--<img class="switch_item" src="<%=@product.i1.url(:big)%>" width="400" height="400" alt="<%=@product.name%>" title="<%=@product.name%>" turnXml = '0'/>-->
+        <%end%>
+        <%if @product.i2?%>
+        <%=image_tag @product.i2.url(:big),:class=>"switch_item",:width=>400,:height=>400,:alt=>@product.name,:title=>@product.name,:turnXml=>1%>
+         <!--<img class="switch_item" src="<%=@product.i2.url(:big)%>" width="400" height="400" alt="<%=@product.name%>" title="<%=@product.name%>" turnXml = '1'/>-->
+         <%end%>
+         <%if @product.i3.file?%>
+        <%=image_tag @product.i3.url(:big),:class=>"switch_item",:width=>400,:height=>400,:alt=>@product.name,:title=>@product.name,:turnXml=>2%>
+         <!--<img class="switch_item" src="<%=@product.i3.url(:big)%>" width="400" height="400" alt="<%=@product.name%>" title="<%=@product.name%>" turnXml = '2'/>-->
+          <%end%>
+        <%if @product.i4.file?%>
+        <%=image_tag @product.i4.url(:big),:class=>"switch_item",:width=>400,:height=>400,:alt=>@product.name,:title=>@product.name,:turnXml=>3%>
+         <!--<img class="switch_item" src="<%=@product.i4.url(:big)%>" width="400" height="400" alt="<%=@product.name%>" title="<%=@product.name%>" turnXml = '3'/>-->
+        <%end%>
+  </div>
   <ul class="pic_index">
-                <li class="pic_li pic_on" turnXml = '0' cGXML = "10849" iMXML ="10849"><img src="<%=@product.i1.url(:thumb)%>" title="<%=@product.name%>[1]" /></li>
-                        <li class="pic_li " turnXml = '1' cGXML = "10849" iMXML ="17446"><img src="<%=@product.i2.url(:thumb)%>" title="<%=@product.name%>[2]" /></li>
-                        <li class="pic_li " turnXml = '2' cGXML = "10849" iMXML ="17447"><img src="<%=@product.i3.url(:thumb)%>" title="<%=@product.name%>[3]" /></li>
-                        <li class="pic_li " turnXml = '3' cGXML = "10849" iMXML ="17448"><img src="<%=@product.i4.url(:thumb)%>" title="<%=@product.name%>[4]" /></li>
-              </ul>
+        <%if @product.i1?%>
+        <li class="pic_li pic_on" turnXml = '0' cGXML = "10849" iMXML ="10849"><img src="<%=@product.i1.url(:thumb)%>" title="<%=@product.name%>[1]" /></li>
+        <%end%>
+        <%if @product.i2?%>
+        <li class="pic_li " turnXml = '1' cGXML = "10849" iMXML ="17446"><img src="<%=@product.i2.url(:thumb)%>" title="<%=@product.name%>[2]" /></li>
+        <%end%>
+        <%if @product.i3?%>
+        <li class="pic_li " turnXml = '2' cGXML = "10849" iMXML ="17447"><img src="<%=@product.i3.url(:thumb)%>" title="<%=@product.name%>[3]" /></li>
+        <%end%>
+        <%if @product.i4.file?%>
+        <li class="pic_li " turnXml = '3' cGXML = "10849" iMXML ="17448"><img src="<%=@product.i4.url(:thumb)%>" title="<%=@product.name%>[4]" /></li>
+        <%end%>
+  </ul>
   <div class="do_some" style="position:relative;"> <a class="share"> </a> <a class="collect" href="javascript:collectGoodsAction('<%=@product.id%>')"> </a>
 <%
-share_url=url_encode("http://www.geilibuy.com#{product_url(@product.id)}")
+share_url=url_encode("http://www.geilibuy.com#{myproduct_url(@product.id)}")
 share_title="分享个创意东东，#{url_encode(@product.name)}，来自给力百货"
 xiaonei=%Q{http://share.xiaonei.com/share/buttonshare.do?link=#{share_url}&title=#{share_title}}
 kaixin=%Q{http://www.kaixin001.com/repaste/share.php?title=#{share_title}&rurl=#{share_url}}
@@ -259,8 +295,8 @@ baidu=%Q{http://cang.baidu.com/do/add?it=#{share_title}&tn=#{share_url}}
   <div class="t_span"><span class="t_t2"></span></div>
   <%five_products.each do |product|%>
     <ul style="clear:both;">
-    <li class="f_img"><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><img src="<%=product.i1.url(:small)%>"  alt="<%=product.name%>"/></a></li>
-    <li style="text-align:left;"><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>16%></a></li>
+    <li class="f_img"><a href="<%=myproduct_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=image_tag product.i1.url(:small),:alt=>product.name%><!--<img src="<%=product.i1.url(:small)%>"  alt="<%=product.name%>"/>--></a></li>
+    <li style="text-align:left;"><a href="<%=myproduct_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>16%></a></li>
     <li style="text-align:left;"><span>￥<%=price(product.p2)%>元</span></li>
   </ul>
     <%end%>
@@ -278,18 +314,75 @@ baidu=%Q{http://cang.baidu.com/do/add?it=#{share_title}&tn=#{share_url}}
   <div class="left" style="overflow:hidden;">
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<div class="act_top"><span></span></div>
-<div class="premium">
-  <table width="700" border="0" cellpadding="0" cellspacing="0">
-            <tr>
-      <td width="40" height="20"><font color="#cc0000">买赠</font></td>
-      <td width="520">给力百货光棍节活动，全场满129元赠贴心毯！</td>
-      <td width="180">(结束日期：2010-11-16)</td>
+<!--<div class="act_top"><span></span></div>-->
+<!--<div class="premium">-->
+<!--  <table width="700" border="0" cellpadding="0" cellspacing="0">-->
+<!--            <tr>-->
+<!--      <td width="40" height="20"><font color="#cc0000">买赠</font></td>-->
+<!--      <td width="520">给力百货光棍节活动，全场满129元赠贴心毯！</td>-->
+<!--      <td width="180">(结束日期：2010-11-16)</td>-->
+<!---->
+<!--    </tr>-->
+<!--          </table>-->
+<!--</div>-->
+<%if @product_show
+total_products=@product_show.products
+original_price=0
+total_products.map{|product| original_price+=product.p2}
+recommend_products=total_products.reject{|product| product.id==@product.id}
 
-    </tr>
-          </table>
+%>
+
+<div class="act_top"><span id="act_top1"></span></div>
+<form name="packaging_0">
+<div class="combin">
+            <div class="this"><a><%=image_tag @product.i1.url(:small)%></a></div>
+    <input type="hidden" name="main_goods_id" value="<%=@product.id%>">
+      <input type="hidden" name="main_goods_price" value="<%=price(@product.p4)%>">
+        <div class="goods_bin"> 
+        <ul class="goods">
+      <%recommend_products.each_with_index do |product,index|%>
+      <li><div class="add"></div><a target="_blank" href="<%=myproduct_url(product.id)%>" title="<%=product.name%>"><%=image_tag product.i1.url(:small),:alt=>product.name%></a> <div class="clear"></div></li>
+      <li>
+        <input type="checkbox" onclick="checkGift(0,this);" checked="checked" value="<%=product.id%>" name="packaging_goods_id0[]">
+        <input type="hidden" value="<%=product.p4%>" name="packaging_goods_price0[]">
+        <input type="hidden" value="<%=product.p2%>" name="packaging_current_price0[]">
+        <a target="_blank" href="<%=myproduct_url(product.id)%>" title="<%=product.name%>"><%=product.name%></a>
+      </li>
+      <%end%>
+    </ul>
+          </div>
+  <ul style="position: relative;" id="equ0" class="equ">
+    <li>原价：<b><%=price(original_price)%>元</b></li>
+    <li>优惠价格：<span><%=price(@product_show.suite_price)%>元</span></li>
+    <li><a style="cursor: pointer;" onclick="checkPackaginggoods(0,$(this))" class="combin_btn"></a></li>
+  </ul>
+  <div class="clear"></div>
+  <div style="left: -123px; top: -51px; width: 303px; padding-bottom: 5px;" id="cat_pop" class="pop_out">
+      <div style="width: 281px;" class="pop_in">
+        <div style="border-bottom: medium none; margin-bottom: 0pt;" class="pop_top">
+          <div class="close">关闭</div>
+        </div>
+        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+          <tbody><tr>
+            <td align="center" valign="middle" height="50" colspan="2"><span style="color: rgb(0, 0, 0); font-size: 14px;" class="pop_inf">商品已成功添加到购物车</span></td>
+          </tr>
+          <tr>
+            <td align="right" width="70%" valign="middle" height="30"><a href="/shopping/cart" class="pop_btn">去购物车结算</a></td>
+            <td align="left" width="30%" valign="middle"><a onclick="$('.close').click();" style="cursor: pointer;" class="info_a">继续逛&gt;&gt;</a></td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle" height="20" colspan="2"></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
 </div>
-
+<input type="hidden" value="<%=@product_show.id%>" name="packaging_act_id0">
+<input type="hidden" value="迷你蘑菇USB三脚按摩器-蓝色+充气U型护颈枕-蓝色 组合" name="packaging_act_name0">
+<input type="hidden" readonly="" value="0" name="packaging_goods_id0[]">
+</form>
+<%end%>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
     <div class="scrip_bar">
@@ -391,7 +484,18 @@ baidu=%Q{http://cang.baidu.com/do/add?it=#{share_title}&tn=#{share_url}}
     </ul>
     <div class="do_pl">购买过该商品的用户才能发表评论，<br />
       发布评论赠送<span>20积分</span> 评论被选为精华再赠送<span>50积分</span><br />
-      <a href="http://www.geilibuy.com/helpercenter/11">积分是什么？</a><a class="pl_btn" href="http://www.geilibuy.com/user.php?act=comment_list_new&goods_id=10849"></a></div>
+      <a href="http://www.geilibuy.com/helpercenter/11">积分是什么？</a>
+      <%
+      if has_login?
+        if current_user.bought_product?(@product)
+      %>
+        <a class="pl_btn" href="http://www.geilibuy.com/usercenter/postsale_comments/<%=@product.id%>/new"></a></div>
+        <%else%>
+        <a class="pl_btn" href="javascript:alert('购买此商品才能对此商品进行评价！');"></a></div>
+        <%end%>
+      <%else%>
+        <a class="pl_btn" href="javascript:alert('登录后购买此商品才能对此商品进行评价！');"></a></div>
+      <%end%>
     <div class="clear"></div>
   </div>
   <div id="goods_comments_list_box_body">

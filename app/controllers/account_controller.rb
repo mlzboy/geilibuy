@@ -56,7 +56,7 @@ class AccountController < ApplicationController
   def chargepay
     if request.post?
       money=params[:amount]
-      cookies["tuan_cash_money"]=money.to_s
+      cookies["tuan_cash_money"]={:value=>money.to_s,:domain=>".geilibuy.com"}
     end
   end
   def check_money
@@ -79,7 +79,7 @@ class AccountController < ApplicationController
   #要前置过滤器检查金额>0
   def pay
       payment_id=params[:payment]
-      cookies["tuan_payment_id"]=payment_id
+      cookies["tuan_payment_id"]={:value=>payment_id,:expires=>1.year.from_now,:domain=>".geilibuy.com"}
       @payment=Payment.find(payment_id)
   end
   def pay_jump

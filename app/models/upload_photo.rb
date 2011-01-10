@@ -1,7 +1,7 @@
 class UploadPhoto < ActiveRecord::Base
   belongs_to:user
   belongs_to:product
-  has_attached_file :i1,:styles=>{:small=>"100x100>"}
+  has_attached_file :i1,:styles=>{:small=>"100x100>"},:url => "/system/:class/:id_partition/:style/:filename",:path => ":rails_root/public/system/:class/:id_partition/:style/:filename"
   def specific_product_count()
     UploadPhoto.where(:user_id=>self.user_id).where(:product_id=>self.product_id).count()
   end

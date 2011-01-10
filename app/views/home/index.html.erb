@@ -76,8 +76,7 @@ material=topad[0]
  <div class="top_ad">
 <table cellpadding="0" cellspacing="0">
 <tr><td><a href='<%=material.hyperlink%>'
-                target='_blank'><img src='<%=material.image_url.url%>' width='960' height='104'
-                border='0' /></a></td></tr>
+                target='_blank'><%=image_tag material.image_url.url,:width=>960,:height=>104,:border=>0%><!--<img src='<%=material.image_url.url%>' width='960' height='104' border='0' />--></a></td></tr>
 </table>
 </div> 
 <%end%>    
@@ -88,7 +87,11 @@ material=topad[0]
 
     <ul id="fbox">
       <%ad0.each do |material|%>
-            <li class="switch_item"><a href="<%=material.hyperlink%>" target="_blank" title="<%=material.title%>"><img src="<%=material.image_url.url%>" width="690" height="374" alt="<%=material.alt%>" /></a></li> 
+            <li class="switch_item"><a href="<%=material.hyperlink%>" target="_blank" title="<%=material.title%>">
+	    <!--KKKKKKKKKKKKKKK-->
+	    <%=image_tag material.image_url.url,:width=>690,:height=>374,:alt=>material.alt%>
+	    <!--<img src="<%=material.image_url.url%>" width="690" height="374" alt="<%=material.alt%>" />-->
+	    </a></li> 
       <%end%>
     </ul> 
     <ul id="fbar"> 
@@ -98,8 +101,8 @@ material=topad[0]
           </ul> 
   </div> 
   
-  <div class="f_ad f_ad1"><a href="<%=ad1.hyperlink%>" target="_blank" title="<%=ad1.title%>"><img src="<%=ad1.image_url.url%>"   width="340" height="129"  alt="<%=ad1.alt%>" /></a></div> 
-  <div class="f_ad"><a href="<%=ad2.hyperlink%>" target="_blank" title="<%=ad2.title%>"><img src="<%=ad2.image_url.url%>" width="340" height="129" alt="<%=ad2.alt%>"/></a></div> 
+  <div class="f_ad f_ad1"><a href="<%=ad1.hyperlink%>" target="_blank" title="<%=ad1.title%>"><%=image_tag ad1.image_url.url,:width=>340,:height=>129,:alt=>ad1.alt%><!--<img src="<%=ad1.image_url.url%>"   width="340" height="129"  alt="<%=ad1.alt%>" />--></a></div> 
+  <div class="f_ad"><a href="<%=ad2.hyperlink%>" target="_blank" title="<%=ad2.title%>"><%=image_tag ad2.image_url.url,:width=>340,:height=>129,:alt=>ad2.alt%><!--<img src="<%=ad2.image_url.url%>" width="340" height="129" alt="<%=ad2.alt%>"/>--></a></div> 
   <div class="clear"></div> 
 </div> 
 <div class="right" id="flashright"> 
@@ -108,7 +111,7 @@ material=topad[0]
             <dd class="t_name"><a href="/tuan" title="<%=@tuan.title%>" target="_blank"><b><%=truncate @tuan.title,:length=>40%></b></a></dd>            
             <dd class="rush_img"> 
             	<a href="/tuan" title="<%=@tuan.title%>" target="_blank" class="new_tip q1" id="rush_tipa"></a> 
-            	<a href="/tuan" target="_blank"><img alt="<%=@tuan.title%>" src="<%=@tuan.i1.url(:medium)%>"   height="139" width="231"/></a>                
+            	<a href="/tuan" target="_blank"><%=image_tag @tuan.i1.url(:medium),:alt=>@tuan.title,:height=>139,:width=>231%><!--<img alt="<%=@tuan.title%>" src="<%=@tuan.i1.url(:medium)%>"   height="139" width="231"/>--></a>                
 		<%if @tuan.selling?%>
 	        <span  class="new_tip q1"  id="rush_tip"></span>
 		<%else%>
@@ -121,7 +124,7 @@ material=topad[0]
 			<!--<font id="update_time"><font class="overtime"><b style="border-right:none;">&nbsp;&nbsp;</b></font><font class="overtime"><b>&nbsp;&nbsp;</b></font><strong>:</strong><font class="overtime"><b style="border-right:none;">&nbsp;&nbsp;</b></font><font class="overtime"><b>&nbsp;&nbsp;</b></font><strong>:</strong><font class="overtime"><b style="border-right:none;">&nbsp;&nbsp;</b></font><font class="overtime"><b>&nbsp;&nbsp;</b></font></font>-->
 			<font id="update_time"><font class="overtime"><b style="border-right: medium none;">0</b></font><font class="overtime"><b>0</b></font><strong>:</strong><font class="overtime"><b style="border-right: medium none;">0</b></font><font class="overtime"><b>0</b></font><strong>:</strong><font class="overtime"><b style="border-right: medium none;">0</b></font><font class="overtime"><b>0</b></font></font>
 			</dd> 
-                        <dd class="t_btn"><a href="/tuan" target="_blank"><img src="/themes/default/imgs/global/tuan_btn.gif"  height="38" width="136"/></a></dd> 
+                        <dd class="t_btn"><a href="/tuan" target="_blank"><%=image_tag "/themes/default/imgs/global/tuan_btn.gif",:height=>38,:width=>136%><!--<img src=  height="38" width="136"/>--></a></dd> 
       </dl> 
   <dl class="notice"> 
     <dt></dt>
@@ -149,12 +152,12 @@ material=topad[0]
                   <%ps11.each do |product|%>
                                     <ul class="new_ul"> 
                         <li class="new_img"> 
-                        	<a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" /></a> 
+                        	<a href="<%=myproduct_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=image_tag product.i1.url(:small),:alt=>product.name%><!--<img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" />--></a> 
 				<%if product.promotion%>
 				<span class="new_tip"><div style="" class="tip_num"><%=raw show_promotion_num(product)%></div></span>
 				<%end%>
                         	                    </li> 
-                        <li><a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=product.name%></a></li> 
+                        <li><a href="<%=myproduct_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=product.name%></a></li> 
                         <li><span><%=product.p2%>元</span></li>                        
                     </ul>
                   <%end%>
@@ -166,12 +169,12 @@ material=topad[0]
                   <%ps12.each do |product|%>
                                     <ul class="new_ul"> 
                         <li class="new_img"> 
-                        	<a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" /></a>
+                        	<a href="<%=myproduct_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=image_tag product.i1.url(:small),:alt=>product.name%><!--<img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" />--></a>
 				<%if product.promotion%>
 				<span class="new_tip"><div style="" class="tip_num"><%=raw show_promotion_num(product)%></div></span>
 				<%end%>
                         	                    </li> 
-                        <li><a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=product.name%></a></li> 
+                        <li><a href="<%=myproduct_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=product.name%></a></li> 
                         <li><span><%=product.p2%>元</span></li>                        
                     </ul>
                   <%end%>
@@ -182,12 +185,12 @@ material=topad[0]
                    <%ps13.each do |product|%>
                                     <ul class="new_ul"> 
                         <li class="new_img"> 
-                        	<a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" /></a> 
+                        	<a href="<%=myproduct_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=image_tag product.i1.url(:small),:alt=>product.name%><!--<img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" />--></a> 
 				<%if product.promotion%>
 				<span class="new_tip"><div style="" class="tip_num"><%=raw show_promotion_num(product)%></div></span>
 				<%end%>
                         	                    </li> 
-                        <li><a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=product.name%></a></li> 
+                        <li><a href="<%=myproduct_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=product.name%></a></li> 
                         <li><span><%=product.p2%>元</span></li>                        
                     </ul>
                   <%end%>
@@ -197,8 +200,8 @@ material=topad[0]
             </div>            
         </div> 
         
-        <div class="ad ad2"><a href="<%=ad3.hyperlink%>" target="_blank" title="<%=ad3.title%>"><img src="<%=ad3.image_url.url%>"  width="160" height="211" alt="<%=ad3.alt%>" /></a></a></div> 
-        <div class="ad ad3"><a href="<%=ad4.hyperlink%>" target="_blank" title="<%=ad4.title%>"><img src="<%=ad4.image_url.url%>"  width="160" height="186" alt="<%=ad4.alt%>" /></a></div> 
+        <div class="ad ad2"><a href="<%=ad3.hyperlink%>" target="_blank" title="<%=ad3.title%>"><%=image_tag ad3.image_url.url,:width=>160,:height=>211,:alt=>ad3.alt%><!--<img src="<%=ad3.image_url.url%>"  width="160" height="211" alt="<%=ad3.alt%>" /></a>--></a></div> 
+        <div class="ad ad3"><a href="<%=ad4.hyperlink%>" target="_blank" title="<%=ad4.title%>"><%=image_tag ad4.image_url.url,:width=>160,:height=>186,:alt=>ad4.alt%><!--<img src="<%=ad4.image_url.url%>"  width="160" height="186" alt="<%=ad4.alt%>" />--></a></div> 
         <div class="clear"></div> 
     </div> 
 	
@@ -210,15 +213,16 @@ material=topad[0]
         	        	              <dd> 
                 <ul class="rank_on" <%= raw index==0 ? 'style="display:block;"' : ""%>>                
                     <li class="rank_img"><span class="rank_span"><%=index+1%></span> 
-                      <a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"> 
-           <img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>"  /> 
+                      <a href="<%=myproduct_url(product.id)%>" target="_blank" title="<%=product.name%>">
+		      <%=image_tag product.i1.url(:small),:alt=>product.name%>
+           <!--<img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>"  /> -->
                       </a> 
                     </li> 
-                    <li class="rankon_name"><a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=product.name%></a></li> 
+                    <li class="rankon_name"><a href="<%=myproduct_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=product.name%></a></li> 
                     <li><font>￥<%=product.p2%></font></li> 
                 </ul>                    
                 <ul class="rank_off  <%="rank_odd" if index%2!=0%>" <%= raw index==0 ? 'style="display:none;"' : ""%>> 
-                    <li class="rank_name"><span class="rank_span"><%=index+1%></span><a href="<%=product_url(product.id)%>"  title="<%=product.name%>" target="_blank"><%= truncate product.name,:length=>14%></a></li> 
+                    <li class="rank_name"><span class="rank_span"><%=index+1%></span><a href="<%=myproduct_url(product.id)%>"  title="<%=product.name%>" target="_blank"><%= truncate product.name,:length=>14%></a></li> 
                    
                 </ul>  
             </dd>
@@ -229,8 +233,8 @@ material=topad[0]
 	<div class="clear"></div> 
 	
  
-<div class="left ad4"><a href="<%=ad5.hyperlink%>" title="<%=ad5.title%>" target="_blank"><img src="<%=ad5.image_url.url%>" width="752" height="100" alt="<%=ad5.alt%>"  /></a></div> 
-    <div class="right" id="ad4"><a href="<%=ad6.hyperlink%>" title="<%=ad6.title%>" target="_blank"><img src="<%=ad6.image_url.url%>" width="196" height="100" alt="<%=ad6.alt%>"  /></a></div> 
+<div class="left ad4"><a href="<%=ad5.hyperlink%>" title="<%=ad5.title%>" target="_blank"><%=image_tag ad5.image_url.url,:width=>752,:height=>100,:alt=>ad5.alt%><!--<img src="<%=ad5.image_url.url%>" width="752" height="100" alt="<%=ad5.alt%>"  />--></a></div> 
+    <div class="right" id="ad4"><a href="<%=ad6.hyperlink%>" title="<%=ad6.title%>" target="_blank"><%=image_tag ad6.image_url.url,:width=>196,:height=>100,:alt=>ad6.alt%><!--<img src="<%=ad6.image_url.url%>" width="196" height="100" alt="<%=ad6.alt%>"  />--></a></div> 
     <div class="clear"></div>      
       		
 <div class="top"> 
@@ -268,34 +272,34 @@ material=topad[0]
     <div class="box"> 
           	<div class="catbox fl"> 
         	<dl> 
-            	<dt><a href="<%=c12.hyperlink%>" title="<%=c12.title%>" target="_blank"><img src="<%=c12.image_url.url%>" alt="<%=c12.alt%>" /></a></dt> 
+            	<dt><a href="<%=c12.hyperlink%>" title="<%=c12.title%>" target="_blank"><%=image_tag c12.image_url.url,:alt=>c12.alt%><!--<img src="<%=c12.image_url.url%>" alt="<%=c12.alt%>" />--></a></dt> 
                 <%c13.each do |material|%>
-                <dd><a href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><img src="<%=material.image_url.url%>" alt="<%=material.alt%>" /></a></dd> 
+                <dd><a href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><%=image_tag material.image_url.url,:alt=>material.alt%><!--<img src="<%=material.image_url.url%>" alt="<%=material.alt%>" />--></a></dd> 
                 <%end%>
             </dl>
                 <%psc1.each do |product|%>
                 	<ul> 
             	<li class="cat_img"> 
-                	<a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" /></a> 
+                	<a href="<%=myproduct_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=image_tag product.i1.url(:small),:alt=>product.name,:width=>100,:height=>100%><!--<img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" />--></a> 
                 	                    </li> 
-                <li><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>10%></a></li> 
+                <li><a href="<%=myproduct_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>10%></a></li> 
                 <li><span>￥<%=number_with_precision product.p2,:precision=>2%></span></li> 
             </ul>
                 <%end%>
         </div> 
         	<div class="catbox fr"> 
         	<dl> 
-            	<dt><a href="<%=c22.hyperlink%>" title="<%=c22.title%>" target="_blank"><img src="<%=c22.image_url.url%>" alt="<%=c22.alt%>" /></a></dt> 
+            	<dt><a href="<%=c22.hyperlink%>" title="<%=c22.title%>" target="_blank"><%=image_tag c22.image_url.url,:alt=>c22.alt%><!--<img src="<%=c22.image_url.url%>" alt="<%=c22.alt%>" />--></a></dt> 
                 <%c23.each do |material|%>
-                <dd><a href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><img src="<%=material.image_url.url%>" alt="<%=material.alt%>" /></a></dd> 
+                <dd><a href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><%=image_tag material.image_url.url,:alt=>material.alt%><!--<img src="<%=material.image_url.url%>" alt="<%=material.alt%>" />--></a></dd> 
                 <%end%>
             </dl> 
                 	                <%psc2.each do |product|%>
                 	<ul> 
             	<li class="cat_img"> 
-                	<a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" /></a> 
+                	<a href="<%=myproduct_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=image_tag product.i1.url(:small),:alt=>product.name,:width=>100,:height=>100%><!--<img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" />--></a> 
                 	                    </li> 
-                <li><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>10%></a></li> 
+                <li><a href="<%=myproduct_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>10%></a></li> 
                 <li><span>￥<%=number_with_precision product.p2,:precision=>2%></span></li> 
             </ul>
                 <%end%>
@@ -339,17 +343,17 @@ material=topad[0]
     <div class="box"> 
           	<div class="catbox fl"> 
         	<dl> 
-            	<dt><a href="<%=c32.hyperlink%>" title="<%=c32.title%>" target="_blank"><img src="<%=c32.image_url.url%>" alt="<%=c32.alt%>" /></a></dt> 
+            	<dt><a href="<%=c32.hyperlink%>" title="<%=c32.title%>" target="_blank"><%=image_tag c32.image_url.url,:alt=>c32.alt%><!--<img src="<%=c32.image_url.url%>" alt="<%=c32.alt%>" />--></a></dt> 
                 <%c33.each do |material|%>
-                <dd><a href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><img src="<%=material.image_url.url%>" alt="<%=material.alt%>" /></a></dd> 
+                <dd><a href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><%=image_tag material.image_url.url,:alt=>material.alt%><!--<img src="<%=material.image_url.url%>" alt="<%=material.alt%>" />--></a></dd> 
                 <%end%>
             </dl> 
                 	                <%psc3.each do |product|%>
                 	<ul> 
             	<li class="cat_img"> 
-                	<a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" /></a> 
+                	<a href="<%=myproduct_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=image_tag product.i1.url(:small),:alt=>product.name,:width=>100,:height=>100%><!--<img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" />--></a> 
                 	                    </li> 
-                <li><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>10%></a></li> 
+                <li><a href="<%=myproduct_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>10%></a></li> 
                 <li><span>￥<%=number_with_precision product.p2,:precision=>2%></span></li> 
             </ul>
                 <%end%>
@@ -357,17 +361,17 @@ material=topad[0]
         </div> 
         	<div class="catbox fr"> 
         	<dl> 
-            	<dt><a href="<%=c42.hyperlink%>" title="<%=c42.title%>" target="_blank"><img src="<%=c42.image_url.url%>" alt="<%=c42.alt%>" /></a></dt> 
+            	<dt><a href="<%=c42.hyperlink%>" title="<%=c42.title%>" target="_blank"><%=image_tag c42.image_url.url,:alt=>c42.alt%><!--<img src="<%=c42.image_url.url%>" alt="<%=c42.alt%>" />--></a></dt> 
                 <%c43.each do |material|%>
-                <dd><a href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><img src="<%=material.image_url.url%>" alt="<%=material.alt%>" /></a></dd> 
+                <dd><a href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><%=image_tag material.image_url.url,:alt=>material.alt%><!--<img src="<%=material.image_url.url%>" alt="<%=material.alt%>" />--></a></dd> 
                 <%end%>
             </dl> 
                 	                <%psc4.each do |product|%>
                 	<ul> 
             	<li class="cat_img"> 
-                	<a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" /></a> 
+                	<a href="<%=myproduct_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=image_tag product.i1.url(:small),:alt=>product.name,:width=>100,:height=>100%><!--<img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" />--></a> 
                 	                    </li> 
-                <li><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>10%></a></li> 
+                <li><a href="<%=myproduct_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>10%></a></li> 
                 <li><span>￥<%=number_with_precision product.p2,:precision=>2%></span></li> 
             </ul>
                 <%end%>
@@ -411,17 +415,17 @@ material=topad[0]
     <div class="box"> 
           	<div class="catbox fl"> 
         	<dl> 
-            	<dt><a href="<%=c52.hyperlink%>" title="<%=c52.title%>" target="_blank"><img src="<%=c52.image_url.url%>" alt="<%=c52.alt%>" /></a></dt> 
+            	<dt><a href="<%=c52.hyperlink%>" title="<%=c52.title%>" target="_blank"><%=image_tag c52.image_url.url,:alt=>c52.alt%><!--<img src="<%=c52.image_url.url%>" alt="<%=c52.alt%>" />--></a></dt> 
                 <%c53.each do |material|%>
-                <dd><a href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><img src="<%=material.image_url.url%>" alt="<%=material.alt%>" /></a></dd> 
+                <dd><a href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><%=image_tag material.image_url.url,:alt=>material.alt%><!--<img src="<%=material.image_url.url%>" alt="<%=material.alt%>" />--></a></dd> 
                 <%end%>
             </dl> 
                 	                <%psc5.each do |product|%>
                 	<ul> 
             	<li class="cat_img"> 
-                	<a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" /></a> 
+                	<a href="<%=myproduct_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=image_tag product.i1.url(:small),:alt=>product.name,:width=>100,:height=>100%><!--<img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" />--></a> 
                 	                    </li> 
-                <li><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>10%></a></li> 
+                <li><a href="<%=myproduct_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>10%></a></li> 
                 <li><span>￥<%=number_with_precision product.p2,:precision=>2%></span></li> 
             </ul>
                 <%end%>
@@ -429,17 +433,17 @@ material=topad[0]
         </div> 
         	<div class="catbox fr"> 
         	<dl> 
-            	<dt><a href="<%=c62.hyperlink%>" title="<%=c62.title%>" target="_blank"><img src="<%=c62.image_url.url%>" alt="<%=c62.alt%>" /></a></dt> 
+            	<dt><a href="<%=c62.hyperlink%>" title="<%=c62.title%>" target="_blank"><%=image_tag c62.image_url.url,:alt=>c62.alt%><!--<img src="<%=c62.image_url.url%>" alt="<%=c62.alt%>" />--></a></dt> 
                 <%c63.each do |material|%>
-                <dd><a href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><img src="<%=material.image_url.url%>" alt="<%=material.alt%>" /></a></dd> 
+                <dd><a href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><%=image_tag material.image_url.url,:alt=>material.alt%><!--<img src="<%=material.image_url.url%>" alt="<%=material.alt%>" />--></a></dd> 
                 <%end%>
             </dl> 
                 	                <%psc6.each do |product|%>
                 	<ul> 
             	<li class="cat_img"> 
-                	<a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" /></a> 
+                	<a href="<%=myproduct_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=image_tag product.i1.url(:small),:alt=>product.name,:width=>100,:height=>100%><!--<img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" />--></a> 
                 	                    </li> 
-                <li><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>10%></a></li> 
+                <li><a href="<%=myproduct_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>10%></a></li> 
                 <li><span>￥<%=number_with_precision product.p2,:precision=>2%></span></li> 
             </ul>
                 <%end%>
@@ -483,17 +487,17 @@ material=topad[0]
     <div class="box"> 
           	<div class="catbox fl"> 
         	<dl> 
-            	<dt><a href="<%=c72.hyperlink%>" title="<%=c72.title%>" target="_blank"><img src="<%=c72.image_url.url%>" alt="<%=c72.alt%>" /></a></dt> 
+            	<dt><a href="<%=c72.hyperlink%>" title="<%=c72.title%>" target="_blank"><%=image_tag c72.image_url.url,:alt=>c72.alt%><!--<img src="<%=c72.image_url.url%>" alt="<%=c72.alt%>" />--></a></dt> 
                 <%c73.each do |material|%>
-                <dd><a href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><img src="<%=material.image_url.url%>" alt="<%=material.alt%>" /></a></dd> 
+                <dd><a href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><%=image_tag material.image_url.url,:alt=>material.alt%><!--<img src="<%=material.image_url.url%>" alt="<%=material.alt%>" />--></a></dd> 
                 <%end%>
             </dl> 
                 	                <%psc7.each do |product|%>
                 	<ul> 
             	<li class="cat_img"> 
-                	<a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" /></a> 
+                	<a href="<%=myproduct_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=image_tag product.i1.url(:small),:alt=>product.name,:width=>100,:height=>100%><!--<img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" />--></a> 
                 	                    </li> 
-                <li><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>10%></a></li> 
+                <li><a href="<%=myproduct_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>10%></a></li> 
                 <li><span>￥<%=number_with_precision product.p2,:precision=>2%></span></li> 
             </ul>
                 <%end%>
@@ -501,17 +505,17 @@ material=topad[0]
         </div> 
         	<div class="catbox fr"> 
         	<dl> 
-            	<dt><a href="<%=c82.hyperlink%>" title="<%=c82.title%>" target="_blank"><img src="<%=c82.image_url.url%>" alt="<%=c82.alt%>" /></a></dt> 
+            	<dt><a href="<%=c82.hyperlink%>" title="<%=c82.title%>" target="_blank"><%=image_tag c82.image_url.url,:alt=>c82.alt%><!--<img src="<%=c82.image_url.url%>" alt="<%=c82.alt%>" />--></a></dt> 
                 <%c83.each do |material|%>
-                <dd><a href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><img src="<%=material.image_url.url%>" alt="<%=material.alt%>" /></a></dd> 
+                <dd><a href="<%=material.hyperlink%>" title="<%=material.title%>" target="_blank"><%=image_tag material.image_url.url,:alt=>material.alt%><!--<img src="<%=material.image_url.url%>" alt="<%=material.alt%>" />--></a></dd> 
                 <%end%>
             </dl> 
                 	                <%psc8.each do |product|%>
                 	<ul> 
             	<li class="cat_img"> 
-                	<a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" /></a> 
+                	<a href="<%=myproduct_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=image_tag product.i1.url(:small),:alt=>product.name,:width=>100,:height=>100%><!--<img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" />--></a> 
                 	                    </li> 
-                <li><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>10%></a></li> 
+                <li><a href="<%=myproduct_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>10%></a></li> 
                 <li><span>￥<%=number_with_precision product.p2,:precision=>2%></span></li> 
             </ul>
                 <%end%> 
@@ -539,7 +543,7 @@ material=topad[0]
         	<div class="brandlist"> 
                 <ul id="brandlist">
                   <%brands.each do |brand|%>
-                                      <li><a href="<%=brand_url(brand.id)%>" title="<%=brand.name%>"><img src="<%=brand.i2.url%>" alt="<%=brand.name%>" /></a></li> 
+                                      <li><a href="<%=brand_url(brand.id)%>" title="<%=brand.name%>"><%=image_tag brand.i2.url,:alt=>brand.name%><!--<img src="<%=brand.i2.url%>" alt="<%=brand.name%>" />--></a></li> 
                 <%end%>                  
                                     </ul> 
         	</div> 
@@ -560,8 +564,8 @@ material=topad[0]
         	<li> 
           <%cs.each do |comment|%>
         	  	                <dl class="comment_dl"> 
-                    <dd><a href="<%=product_url(comment.product.id)%>" title="<%=comment.product.name%>" target="_blank" ><img src="<%=comment.product.i1.url(:medium)%>" alt="<%=comment.product.name%>" /></a></dd> 
-                    <dd class="comment_dd"><a style="height: 33px; display: block;" href="<%=product_url(comment.product.id)%>" title="<%=comment.content%>" target="_blank"><%=comment.content%></a><span>拉拉/<%=comment.created_at.strftime("%Y-%m-%d")%></span></dd>            
+                    <dd><a href="<%=myproduct_url(comment.product.id)%>" title="<%=comment.product.name%>" target="_blank" ><%=image_tag comment.product.i1.url(:medium),:alt=>comment.product.name%><!--<img src="<%=comment.product.i1.url(:medium)%>" alt="<%=comment.product.name%>" />--></a></dd> 
+                    <dd class="comment_dd"><a style="height: 33px; display: block;" href="<%=myproduct_url(comment.product.id)%>" title="<%=comment.content%>" target="_blank"><%=comment.content%></a><span>拉拉/<%=comment.created_at.strftime("%Y-%m-%d")%></span></dd>            
                 </dl> 
           <%end%>
                                <div class="clear"></div> 
@@ -574,15 +578,15 @@ material=topad[0]
     <dl class="voice"> 
     	<dt class="boxtop"></dt> 
          <dd> 
-        <a href="http://t.sina.com.cn/quwan" title="给力百货新浪微博" target="_blank"><img style="margin:0 10px 10px 0" src="/themes/default/imgs/global/link_logo1.gif" /></a> 
-        <a href="http://t.163.com/quwanwang" title="给力百货网易微博" target="_blank"><img style="margin:0 10px 10px 0" src="/themes/default/imgs/global/link_logo2.gif" /></a> 
-        <a href="http://t.qq.com/quwan" title="给力百货腾讯微博" target="_blank"><img style="margin:0 0 10px 0" src="/themes/default/imgs/global/link_logo3.gif" /></a>            
-        <a href="http://tieba.baidu.com/i/29899092" title="给力百货百度i贴吧" target="_blank"><img style="margin:0 10px 10px 0" src="/themes/default/imgs/global/link_logo4.gif" /></a> 
-        <a href="http://www.douban.com/group/quwan/" title="给力百货豆瓣" target="_blank"><img style="margin:0 10px 10px 0" src="/themes/default/imgs/global/link_logo5.gif" /></a> 
-        <a href="http://www.renren.com/profile.do?id=317750052&_visitor_id=12" title="给力百货人人网" target="_blank"><img style="margin:0 0 10px 0" src="/themes/default/imgs/global/link_logo6.gif" /></a> 
-        <a href="http://www.kaixin001.com/home/?uid=74094779" title="给力百货开心网" target="_blank"><img style="margin:0 10px 10px 0" src="/themes/default/imgs/global/link_logo7.gif" /></a>        
-        <a href="http://t.sohu.com/quwan" title="给力百货搜狐微博" target="_blank"><img style="margin:0 0 10px 0" src="/themes/default/imgs/global/link_logo8.gif" /></a><div class="clear"></div> 
-        <a href="http://blog.geilibuy.com/" title="给力百货博客" target="_blank"><img  style="float:none;"src="/themes/default/imgs/global/blog_logo.gif" /></a> 
+        <a href="http://t.sina.com.cn/geilibuy" title="给力百货新浪微博" target="_blank"><%=image_tag "/themes/default/imgs/global/link_logo1.gif",:style=>"margin:0 10px 10px 0"%></a> 
+        <a href="http://t.163.com/geilibuy" title="给力百货网易微博" target="_blank"><%=image_tag "/themes/default/imgs/global/link_logo2.gif",:style=>"margin:0 10px 10px 0"%></a> 
+        <a href="http://t.qq.com/geilibuy" title="给力百货腾讯微博" target="_blank"><%=image_tag "/themes/default/imgs/global/link_logo3.gif",:style=>"margin:0 0 10px 0"%></a>            
+        <a href="http://tieba.baidu.com/i/29899092" title="给力百货百度i贴吧" target="_blank"><%=image_tag "/themes/default/imgs/global/link_logo4.gif",:style=>"margin:0 10px 10px 0"%></a> 
+        <a href="http://www.douban.com/group/geilibuy/" title="给力百货豆瓣" target="_blank"><%=image_tag "/themes/default/imgs/global/link_logo5.gif",:style=>"margin:0 10px 10px 0"%></a> 
+        <a href="http://www.renren.com/profile.do?id=317750052&_visitor_id=12" title="给力百货人人网" target="_blank"><%=image_tag "/themes/default/imgs/global/link_logo6.gif",:style=>"margin:0 0 10px 0"%></a> 
+        <a href="http://www.kaixin001.com/home/?uid=74094779" title="给力百货开心网" target="_blank"><%=image_tag "/themes/default/imgs/global/link_logo7.gif",:style=>"margin:0 10px 10px 0"%></a>        
+        <a href="http://t.sohu.com/geilibuy" title="给力百货搜狐微博" target="_blank"><%=image_tag "/themes/default/imgs/global/link_logo8.gif",:style=>"margin:0 0 10px 0"%></a><div class="clear"></div> 
+        <a href="http://blog.geilibuy.com/" title="给力百货博客" target="_blank"><%=image_tag "/themes/default/imgs/global/blog_logo.gif",:style=>"float:none;"%></a> 
         </dd>      
     </dl> 
 	 
@@ -634,16 +638,20 @@ material=topad[0]
 <%content_for :bodyfoot do%>
 <!--tongji-->
 <!--<script src='http://w.cnzz.com/c.php?id=30035654' language='JavaScript' charset='gb2312'></script> -->
-<script type="text/javascript" src="/themes/default/js/js-clib.js" charset="UTF-8"></script> 
-<script type="text/javascript" src="/themes/default/js/photo-switch.js" charset="UTF-8"></script> 
-<script type="text/javascript" src="/themes/default/js/photo-move.js" charset="UTF-8"></script> 
+<%=javascript_include_tag "/themes/default/js/js-clib.js",:charset=>"UTF-8"%>
+<!--<script type="text/javascript" src="/themes/default/js/js-clib.js" charset="UTF-8"></script> -->
+<%=javascript_include_tag "/themes/default/js/photo-switch.js",:charset=>"UTF-8"%>
+<!--<script type="text/javascript" src="/themes/default/js/photo-switch.js" charset="UTF-8"></script> -->
+<%=javascript_include_tag "/themes/default/js/photo-move.js",:charset=>"UTF-8"%>
+<!--<script type="text/javascript" src="/themes/default/js/photo-move.js" charset="UTF-8"></script> -->
 <script type="text/javascript"> 
 $(document).ready(function(){  
    setHeadUserStatus();// 检测是否登录
    setHeadFlowNum();//购物车数量
 });
 </script> 
-<script type="text/javascript" src="/themes/default/js/index.js" charset="UTF-8"></script> 
+<%=javascript_include_tag "/themes/default/js/index.js",:charset=>"UTF-8"%>
+<!--<script type="text/javascript" src="/themes/default/js/index.js" charset="UTF-8"></script> -->
 <script type="text/javascript" charset="utf-8"> 
 $(document).ready(function(){
 $('.rank').find('dd').hover(function(){				  

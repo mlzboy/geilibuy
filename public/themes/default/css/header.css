@@ -1,7 +1,7 @@
-/*È¤ÍæĞÂ°æÍøÒ³css ÈÕÆÚ:2009.10.1 by:²ß*/
-/*È«¾ÖcssÉè¶¨*/
+/*è¶£ç©æ–°ç‰ˆç½‘é¡µcss æ—¥æœŸ:2009.10.1 by:ç­–*/
+/*å…¨å±€cssè®¾å®š*/
 HTML { }
-BODY { margin: 0; color: #666666; font:9pt Tahoma,"ËÎÌå",Arial,Helvetica,Sans-Serif;line-height:14px; letter-spacing:0;}
+BODY { margin: 0; color: #666666; font:9pt Tahoma,"å®‹ä½“",Arial,Helvetica,Sans-Serif;line-height:14px; letter-spacing:0;}
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{ padding: 0; margin: 0;}
 UL,LI { padding:0; margin:0; list-style:none;}
 IMG { border: none; padding: 0; margin: 0;}
@@ -14,7 +14,7 @@ A:hover { color:#cd2a23; text-decoration: underline;}
 .fl { float:left;}
 .fr { float:right;}
 
-/*Ò³ÃæÍ¨ÓÃÍ·²¿css*/
+/*é¡µé¢é€šç”¨å¤´éƒ¨css*/
 #head { margin: 0px auto; width: 960px; height:86px; padding-top:10px;}
 	#logo { float:left; width:220px; padding-left:8px; padding-top:6px; padding-right:18px; margin-top:15px;}
 	#slogan { float:left; position:relative; margin-top:31px; padding-left:18px; height:31px; width:142px; overflow:hidden; line-height:0;z-index:9; border-left:1px solid #d9d9d9;}
@@ -41,7 +41,7 @@ A:hover { color:#cd2a23; text-decoration: underline;}
 			.tel_btn {float:right;display:inline-block;margin-left:5px;height:27px; width:132px;background:url(/themes/default/imgs/global/bg.gif) no-repeat -407px 0;margin-bottom:5px;}
 			.hotspan { position:absolute; display:block; height:14px; width:23px;background:url(/themes/default/imgs/global/bg.gif) no-repeat -407px -27px; right:155px; top:6px;}
 			.summer_fan { position:absolute; display:block; height:62px; width:151px; right:355px; top:-4px;}
-/*Ò³ÃæÍ¨ÓÃºáÏòµ¼º½À¸css*/
+/*é¡µé¢é€šç”¨æ¨ªå‘å¯¼èˆªæ css*/
 #navbox { margin: 0px auto; width: 100%;height:35px; background-color:#bd110c;position:relative;z-index:100;}
 #nav {width:960px;height:35px;z-index:100;margin: 0px auto;}	
 	.nav_item {float:left;display:block;height:35px;  color:#fff;}
@@ -119,7 +119,7 @@ A:hover { color:#cd2a23; text-decoration: underline;}
 	.cart_count { margin-bottom:10px; text-align:right; padding-right:10px;}
 	.cart_count font { font-weight:bold; color:#cc0000; font-size:12px;}
 	#nav_off { height:0; line-height:0; font-size:0;}
-/*Ò³ÃæÍ¨ÓÃºáÏòµ¼º½À¸ÏÂ·½ËÑË÷°å¿écss*/	
+/*é¡µé¢é€šç”¨æ¨ªå‘å¯¼èˆªæ ä¸‹æ–¹æœç´¢æ¿å—css*/	
 .sobox { margin: 0px auto; width:100%; height:35px;margin-bottom:15px; border-bottom:1px solid #e2e2e2;}	
 	.so {margin: 0px auto;width:960px;height:35px;}
 	.so_ul { display:block; float:left; width:538px; width:auto; height:13px; border-right:1px solid #ccc; margin-top:11px; margin-right:52px;* margin-right:65px !important;* margin-right:60px;}
@@ -143,13 +143,13 @@ A:hover { color:#cd2a23; text-decoration: underline;}
 
 
 		
-/*Ò³ÃæÍ¨ÓÃÖ÷Ìâcss*/
+/*é¡µé¢é€šç”¨ä¸»é¢˜css*/
 #main { margin: 0px auto; width: 960px; height:auto;}
 #global_body { margin: 0px auto; width: 960px; height:auto;}
 .top_ad { height:auto; overflow:hidden;}
 	.top_ad img { width:960px;margin-bottom:15px;}
 	
-/*Ò³ÃæÍ¨ÓÃÒ³½Åcss*/		
+/*é¡µé¢é€šç”¨é¡µè„šcss*/		
 #foot{margin: 0px auto;width: 100%; height:auto; color:#000000;background:url(/themes/default/imgs/global/bg.gif) repeat-x 0 -351px;background-color:#f8f8f8; margin-top:15px; }		
 	#footer { margin: 0px auto; width: 960px; padding-top:25px; height:auto;}
 		#phone { float:left; width:165px;height:108px; position:relative; overflow:hidden;}

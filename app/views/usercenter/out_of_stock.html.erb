@@ -1,0 +1,44 @@
+    <div class="right_top">
+        	<span class="welcome quehuo"></span>
+
+            <span class="goon_btn"><a  style="color:#fff;"  href="/shopping/cart" title="首页">继续购物</a></span>             
+        </div>
+    <%u=current_user%>
+      <div class="right_line">      
+        <p style="line-height:24px;"><strong>我共有 <%=u.out_of_stocks.count%> 条缺货登记，其中 0 条已经得到处理</strong></p>
+        <table width="100%"  border="0" cellpadding="0" cellspacing="0" class="table">
+          <tr>
+            <td width="24%" height="30" align="center" valign="middle" class="td_top">商品名称</td>
+            <td width="11%" align="center" valign="middle" class="td_top">数量</td>
+
+            <td width="21%" align="center" valign="middle" class="td_top">登记时间</td>
+            <td width="12%" align="center" valign="middle" class="td_top">处理备注</td>
+            <td width="11%" align="center" valign="middle" class="td_top">操作</td>
+          </tr>
+          <%@out_of_stocks.each do |out_of_stock| %>
+		            <tr>
+            <td align="center" valign="middle" class="td"> <a href="<%=myproduct_url(out_of_stock.product_id)%>" target="_blank" title="<%=out_of_stock.product.name%>"><%=out_of_stock.product.name%></td>
+
+            <td align="center" valign="middle" class="td">1</td>
+            <td align="center" valign="middle" class="td"><%=out_of_stock.created_at.strftime("%Y-%m-%d")%></td>
+            <td align="center" valign="middle" class="td">N/A</td>
+            <td align="center" valign="middle" class="td"><a href="javascript:if (confirm('您确定要删除此条记录吗？')) location.href='/usercenter/out_of_stock/<%=out_of_stock.id%>/del'">删除</a></td>
+          </tr>
+          <%end%>
+
+                  <tr></tr>
+        </table>
+
+      </div>       
+<div class="page_box"><span><font>&laquo;首页</font></span><span><font>&#173;上一页</font></span><span id="page_on"><font>1</font></span><span><font>&#173;下一页</font></span><span><font>&#173;尾页&raquo;</font></span><span><font>1/共1页</font></span></div>
+<%content_for :outhtml do%>
+<script type="text/javascript">
+$(".top_nav span").eq(0).text("缺货登记");
+
+  stepUserCenterAction('booking_list');//设置活动menu
+  setHeadFlowNum();//购物车数量
+  
+        setHeadUserStatus();// 检测是否登录
+
+</script>
+<%end%>

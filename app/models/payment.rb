@@ -1,7 +1,7 @@
 class Payment < ActiveRecord::Base
   has_many:orders
   has_many:cash_orders
-  has_attached_file :i1
+  has_attached_file :i1#,:url => "/system/:class/:id_partition/:style/:filename",:path => ":rails_root/public/system/:class/:id_partition/:style/:filename"
   acts_as_tree :order=>"position"
   scope :top, where("parent_id is null").order("position")
   #scope :top, _top.order("position")

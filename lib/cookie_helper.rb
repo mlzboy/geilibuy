@@ -17,11 +17,11 @@ module CookieHelper
     if product_ids.size>6
       product_ids=product_ids.slice(0,6)
     end
-    cookies["history"]=product_ids.join(",")
+    cookies["history"]={:value=>product_ids.join(","),:expires=>1.year.from_now,:domain=>".geilibuy.com"}
   end
   def clearall
-    cookies["shoppingcart"]=""
-    cookies["suitecart"]=""
+    cookies["shoppingcart"]={:value=>"",:expires=>1.year.from_now,:domain=>".geilibuy.com"}
+    cookies["suitecart"]={:value=>"",:expires=>1.year.from_now,:domain=>".geilibuy.com"}
   end
   def has_product?()
     cookie_products=get_products_from_cookie()
@@ -54,14 +54,15 @@ module CookieHelper
     products.each do |productid_score,num|
       r<<productid_score+"|"+num.to_s
     end
-    cookies["shoppingcart"]=r.join(",")
+    cookies["shoppingcart"]={:value=>r.join(","),:expires=>1.year.from_now,:domain=>".geilibuy.com"}
+    #cookies["shoppingcart"]=r.join(",")
   end
   def save_suite_products_to_cookie(products)
     r=[]
     products.each do |product_ids_suite_id,num|
       r<<product_ids_suite_id+"|"+num.to_s
     end
-    cookies["suitecart"]=r.join(";")
+    cookies["suitecart"]={:value=>r.join(","),:expires=>1.year.from_now,:domain=>".geilibuy.com"}
   end
   def get_suite_products_from_cookie()#p1,p2,p3|suite_id|num
     str=cookies["suitecart"]
@@ -302,7 +303,7 @@ module CookieHelper
     #products
     save_products_to_cookie(products)
   end
-  def product_url(productid)
+  def myproduct_url(productid)
     productid.to_s
   end
 
@@ -321,16 +322,16 @@ module CookieHelper
       product=dict[productid.to_s]
       price+=product_price(product,score)*num
       #这里如果是积分的话，会显示两个产品，这样还是有问题再说了
-html+="
+html+=%Q{
 <dl>
-                	<dt><a target=\"_blank\" href=\"#{product_url(productid)}\"><img width=\"40\" height=\"40\" alt=\"#{product.name}\" src=\"#{product.i1.url(:mini)}\"></a></dt>
-                    <dd><a target=\"_blank\" href=\"#{product_url(productid)}\" title=\"#{product.name}\">#{product.name}</a>  <span>×#{num}</span></dd>
+                	<dt><a target="_blank" href="/product/#{productid}"><img width="40" height="40" alt="#{product.name}" src="#{product.i1.url(:mini)}"></a></dt>
+                    <dd><a target="_blank" href="/product/#{productid}" title="#{product.name}">#{product.name}</a>  <span>×#{num}</span></dd>
                    <dd>
-                                          <span class=\"price_cart\">￥#{score=="1" ? product.p3 : product.p2 }元</span>
-                                        <a href=\"javascript:dropHeadFlowNum_distinguish_score('#{product_score}','您确实要把该商品移出购物车吗？')\" class=\"del_cart\">
-                    [删除]</a><div class=\"clear\"></div></dd>
+                                          <span class="price_cart">￥#{score=="1" ? product.p3 : product.p2 }元</span>
+                                        <a href="javascript:dropHeadFlowNum_distinguish_score('#{product_score}','您确实要把该商品移出购物车吗？')" class="del_cart">
+                    [删除]</a><div class="clear"></div></dd>
                 </dl>
-"     
+}
     end
     suite_products=get_suite_products_from_cookie()
     suite_products.each do |product_ids_suite_id,num|

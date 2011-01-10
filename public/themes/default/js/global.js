@@ -647,3 +647,66 @@ function inTooCartAction(goodsId, goodsName, isRefesh, parentId, isIntegral,posi
         }
     })
 }
+
+
+
+//  加入购物车 函数 20101230
+function inTooCartAction2(goodsId, goodsName, isRefesh, parentId, isIntegral,position,suite_id) {	
+    var goods = new Object();
+    var spec_arr = new Array();
+    var fittings_arr = new Array();
+    var select = "";
+    var p = parentId == "" ? false: true;
+    var number = 1;
+    var refresh = 0;
+    if (isRefesh) {
+        refresh = 1
+    }
+    if ($("#goods_type_select")) {
+        select = $("#goods_type_select").value
+    }
+    //goods = '{"spec": "","select": "' + select + '", "goods_id":"' + goodsId + '", "number": "' + number + '","parent": "0", "isIntegral": "' + isIntegral + '" }';
+    goods = '{"spec": "","select": "' + select + '", "goods_id":"' + goodsId + '", "number": "' + number + '","parent": "0","suite_id":"'+suite_id+'"}';
+    $.ajax({
+        type: "POST",
+        url: "/shopping/check?step=add_to_cart4suite",
+        data: "goods=" + goods,
+        success: function(){
+				setHeadFlowNum();
+		},
+        complete: function(XMLHttpRequest, status) {
+            result = eval("(" + XMLHttpRequest.responseText + ")");
+            if (!result.error) {
+                if (refresh == 1) {
+                    //windowMessage(goodsName)
+					//location.reload()
+					//$(".pop_inf").text(goodsName);
+					//popdiv("#cat_pop","369","auto",0.4);
+				//　alert(position.attr('class'));	
+					position.parent().parent().find('.pop_out').remove();
+					$("#cat_pop").clone().appendTo(position.parent().parent()); 
+					$('.list').find('.pop_out').hide();
+					position.parent().parent().find('.pop_out').fadeIn();
+					
+                } else {
+                    //windowMessage(goodsName)
+                    window.location="flow.php";
+                }
+            } else {
+                if (result.error == 2) {
+                    if (confirm(result.message)) {
+                        location.href = "user.php?act=add_booking&id=" + result.goods_id
+                    }
+                } else {
+                    if (result.error == 6) {
+                        if (confirm(result.message)) {
+                            location.href = "goods.php?id=" + result.goods_id
+                        }
+                    } else {
+                        alert(result.message)
+                    }
+                }
+            }
+        }
+    })
+}

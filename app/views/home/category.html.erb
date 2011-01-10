@@ -34,12 +34,14 @@ cs=cs_products("热评商品",location,category_name)
 <title>给力百货家居频道，最流行家居精品专卖【30天退换货】_给力百货 - 日用百货量贩平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品</title>
 <%end%>
 <% content_for :headstyle do %>
-<link href="/themes/default/css/header.css" rel="stylesheet" type="text/css" /> 
-<link href="/themes/default/css/channel.css" rel="stylesheet" type="text/css" /> 
+
+<%=stylesheet_link_tag "/themes/default/css/header.css"%>
+<%=stylesheet_link_tag "/themes/default/css/channel.css"%>
+
 <%end%>
 <% content_for :headjs do %>
-<script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script> 
-<script type="text/javascript" src="/themes/default/js/header.js" charset="UTF-8"></script> 
+<%=javascript_include_tag "/themes/default/js/quwan.js",:charset=>"UTF-8"%>
+<%=javascript_include_tag "/themes/default/js/header.js",:charset=>"UTF-8"%>
 <%end%>
 <% content_for :headother do%>
 <link rel="shortcut icon" href="/favicon.ico" /> 
@@ -64,7 +66,7 @@ cs=cs_products("热评商品",location,category_name)
       	<div id="cflash"> 
         	<ul id="cflash_box">
                   <%ad0.each do |material|%>
-        	              	<li class="switch_item"><a href="<%=material.hyperlink%>" target="_blank"><img src="<%=material.image_url.url%>" width="313" height="389" alt="<%=material.alt%>" /></a></li> 
+        	              	<li class="switch_item"><a href="<%=material.hyperlink%>" target="_blank"><%=image_tag material.image_url.url,:width=>313,:height=>389,:alt=>material.alt%><!--<img src="<%=material.image_url.url%>" width="313" height="389" alt="<%=material.alt%>" />--></a></li> 
                   <%end%>
                          </ul> 
             <ul id="cflash_index">
@@ -78,23 +80,23 @@ cs=cs_products("热评商品",location,category_name)
 			<div class="channel_title channel_title1"></div>
         <%ps1.each do |product|%>
         <ul class="worthwhile_ul" > 
-            	<li class="worth_goods_img"><a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100"  /></a> 
+            	<li class="worth_goods_img"><a href="<%=myproduct_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=image_tag product.i1.url(:small),:alt=>product.name,:width=>100,:height=>100%><!--<img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100"  />--></a> 
                        	  </li> 
-            <li class="worth_goods_name li_margin"><a href="<%=product_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=product.name%></a></li> 
+            <li class="worth_goods_name li_margin"><a href="<%=myproduct_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=product.name%></a></li> 
               <li class="worth_goods_price">￥<%=price(product.p2)%></li> 
         </ul> 
         <%end%>
 
                <div id="clear"></div> 
             <%ad1.each do |material|%>
-            <div id="channel_ad_box1"><a href="<%=material.hyperlink%>" target="_blank"><img src="<%=material.image_url.url%>" alt="<%=material.alt%>" /></a></div> 
+            <div id="channel_ad_box1"><a href="<%=material.hyperlink%>" target="_blank"><%=image_tag material.image_url.url,:alt=>material.alt%><!--<img src="<%=material.image_url.url%>" alt="<%=material.alt%>" />--></a></div> 
             <%end%>
         </div> 
         <div id="clear"></div> 
 </div>	 
 	 <div class="channel_right">
           <%ad2.each_with_index do |material,index|%>
-  		<div class="channel_ad_box2" <%=raw 'style="margin-right:0;"' if index==2%>><a href="<%=material.hyperlink%>" target="_blank"><img src="<%=material.image_url.url%>" alt="<%=material.alt%>" /></a></div> 
+  		<div class="channel_ad_box2" <%=raw 'style="margin-right:0;"' if index==2%>><a href="<%=material.hyperlink%>" target="_blank"><%=image_tag material.image_url.url,:alt=>material.alt%><!--<img src="<%=material.image_url.url%>" alt="<%=material.alt%>" />--></a></div> 
           <%end%>
 		        <div id="clear"></div> 
       </div> 
@@ -102,18 +104,18 @@ cs=cs_products("热评商品",location,category_name)
 <div class="channel_right">
   <%ps21.each do |product|%>
             	<ul id="elect_left"> 
-        	<li class="elect_left_img"><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><img src="<%=product.i1.url(:big)%>" alt="<%=product.name%>" width="200" height="200" /></a> 
+        	<li class="elect_left_img"><a href="<%=myproduct_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=image_tag product.i1.url(:big),:alt=>product.name,:width=>200,:height=>200%><!--<img src="<%=product.i1.url(:big)%>" alt="<%=product.name%>" width="200" height="200" />--></a> 
         	        	</li> 
-            <li class="worth_goods_name"><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=product.name%></a></li> 
+            <li class="worth_goods_name"><a href="<%=myproduct_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=product.name%></a></li> 
             <li class="worth_goods_price">￥<%=price(product.p2)%></li> 
         </ul>
   <%end%>
                                                           <div id="elect_right">
   <%ps22.each do |product|%>
                                                  	<ul class="elect_right_ul"> 
-                <li  class="elect_right_ul_img"><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" /></a> 
+                <li  class="elect_right_ul_img"><a href="<%=myproduct_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=image_tag product.i1.url(:small),:alt=>product.name,:width=>100,:height=>100%><!--<img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" />--></a> 
                                 </li> 
-                <li class="worth_goods_name"><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>12%></a></li> 
+                <li class="worth_goods_name"><a href="<%=myproduct_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>12%></a></li> 
                 <li class="worth_goods_price">￥<%=price(product.p2)%></li> 
         	</ul> 
   <%end%>
@@ -124,9 +126,9 @@ cs=cs_products("热评商品",location,category_name)
       <div class="channel_right"> 
 	  <%ps3.each_with_index do |product,index|%>
 	        	 <ul class="elect_right_ul arrival_right_ul"  <%=raw 'style="border-left:none;"' if index==0%>> 
-            <li class="arrival_right_ul_img"><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" /></a> 
+            <li class="arrival_right_ul_img"><a href="<%=myproduct_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=image_tag product.i1.url(:small),:alt=>product.name,:width=>100,:height=>100%><!--<img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" />--></a> 
                           </li> 
-            <li class="worth_goods_name"><a href="product_url(product.id)" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>12%></a></li> 
+            <li class="worth_goods_name"><a href="myproduct_url(product.id)" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>12%></a></li> 
             <li class="worth_goods_price">￥<%=price(product.p2)%></li> 
          </ul>
                  <%end%>
@@ -134,13 +136,13 @@ cs=cs_products("热评商品",location,category_name)
          <div id="arrival_box"> 
          	<div id="arrival_left"> 
                 <%ad3.each do |material|%>
-            	<div id="channel_ad_box3"><a href="<%=material.hyperlink%>" target="_blank" title=""><img src="<%=material.image_url.url%>" alt="<%=material.alt%>" /></a></div> 
+            	<div id="channel_ad_box3"><a href="<%=material.hyperlink%>" target="_blank" title=""><%=image_tag material.image_url.url,:alt=>material.alt%><!--<img src="<%=material.image_url.url%>" alt="<%=material.alt%>" />--></a></div> 
 		<%end%>		
                 <div class="channel_title channel_title5"></div>
                 <%ps4.each do |product|%>
                                  <ul class="elect_right_ul hotsale_ul"> 
-                    <li class="hotsale_ul_img"><a href="<%=product_url(product.id)%>" target="_blank"><img src="<%=product.i1.url(:medium)%>" alt="<%=product.name%>" width="160" height="160" /></a></li> 
-                    <li class="worth_goods_name"><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>12%></a></li> 
+                    <li class="hotsale_ul_img"><a href="<%=myproduct_url(product.id)%>" target="_blank"><%=image_tag product.i1.url(:medium),:alt=>product.name,:width=>160,:height=>160%><!--<img src="<%=product.i1.url(:medium)%>" alt="<%=product.name%>" width="160" height="160" />--></a></li> 
+                    <li class="worth_goods_name"><a href="<%=myproduct_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>12%></a></li> 
                                         <li class="worth_goods_price">￥<%=price(product.p2)%><font>+<%=product.s1%>积分</font></li> 
                                     </ul>
                 <%end%>
@@ -152,12 +154,12 @@ cs=cs_products("热评商品",location,category_name)
                 <%ps5.each_with_index do |product,index|%>
                                 <div class="hotrank_ul_box"> 
                     <ul class="hotrank_ul_on" style="height:100px;"> 
-                      <li class="worth_goods_img"><span class="hotrank_red_span"><%=index+1%></span><a href="<%=product_url(product.id)%>" target="_blank"><img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" /></a></li> 
-                        <li class="worth_goods_name li_margin"><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=product.name%></a></li> 
+                      <li class="worth_goods_img"><span class="hotrank_red_span"><%=index+1%></span><a href="<%=myproduct_url(product.id)%>" target="_blank"><%=image_tag product.i1.url(:small),:alt=>product.name,:width=>100,:height=>100%><!--<img src="<%=product.i1.url(:small)%>" alt="<%=product.name%>" width="100" height="100" />--></a></li> 
+                        <li class="worth_goods_name li_margin"><a href="<%=myproduct_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=product.name%></a></li> 
                         <li class="worth_goods_price">￥<%=price(product.p2)%></li> 
                     </ul> 
                     <ul class="hotrank_ul_off <%='hotrank_ul_off_odd' if index%2!=0%>"> 
-                        <li class="hotrank_ul_off_name"><span class="hotrank_red_span"><%=index+1%></span><a href="<%=product_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>14%></a></li>                        
+                        <li class="hotrank_ul_off_name"><span class="hotrank_red_span"><%=index+1%></span><a href="<%=myproduct_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>14%></a></li>                        
                     </ul> 
                 </div>
                                 <%end%>
@@ -169,17 +171,21 @@ cs=cs_products("热评商品",location,category_name)
       <div class="channel_right" style=" padding-bottom:20px;">
         <%cs.each do |comment|%>
               	<ul class="elect_right_ul comment_ul"> 
-            <li><a href="<%=product_url(comment.product.id)%>" target="_blank"><img src="<%=comment.product.i1.url(:medium)%>" /></a></li> 
-            <li class="comment_li"><a href="<%=product_url(comment.product.id)%>" target="_blank" style="height:33px;display:block;"><%=truncate comment.content,:length=>30%></a><span><%=comment.user.nick%></span></li> 
+            <li><a href="<%=myproduct_url(comment.product.id)%>" target="_blank"><%=image_tag comment.product.i1.url(:medium)%><!--<img src="<%=comment.product.i1.url(:medium)%>" />--></a></li> 
+            <li class="comment_li"><a href="<%=myproduct_url(comment.product.id)%>" target="_blank" style="height:33px;display:block;"><%=truncate comment.content,:length=>30%></a><span><%=comment.user.nick%></span></li> 
         </ul>
         <%end%>
                 <div id="clear"></div> 
       </div></div> 
 <div id='clear'></div> 
-</div> 
-<script type="text/javascript" src="/themes/default/js/js-clib.js" charset="UTF-8"></script> 
+</div>
+<%=javascript_include_tag "/themes/default/js/js-clib.js",:charset=>"UTF-8"%>
+<%=javascript_include_tag "/themes/default/js/global.js",:charset=>"UTF-8"%>
+<%=javascript_include_tag "/themes/default/js/photo-switch.js",:charset=>"UTF-8"%>
+
+<!--<script type="text/javascript" src="/themes/default/js/js-clib.js" charset="UTF-8"></script> 
 <script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script> 
-<script type="text/javascript" src="/themes/default/js/photo-switch.js" charset="UTF-8"></SCRIPT> 
+<script type="text/javascript" src="/themes/default/js/photo-switch.js" charset="UTF-8"></SCRIPT> -->
 <!--<script type="text/javascript" src="/themes/default/js/category.js" charset="UTF-8"></script> -->
 <% content_for :bodyfoot do%>
 <!--[if IE 6]><script type="text/javascript">try {document.execCommand('BackgroundImageCache', false, true);} catch(e) {}</script><![endif]--> 

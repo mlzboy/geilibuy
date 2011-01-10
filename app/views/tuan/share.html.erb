@@ -1,3 +1,4 @@
+
 <%content_for :headmeta do%>
 <meta name="Generator" content="给力百货 geilibuy.com " />
 <meta http-equiv="X-UA-Compatible" content="IE=7" />
@@ -7,7 +8,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/>
 <%end%>
 <%content_for :headtitle do%>
-<title>邀请有奖 - 给力团 创意百货天天团 - 给力百货</title>
+<title>邀请有奖 - 给力团 给力我的给力 - 给力百货</title>
 <%end%>
 <% content_for :headstyle do %>
 <!--style>
@@ -22,7 +23,7 @@ html {filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);}
 <%content_for :headother do%>
 <link rel="shortcut icon" href="/favicon.ico" />
 <link rel="icon" href="/animated_favicon.gif" type="image/gif" />
-<link rel="alternate" type="application/rss+xml" title="RSS|邀请有奖 - 给力团 创意百货天天团 - 给力百货" href="" />
+<link rel="alternate" type="application/rss+xml" title="RSS|邀请有奖 - 给力团 给力我的给力 - 给力百货" href="" />
 <%end%>
 <%content_for :headjs do%>
 <script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
@@ -44,7 +45,7 @@ $(function(){
 </div>
 
 <div id="main">
-								
+<%if has_login?%>			
 		<div id="left">
     <div class="zone">
     <div class="leftbar">邀请有奖</div>
@@ -52,8 +53,12 @@ $(function(){
 
       <dt>当好友通过您的专用邀请链接注册并完成首次购买，系统会为您的现金账户充值5元，可直接用于支付。</dt>
       <dd id="inv_way1"> <b id="urldoc2">这是您的专用邀请链接，通过MSN或QQ发送给好友吧！</b><br/>
-        <input type="text" style="width:300px;" autocomplete="off" name="qqmsnurl2" id="qqmsnurl2" class="inputs" value="http://www.geilibuy.com/tuan/r684022" onfocus="this.select()">
-        <!--[if IE]>
+      <%if has_login?%>
+        <input type="text" style="width:300px;" autocomplete="off" name="qqmsnurl2" id="qqmsnurl2" class="inputs" value="http://www.geilibuy.com/tuan/r<%=current_user.id%>" onfocus="this.select()">
+        <%else%>
+        <input type="text" style="width:300px;" autocomplete="off" name="qqmsnurl2" id="qqmsnurl2" class="inputs" value="http://www.geilibuy.com/tuan" onfocus="this.select()">
+	<%end%>
+	<!--[if IE]>
         <input type="submit" value="复制链接" class="dbtn com_btn" onClick="copy2(document.getElementById('qqmsnurl2').value)">
         <![endif]-->
         <div class="clear"></div>
@@ -65,16 +70,31 @@ $(function(){
             <td colspan="2"><b>通过其他方式邀请好友：</b></td>
           </tr>
           <tr>
-            <td width="214" valign="top"><a href="http://www.geilibuy.com/tuan/"><img src="/data/tuan/1292198290369753241-200.jpg" alt="69元！市场价140元硕而博多功能车载应急手电！买了汽车买了保险，别忘了买应急工具！手摇照明+闪灯警示+敲玻璃+割保险带+磁吸+手机充电，一件搞定常备无患！" width="197" height="119" /></a></td>
-            <td width="371" align="left" valign="top" style="padding-right:33px;">69元！市场价140元硕而博多功能车载应急手电！买了汽车买了保险，别忘了买应急工具！手摇照明+闪灯警示+敲玻璃+割保险带+磁吸+手机充电，一件搞定常备无患！</td>
+            <td width="214" valign="top"><a href="http://www.geilibuy.com/tuan/"><img src="<%=@tuan.i1.url%>" alt="<%=@tuan.sub_title%>" width="197" height="119" /></a></td>
+            <td width="371" align="left" valign="top" style="padding-right:33px;"><%=@tuan.sub_title%></td>
           </tr>
 
         </table>
       </dd>
+<%
+share_url=url_encode("http://www.geilibuy.com#{mytuan_url(@tuan)}")
+share_title=url_encode(@tuan.edm_title)
+xiaonei=%Q{http://share.xiaonei.com/share/buttonshare.do?link=#{share_url}&title=#{share_title}}
+kaixin=%Q{http://www.kaixin001.com/repaste/share.php?title=#{share_title}&rurl=#{share_url}}
+douban=%Q{http://www.douban.com/recommend/?url=#{share_url}&title=#{share_title}}
+qq=%Q{http://v.t.qq.com/share/share.php?title=#{share_title}&url=#{share_url}}
+sohu=%Q{http://bai.sohu.com/share/blank/add.do?link=#{share_url}}
+baidu=%Q{http://cang.baidu.com/do/add?it=#{share_title}&tn=#{share_url}}
+sina=%Q{http://v.t.sina.com.cn/share/share.php?url=#{share_url}&title=#{share_title}}
+%>
           </dl>
         <dl class="share">
       <dt>分享到：</dt>
-      <dd> <a class="renren" href="http://share.xiaonei.com/share/buttonshare.do?link=http://www.geilibuy.com/tuan/deals/deals.php?t_c=i_20101214_a_684022&title=%E6%8E%A8%E8%8D%90%E8%B6%A3%E5%9B%A2%E4%BB%8A%E6%97%A5%E5%9B%A2%E8%B4%AD&send_message=%E6%8E%A8%E8%8D%90%E8%B6%A3%E5%9B%A2%E4%BB%8A%E6%97%A5%E5%9B%A2%E8%B4%AD%EF%BC%9A%E9%80%81%E5%AE%A2%E6%88%B7%2169%E5%85%83%21%E5%B8%82%E5%9C%BA%E4%BB%B7140%E5%85%83%E8%BD%A6%E8%BD%BD%E5%BA%94%E6%80%A5%E6%89%8B%E7%94%B5%21%E6%89%8B%E6%91%87%E7%85%A7%E6%98%8E%2F%E9%97%AA%E7%81%AF%E8%AD%A6%E7%A4%BA%2F%E6%95%B2%E7%8E%BB%E7%92%83%2F%E5%89%B2%E4%BF%9D%E9%99%A9%E5%B8%A6%2F%E7%A3%81%E5%90%B8%2F%E6%89%8B%E6%9C%BA%E5%85%85%E7%94%B5%EF%BC%8C%E4%B8%80%E4%BB%B6%E6%90%9E%E5%AE%9A%21" target="_blank">人人</a> <a class="kaixin" href="http://www.kaixin001.com/~repaste/repaste.php?rtitle=%E6%8E%A8%E8%8D%90%E8%B6%A3%E5%9B%A2%E4%BB%8A%E6%97%A5%E5%9B%A2%E8%B4%AD&rurl=http://www.geilibuy.com/tuan/deals/deals.php?t_c=i_20101214_a_684022&rcontent=%E6%8E%A8%E8%8D%90%E8%B6%A3%E5%9B%A2%E4%BB%8A%E6%97%A5%E5%9B%A2%E8%B4%AD%EF%BC%9A%E9%80%81%E5%AE%A2%E6%88%B7%2169%E5%85%83%21%E5%B8%82%E5%9C%BA%E4%BB%B7140%E5%85%83%E8%BD%A6%E8%BD%BD%E5%BA%94%E6%80%A5%E6%89%8B%E7%94%B5%21%E6%89%8B%E6%91%87%E7%85%A7%E6%98%8E%2F%E9%97%AA%E7%81%AF%E8%AD%A6%E7%A4%BA%2F%E6%95%B2%E7%8E%BB%E7%92%83%2F%E5%89%B2%E4%BF%9D%E9%99%A9%E5%B8%A6%2F%E7%A3%81%E5%90%B8%2F%E6%89%8B%E6%9C%BA%E5%85%85%E7%94%B5%EF%BC%8C%E4%B8%80%E4%BB%B6%E6%90%9E%E5%AE%9A%21" target="_blank">开心</a> <a class="sina" href="http://v.t.sina.com.cn/share/share.php?appkey=2926504205&url=http://www.geilibuy.com/tuan/deals/deals.php?t_c=i_20101214_a_684022&title=%E6%8E%A8%E8%8D%90%E8%B6%A3%E5%9B%A2%E4%BB%8A%E6%97%A5%E5%9B%A2%E8%B4%AD%EF%BC%9A%E9%80%81%E5%AE%A2%E6%88%B7%2169%E5%85%83%21%E5%B8%82%E5%9C%BA%E4%BB%B7140%E5%85%83%E8%BD%A6%E8%BD%BD%E5%BA%94%E6%80%A5%E6%89%8B%E7%94%B5%21%E6%89%8B%E6%91%87%E7%85%A7%E6%98%8E%2F%E9%97%AA%E7%81%AF%E8%AD%A6%E7%A4%BA%2F%E6%95%B2%E7%8E%BB%E7%92%83%2F%E5%89%B2%E4%BF%9D%E9%99%A9%E5%B8%A6%2F%E7%A3%81%E5%90%B8%2F%E6%89%8B%E6%9C%BA%E5%85%85%E7%94%B5%EF%BC%8C%E4%B8%80%E4%BB%B6%E6%90%9E%E5%AE%9A%21&source=%E8%B6%A3%E7%8E%A9%E7%BD%91&sourceUrl=http%3A%2F%2Fwww.geilibuy.com%2F&content=gb2312&pic=http://www.geilibuy.com/data/tuan/1292198290369753241-200.jpg" target="_blank">新浪微博</a> <a class="douban" href="http://www.douban.com/recommend/?url=http://www.geilibuy.com/tuan/deals/deals.php?t_c=i_20101214_a_684022&title=%E6%8E%A8%E8%8D%90%E8%B6%A3%E5%9B%A2%E4%BB%8A%E6%97%A5%E5%9B%A2%E8%B4%AD%EF%BC%9A%E9%80%81%E5%AE%A2%E6%88%B7%2169%E5%85%83%21%E5%B8%82%E5%9C%BA%E4%BB%B7140%E5%85%83%E8%BD%A6%E8%BD%BD%E5%BA%94%E6%80%A5%E6%89%8B%E7%94%B5%21%E6%89%8B%E6%91%87%E7%85%A7%E6%98%8E%2F%E9%97%AA%E7%81%AF%E8%AD%A6%E7%A4%BA%2F%E6%95%B2%E7%8E%BB%E7%92%83%2F%E5%89%B2%E4%BF%9D%E9%99%A9%E5%B8%A6%2F%E7%A3%81%E5%90%B8%2F%E6%89%8B%E6%9C%BA%E5%85%85%E7%94%B5%EF%BC%8C%E4%B8%80%E4%BB%B6%E6%90%9E%E5%AE%9A%21" target="_blank">豆瓣</a> <a class="shuoke" href="http://www.139.com/share/share.php?tl=953010001&source=shareto139_quwan&title=%E6%8E%A8%E8%8D%90%E8%B6%A3%E5%9B%A2%E4%BB%8A%E6%97%A5%E5%9B%A2%E8%B4%AD%EF%BC%9A%E9%80%81%E5%AE%A2%E6%88%B7%2169%E5%85%83%21%E5%B8%82%E5%9C%BA%E4%BB%B7140%E5%85%83%E8%BD%A6%E8%BD%BD%E5%BA%94%E6%80%A5%E6%89%8B%E7%94%B5%21%E6%89%8B%E6%91%87%E7%85%A7%E6%98%8E%2F%E9%97%AA%E7%81%AF%E8%AD%A6%E7%A4%BA%2F%E6%95%B2%E7%8E%BB%E7%92%83%2F%E5%89%B2%E4%BF%9D%E9%99%A9%E5%B8%A6%2F%E7%A3%81%E5%90%B8%2F%E6%89%8B%E6%9C%BA%E5%85%85%E7%94%B5%EF%BC%8C%E4%B8%80%E4%BB%B6%E6%90%9E%E5%AE%9A%21&url=http://www.geilibuy.com/tuan/deals/deals.php?t_c=i_20101214_a_684022" target="_blank">139说客</a>
+      <dd> <a class="renren" href="<%=raw xiaonei%>" target="_blank">人人</a>
+      <a class="kaixin" href="<%=raw kaixin%>" target="_blank">开心</a>
+      <a class="sina" href="<%=raw sina%>" target="_blank">新浪微博</a>
+      <a class="douban" href="<%=raw douban%>" target="_blank">豆瓣</a>
+      <a class="my_qq" href="<%=raw qq%>" target="_blank">腾讯微博</a>
 
         </li>
       </dd>
@@ -87,6 +107,23 @@ $(function(){
   </div>
 
   </div>
+<%else%>
+<div id="left">
+    <div class="zone">
+
+    <div class="leftbar">邀请有奖</div>
+    <dl class="invate_way">
+      <dt>当好友通过您的专用邀请链接注册并完成首次购买，系统会为您的现金账户充值5元，可直接用于支付。</dt>
+      <dd>
+        <!--<form action="/tuan/account/login" method="get" name="gotoLoginForm" id="gotoLoginForm" >-->
+          请先 <a href="/tuan/account/login" style="cursor:pointer" class="blue">登录</a> 或者 <a href="/tuan/account/register" class="blue">注册</a>，获取您的专用邀请链接。
+
+        <!--</form>-->
+      </dd>
+    </dl>
+  </div>
+  </div>
+<%end%>
 <div id="right">
   <div class="zone">
     <h4>在哪里可以看到我的返利？</h4>
