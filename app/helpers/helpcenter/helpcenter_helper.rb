@@ -1,2 +1,0 @@
-module Helpcenter::HelpcenterHelper
-end

@@ -1,2 +1,0 @@
-module Helpcenter::TestHelper
-end
