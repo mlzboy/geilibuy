@@ -1,0 +1,284 @@
+user mlzboy;
+#user  nobody;
+worker_processes  1;
+
+error_log  logs/error.log;
+#error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
+
+pid        logs/nginx.pid;
+worker_rlimit_nofile	10240;
+
+events {
+    use epoll;
+    worker_connections  10240;
+}
+
+
+http {
+      passenger_root /home/mlzboy/.rvm/gems/ruby-1.9.2-p0/gems/passenger-3.0.1;
+      passenger_ruby /home/mlzboy/.rvm/wrappers/ruby-1.9.2-p0/ruby;
+
+    upstream frontends {
+        server 127.0.0.1:8001  	max_fails=3 fail_timeout=30s;
+        server 127.0.0.1:8002   max_fails=3 fail_timeout=30s;
+    }
+
+
+    server_tokens off;
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    #access_log  logs/access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    #keepalive_timeout  0;
+    keepalive_timeout  65;
+
+    gzip  on;
+    gzip_static on;
+    gzip_http_version   1.0;
+    gzip_proxied        any;
+    gzip_disable        "MSIE [1-5]\.";
+    gzip_comp_level     4;
+    gzip_types       text/plain application/xml  application/x-javascript text/css ;
+    server {
+	listen 80 default;
+	#listen 3000;
+	listen 8090;
+        server_name _;
+	return 500;
+	}
+    #以下为geilbuy.com配置
+    server {
+        listen          80;
+        server_name     i0.geilibuy.com i1.geilibuy.com i2.geilibuy.com i3.geilibuy.com i4.geilibuy.com i5.geilibuy.com;
+        #root            /home/mlzboy/my/b2c2/public;
+	root	/home/mlzboy/b2c2/current/public;
+        charset         utf-8;
+        #optimize_server_names      off;
+        server_name_in_redirect     off;
+        #access_log  logs/access.log  main;
+        #add_header  15-1688 $server_addr;     
+        location / {
+                access_log   off;  
+                expires      30d; 
+        }
+    }
+    server {
+	listen 80;
+	#listen 3000;
+	#server_name	www.15-1688.com	15-1688.com;
+	server_name	tuan.geilibuy.com www.geilibuy.com geilibuy.com;
+	#root	/home/mlzboy/b2c2/public;
+	root	/home/mlzboy/b2c2/current/public;
+        passenger_enabled       on;
+        rails_env       development;
+	if ($host = 'tuan.geilibuy.com'){
+		rewrite ^/(.*)$ http://www.geilibuy.com/tuan/$1 permanent;
+	}
+        if ($host != 'www.geilibuy.com') {
+        	rewrite ^/(.*)$ http://www.geilibuy.com/$1 permanent;
+        }         
+	}
+    #以下为15-1688配置
+    server {
+        listen 8090;
+        server_name     www.15-1688.com 15-1688.com;
+	root            /home/mlzboy/my/idea2/search/;
+        location / {
+            rewrite         ^ http://www.15-1688.com permanent;
+        }
+        location ~* ^/news{
+            rewrite         ^ http://www.15-1688.com$request_uri permanent;
+        }
+    }
+    server {
+        listen       80;
+	server_name     www.15-1688.com	15-1688.com;
+	#server_name  localhost	www.15-1688.com	15-1688.com;
+	#root	     /home/mlzboy/my/idea2/search/;
+	root	     /home/mlzboy/search/;
+        #charset      gb2312;
+        charset      utf-8;
+        #optimize_server_names   off;
+        server_name_in_redirect off;
+        access_log  logs/access.log  main;
+        add_header  15-1688 $server_addr;
+        if ($host != 'www.15-1688.com') {
+        	rewrite ^/(.*)$ http://www.15-1688.com/$1 permanent;
+        }        
+        location / {
+            #root   html;
+            #index  index.html index.htm;
+		if ($host != 'www.15-1688.com' ) {
+			rewrite ^/(.*)$ http://www.15-1688.com/$1 permanent;
+		}
+                if (!-e $request_filename) {
+                    #rewrite     ^/q/([^/]+)/(\w\d+)and(\w\d+)and(\w\d+)\.html   /qq/?q=$1&pos=$2,$3,$4  break;
+                    #rewrite     ^/q/([^/]+)/(\w\d+)and(\w\d+)\.html       /qq/?q=$1&pos=$2,$3    break;
+                    #rewrite     ^/q/([^/]+)/(\w\d+)\.html       /qq/?q=$1&pos=$2    break;
+                    #rewrite     ^/q/([^/]+)/?$             /qq/?q=$1&pos=p1,z1,s1           break;
+
+	rewrite	^/en/q/(\w.*?)and(\w.*?)and(\w.*?)and(\w.*?)and(\w.*?)and(\w.*?)-wholesale\.html	/en/qq/?pos=$1,$2,$3,$4,$5,$6      break;
+	rewrite	^/en/q/(\w.*?)and(\w.*?)and(\w.*?)and(\w.*?)and(\w.*?)-wholesale\.html            	/en/qq/?pos=$1,$2,$3,$4,$5         break;
+	rewrite	^/en/q/(\w.*?)and(\w.*?)and(\w.*?)and(\w.*?)-wholesale\.html				/en/qq/?pos=$1,$2,$3,$4		   break;
+	rewrite	^/en/q/(\w.*?)and(\w.*?)and(\w.*?)-wholesale\.html					/en/qq/?pos=$1,$2,$3		   break;
+	rewrite	^/en/q/(\w.*?)and(\w.*?)-wholesale\.html						/en/qq/?pos=$1,$2                  break;
+	rewrite ^/en/q/([^/]+)-wholesale\.html								/en/qq/?q=$1                       break;
+        rewrite ^/enq/([^/]+)/?$									/en/qq/?q=$1			   break;        
+
+        
+	rewrite	^/q/(\w.*?)and(\w.*?)and(\w.*?)and(\w.*?)and(\w.*?)and(\w.*?)\.html	/qq/?pos=$1,$2,$3,$4,$5,$6      break;
+	rewrite	^/q/(\w.*?)and(\w.*?)and(\w.*?)and(\w.*?)and(\w.*?)\.html               /qq/?pos=$1,$2,$3,$4,$5         break;
+	rewrite	^/q/(\w.*?)and(\w.*?)and(\w.*?)and(\w.*?)\.html				/qq/?pos=$1,$2,$3,$4		break;
+	rewrite	^/q/(\w.*?)and(\w.*?)and(\w.*?)\.html					/qq/?pos=$1,$2,$3		break;
+	rewrite	^/q/(\w.*?)and(\w.*?)\.html						/qq/?pos=$1,$2                  break;
+	rewrite ^/q/([^/]+)\.html							/qq/?q=$1                       break;
+        rewrite ^/q/([^/]+)/?$								/qq/?q=$1			break;        
+        
+        
+#	rewrite	^/q/([^/]+)/(\w.*?)and(\w.*?)and(\w.*?)and(\w.*?)and(\w.*?)\.html	/qq/?q=$1&pos=$2,$3,$4,$5,$6	break;
+#	rewrite	^/q/([^/]+)/(\w.*?)and(\w.*?)and(\w.*?)and(\w.*?)\.html			/qq/?q=$1&pos=$2,$3,$4,$5	break;
+#	rewrite	^/q/([^/]+)/(\w.*?)and(\w.*?)and(\w.*?)\.html				/qq/?q=$1&pos=$2,$3,$4		break;
+#	rewrite	^/q/([^/]+)/(\w.*?)and(\w.*?)\.html					/qq/?q=$1&pos=$2,$3		break;
+#	rewrite	^/q/([^/]+)/(\w.*?)\.html						/qq/?q=$1&pos=$2		break;
+#	rewrite ^/q/([^/]+)\.html							/qq/?q=$1			break;
+#        rewrite ^/q/([^/]+)/?$								/qq/?q=$1			break;        
+        
+        
+        
+	#rewrite ^/report.html								/report				break;
+		    #rewrite     ^/q/(.*?)/(.*?)$       /qq/?q=$1&pos=$2    break;
+                    #rewrite	^/q/(.*?)$              /qq/?q=$1           last;
+                    #rewrite     ^/convert$      /convert    last;#不需要,已经默认支持就是不重写
+               }
+		
+
+	    #for uwsgi
+		#uwsgi_pass	unix:///tmp/uwsgi.sock;
+		#include		uwsgi_params;
+
+            proxy_pass_header Server;
+            proxy_set_header Host $http_host;
+            proxy_redirect off;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Scheme $scheme;
+            proxy_pass http://frontends;
+
+            add_header  15-1688 $server_addr;
+
+
+		
+
+		#return 403
+        }
+	location ~* ^/robots\.txt$ {
+            expires      0d; 
+	}
+        location ~* ^/feeds{
+            autoindex   on;
+            expires      0d; 
+        }
+        location ~* ^/news{
+            expires      0d; 
+        }
+	location ~* ^/images/ {
+	    access_log   off;  
+	    expires      30d; 
+	}
+	location ~* ^/v_js/ {
+	    access_log   off;  
+	    expires      30d; 
+	}
+	location ~* ^/imagesNew/ {
+	    access_log   off;  
+	    expires      30d; 
+	}
+
+   location ~* ^/wk/ {
+        root	/home/mlzboy/static/;#注意这里要从/wk/开始匹配，就是说location的路径完整的挂在这个后面
+        access_log	off;
+        expires	30d; 
+    }
+
+
+
+
+        error_page  404 500 502 503 504              /500.html;
+
+        # redirect server error pages to the static page /50x.html
+        #
+        #error_page   500 502 503 504  /50x.html;
+        location = /500.html {
+            root   /home/mlzboy/search/;
+        }
+
+        # proxy the PHP scripts to Apache listening on 127.0.0.1:80
+        #
+        #location ~ \.php$ {
+        #    proxy_pass   http://127.0.0.1;
+        #}
+
+        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+        #
+        #location ~ \.php$ {
+        #    root           html;
+        #    fastcgi_pass   127.0.0.1:9000;
+        #    fastcgi_index  index.php;
+        #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+        #    include        fastcgi_params;
+        #}
+
+        # deny access to .htaccess files, if Apache's document root
+        # concurs with nginx's one
+        #
+        #location ~ /\.ht {
+        #    deny  all;
+        #}
+    }
+
+
+    # another virtual host using mix of IP-, name-, and port-based configuration
+    #
+    #server {
+    #    listen       8000;
+    #    listen       somename:8080;
+    #    server_name  somename  alias  another.alias;
+
+    #    location / {
+    #        root   html;
+    #        index  index.html index.htm;
+    #    }
+    #}
+
+
+    # HTTPS server
+    #
+    #server {
+    #    listen       443;
+    #    server_name  localhost;
+
+    #    ssl                  on;
+    #    ssl_certificate      cert.pem;
+    #    ssl_certificate_key  cert.key;
+
+    #    ssl_session_timeout  5m;
+
+    #    ssl_protocols  SSLv2 SSLv3 TLSv1;
+    #    ssl_ciphers  ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP;
+    #    ssl_prefer_server_ciphers   on;
+
+    #    location / {
+    #        root   html;
+    #        index  index.html index.htm;
+    #    }
+    #}
+
+}
