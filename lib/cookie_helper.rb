@@ -304,7 +304,7 @@ module CookieHelper
     save_products_to_cookie(products)
   end
   def myproduct_url(productid)
-    productid.to_s
+    "/product/#{productid}"
   end
 
   def gen_products_html()
