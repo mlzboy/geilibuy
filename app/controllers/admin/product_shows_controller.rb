@@ -1,6 +1,104 @@
-
+#coding:utf-8
 class Admin::ProductShowsController < AdminController
-  layout "admin"
+  layout "product_show"
+  def add_new_products_to_product_show_and_keep_original(product_show)
+    p=params[:product_id]
+    if p.blank? or p.size==0
+      product_show.products=[]
+      return
+    end
+    $q=p
+    $q=$q.map{|k| k.strip}.uniq.reject{|k| k==""}
+    logger.debug("----------------------------")
+    logger.debug($q)
+    #product_show.products=[]
+    
+    count=product_show.products.size
+    while $q.size>0
+      p=Product.find($q.shift)
+      if !p.nil?
+        if ProductShowsProduct.find_by_product_id_and_product_show_id(p.id,product_show.id).nil?
+          n=ProductShowsProduct.new
+          n.product_id=p.id
+          n.product_show_id=product_show.id
+          n.position=count
+          n.save
+          count+=1
+        end
+      end
+    end
+  end
+  def update_product_show_has_products(product_show)
+    p=params[:product_id]
+    if p.blank? or p.size==0
+      product_show.products=[]
+      return
+    end
+    $q=p
+    $q=$q.map{|k| k.strip}.uniq.reject{|k| k==""}
+    logger.debug("----------------------------")
+    logger.debug($q)
+    product_show.products=[]
+    
+    count=0
+    while $q.size>0
+      p=Product.find($q.shift)
+      if !p.nil?
+        if ProductShowsProduct.find_by_product_id_and_product_show_id(p.id,product_show.id).nil?
+          n=ProductShowsProduct.new
+          n.product_id=p.id
+          n.product_show_id=product_show.id
+          n.position=count
+          n.save
+          count+=1
+        end
+      end
+    end
+  end
+  def delete_belongs_product
+    product_show_id=params[:product_show_id]
+    product_id=params[:product_id]
+    ps=ProductShow.find(product_show_id)
+    product=Product.find(product_id)
+    if ps.products.include? product
+      ps.products.delete product
+    end
+    render :text=>"dd"
+  end
+  def batch_select
+    product_show_id=params[:product_show_id]
+    @product=Product.new
+    #@products=[Product.first]
+    @product_show=ProductShow.find(product_show_id)
+    
+    if request.get?
+      flash[:info]="加载成功"
+      @products=@product_show.products
+    else
+      act=params[:act]
+      @product=Product.new(params[:product])
+      @products=[]
+      logger.debug("FFFFFFFFFFff")
+      logger.debug(@product.name)
+      
+      if act=="add"
+          flash[:info]="覆盖成功"
+        #将产品增加到原有product_show_id的一行中,是否有顺序
+        add_new_products_to_product_show_and_keep_original @product_show
+
+      elsif act=="query"
+          flash[:info]="查询成功"
+          @products=Product.name_like(@product.name).on_equals(true)
+      elsif act=="overwrite"
+          flash[:info]="覆盖成功"
+        #将产品增加到原有product_show_id的一行中
+        update_product_show_has_products  @product_show
+      end
+    end
+    
+    
+    render :layout=>"test"
+  end
   # GET /admin/product_shows
   # GET /admin/product_shows.xml
   def index
@@ -10,7 +108,8 @@ class Admin::ProductShowsController < AdminController
     else
       page=params[:page]
     end
-    @product_shows = ProductShow.paginate :per_page=>20,:page=>page,:order=>["id desc"]
+    #@product_shows = ProductShow.paginate :per_page=>20,:page=>page,:order=>["id desc"]
+    @product_shows = ProductShow.order("id desc").all
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @product_shows }
@@ -94,33 +193,7 @@ class Admin::ProductShowsController < AdminController
     render :action=>'new'
   end
   
-  def update_product_show_has_products(product_show)
-    p=params[:product_id]
-    if p.blank? or p.size==0
-      product_show.products=[]
-      return
-    end
-    $q=p
-    $q=$q.map{|k| k.strip}.uniq.reject{|k| k==""}
-    logger.debug("----------------------------")
-    logger.debug($q)
-    product_show.products=[]
-    
-    count=0
-    while $q.size>0
-      p=Product.find($q.shift)
-      if !p.nil?
-        if ProductShowsProduct.find_by_product_id_and_product_show_id(p.id,product_show.id).nil?
-          n=ProductShowsProduct.new
-          n.product_id=p.id
-          n.product_show_id=product_show.id
-          n.position=count
-          n.save
-          count+=1
-        end
-      end
-    end
-  end
+
   # POST /admin/slots
   # POST /admin/slots.xml
   def create

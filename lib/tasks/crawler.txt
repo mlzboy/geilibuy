@@ -1,0 +1,224 @@
+class ::String
+    require 'iconv'
+    #Conv=Iconv.new('utf-8','gbk')
+    #Conv=Iconv.new("UTF-8//IGNORE","GBK//IGNORE")
+    Conv=Iconv.new("GBK//IGNORE","UTF-8//IGNORE")
+    def to_utf8
+        Conv.iconv(self)
+    end
+
+  def filter_tags(tags=["em","dd","input","h1","h2","h3","br","a","b","span","strong","p","hr","strong","p","hr","font","div","td","tr","img","form","table"])
+    tags.each do |elem|
+      self.gsub!(/<#{elem}[\s\S]*?>/i,"")
+      self.gsub!(/<\/ *#{elem}[\s\S]*?>/i,"")
+    end
+    self
+  end
+  def filter_characters(tags=["￥"," ","]","："])
+    tags.each do |elem|
+      self.gsub!(elem,"")
+    end
+    self
+  end
+  def filter_comments()
+    self.gsub!(/<!--[\s\S]*?-->/m,'')
+  end
+  def filter_int()
+    self.gsub!(/[^\d]+/m,'')
+    begin
+      self.to_i.to_s
+    rescue
+      "0"
+    end
+  end
+  def filter_price()
+    self.gsub!(/[^\d\.]*/m,'').chomp!
+    begin
+        return self.to_f.to_s
+    rescue
+        return "0"
+    end
+  end
+  
+  def find_tag_idx(tag,count=1)
+    #html=html.to_s
+    html=self
+    current_count=0
+    idx=0
+    start=0
+    #puts "==========="
+    #puts count
+    #puts current_count
+    while current_count < count
+      idx=html.index(tag,start)
+      unless idx.nil?
+        current_count+=1
+        if tag.class==String
+          start=idx+tag.length
+        else
+          start=idx+html[start..-1].slice(tag).length
+        end
+      else
+        break
+      end
+    end
+    r=unless idx.nil?
+      idx..start-1
+    else
+      nil  
+    end
+  end
+  
+  def rfind_tag_idx(tag,count=1)
+    #html=html.to_s
+    html=self
+    current_count=0
+    idx=0
+    start=html.length
+    #puts "==========="
+    #puts start
+    #puts count
+    #puts current_count
+    l=-1
+    while current_count < count
+      idx=html.rindex(tag,start)
+      #puts ">>>>>"
+      #puts idx
+      unless idx.nil?
+        current_count+=1
+        start=idx-1
+        if tag.class==String
+          l=tag.length
+        else
+          l=html.scan(tag).reverse[current_count-1]
+          if l.nil?
+            l=0
+          else
+            l=l.length
+          end
+        end
+      else
+        break
+      end
+    end
+    #puts "lllllllllllllllllllll"
+    #puts l
+    r=if (idx.nil? or l<1)
+      nil
+    else
+      idx..idx+l-1
+    end
+  end
+#left=false时,s还是从左边起始算，e为右边起始的算，在内部算时先算e这边，再推到左边过来
+  def get_part(real)
+    args={:s=>nil,:e=>nil,:s_count=>1,:e_count=>1,:left=>true}
+    args.merge! real
+    require 'pp'
+    #pp args
+    if args[:left]
+        html=self
+        r=""
+        if html.nil?
+          return ""
+        else
+          html=html.to_s
+        end
+        _html=html
+        if args.length==0
+          return _html
+        else
+          s=0
+          e=-1
+          unless args[:s].nil?
+    
+            s_range=_html.find_tag_idx(args[:s],args[:s_count])
+    
+            if s_range.nil?
+              return ""
+            else
+            #puts "s_range"
+            #puts _html[s_range]
+              s=s_range.last+1
+              _html=_html[s..-1]
+              #puts _html
+            end
+          end
+          unless args[:e].nil?
+            #puts "--------------------------------"
+            #puts args[:e],args[:e_count]
+            #puts _html
+            e_range=_html.find_tag_idx(args[:e],args[:e_count])
+    
+            if e_range.nil? or e_range==(0..0)
+              return ""
+            else
+            #puts "e_range"
+            #puts _html[e_range]
+            #puts e_range
+              e=e_range.first-1
+            end
+          end
+          #puts "s==>"
+          #puts s
+          #puts "e==>"
+          #puts e
+          #puts "dddddddddddddddddddd"
+          return _html[0..e]
+        end
+    else
+      puts "rightTTTTTTTTTTTTTTTTTTTT"
+        html=self
+        r=""
+        if html.nil?
+          return ""
+        else
+          html=html.to_s
+        end
+        _html=html
+        if args.length==0
+          return _html
+        else
+          s=0
+          e=-1
+          unless args[:e].nil?
+            #puts "--------------------------------"
+            #puts args[:e],args[:e_count]
+            #puts _html
+            e_range=_html.rfind_tag_idx(args[:e],args[:e_count])
+    
+            if e_range.nil?# or e_range==(0..0)
+              return ""
+            else
+            #puts "e_range"
+            #puts _html[e_range]
+            #puts e_range
+              e=e_range.first-1
+              _html=_html[0..e]
+              #puts _html
+            end
+          end
+          unless args[:s].nil?
+    
+            s_range=_html.rfind_tag_idx(args[:s],args[:s_count])
+    
+            if s_range.nil?
+              return ""
+            else
+            #puts "s_range"
+            #puts _html[s_range]
+            #puts s_range
+              s=s_range.last+1
+              #puts _html
+            end
+          end
+          #puts "s==>"
+          #puts s
+          #puts "e==>"
+          #puts e
+          #puts "dddddddddddddddddddd"
+          return _html[s..-1]
+        end
+    end
+  end
+  
+end

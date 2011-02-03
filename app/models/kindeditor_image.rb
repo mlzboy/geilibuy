@@ -1,6 +1,6 @@
 class KindeditorImage < ActiveRecord::Base
-   before_create :randomize_file_name
-    has_attached_file :data
+   #before_create :randomize_file_name
+    has_attached_file :data,:url => "/system/uploads/:id_partition/:style/:filename",:path => ":rails_root/public/system/uploads/:id_partition/:style/:filename"
     
     private
     def randomize_file_name

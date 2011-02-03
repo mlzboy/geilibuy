@@ -1,0 +1,177 @@
+<%=flash[:info] unless flash[:info].nil?%>
+这个界面是批量来处理产品展示中产品的选择排序的问题
+<!--<form id="form1" name="form1" method="post" action="/admin/products/batch_select">-->
+    <%=form_for(["admin",@product],:id=>"form1") do |f|%>
+               <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+
+    <input type="text" name="product_show_id" value="<%=params["product_show_id"] || @product_show.id%>" />
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    
+    <input id="query" type="button" name="query" value="查询" data="/admin/product_shows/batch_select?product_show_id=<%=params["product_show_id"] || @product_show.id%>&act=query" />
+    
+    <input id="select_all" type="checkbox" />全选
+    <input id="select_reverse" type="checkbox" />反选
+    
+    <input id="load" type="button" name="load" value="载入" data="/admin/product_shows/batch_select?product_show_id=<%=params["product_show_id"] || @product_show.id%>" />
+    <input id="add" type="button" name="add" value="加入" data="/admin/product_shows/batch_select?product_show_id=<%=params["product_show_id"] || @product_show.id%>&act=add" />
+    <input id="overwrite" type="button" name="overwrite" value="覆盖" data="/admin/product_shows/batch_select?product_show_id=<%=params["product_show_id"] || @product_show.id%>&act=overwrite" />
+    <a href="/admin/product_shows/new" target="_blank">new product_show</a>
+    <a href="/admin/topics/new" target="_blank">new topic</a>
+    <a href="/admin/materials" target="_blank">materials</a>
+    <a href="/" target="_blank">index</a>
+    
+    <br/>
+
+        共有<%=@products.size%>条记录
+
+        <table>
+  <tr>
+    <th></th>
+    <th>pic</th>
+    <th>Id</th>
+    <th>Name</th>
+    <th>P1</th>
+    <th>P2</th>
+    <th>P3</th>
+    <th>P4</th>
+    <th>Promotion</th>
+    <th>New</th>
+    <th>Score</th>
+    <th>S1</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @products.each do |product| %>
+  <tr>
+    <td><input name="product_id[]" type="checkbox" value="<%=product.id%>" /></td>
+    <td><%=image_tag product.i1.url(:thumb)%></td>
+    <td><%= product.id %></td>
+    <td><a href="<%=myproduct_url(product.id)%>" target="_blank"><%= product.name %></a></td>
+    <td><%= product.p1 %></td>
+    <td><%= product.p2 %></td>
+    <td><%= product.p3 %></td>
+    <td><%= product.p4 %></td>
+    <td><%= product.promotion %></td>
+    <td><%= product.new %></td>
+    <td><%= product.score %></td>
+    <td><%= product.s1 %></td>
+    <td></td>
+    <td><%= link_to 'Show', admin_product_path(product) %></td>
+    <td><%= link_to 'Edit', edit_admin_product_path(product) %></td>
+    <td><%= link_to 'Destroy', admin_product_path(product), :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><input type='button' name='top' value='top' /></td>
+    <td><input type='button' name='higher' value='higher' /></td>
+    <td><input type='button' name='lower' value='lower' /></td>
+    <td><input type='button' name='bottom' value='bottom' /></td>
+    <td><input type='button' name='remove' value='remove' data="<%=product.id%>"/></td>
+  </tr>
+<% end %>
+</table>
+<!--</form>-->
+<%end%>
+<script type="text/javascript">
+  $("input[name='remove']").click(function(){
+    if(confirm("如果此条记录存在于该product_show中，此操作将从该product_show中删除,确定删？"))
+    {
+      //使用ajax进行删除
+      var url="/admin/product_shows/delete_belongs_product/"+$("input[name='product_show_id']").val()+"/"+$(this).attr("data");
+      alert(url);
+      $.get(url);
+    }
+    })
+  $("input[name='top']").click(function(){
+      var a=$("table tr:eq(1)");
+     var current=$(this).parents("tr");
+     //alert(a.html());
+     //alert(current.html());
+    if (current.html()!=a.html()){
+      $(a).before(current);}else
+      {
+        alert("已经在最上了");
+      }
+    })
+  $("input[name='bottom']").click(function(){
+      var a=$("table tr:last");
+     var current=$(this).parents("tr");
+     //alert(a.html());
+     //alert(current.html());
+     if (current.html()!=a.html()){
+      $(a).after(current);
+     }
+     else{
+      alert("已经在最下了");
+     }
+    })
+  $("input[name='higher']").click(function(){
+      
+     var current=$(this).parents("tr");
+     //alert(current.html());
+     //alert($("table tr:eq(1)").html());
+     if (current.html()!=$("table tr:eq(1)").html())
+     {
+      current.prev().before(current)
+     }
+     else
+     {
+        alert("到顶了");
+     }
+     //alert(a.html());
+     //alert(current.html());
+      //$(a).after(current);
+    })
+  $("input[name='lower']").click(function(){
+      var a=$("table tr:last");
+     var current=$(this).parents("tr");
+      if (current.html()!=$("table tr:last").html())
+      {
+      current.next().after(current);
+      }
+      else
+      {
+        alert("到底了");
+      }
+    })
+    $("#select_all").click(function(){
+        //alert($(this).attr("checked"));
+        $("input[name='product_id[]']").attr("checked",$(this).attr("checked"));
+        });
+    $("#select_reverse").click(function(){
+        $("input[name='product_id[]']").each(function(idx,item){
+            $(item).attr("checked",!$(item).attr("checked"));
+            
+            });})
+    
+    $("#add").click(function(){
+        
+        $("form").attr("action",$(this).attr("data"));
+        
+        $("form").submit();
+        
+        })
+    $("#overwrite").click(function(){
+        
+        $("form").attr("action",$(this).attr("data"));
+        
+        $("form").submit();
+        
+        })
+    $("#load").click(function(){
+        
+        window.location.href=$(this).attr("data")+"&m="+Math.random();
+        
+        
+        })
+    $("#query").click(function(){
+        
+        $("form").attr("action",$(this).attr("data"));
+        $("form").submit();
+        })
+</script>

@@ -72,6 +72,7 @@ resources :tuan do
     match :check
     get :index
     get :faq
+    match "help/faq" => "tuan#faq"
     get :deals
     get "deals/:yyyymmdd"=>'tuan#index',:constraints => {:yyyymmdd=>/\d+/}
     match :qa
@@ -144,6 +145,7 @@ end
   match 'pay_success'=>"shopping#pay_success"
   get "product/:product_id"=>"home#product_detail"
   get 'home/product_detail'
+  match "lottery/r:user_id"=>"return#lottery_return_scores",:constraints => {:user_id=>/\d+/}
   match "lottery"=>"home#lottery"
   match "lottery_list"=>"home#lottery_list"
   #match "sub_category/:categoryid"=>'home#sub_category'
@@ -232,7 +234,9 @@ end
     match 'categories/:id/sub' => 'categories#sub'
     match 'categories/:parent_id/new' => 'categories#sub_new'
     resources :categories
+    match 'products/list' => "products#list"
     match '/products/search' =>'products#index'
+    match '/products/batch_select' =>'products#batch_select'
     resources :products
 
 
@@ -242,6 +246,7 @@ end
 
     resources :presale_consultings
     resources :postsale_comments
+    match 'brands/batch_select' => "brands#batch_select"
     match 'brands/ajax_ids/:id' =>'brands#ajax_ids'
     match 'brands/ajax_get_brands_by_category_id' =>'brands#ajax_get_brands_by_category_id'
     resources :brands
@@ -254,6 +259,8 @@ end
     match '/materials/query' =>'slots#query'
     resources :materials
     match '/products/query' =>'product_shows#query'
+    match "product_shows/batch_select" => 'product_shows#batch_select'
+    match "product_shows/delete_belongs_product/:product_show_id/:product_id" => 'product_shows#delete_belongs_product'
     resources :product_shows
     resources :comment_shows
     resources :delivery_times

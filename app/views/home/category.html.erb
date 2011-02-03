@@ -143,7 +143,7 @@ cs=cs_products("热评商品",location,category_name)
                                  <ul class="elect_right_ul hotsale_ul"> 
                     <li class="hotsale_ul_img"><a href="<%=myproduct_url(product.id)%>" target="_blank"><%=image_tag product.i1.url(:medium),:alt=>product.name,:width=>160,:height=>160%><!--<img src="<%=product.i1.url(:medium)%>" alt="<%=product.name%>" width="160" height="160" />--></a></li> 
                     <li class="worth_goods_name"><a href="<%=myproduct_url(product.id)%>" target="_blank" title="<%=product.name%>"><%=truncate product.name,:length=>12%></a></li> 
-                                        <li class="worth_goods_price">￥<%=price(product.p2)%><font>+<%=product.s1%>积分</font></li> 
+                                        <li class="worth_goods_price">￥<%=price(product.p3)%><font>+<%=product.s1%>积分</font></li> 
                                     </ul>
                 <%end%>
                                <div id="clear"></div> 
@@ -172,7 +172,7 @@ cs=cs_products("热评商品",location,category_name)
         <%cs.each do |comment|%>
               	<ul class="elect_right_ul comment_ul"> 
             <li><a href="<%=myproduct_url(comment.product.id)%>" target="_blank"><%=image_tag comment.product.i1.url(:medium)%><!--<img src="<%=comment.product.i1.url(:medium)%>" />--></a></li> 
-            <li class="comment_li"><a href="<%=myproduct_url(comment.product.id)%>" target="_blank" style="height:33px;display:block;"><%=truncate comment.content,:length=>30%></a><span><%=comment.user.nick%></span></li> 
+            <li class="comment_li"><a href="<%=myproduct_url(comment.product.id)%>" target="_blank" style="height:33px;display:block;"><%=truncate comment.content,:length=>26%></a><span><%=comment.user.nick%></span></li> 
         </ul>
         <%end%>
                 <div id="clear"></div> 

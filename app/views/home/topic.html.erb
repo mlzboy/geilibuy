@@ -7,7 +7,7 @@
 <meta name="pagename" content="search" />
 <%end%>
 <%content_for :headtitle do%>
-<title><%=@topic.name%> - 趣玩网 - 日用百货量贩平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品</title>
+<title><%=@topic.name%> - 给力百货 - 日用百货量贩平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品</title>
 <%end%>
 <% content_for :headstyle do %>
 <style type="text/css">
@@ -119,10 +119,11 @@ $(document).ready(function(){
               <a href="<%=myproduct_url(product.id)%>" target="_blank"><%=image_tag product.i1.url(:medium),:alt=>product.name%></a>
                        	              	  <span class="dis_tip"><font class="dis_num"><%=raw show_promotion_num(product)%></font></span>
             	                            </li>
-
+			<%unless product.brand_id.blank?%>
                            <li class="goods_brand"><a href="/brands/<%=product.brand_id%>">[&nbsp;<%=product.brand.name if product.brand%>&nbsp;]</a></li>
-                           <li class="goods_name">
-                  <a  href="<%=myproduct_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=product.name%></a>
+                        <%end%>
+		           <li class="goods_name">
+                  <a  href="<%=myproduct_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=product.name%></a><%unless product.sub_title.blank?%><span><%=product.sub_title%></span><%end%>
                                  </li>
                   <li class="goods_dprice">￥<%=price(product.p1)%>元</li>
                 <li class="goods_price">￥<%=price(product.p2)%>元</li>

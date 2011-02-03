@@ -208,7 +208,9 @@ end
 		       <%prices.each do |price|
 		       %>
                       <li>
-		       <%price_style2(root_path,category_id,brand_id,sub_category_id,price.first,price.last,sort,page,min,max)%>
+		       <%#price_style2(root_path,category_id,brand_id,sub_category_id,price.first,price.last,sort,page,min,max)%>
+		       <%#modified at 20110127%>
+                       <%price_style2(root_path,category_id,brand_id,sub_category_id,price.first,price.last,sort,1,min,max)%>
 
                           </li>
 		      <%end%>
@@ -249,7 +251,13 @@ end
 					  <span class="dis_tip"><span class="dis_num"><%=raw show_promotion_num(product)%></span></span>
 					  <%end%>
             	                            </li>
+              <%unless product.brand_id.blank?%>
+                <%if product.brand.hide%>
+                           <li class="goods_brand"><a href="http://www.geilibuy.com/search?brand_id=<%=product.brand_id%>">[&nbsp;<%=product.brand.name if product.brand%>&nbsp;]</a></li>
+                <%else%>
                            <li class="goods_brand"><a href="http://www.geilibuy.com/brands/<%=product.brand_id%>">[&nbsp;<%=product.brand.name if product.brand%>&nbsp;]</a></li>
+                <%end%>
+              <%end%>
                            <li class="goods_name">
                   <a id="list_name_a" href="<%=myproduct_url(product.id)%>" style="color:#000;" title="<%=product.name%>" target="_blank"><%=product.name%></a>
                                           <%unless product.sub_title.blank?%>

@@ -1,0 +1,44 @@
+<%=will_paginate @products%>
+<table>
+  <tr>
+    <th>pic</th>
+    <th>Id</th>
+    <th>Name</th>
+    <th>P1</th>
+    <th>P2</th>
+    <th>P3</th>
+    <th>P4</th>
+    <th>Promotion</th>
+    <th>New</th>
+    <th>Score</th>
+    <th>S1</th>
+    <th>On</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @products.each do |product| %>
+  <tr>
+    <td><%=image_tag product.i1.url(:medium)%></td>
+    <td><%= product.id %></td>
+    <td><a href="<%=myproduct_url(product.id)%>" target="_blank"><%= product.name %></a></td>
+    <td><%= product.p1 %></td>
+    <td><%= product.p2 %></td>
+    <td><%= product.p3 %></td>
+    <td><%= product.p4 %></td>
+    <td><%= product.promotion %></td>
+    <td><%= product.new %></td>
+    <td><%= product.score %></td>
+    <td><%= product.s1 %></td>
+    <td><%= product.on %></td>
+    <td></td>
+    <td><%= link_to 'Show', admin_product_path(product) %></td>
+    <td><%= link_to 'Edit', edit_admin_product_path(product) %></td>
+    <td><%= link_to 'Destroy', admin_product_path(product), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+<input type="text" id="page" name="page" value="<%=@products.current_page%>" />
+<input type="text" id="source" name="source" value="" />

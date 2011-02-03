@@ -2,9 +2,12 @@
 #left{float:left;width:500px;height:1000px;}
 #right{float:left;width:400px;}
 </style>
-    <%= javascript_include_tag :defaults %>
-
-  <%=kindeditor_javacript_include_tag%>
+    <%#= javascript_include_tag :defaults %>
+    <%=javascript_include_tag "http://www.geilibuy.com/ke/kindeditor-min.js"%>
+    <%=javascript_include_tag "http://www.geilibuy.com/ke/kindeditor_config.js"%>
+  <!--<script src="http://i2.geilibuy.com/javascripts/kindeditor/kindeditor-min.js?1290484813" type="text/javascript"></script> -->
+<!--<script src="http://i0.geilibuy.com/javascripts/kindeditor/kindeditor_config.js?1290484813" type="text/javascript"></script> -->
+  <%#=kindeditor_javacript_include_tag%>
 <%
 def show_details()
   return if @tuan.new_record?
@@ -291,3 +294,7 @@ end
   end
   %>
 </script>
+
+
+
+

@@ -8,6 +8,7 @@ ad3=ad_materials("左3",location,"")[0]
 ad4=ad_materials("左4",location,"")[0]
 ad5=ad_materials("左5",location,"")[0]
 ad6=ad_materials("右小1",location,"")[0]
+
 ad7=ad_materials("右公告",location,"")
 
 category1=Category.find_by_name("家居")
@@ -107,7 +108,7 @@ material=topad[0]
 </div> 
 <div class="right" id="flashright"> 
   <dl class="rush"> 
-        	<dt ><a href="/article/5" target="_blank">给力团服务全国开通啦！</a></dt> 
+        	<dt ><a href="/article/1" target="_blank">给力团服务全国开通啦！</a></dt> 
             <dd class="t_name"><a href="/tuan" title="<%=@tuan.title%>" target="_blank"><b><%=truncate @tuan.title,:length=>40%></b></a></dd>            
             <dd class="rush_img"> 
             	<a href="/tuan" title="<%=@tuan.title%>" target="_blank" class="new_tip q1" id="rush_tipa"></a> 
@@ -565,7 +566,7 @@ material=topad[0]
           <%cs.each do |comment|%>
         	  	                <dl class="comment_dl"> 
                     <dd><a href="<%=myproduct_url(comment.product.id)%>" title="<%=comment.product.name%>" target="_blank" ><%=image_tag comment.product.i1.url(:medium),:alt=>comment.product.name%><!--<img src="<%=comment.product.i1.url(:medium)%>" alt="<%=comment.product.name%>" />--></a></dd> 
-                    <dd class="comment_dd"><a style="height: 33px; display: block;" href="<%=myproduct_url(comment.product.id)%>" title="<%=comment.content%>" target="_blank"><%=comment.content%></a><span>拉拉/<%=comment.created_at.strftime("%Y-%m-%d")%></span></dd>            
+                    <dd class="comment_dd"><a style="height: 33px; display: block;" href="<%=myproduct_url(comment.product.id)%>" title="<%=comment.content%>" target="_blank"><%=truncate comment.content,:length=>26%></a><span>拉拉/<%=comment.created_at.strftime("%Y-%m-%d")%></span></dd>            
                 </dl> 
           <%end%>
                                <div class="clear"></div> 
@@ -594,23 +595,30 @@ material=topad[0]
     	<dt class="boxtop"></dt> 
         <dd> 
         	<ul> 
-            	<li><a href="article-424.html" title="给力团不插电颁奖见面会" target="_blank"><img src="/images/mrd3/index_model03_img01.jpg" alt="给力团不插电颁奖见面会" width="163" height="100" /></a></li> 
-            	            	<li class="libar"><a href="article-434.html" title="给力百货注重用户体验 开通全国给力团服务">给力百货注重用户体验 开通全国给力团服务</a></li> 
-                          	<li class="libar"><a href="article-423.html" title="[中华网]给力百货首推给力团  创意百货加入千团大战">[中华网]给力百货首推给力团  创意百货加入千团大战</a></li> 
-                          	<li class="libar"><a href="article-422.html" title="[Donews]国货当自强   给力百货推原创">[Donews]国货当自强   给力百货推原创</a></li> 
-                            <li><span style=" margin:0; padding:0;"><a target="_blank" href="http://www.geilibuy.com/article_cat.php?id=28">[更多媒体报道]</a></span></li> 
+            	<li><a href="http://www.geilibuy.com/article/36" title="总经理寄语：从“之一”到“唯一”" target="_blank"><img src="/happy_newyear2.jpg" alt="总经理寄语：从“之一”到“唯一”" width="163" height="100" /></a></li> 
+            <%article_category=ArticleCategory.find_by_name("媒体关注")%>
+            <%articles=[]%>
+            <%articles=article_category.top_three_articles if article_category%>
+            <%articles.each do |article|%>
+	                              	<li class="libar"><a href="<%=myarticle_url(article.id)%>" title="<%=article.title%>"><%=truncate article.title,:length=>18%></a></li> 
+            <%end%>
+				
+                            <li><span style=" margin:0; padding:0;"><a target="_blank" href="<%=myarticle_list_url(article_category.id)%>">[更多媒体报道]</a></span></li> 
             </ul> 
         </dd> 
         <dd> 
         	<ul> 
-            	<li><a class="bignews" href="article-424.html" title="给力团不插电颁奖见面会">给力团不插电颁奖见面会</a></li> 
+            	<li><a class="bignews" href="article-424.html" title="总经理寄语：从“之一”到“唯一”">总经理寄语：从之一到唯一</a></li> 
             	<li> 
-                <p>2010年10月28日，“给力百货首次不插电见面会之给力团领大奖” 活动举行了。...                </p><span style="margin:0;"><a href="article-424.html">[查看详情]</a></span> 
+                <p>2011年1月28日给力百货上线了，从蕴酿到此刻上线经历了3个多月的时间，包括...                </p><span style="margin:0;"><a href="http://www.geilibuy.com/article/36">[查看详情]</a></span> 
                 </li> 
-                          	<li class="libar"><a href="article-432.html" title="[昕薇]给力百货携手昕薇“星梦奇缘”引燃双城high潮">[昕薇]给力百货携手昕薇“星梦奇缘”引燃双城high潮</a></li> 
-                          	<li class="libar"><a href="article-386.html" title="[昕薇]给力百货携手昕薇 引领2010秋冬潮流发布">[昕薇]给力百货携手昕薇 引领2010秋冬潮流发布</a></li> 
-                          	<li class="libar"><a href="article-387.html" title="[昕薇]昕薇星梦奇缘比赛 给力百货再度发力嘉茂">[昕薇]昕薇星梦奇缘比赛 给力百货再度发力嘉茂</a></li> 
-                            <li><span style=" margin:0; padding:0;"><a target="_blank" href="http://www.geilibuy.com/article_cat.php?id=30">[更多给力百货活动]</a></span></li> 
+            <%article_category=ArticleCategory.find_by_name("给力百货活动")%>
+            <%articles=[]%>
+            <%articles=article_category.top_three_articles if article_category%>
+            <%articles.each do |article|%>
+	                              	<li class="libar"><a href="<%=myarticle_url(article.id)%>" title="<%=article.title%>"><%=truncate article.title,:length=>18%></a></li> 
+            <%end%>
+                            <li><span style=" margin:0; padding:0;"><a target="_blank" href="<%=myarticle_list_url(article_category.id)%>">[更多给力百货活动]</a></span></li> 
             </ul> 
         </dd> 
     </dl> 

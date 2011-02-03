@@ -7,7 +7,7 @@
                    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
 <table width="100%"  border="0" cellpadding="0" cellspacing="0" class="table">
           <tr>
-            <td height="30" colspan="2" align="left" valign="middle" class="td_top"><span style="padding-left:10px; font-weight:bold; color:#000;">我要评论<a href="goods.php?id=8563" target="_blank" style="color:#0066cc;"><%=@product.name%></a></span>&nbsp;&nbsp;已有<font> <%=@product.postsale_comments_count%> </font>人对此发表评论</td>
+            <td height="30" colspan="2" align="left" valign="middle" class="td_top"><span style="padding-left:10px; font-weight:bold; color:#000;">我要评论<a href="/product/<%=@product.id%>" target="_blank" style="color:#0066cc;"><%=@product.name%></a></span>&nbsp;&nbsp;已有<font> <%=@product.postsale_comments_count%> </font>人对此发表评论</td>
           </tr>
           <tr>
             <td width="68" align="left" valign="middle">&nbsp;</td>
@@ -69,7 +69,7 @@
           </tr>
           <tr>
             <td height="40" align="right" valign="middle" class="td_form"></td>
-            <td align="left" valign="middle" class="td_form"><p>* 发表评论您将获得<font> 20 积分</font>，评论被设置精华将额外获得50积分，发表评论前请仔细阅读并同意<a href="http://www.geilibuy.com/article.php?id=22" target="_blank" style="color:#0066cc;">相关条款</a>。<br />* 咨询问题请在<a href="<%=myproduct_url(@product.id)%>" target="_blank" style="color:#0066cc">购买咨询区</a>发表。</p>
+            <td align="left" valign="middle" class="td_form"><p>* 发表评论您将获得<font> 20 积分</font>，评论被设置精华将额外获得50积分，发表评论前请仔细阅读并同意<a href="http://www.geilibuy.com/about/23" target="_blank" style="color:#0066cc;">相关条款</a>。<br />* 咨询问题请在<a href="<%=myproduct_url(@product.id)%>" target="_blank" style="color:#0066cc">购买咨询区</a>发表。</p>
             </td>
           </tr>
           <tr>
@@ -84,8 +84,8 @@
         </table>
         <input type="hidden" value="2" name="cmt_type"/>
             <input type="hidden" value="8563" name="id"/>
-            <input type="hidden" value="frederick.mao@gmail.com" name="email"/>
-            <input type="hidden" value="家用门窗报警器" name="goods_name" />
+            <input type="hidden" value="" name="email"/>
+            <input type="hidden" value="<%=@product.name%>" name="goods_name" />
             <input type="hidden" value="pinglun" name="act"/>
         </form>
       </div>

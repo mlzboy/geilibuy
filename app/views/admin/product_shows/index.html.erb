@@ -14,6 +14,7 @@
     <th></th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
 
 <% @product_shows.each do |product_show| %>
@@ -29,6 +30,7 @@
     <td><%= link_to 'Show', admin_product_show_path(product_show) %></td>
     <td><%= link_to 'Edit', edit_admin_product_show_path(product_show) %></td>
     <td><%= link_to 'Destroy', admin_product_show_path(product_show), :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><a href="/admin/product_shows/batch_select?product_show_id=<%=product_show.id%>">编辑产品</a></td>
   </tr>
 <% end %>
 </table>

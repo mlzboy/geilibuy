@@ -1,0 +1,21 @@
+<!--使用普通的onchange来选择一个值-->
+<script type="text/javascript">
+$(function(){
+      $("select[name='brands_select']").change(function(){
+            $("#brand_id").val($(this).val());
+            
+            })
+      
+      })
+
+</script>
+<h3>品牌分类</h3>
+ <div class="field">
+<select name="brands_select">
+      <option value="">选择品牌</option>
+      <%Brand.all.each do |brand|%>
+      <option value='<%=brand.id%>'><%=brand.name%></option>
+      <%end%>
+</select>
+<input type="text" id="brand_id" name="brand_id" />
+</div>

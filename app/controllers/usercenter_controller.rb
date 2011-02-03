@@ -141,6 +141,7 @@ class UsercenterController < ApplicationController
   end
   def new_postsale_comment
     product_id=params[:product_id]
+    @product=Product.find_by_id(product_id)
     if request.post?
       creative=params[:comment_rank].to_i
       feature=params[:comment_rank_1].to_i
@@ -155,8 +156,12 @@ class UsercenterController < ApplicationController
       pc.hide=false
       pc.ip=request.remote_ip
       pc.save
+      if @product.postsale_comments.size>0
+        current_user.plus_scores(20,"发表商品购买评论")
+      else
+        current_user.plus_scores(50,"发表商品的第一个购买评论")
+      end
     end
-    @product=Product.find_by_id(product_id)
     render :layout=>"usercenter"
   end
   def upload_new_photo
@@ -224,9 +229,16 @@ window.location.href='/usercenter/mod_password'},2000);
     page=params[:page]
     page=1 if page.blank?
     products=[]
+    ids=[]
     current_user.orders.each do |order|
       if order.current_order_status.value==16
-        products.concat order.products
+        #products.concat order.products
+        order.products.each do |product|
+          unless ids.include? product.id
+            products << product
+            ids << product.id
+          end
+        end
       end
     end
     logger.debug("=======ZZZZZZZZZZZZZZZZZZZZZZZZZzzzzzzzzz===========")
@@ -414,6 +426,7 @@ window.location.href='/usercenter/mod_password'},2000);
         u.save
         u.user_detail=UserDetail.create(:user_id=>u.id,:birthday=>Time.now)
         tuan_invite=cookies["tuan_invite"]
+        lottery_invite=cookies["lottery_invite"]
         logger.debug("====ZZZZZZZZZZZZZZZZZZZZZZZ=====")
         logger.debug(tuan_invite)
         if tuan_invite.nil? ==false and tuan_invite.blank? ==false and tuan_invite.strip!=""
@@ -429,6 +442,18 @@ window.location.href='/usercenter/mod_password'},2000);
           end
         end
         
+        if lottery_invite.nil? ==false and lottery_invite.blank? ==false and lottery_invite.strip!=""
+          old_user=User.find_by_id(lottery_invite.strip)#是这个用户
+          if old_user
+            logger.debug("找到这个用户了")
+#            未购买：您已邀请好友注册，但好友尚未参加过团购，或其参加的团购不返利
+#已返利：已经给您返利 5 元
+#待返利：好友已团购，将在 24 小时内返利
+#审核未通过：因手机号重复等原因被判为无效邀请
+            invite=Invite.create(:user_id=>old_user.id,:invited_user_id=>u.id,:ip=>request.remote_ip,:tuangou=>false,:from=>request.referer)
+            invite.invite_details<<InviteDetail.create(:name=>"未激活",:value=>1)
+          end
+        end        
         
         #ActiveMailer.registration_confirmation(u).deliver
         CoreMail.registration_confirmation(u).deliver
@@ -656,6 +681,14 @@ r["content"]=content
         else
           u.active=true
           u.lucky=30
+          r=Invite.find_by_invited_user_id(u.id)
+          if r
+            r.invite_details<<InviteDetail.create(:name=>"已激活",:value=>2)
+            old_user=User.find(r.user_id)
+            old_user.plus_scores(0,"邀请朋友注册激活成功，增加20个幸运点")
+            old_user.lucky+=20
+            old_user.save
+          end
           u.save
           
           #u.plus_scores(30,"邮箱注册激活")

@@ -1,6 +1,8 @@
 
 
-  <%=kindeditor_javacript_include_tag%>
+  <%#=kindeditor_javacript_include_tag%>
+      <%=javascript_include_tag "http://www.geilibuy.com/ke/kindeditor-min.js"%>
+    <%=javascript_include_tag "http://www.geilibuy.com/ke/kindeditor_config.js"%>
 <%= form_for [:admin,@product],:html=>{:multipart=>true} do |f| %>
   <% if @product.errors.any? %>
     <div id="error_explanation">
@@ -109,6 +111,14 @@
   <div class="field">
     <%= f.label :memo %><br />
     <%= f.text_area :memo,:cols=>80,:rows=>5 %>
+  </div>
+  <div class="field">
+    <%= f.label :site %><br />
+    <%= f.text_field :site %>
+  </div>
+  <div class="field">
+    <%= f.label :myurl %><br />
+    <%= f.text_field :myurl %>
   </div>
   <div class="actions">
     <%= f.submit %>

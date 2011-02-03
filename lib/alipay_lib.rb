@@ -18,10 +18,10 @@ module AlipayLib
     dict={}
     dict["service"]="create_direct_pay_by_user"
     dict["payment_type"]="1"
-    dict["partner"]="2088002191788033"#partner_id
-    dict["seller_email"]="frederick.mao@gmail.com"
-    dict["return_url"]=return_url || "http://www.15-1688.com/alipay/respond"
-    dict["notify_url"]=notify_url || "http://www.15-1688.com/alipay/notify"
+    dict["partner"]="2088502816133364"#partner_id
+    dict["seller_email"]="hi@geilibuy.com"
+    dict["return_url"]=return_url || "http://www.geilibuy.com/alipay/respond"
+    dict["notify_url"]=notify_url || "http://www.geilibuy.com/alipay/notify"
     dict["_input_charset"]="utf-8"
     dict["show_url"]=show_url
     dict["out_trade_no"]=sn
@@ -38,7 +38,7 @@ module AlipayLib
     dict["royalty_parameters"]=""
     dict["it_b_pay"]=it_b_pay||""#此项功能需要申请开通
     dict=dict.select{|k,v| !v.nil? and v.strip!=""}
-    dict["sign"]=gen_sign(dict,"dl5iyfy9ksdiyqvo79sq4m4ztgcv1722")#密钥
+    dict["sign"]=gen_sign(dict,"tjph0tdhyjq2g41ebyuirc011dvpd7pc")#密钥
     dict["sign_type"]="MD5"
     puts dict["sign"]
     params=concat_url(dict)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110916123061) do
+ActiveRecord::Schema.define(:version => 20110916123096) do
 
   create_table "addresses", :force => true do |t|
     t.string   "consignee"
@@ -121,6 +121,8 @@ ActiveRecord::Schema.define(:version => 20110916123061) do
     t.datetime "i1_updated_at"
   end
 
+  add_index "categories", ["name", "parent_id", "position", "special"], :name => "index_categories_on_name_and_parent_id_and_position_and_special"
+
   create_table "categories_products", :id => false, :force => true do |t|
     t.integer  "product_id"
     t.integer  "category_id"
@@ -128,6 +130,9 @@ ActiveRecord::Schema.define(:version => 20110916123061) do
     t.datetime "updated_at"
     t.integer  "position",    :default => 0
   end
+
+  add_index "categories_products", ["category_id"], :name => "categories_products_category_id"
+  add_index "categories_products", ["product_id"], :name => "categories_products_product_id"
 
   create_table "comment_shows", :force => true do |t|
     t.integer  "category_id"
@@ -144,6 +149,8 @@ ActiveRecord::Schema.define(:version => 20110916123061) do
     t.integer "postsale_comment_id"
     t.integer "position",            :default => 0
   end
+
+  add_index "comment_shows_postsale_comments", ["comment_show_id", "postsale_comment_id", "position"], :name => "cspc_union_index"
 
   create_table "coupons", :force => true do |t|
     t.string   "name"
@@ -163,6 +170,8 @@ ActiveRecord::Schema.define(:version => 20110916123061) do
     t.decimal  "money",            :precision => 15, :scale => 3, :default => 0.0
     t.integer  "order_id"
   end
+
+  add_index "coupons", ["user_id", "start_time", "end_time", "status", "min_money", "hide"], :name => "coupons_union_index"
 
   create_table "deliveries", :force => true do |t|
     t.string   "name"
@@ -228,6 +237,8 @@ ActiveRecord::Schema.define(:version => 20110916123061) do
     t.decimal  "money",      :precision => 15, :scale => 3, :default => 0.0
   end
 
+  add_index "free_shipping_rules", ["start_time", "end_time"], :name => "index_free_shipping_rules_on_start_time_and_end_time"
+
   create_table "gifts", :force => true do |t|
     t.string   "name"
     t.text     "memo"
@@ -242,6 +253,22 @@ ActiveRecord::Schema.define(:version => 20110916123061) do
   create_table "gifts_products", :id => false, :force => true do |t|
     t.integer "product_id"
     t.integer "gift_id"
+  end
+
+  create_table "images", :force => true do |t|
+    t.integer  "url_id"
+    t.string   "img_url"
+    t.string   "new_img_url"
+    t.boolean  "success",      :default => false
+    t.string   "kind"
+    t.string   "site"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "big",          :default => false
+    t.string   "real_img_url"
+    t.boolean  "failure",      :default => false
+    t.integer  "try_times",    :default => 0
+    t.boolean  "upload",       :default => false
   end
 
   create_table "invite_details", :force => true do |t|
@@ -483,6 +510,8 @@ ActiveRecord::Schema.define(:version => 20110916123061) do
     t.boolean  "value",      :default => false
   end
 
+  add_index "postsale_comments", ["product_id"], :name => "postsale_comments_product_id"
+
   create_table "presale_consultings", :force => true do |t|
     t.text     "content"
     t.string   "ip"
@@ -522,6 +551,8 @@ ActiveRecord::Schema.define(:version => 20110916123061) do
     t.integer "product_id"
     t.integer "position",        :default => 0
   end
+
+  add_index "product_shows_products", ["product_id", "product_show_id", "position"], :name => "psp_union_index"
 
   create_table "products", :force => true do |t|
     t.string   "name"
@@ -571,7 +602,13 @@ ActiveRecord::Schema.define(:version => 20110916123061) do
     t.integer  "lucky",                                          :default => 0
     t.boolean  "big",                                            :default => false
     t.datetime "p4_end_time"
+    t.string   "site"
+    t.string   "myurl"
+    t.integer  "url_id"
+    t.string   "href_name"
   end
+
+  add_index "products", ["on", "promotion", "sale", "new", "stock", "brand_id", "p2", "position"], :name => "products_union_index"
 
   create_table "qas", :force => true do |t|
     t.integer  "user_id"
@@ -623,6 +660,8 @@ ActiveRecord::Schema.define(:version => 20110916123061) do
     t.datetime "updated_at"
     t.string   "kind"
   end
+
+  add_index "slots", ["name", "location", "category_id"], :name => "index_slots_on_name_and_location_and_category_id"
 
   create_table "subscriptions", :force => true do |t|
     t.string   "email"
@@ -696,6 +735,8 @@ ActiveRecord::Schema.define(:version => 20110916123061) do
     t.string   "edm_title"
   end
 
+  add_index "tuans", ["start_time", "end_time", "on"], :name => "index_tuans_on_start_time_and_end_time_and_on"
+
   create_table "upload_photos", :force => true do |t|
     t.integer  "user_id"
     t.integer  "product_id"
@@ -708,6 +749,36 @@ ActiveRecord::Schema.define(:version => 20110916123061) do
     t.integer  "i1_file_size"
     t.datetime "i1_updated_at"
   end
+
+  create_table "urls", :force => true do |t|
+    t.string   "site"
+    t.string   "kind"
+    t.string   "myurl"
+    t.boolean  "success",                                                         :default => false
+    t.text     "content",      :limit => 16777215
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "product_id"
+    t.text     "new_content1"
+    t.text     "new_content2"
+    t.string   "name"
+    t.string   "weight"
+    t.string   "material"
+    t.string   "size"
+    t.string   "wrap"
+    t.boolean  "stock",                                                           :default => true
+    t.decimal  "price",                            :precision => 15, :scale => 3, :default => 0.0
+    t.string   "location"
+    t.string   "package"
+    t.text     "href_name"
+    t.string   "unit"
+    t.string   "shortname"
+    t.boolean  "upload",                                                          :default => false
+  end
+
+  add_index "urls", ["myurl"], :name => "urls_myurl_index", :unique => true
+  add_index "urls", ["site"], :name => "urls_site_index"
+  add_index "urls", ["success"], :name => "urls_success_index"
 
   create_table "user_details", :force => true do |t|
     t.integer  "user_id"

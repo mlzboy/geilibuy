@@ -7,7 +7,13 @@ def show_details()
   @topic.details.each_with_index do |detail,index|
   n="kindeditor#{index+1}"
 %>
-    <detail>product_show_id:<input type="text" name="topic_product_show_ids[]" value="<%=detail.product_show_id%>"/><a class="detail_del">del</a>&nbsp;&nbsp;<a class="detail_up" data="<%=index+1%>">up</a>&nbsp;&nbsp;<a class="detail_down" data="<%=index+1%>">down</a><br><textarea cols="40" id="<%=n%>" name="topic_contents[]" rows="20" style="width:530px;height:300px;visibility:hidden;"><%=raw detail.content%></textarea></detail>
+<%
+product_show_link=""
+unless detail.product_show_id.blank?
+  product_show_link="<a href='/admin/product_shows/batch_select?product_show_id=#{detail.product_show_id}'>查看</a>"
+end
+%>
+    <detail>product_show_id:<input type="text" name="topic_product_show_ids[]" value="<%=detail.product_show_id%>"/><a class="detail_del">del</a>&nbsp;&nbsp;<a class="detail_up" data="<%=index+1%>">up</a>&nbsp;&nbsp;<a class="detail_down" data="<%=index+1%>">down</a><%= raw product_show_link%><br><textarea cols="40" id="<%=n%>" name="topic_contents[]" rows="20" style="width:530px;height:300px;visibility:hidden;"><%=raw detail.content%></textarea></detail>
 
 <%
   end

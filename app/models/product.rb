@@ -2,6 +2,7 @@
 class Product < ActiveRecord::Base
   require './lib/paperclip_processors/jcropper.rb'
   include Paperclip
+  belongs_to :url
   belongs_to :brand
   has_many:favorites
   has_and_belongs_to_many :categories,:order => "categories_products.position asc,categories_products.created_at asc"

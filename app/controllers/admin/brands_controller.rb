@@ -1,6 +1,39 @@
-
+#coding:utf-8
 class Admin::BrandsController < AdminController
   layout "admin"
+  def batch_select
+    @product=Product.new
+    if request.get?
+      @products=Product.name_like("%枕%").on_equals(true)
+    else
+      act=params[:act]
+      @product=Product.new(params[:product])
+      @products=Product.name_like(@product.name).on_equals(true)
+      logger.debug("FFFFFFFFFFff")
+      logger.debug(@product.name)
+      
+      if act=="save"
+        product_ids=params["product_id"]
+        brand_id=params["brand_id"]
+        logger.debug product_ids
+        logger.debug brand_id
+        if product_ids.nil? or product_ids.blank?
+          product_ids=[]
+        end
+        if product_ids.size==0 or brand_id.blank?
+        else
+          Product.find(product_ids).each do |product|
+            product.brand_id=brand_id
+            product.save false
+          end
+          flash[:info]="保存成功"
+        end
+      elsif act=="query"
+          flash[:info]="查询成功"
+      end
+    end
+    #render :layout=>"test"
+  end
   # GET /admin/brands
   # GET /admin/brands.xml
   def index

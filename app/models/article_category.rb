@@ -1,3 +1,4 @@
+
 class ArticleCategory < ActiveRecord::Base
   has_many:articles
   acts_as_tree :order=>"position"
@@ -5,6 +6,10 @@ class ArticleCategory < ActiveRecord::Base
   def top_five_articles
     Article.where(:article_category_id=>self.id).order("id desc").limit(5)
   end
+  def top_three_articles
+    Article.where(:article_category_id=>self.id).order("id desc").limit(3)
+  end 
+  
 end
 
 

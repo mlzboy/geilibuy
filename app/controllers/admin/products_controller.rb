@@ -1,7 +1,75 @@
 #coding:utf-8
 class Admin::ProductsController < AdminController
   layout "test"
+  skip_before_filter :admin_login?,:only=>[:new,:create]
+  protect_from_forgery :except => [:new,:create]
+  def list
+    if params[:page].blank?
+      page=1
+    else
+      page=params[:page].to_i
+    end
+    @products = Product.paginate :conditions=>"`on`=1",:order=>"id desc",:per_page=>5,:page=>page
 
+  end
+  def add_product_new_categories_and_keep_original(product)
+    p=params[:category_id]
+    if p.blank?
+      return
+    end
+    if p.class!=[].class
+      p=[p]
+    end
+    $q=p
+    $q=$q.map{|k| k.strip}.uniq.reject{|k| k==""}
+    logger.debug("----------------------------")
+    logger.debug($q)
+    #product.categories=[]
+
+    while $q.size>0
+      c=Category.find($q.shift)
+      if !c.nil?
+        if CategoriesProduct.find_by_product_id_and_category_id(product.id,c.id).nil?
+          product.categories<<c
+        end
+      end
+    end
+  end
+  def batch_select
+    @product=Product.new
+    if request.get?
+      @products=Product.name_like("%枕%").on_equals(true)
+    else
+      act=params[:act]
+      @product=Product.new(params[:product])
+      @products=Product.name_like(@product.name).on_equals(true)
+      logger.debug("FFFFFFFFFFff")
+      logger.debug(@product.name)
+      
+      if act=="save"
+        product_ids=params["product_id"]
+        category_ids=params["category_id"]
+        logger.debug product_ids
+        logger.debug category_ids
+        if product_ids.nil? or product_ids.blank?
+          product_ids=[]
+        end
+        if category_ids.nil? or category_ids.blank?
+          category_ids=[]
+        end
+        if product_ids.size==0 or category_ids.size==0
+        else
+          Product.find(product_ids).each do |product|
+            add_product_new_categories_and_keep_original product
+          end
+          flash[:info]="保存成功"
+        end
+      elsif act=="query"
+          flash[:info]="查询成功"
+
+      end
+    end
+  end
   def index
     category_ids=params[:category_id]
     if category_ids.nil?

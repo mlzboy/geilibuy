@@ -17,7 +17,7 @@ class Brand < ActiveRecord::Base
   end
   
   def rand_five_products
-    Product.find_by_sql ["select * from products where brand_id=? order by rand() limit 0,5",self.id]
+    Product.find_by_sql ["select * from products where brand_id=? and `on`=1 order by rand() limit 0,5",self.id]
   end
   
   private

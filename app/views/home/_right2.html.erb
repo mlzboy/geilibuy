@@ -160,9 +160,9 @@ end
     end
     whole_categories.second.children.each_with_index do |category,index|%>
             	<li <%=raw 'style="border-bottom:none;"' if r.include? index+1%>>
-		<a href="<%=category_url(category.id)%>" title="<%=whole_categories.first.name+"-"+whole_categories.second.name+"-"+category.name%>">
+		<a href="<%=mygift_url(category.id)%>" title="<%=whole_categories.first.name+"-"+whole_categories.second.name+"-"+category.name%>">
 		<img src="<%=category.i1.url%>" /></a>
-		<a href="<%=category_url(category.id)%>" title="<%=whole_categories.first.name+"-"+whole_categories.second.name+"-"+category.name%>"><%=category.name%></a></li>
+		<a href="<%=mygift_url(category.id)%>" title="<%=whole_categories.first.name+"-"+whole_categories.second.name+"-"+category.name%>"><%=category.name%></a></li>
     <%end%>
     <%if list.size%4!=0%>
                     <li style="border-bottom:none;"></li>
@@ -265,8 +265,13 @@ end
 					  <span class="dis_tip"><span class="dis_num"><%=raw show_promotion_num(product)%></span></span>
 					  <%end%>
             	                            </li>
-                           <li class="goods_brand"><a href="http://www.geilibuy.com/search.php?brand=428">[&nbsp;<%=product.brand.name if product.brand%>&nbsp;]</a></li>
-                           <li class="goods_name">
+              <%unless product.brand_id.blank?%>
+                <%if product.brand.hide%>
+                           <li class="goods_brand"><a href="http://www.geilibuy.com/search?brand_id=<%=product.brand_id%>">[&nbsp;<%=product.brand.name if product.brand%>&nbsp;]</a></li>
+                <%else%>
+                           <li class="goods_brand"><a href="http://www.geilibuy.com/brands/<%=product.brand_id%>">[&nbsp;<%=product.brand.name if product.brand%>&nbsp;]</a></li>
+                <%end%>
+              <%end%>                           <li class="goods_name">
                   <a id="list_name_a" href="<%=myproduct_url(product.id)%>" style="color:#000;" title="<%=product.name%>" target="_blank"><%=product.name%></a>
                                           <%unless product.sub_title.blank?%>
                                           <span><%=product.sub_title%></span>

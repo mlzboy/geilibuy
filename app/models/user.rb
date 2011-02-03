@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   end
   
   def plus_scores(scores,reason,tuangou=false,order_id=nil,cash_order_id=nil)
-    return if scores==0
+    #return if scores==0#for lucky relevent information reccord & display
     ScoreDetail.create(:memo=>reason,:user_id=>self.id,:cost=>false,:score=>scores.to_i.abs,:tuangou=>tuangou,:order_id=>order_id,:cash_order_id=>cash_order_id)
     u=User.find_by_id(self.id)
     u.score+=scores
@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   end
   
   def minus_scores(scores,reason,tuangou=false,order_id=nil,cash_order_id=nil)
-    return if scores==0
+    #return if scores==0
     scores=scores.to_i
     if scores>0
       scores=-scores

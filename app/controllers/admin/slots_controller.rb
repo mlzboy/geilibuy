@@ -11,7 +11,7 @@ class Admin::SlotsController < AdminController
     else
       page=params[:page]
     end
-    @slots = Slot.paginate :per_page=>20,:page=>page,:order=>["id desc"]
+    @slots = Slot.paginate :per_page=>20,:page=>page,:order=>"id desc"#:order=>["id desc"]
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @slots }

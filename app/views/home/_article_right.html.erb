@@ -22,7 +22,8 @@
             <%end%>
           </ul>
   	  <div class="news_more"><a href="<%=myarticle_list_url(article_category.id)%>">更多&gt;&gt;</a></div>
-    	  <div class="right_top t29"></div>
+    	  
+	  <div class="right_top t29"></div>
   	  <ul class="right_ul" >
             <%article_category=ArticleCategory.find_by_name("火眼金睛")%>
             <%articles=[]%>
@@ -31,9 +32,9 @@
     	      <li><span class="news_title"><a href="<%=myarticle_url(article.id)%>" objFlag = '439'  title="<%=article.title%>"><%=truncate article.title,:length=>18%></a></span><span class="news_date"><%=article.updated_at.strftime("%m-%d")%></span></li>
             <%end%>
           </ul>
-          <%unless articles.size<5%>
   	  <div class="news_more"><a href="<%=myarticle_list_url(article_category.id)%>">更多&gt;&gt;</a></div>
-    	  <%end%>
+
+
     	  <div class="right_top t30"></div>
   	  <ul class="right_ul" >
             <%article_category=ArticleCategory.find_by_name("给力百货活动")%>

@@ -10,7 +10,7 @@ class Admin::CommentShowsController < AdminController
     else
       page=params[:page]
     end
-    @comment_shows = CommentShow.paginate :per_page=>20,:page=>page,:order=>["id desc"]
+    @comment_shows = CommentShow.paginate :per_page=>20,:page=>page,:order=>"id desc"
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @comment_shows }

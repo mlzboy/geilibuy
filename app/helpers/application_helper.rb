@@ -283,7 +283,7 @@ module ApplicationHelper
     end
   end
   def show_delivery_time_options(selected=0)
-    DeliveryTime.all(:order=>["position"]).each do |delivery|
+    DeliveryTime.all(:order=>"position").each do |delivery|
       concat(raw %Q{<option value="#{delivery.id}" #{"selected" if selected==delivery.id}>#{delivery.name}</option>})
     end
   end
@@ -349,10 +349,10 @@ CODE
   end
 
   def header()
-    @cateogries=Category.find(:all,:conditions=>"special=0 and parent_id is null")
+    @cateogries=Category.find(:all,:conditions=>"special=0 and parent_id is null",:order=>"position")
   end
   def get_brands()
-    Brand.all
+    Brand.where(:hide=>false).all
   end
   def brand_url(brand_id)
     brand_id.to_s

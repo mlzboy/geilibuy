@@ -18,7 +18,7 @@ module ShoppingHelper
       elsif product_price < rule.money
         html=%Q{
   <p><strong>全场满#{price2(rule.money)}元免运费</strong><br>
-  您差<font>#{price2(rule.money-product_price)}元</font>，再补几件？&nbsp;&nbsp;<a href="#trinket_title" class="item_opt">去挑选热卖商品&gt;&gt;</a>
+  您差<font>#{price(rule.money-product_price)}元</font>，再补几件？&nbsp;&nbsp;<a href="#trinket_title" class="item_opt">去挑选热卖商品&gt;&gt;</a>
   </p>}
       else
         html=%Q{

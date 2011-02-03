@@ -16,7 +16,9 @@ task :batch_article_content_replace => :environment do
         article.content=article.content.gsub("Quwan.com","GeiliBuy.com")
         article.content=article.content.gsub(/http:\/\/i\d.quwan.cquom/, 'http://www.geilibuy.com')        
         article.content=article.content.gsub(/http:\/\/i\d.geilibuy.com/, 'http://www.geilibuy.com')        
-        article.content=article.content.gsub("400-88-16016", '0579-85521605')        
+        article.content=article.content.gsub("400-88-16016", '0579-85521605')
+        article.content=article.content.gsub("北京玩者天下网络技术有限公司", '义乌给力电子商务有限公司')
+        
         puts "ddddddddd"
         article.save
     end

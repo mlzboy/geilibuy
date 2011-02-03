@@ -49,12 +49,14 @@
 <ul class="info">
   <li><strong class="name"><%=@product.name%></strong></li>
   <li>
+    <%unless @product.brand_id.blank?%>
         商品品牌：
-        <a title="点击查看本品牌所有商品" href="/brands/<%=@product.brand_id%>"  class="info_a" ><strong>evergreen</strong></a>
+        <a title="点击查看本品牌所有商品" href="/brands/<%=@product.brand_id%>"  class="info_a" ><strong><%=@product.brand.name if @product.brand%></strong></a>
         &nbsp;&nbsp;
+    <%end%>
         商品编号：<b><span id="goods_id"><%=@product.id%></span></b></li>
     <li>市 场 价：<b class="price"><%=price(@product.p1)%>元</b></li>
-  <li>趣 玩 价：<span class="sell"><%=price(@product.p2)%></span>元</li>
+  <li>给 力 价：<span class="sell"><%=price(@product.p2)%></span>元</li>
   <%if @product.score%>
   <li style="position: relative; display: inline-block;"><span class="jfline">积分换购：<%=price(@product.p3)%>元+<span class="jfsell"><%=@product.s1%>积分</span></span><a href="javascript:inToCartAction('<%=@product.id%>','<%=@product.name%>',1,1,2)" class="huan_btn"></a>
     <div class="clear"></div>
@@ -484,7 +486,7 @@ recommend_products=total_products.reject{|product| product.id==@product.id}
     </ul>
     <div class="do_pl">购买过该商品的用户才能发表评论，<br />
       发布评论赠送<span>20积分</span> 评论被选为精华再赠送<span>50积分</span><br />
-      <a href="http://www.geilibuy.com/helpercenter/11">积分是什么？</a>
+      <a href="http://www.geilibuy.com/helpcenter/11">积分是什么？</a>
       <%
       if has_login?
         if current_user.bought_product?(@product)

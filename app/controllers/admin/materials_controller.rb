@@ -11,7 +11,7 @@ class Admin::MaterialsController < AdminController
     else
       page=params[:page]
     end
-    @materials = Material.paginate :per_page=>5,:page=>page,:order=>["id desc"]
+    @materials = Material.paginate :per_page=>10,:page=>page,:order=>"id desc"
 
     respond_to do |format|
       format.html # index.html.erb

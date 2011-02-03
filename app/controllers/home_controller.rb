@@ -70,6 +70,7 @@ class HomeController < ApplicationController
   def helpcenter
     @article=Article.find_by_id(params[:article_id])
   end
+
   def lottery_list
   end
   def lottery
@@ -156,14 +157,14 @@ class HomeController < ApplicationController
     else
       sql+=" order by "+sort+",id desc"
     end
-    @products=Product.paginate_by_sql [sql,brand_id],:per_page=>5,:page=>page
+    @products=Product.paginate_by_sql [sql,brand_id],:per_page=>20,:page=>page
   end
   def brands
     category_id=params[:category_id]
     if category_id
-      @brands=Category.find_by_id(category_id).brands
+      @brands=Category.find_by_id(category_id).brands.reject{|brand| brand.hide==true}
     else
-      @brands=Brand.order("position").all
+      @brands=Brand.where(:hide=>false).order("position").all
     end
   end
   def score
@@ -266,18 +267,18 @@ class HomeController < ApplicationController
     if sort.blank?
       sql+=" order by sale,id desc"
     else
-      logger.debug("---------------dddddddddddddddddddddddd")
-      logger.debug(sort)
+      #logger.debug("---------------dddddddddddddddddddddddd")
+      #logger.debug(sort)
       sql+=" order by "+sort+",id desc"
     end
     #sql="select * from products p inner join (SELECT distinct product_id FROM categories_products cp where category_id in (?)) cp2 on p.id=cp2.product_id order by id desc"
     @products = Product.paginate_by_sql [sql],:per_page=>16,:page=>page
-    logger.debug("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
-    logger.debug(@products.size)
+    #logger.debug("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
+    #logger.debug(@products.size)
     #sql2="select distinct id,name from brands b inner join (select brand_id from products p inner join (SELECT distinct product_id FROM categories_products cp where category_id in (?)) cp2 on p.id=cp2.product_id) p2 on p2.brand_id=b.id"
     @brands=Brand.find_by_sql [sql2]
-    logger.debug(@brands.size)
-    logger.debug("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZz")
+    #logger.debug(@brands.size)
+    #logger.debug("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZz")
     #render 'sub_category' and return
   end
   def promotion#和new代码基本一致
@@ -525,7 +526,7 @@ class HomeController < ApplicationController
   end
 
   def gen_comments2(productid,value,page)
-    @comments=PostsaleComment.paginate :per_page=>4,:page=>page,:conditions=>['product_id=? and hide=0 and value=?',productid,value],:order=>["id desc"]
+    @comments=PostsaleComment.paginate :per_page=>4,:page=>page,:conditions=>['product_id=? and hide=0 and value=?',productid,value],:order=>"id desc"
     if @comments.size>0
       html=""
       @comments.each_with_index do |comment,index|
