@@ -75,6 +75,41 @@ class TuanController < ApplicationController
       logger.debug(buy_num.class)
       logger.debug(num.class)
       logger.debug("^^^********************************")
+      if parsed_json.include? "address_id"
+        #检测是不是新的地址
+      logger.debug("$$$$$$$$$$$$$$$$$$$$$$$$$")
+      u=current_user
+      if u.addresses.size==0
+        logger.debug("HHHHHHHHHHHHHHHHHH")
+        consignee=parsed_json["consignee"]#收货人
+        #country_id=params[:country]
+        province_id=parsed_json["province"]
+        city_id=parsed_json["city"]
+        district_id=parsed_json["district"]
+        address=parsed_json["address"]
+        #zipcode=params[:zipcode]
+        #tel=params[:tel]
+        mobile=parsed_json["mobile"]
+        #email=params[:email]
+        #n= address_id.blank? ? Address.new : Address.find_by_id(address_id)
+        n= Address.new
+  
+          #n.delivery_time_id=delivery_time_id
+          n.consignee=consignee
+          n.province_id=province_id
+          n.city_id=city_id
+          n.district_id=district_id
+          n.address=address
+          #n.zipcode=zipcode
+          #n.tel=tel
+          n.mobile=mobile
+          n.rate+=1
+          n.save
+          u.addresses<<n
+      end
+      end
+      
+      
       if buy_num!=num
         r["error"]=3
         content={}
@@ -86,7 +121,11 @@ class TuanController < ApplicationController
         else
         content["restrict_amount"]=1000
         end
+        
 
+        
+        
+        
         content["num"]=buy_num
         content["goods_amount"]=@tuan.pp2.to_f
         content["total_amount"]=@tuan.total_price(buy_num).to_f

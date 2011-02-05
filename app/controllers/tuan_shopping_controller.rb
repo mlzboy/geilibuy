@@ -144,6 +144,7 @@ class TuanShoppingController < ApplicationController
     logger.debug(@tuan_total_price)
     logger.debug("checkout000000000000000000000000000000000000000")
     if request.post?
+
       payment_id=params[:payment]
       payment=Payment.find(payment_id)
       if payment
