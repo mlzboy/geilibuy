@@ -66,5 +66,5 @@ end
 
 desc "cron test"
 task :cron_test do
-    puts "dd"
+    puts "20110205"
 end

@@ -1,4 +1,3 @@
-#20110206 by frederick.mao@gmail.com
 user mlzboy;
 #user  nobody;
 worker_processes  2;
@@ -36,7 +35,6 @@ http {
 
     #access_log  logs/access.log  main;
 
-    client_max_body_size 8m;
     sendfile        on;
     #tcp_nopush     on;
 

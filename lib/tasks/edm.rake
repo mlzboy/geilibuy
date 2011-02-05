@@ -4,7 +4,8 @@ namespace :edm do
     task :everyday_tuan => :environment do
         t=Tuan.today
         Subscription.email_like("%qq.com%").subscribe_equals(true).sended_equals(false).limit(1).each do |sub|
-                r=TuanMail.everyday(t,sub.email.chomp.strip)
+                #r=TuanMail.everyday(t,sub.email.chomp.strip)
+                r=TuanMail.everyday(t,"maolingzhi@gmail.com")
                 r.deliver
                 sub.sended=true
                 sub.save
