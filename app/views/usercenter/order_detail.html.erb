@@ -14,7 +14,7 @@
                                                       <form name="trackForm" method="post" onSubmit="return checkSubmitForm();" action="http://218.83.161.253:8082/jump.asp?wen=368717546607" target="_blank">
         <input name="wen" type="hidden" value="368717546607"/>
         <input name="action" type="hidden" value="chk"/>
-        <span class="send_order_span"> <a href="javascript:document.trackForm.submit();">[查看配送状态]</a> </span>
+        <span class="send_order_span"> <!--<a href="javascript:document.trackForm.submit();">[查看配送状态]</a>--> </span>
       </form>
                             </li>
   <%end%>
@@ -47,8 +47,12 @@ end%>
     </tr>
     <%@order.order_products.each do |order_product|%>
             <tr>
+    <%if @order.tuangou%>
+      <td align="center" valign="middle" class="td">        <a href="<%=mytuan_url(order_product.order.tuan)%>" target="_blank" title="<%=order_product.name%>"><%=truncate order_product.name,:length=>16%></a>
+    <%else%>
       <td align="center" valign="middle" class="td">        <a href="<%=myproduct_url(order_product.product_id)%>" target="_blank" title="<%=order_product.name%>"><%=truncate order_product.name,:length=>16%></a>
-        </td>
+    <%end%>  
+      </td>
       <td align="center" valign="middle" class="td"><%=price(order_product.p1)%>元</td>
       <td align="center" valign="middle" class="td"><%=price(order_product.p2)%>元(省<%=price(order_product.p1-order_product.p2)%>元)</td>
       <td align="center" valign="middle" class="td">&nbsp;</td>

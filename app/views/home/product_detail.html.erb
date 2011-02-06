@@ -5,12 +5,12 @@
 <meta http-equiv="pragma" content="no-cache"/>
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/>
 <meta http-equiv="expires" content=""/>
-<meta name="Keywords" content="爱屋格林 彩色印花纸巾 餐巾纸 evergreen餐巾纸 爱屋格林餐巾纸 印花餐巾纸" />
-<meta name="Description" content="您是否厌倦了一成不变的白色餐巾纸呢？让您的餐巾纸穿上时尚的外衣，给餐桌添一抹亮色，给家庭用餐换一种别样的心情吧。给力百货创意居家馆为您提供爱屋格林彩色印花餐巾-悠闲的高尔夫球，货到付款拆包验货30天退换货，为您提供愉悦网购体验！" />
+<meta name="Keywords" content="<%= "最便宜"+@product.name+"批发"%>" />
+<meta name="Description" content="<%="最便宜"+@product.name+"_"+@product.sub_title+"批发"%> <%=@product.name+"一键代发"%>" />
 <meta name="pagename" content="detail" />
 <%end%>
 <%content_for :headtitle do%>
-<title>[爱屋格林彩色印花餐巾-悠闲的高尔夫球] 爱屋格林 【30天免费退换】_厨浴专卖_给力百货 - 日用百货量贩平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品</title>
+<title>[<%=@product.name%>] <%=@product.brand.name unless @product.brand.nil?%> 【30天免费退换】_给力百货 - 日用百货量贩平台：在线销售 家居 厨浴 装饰 办公 潮流等创意商品</title>
 <%end%>
 <% content_for :headstyle do %>
 <%=stylesheet_link_tag "/themes/default/css/header.css"%>
@@ -39,11 +39,15 @@
 <% end%>
 <div id="global_body">
 
-
+<%
+unless @product.on
+  @product.stock=0
+end
+%>
 
 
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<div class="top_nav">您当前所在位置:<a href=".">首页</a><%@whole_categories.each do |category|%> <code>&gt;</code> <a href="<%=category_url(category.id)%>"><%=category.name%></a><%end%> <code>&gt;</code> <font color="#cc2b21"><%=@product.name%></font><span id="plate"></span></div>  <div class="left">
+<div class="top_nav">您当前所在位置:<a href="/">首页</a><%@whole_categories.each do |category|%> <code>&gt;</code> <a href="<%=category_url(category.id)%>"><%=category.name%></a><%end%> <code>&gt;</code> <font color="#cc2b21"><%=@product.name%></font><span id="plate"></span></div>  <div class="left">
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <ul class="info">

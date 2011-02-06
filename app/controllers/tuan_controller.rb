@@ -25,11 +25,14 @@ class TuanController < ApplicationController
   #/tuan/unsubscribe?id=1&code=13133dfadfee
   def unsubscribe
     active_code=params[:code]
-    id=params[:id]
-    u=User.find_id_and_active_code(id,active_code)
-    sub=Subscription.find_by_email(u.email)
-    sub.subscribe=false
-    sub.save
+    #id=params[:id]
+    #u=User.find_id_and_active_code(id,active_code)
+    #sub=Subscription.find_by_email(u.email)
+    sub=Subscription.find_by_email(active_code)
+    if sub
+      sub.subscribe=false
+      sub.save
+    end
   end
   def subscribe
     
@@ -77,7 +80,13 @@ class TuanController < ApplicationController
         content={}
         content["freeshippingfee"]=@tuan.free_shipping?(buy_num) ? 1 : 0
         content["shipping_fee"]=@tuan.shipping_fee(buy_num)
-        content["restrict_amount"]=2#@tuan.everyone_max_num
+        
+        if @tuan.everyone_max_num>0
+        content["restrict_amount"]=@tuan.everyone_max_num            
+        else
+        content["restrict_amount"]=1000
+        end
+
         content["num"]=buy_num
         content["goods_amount"]=@tuan.pp2.to_f
         content["total_amount"]=@tuan.total_price(buy_num).to_f
@@ -100,7 +109,12 @@ class TuanController < ApplicationController
       content={}
       content["freeshippingfee"]=@tuan.free_shipping?(buy_num) ? 1 : 0
       content["shipping_fee"]=@tuan.shipping_fee(buy_num)
-      content["restrict_amount"]=2#@tuan.everyone_max_num
+      #content["restrict_amount"]=2#@tuan.everyone_max_num
+        if @tuan.everyone_max_num>0
+        content["restrict_amount"]=@tuan.everyone_max_num            
+        else
+        content["restrict_amount"]=1000
+        end
       content["num"]=buy_num
       content["goods_amount"]=@tuan.pp2.to_f
       content["total_amount"]=@tuan.total_price(buy_num).to_f
@@ -198,7 +212,7 @@ class TuanController < ApplicationController
       q.user_id=current_user.id
       q.tuan_id=tuan_id
       q.ip=request.remote_ip
-      q.hide=true
+      q.hide=false
 
       q.save
       render :json=>{"error"=>"new_id"}

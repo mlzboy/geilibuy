@@ -835,5 +835,9 @@ namespace :wk do
             product.on=false
             product.save(:validate=>false)
         end
+        Product.description_like("%taobao%").each do |product|
+            product.on=false
+            product.save(:validate=>false)
+        end
     end    
 end

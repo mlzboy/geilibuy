@@ -110,10 +110,11 @@ $(document).ready(function(){
                        <div class="zhuanti_split"></div>
         <%
         unless topic_detail.product_show_id.nil?
-          topic_detail.product_show.products.each_slice(4).each do |products|
+          topic_detail.product_show.products.find_all{|p| p.on==true}.each_slice(4).each do |products|
         %>
                     <div class="list_line">
               <%products.each do |product|%>
+	      
                     <ul class="goods_list">
               <li class="goods_pic">
               <a href="<%=myproduct_url(product.id)%>" target="_blank"><%=image_tag product.i1.url(:medium),:alt=>product.name%></a>

@@ -241,6 +241,7 @@ window.location.href='/usercenter/mod_password'},2000);
         end
       end
     end
+    products.reverse!
     logger.debug("=======ZZZZZZZZZZZZZZZZZZZZZZZZZzzzzzzzzz===========")
     logger.debug(products.size)
     logger.debug(products)

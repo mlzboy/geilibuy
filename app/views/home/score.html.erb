@@ -57,9 +57,9 @@ $(".close").live("click", function(){
         <div class="right_top">
             <span>积分换购</span>
 <%if has_login?%>
-                        <p>你当前的积分为：<strong><%=current_user.score%></strong><a target="_blank" href="user.php?act=points">[我的积分]</a> <a target="_blank" href="article-57.html">[积分规则]</a></p>
+                        <p>你当前的积分为：<strong><%=current_user.score%></strong><a target="_blank" href="/usercenter/scores">[我的积分]</a> <a target="_blank" href="http://www.geilibuy.com/helpcenter/11">[积分规则]</a></p>
 <%else%>
-<p><a class="item_opt" href="/usercenter/login?back_url=/score">[登录]</a> 后显示你的积分。<a href="article-57.html" target="_blank">[积分规则]</a></p>
+<p><a class="item_opt" href="/usercenter/login?back_url=/score">[登录]</a> 后显示你的积分。<a href="http://www.geilibuy.com/helpcenter/11" target="_blank">[积分规则]</a></p>
 <%end%>
 
                      </div>
@@ -67,14 +67,19 @@ $(".close").live("click", function(){
         <%@products.each_with_index do |product,index|%>
           	<ul class="list" style="position:relative;">
         	<li class="list_img"><a href="<%=myproduct_url(product.id)%>" target="_blank"><img src="<%=product.i1.url(:medium)%>" width="160" height="160" alt="<%=product.name%>" /></a><span class="duihao"></span></li>
-        	               <li class="li_c"><b><a href="/brands/<%=product.brand_id%>">[&nbsp;<%=product.brand.name%>&nbsp;]</a></b></li>
-
-            <li><a href="<%=myproduct_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=product.name%></a></li>
+              <%unless product.brand_id.blank?%>
+                <%if product.brand.hide%>
+                           <li class="li_c"><b><a href="http://www.geilibuy.com/search?brand_id=<%=product.brand_id%>">[&nbsp;<%=product.brand.name if product.brand%>&nbsp;]</a></b></li>
+                <%else%>
+		<li class="li_c"><b><a href="http://www.geilibuy.com/brands/<%=product.brand_id%>">[&nbsp;<%=product.brand.name if product.brand%>&nbsp;]</a></b></li>
+                <%end%>
+              <%end%>        
+            <li><a href="<%=myproduct_url(product.id)%>" title="<%=product.name%>" target="_blank"><%=truncate product.name,:length=>15%></a></li>
             <li>现金价:<span>￥<%=price(product.p2)%></span></li>
             <li>换购价:<span>￥<%=price(product.p3)%></span><font> + <%=product.s1%>积分</font></li>
             <li class="goods_attr">
               <%if product.new%>
-                            	<span class="new_goods" title="新品"></span>
+                            	<!--<span class="new_goods" title="新品"></span>-->
                               <%end%>
                                    </li>
             <li class="li_c"><a class="list_btn" onClick="inTooCartAction('<%=product.id%>','<%=product.name%>',1,0,1,$(this))" style="cursor:pointer;"></a></li>

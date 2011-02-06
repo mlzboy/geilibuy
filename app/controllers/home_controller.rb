@@ -409,7 +409,7 @@ class HomeController < ApplicationController
   end
 
   def gen_comments(productid,value,page)
-    @comments=PresaleConsulting.paginate :per_page=>6,:page=>page,:conditions=>['product_id=? and hide=0 and value=?',productid,value],:order=>["id desc"]
+    @comments=PresaleConsulting.paginate :per_page=>6,:page=>page,:conditions=>['product_id=? and hide=0 and value=?',productid,value],:order=>"id desc"
     if @comments.size>0
       html=""
       @comments.each_with_index do |comment,index|

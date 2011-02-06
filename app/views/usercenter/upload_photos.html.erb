@@ -12,7 +12,7 @@
             <td colspan="2" align="left" valign="middle" class="td" style="padding-bottom:30px;">
               <%@products.each do |product|%>
                 <ul class="album_ul"> 
-                    <li><a href="/usercenter/upload_photos/<%=product.id%>"><img src="<%=product.user_last_upload_photo(current_user.id).i1.url(:small)%>" /></a></li> 
+                    <li><a href="/usercenter/upload_photos/<%=product.id%>"><img src="<%=product.i1.url(:small)%>" /></a></li> 
                     <li><a href="/usercenter/upload_photos/<%=product.id%>"><%=truncate product.name,:length=>12%></a>(<%=show_specific_product_count(product.id)%>)</li> 
                     <li class="goon_btn" style="margin:0; float:none;"> 
                       <a style="color:#fff;" href="/usercenter/upload_photos/<%=product.id%>/new">上传图片</a></li> 

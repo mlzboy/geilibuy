@@ -1,4 +1,5 @@
 #coding:utf-8
+require "./lib/common.rb"
 class TuanMail < ActionMailer::Base
   add_template_helper(ApplicationHelper)
   #default :from => "mlzboy@126.com"
@@ -14,8 +15,9 @@ class TuanMail < ActionMailer::Base
     @tuan=tuan
     @user=user
     if title.nil?
-      title=@tuan.sub_title
+      title=@tuan.edm_title
     end
+    @email=email
     #@tuan=Tuan.today
     #@user=User.last
     #mail :to => "to@example.org"

@@ -1,3 +1,4 @@
+#coding:utf-8
 class User < ActiveRecord::Base
   has_many:presale_consultings
   has_many:postsale_comments
@@ -10,6 +11,21 @@ class User < ActiveRecord::Base
   has_many:cash_details
   has_many:invites
   has_many:out_of_stocks
+  has_many:coupons
+  
+  def coupon_money
+    money=0
+    r=self.coupons
+    if r.nil? or r.size==0
+    else
+      r.each do |coupon|
+	if coupon.status=='未使用' and coupon.end_time > Time.now and coupon.kind=="优惠券"
+	  money+=coupon.money
+	end
+      end
+    end
+    money
+  end
   
   def tuan_orders
     Order.where(:user_id=>self.id).where("tuan_id is not null").order("id desc").all

@@ -76,7 +76,7 @@ $(document).ready(function(){
   </tr>
 <%else%>
 <%u.invites.each do |invite|%>
-    <tr<%= raw cycle("",' class="oltd_odd"')%>
+    <tr<%= raw cycle("",' class="oltd_odd"')%>>
     <td width="200" align="center"><%=invite.user.nick%></td>
     <td width="300" align="center"><%=invite.created_at.strftime("%Y-%m-%d %H-%M")%></td>
     <td width="100" align="center"><%=invite.current_status.name%></td>

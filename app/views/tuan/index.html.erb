@@ -1,11 +1,10 @@
-<%if @tuan.end?%>
+<%unless params[:yyyymmdd].blank?%>
     <%content_for :headtitle do%>
-	<%if params[:yyyymmdd].blank?%>
-	    <title>给力团 给力我的给力 - 给力百货</title>
-	<%else%>
 	    <title><%=@tuan.edm_title%> - 给力团 给力我的给力</title>
-	<%end%>
     <%end%>
+<%end%>
+<%if @tuan.end?%>
+
     <%content_for :headjs do%>
     <script type="text/javascript" src="/themes/default/js/quwan.js" charset="UTF-8"></script>
     <script type="text/javascript" src="/themes/default/js/global.js" charset="UTF-8"></script>
@@ -66,13 +65,13 @@ qq=%Q{http://v.t.qq.com/share/share.php?title=#{share_title}&url=#{share_url}}
 <dt>分享到：</dt>
 <dd> <a target="_blank" class="im">MSN/QQ</a> <a target="_blank" href="<%=raw xiaonei%>" class="renren">人人</a>
 <a target="_blank" href="<%=raw kaixin%>" class="kaixin">开心</a>
-<!--<a target="_blank" href="http://v.t.sina.com.cn/share/share.php?url=<%=raw share_url%>&title=<%=raw share_title%>" class="sina">新浪微博</a>-->
+<a target="_blank" href="http://v.t.sina.com.cn/share/share.php?url=<%=raw share_url%>&title=<%=raw share_title%>" class="sina">新浪微博</a>
 <a target="_blank" href="<%=raw douban%>" class="douban">豆瓣</a>
 <a target="_blank" href="<%=raw qq%>" class="my_qq">腾讯微博</a>
   
 </dd>
 <dd id="copylink"> <b id="urldoc">把下面的链接通过 MSN 或 QQ 发送给好友：</b>
-  <input type="text" onfocus="this.select()" value="http://www.geilibuy.com/tuan" class="bookinput" id="qqmsnurl" name="qqmsnurl" autocomplete="off" style="width: 300px;">
+  <input type="text" onfocus="this.select()" value="http://www.geilibuy.com/tuan<%="/r#{current_user.id}" if has_login?%>" class="bookinput" id="qqmsnurl" name="qqmsnurl" autocomplete="off" style="width: 300px;">
   <!--[if IE]>
     <input type="submit" value="复制链接" class="dbtn copybtn" onClick="copy1(document.getElementById('qqmsnurl').value)">
     <![endif]-->
@@ -83,7 +82,7 @@ qq=%Q{http://v.t.qq.com/share/share.php?title=#{share_title}&url=#{share_url}}
 			<div class="deal_inf">
                 <div class="deal_box deal_btn" style="border-top:none;">
                	  <div id="deal_btn">
-               	                     	<a class="d_btn<%=show_tuan_status(@tuan)%>" href="/tuan/order"></a>
+               	                     	<a class="d_btn<%=show_tuan_status(@tuan)%>"<%if @tuan.selling?%> href="/tuan/order"<%end%>></a>
                   	                    <span class="d_price">¥<%=@tuan.pp2%></span>
                   </div>
      			 <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -238,7 +237,7 @@ ts_container.each do |ts|
 <dl class="liuyan_dl">
     <dt id="CommentList"><a target="_blank" href="/tuan/qa" class="guanzhu">查看全部(<span id="CommentCount"><%=Qa.where(:tuan_id=>@tuan.id).where(:hide=>false).count()%></span>)</a> | <a target="_blank" href="/tuan/qa" class="guanzhu">我要提问</a></dt>
 <%Qa.where(:tuan_id=>@tuan.id).where(:hide=>false).order("id desc").all.each do |qa|%>
-<dd title="<%=qa.question%>"><%=truncate qa.question,:length=>12%></dd>
+<dd title="<%=qa.question%>"><%=truncate qa.question,:length=>18%></dd>
 <%end%>
   </dl>
   <img src="/themes/default/imgs/tuan/telbar.gif" /> </div>

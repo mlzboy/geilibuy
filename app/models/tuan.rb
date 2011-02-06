@@ -1,4 +1,5 @@
 #coding:utf-8
+require "./lib/common.rb"
 class Tuan < ActiveRecord::Base
   has_attached_file :i1,:styles=>{:index=>"231x139",:small=>"100x100#",:medium=>"200x131#",:big=>"439x265#",:process=>"800x800>"},:url => "/system/:class/:id_partition/:style/:filename",:path => ":rails_root/public/system/:class/:id_partition/:style/:filename"
   belongs_to:product
@@ -55,7 +56,19 @@ class Tuan < ActiveRecord::Base
   end
   
   def selling?
-    self.end_time>Time.now and self.current_num < self.max_num
+    if self.end_time>Time.now
+      if self.max_num>0
+	if self.current_num < self.max_num
+	  return true
+	else
+	  return false
+	end
+      else
+	return true
+      end
+    else
+      return false
+    end
   end
   
   def sellout?
@@ -75,7 +88,7 @@ class Tuan < ActiveRecord::Base
     buy_num=1
     if everyone_max_num==0 or everyone_max_num>=num
       buy_num=num
-    elsif everyone_max_num>0
+    else
       buy_num=everyone_max_num
     end
     buy_num

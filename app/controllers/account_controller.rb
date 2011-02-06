@@ -10,7 +10,9 @@ class AccountController < ApplicationController
     if tuan_order
       tuan_order.order_statuses<<OrderStatus.create(:name=>"取消",:value=>64,:tuangou=>true)
       u=current_user
-      u.plus_scores(tuan_order.cost_scores,"取消订单T#{tuan_order.sn},返还积分",true)#在团购订单中目前不能消费积分，所以不用没关系
+      if tuan_order.cost_scores>0
+        u.plus_scores(tuan_order.cost_scores,"取消订单T#{tuan_order.sn},返还积分",true)#在团购订单中目前不能消费积分，所以不用没关系
+      end
       if tuan_order.cash_money>0
         u.money+=tuan_order.cash_money
         u.save

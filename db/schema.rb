@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110916123096) do
+ActiveRecord::Schema.define(:version => 20110916123098) do
 
   create_table "addresses", :force => true do |t|
     t.string   "consignee"
@@ -669,7 +669,10 @@ ActiveRecord::Schema.define(:version => 20110916123096) do
     t.boolean  "tuan",       :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "sended",     :default => false
   end
+
+  add_index "subscriptions", ["subscribe"], :name => "index_subscriptions_on_subscribe"
 
   create_table "topic_details", :force => true do |t|
     t.text     "content"
